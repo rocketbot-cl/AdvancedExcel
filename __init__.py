@@ -23,41 +23,75 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
     pip install <package> -t .
 
 """
+# Changing the data types of all strings in the module at once
+from __future__ import unicode_literals
 import os
+import sys
+base_path = tmp_global_obj["basepath"]
+cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
+sys.path.append(cur_path)
+print(cur_path)
+import pyexcel as p
+from xlwt import Workbook
 import platform
 import xlwings as xw
 from xlwings.constants import InsertShiftDirection
 import pandas as pd
+import io
+import decimal
+
 
 module = GetParams("module")
 
+if module == "Open":
+    excel = GetGlobals("excel")
+    id_ = GetParams("id")
+    file_path = GetParams("path")
+    try:
+        app = xw.App(add_book=False)
+        app.display_alerts = False
+        file_path = file_path.replace("/", os.sep)
+
+        wb = app.books.api.Open(file_path, UpdateLinks=False)
+        # wb = app.books.open(file_path, UpdateLinks=False)
+        excel.actual_id = excel.id_default
+
+        if id_:
+            excel.actual_id = id_
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = xw.Book(file_path)
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = file_path
+
+    except:
+        PrintException()
+
 if module == "CellColor":
-    print("uno")
     excel = GetGlobals("excel")
 
     range_ = GetParams("range")
     color = GetParams("color")
 
     if color == "red":
-        rgb = (255,0,0)
+        rgb = (255, 0, 0)
         print("dos")
     elif color == "blue":
-        rgb = (0,0,255)
+        rgb = (0, 0, 255)
     elif color == "green":
-        rgb = (0,255,0)
+        rgb = (0, 255, 0)
     elif color == "grey":
-        rgb = (130,130,130)
+        rgb = (130, 130, 130)
     else:
-        rgb = (255,255,0)
+        rgb = (255, 255, 0)
 
     try:
         print("En el try")
         xls = excel.file_[excel.actual_id]
 
-
         # wb = xls['workbook']
         #         # print(wb)
-        xw.Range(range_).color= rgb
+        xw.Range(range_).color = rgb
 
         print("salimos")
         # xw.Range('A1:C1').column_width = 23
@@ -134,7 +168,6 @@ if module == "SelectCells":
     xls['workbook'].api.Application.Run("RocketSelect", cells, copy)
     xls['workbook'].api.Application.Run("DeleteAllMacros")
 
-
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
@@ -150,32 +183,63 @@ if module == "formatCell":
     rango = GetParams("cell_range")
     formato = GetParams("format_")
 
-    if len(rango) == 1:
-        rango = rango + ':' + rango
+    try:
+        if len(rango) == 1:
+            rango = rango + ':' + rango
+        if formato == "text":
+            xw.sheets[hoja].range(rango).number_format = '@'
 
-    if formato == "text":
-        xw.sheets[hoja].range(rango).number_format = '@'
+        if formato == "number_":
+            numbers = xw.sheets[hoja].range(rango).value
+            d = 0
+            if type(numbers) is not list:
+                numbers = [numbers]
 
-    if formato == "number_":
-        xw.sheets[hoja].range(rango).number_format = '0'
+            for number in numbers:
+                idx = numbers.index(number)
+                if type(number) is str:
+                    number = number.split(",")
+                    print("number > ", number)
+                    if "." in number[0]:
+                        number[0] = number[0].replace(".", "")
+                        number = number[0] + "." + number[1]
+                    else:
+                        number = ".".join(number)
+                if d < len(str(number).split(".")[1]):
+                    d = len(str(number).split(".")[1])
+                print(d)
 
-    if formato == "coin_":
-        xw.sheets[hoja].range(rango).number_format = '$#.##0'
+                numbers[idx] = number
+            print(type(numbers[0]))
+            xw.sheets[hoja].range(rango).value = numbers
+            print("format", xw.sheets[hoja].range(rango).number_format)
+            if d == 0:
+                xw.sheets[hoja].range(rango).number_format = '0'
+            else:
+                xw.sheets[hoja].range(rango).number_format = '0,{}'.format('0'*d)
 
-    if formato == "date1":
-        xw.sheets[hoja].range(rango).number_format = 'dd-mm-yyyy'
 
-    if formato == "date2":
-        xw.sheets[hoja].range(rango).number_format = 'dd-mm-yy'
 
-    if formato == "date3":
-        xw.sheets[hoja].range(rango).number_format = 'yyyy-mm-dd'
+        if formato == "coin_":
+            xw.sheets[hoja].range(rango).number_format = '$#.##0'
 
-    if formato == "decimal1":
-        xw.sheets[hoja].range(rango).number_format = '0,0'
-        
-    if formato == "decimal2":
-        xw.sheets[hoja].range(rango).number_format = '#.##0,0'
+        if formato == "date1":
+            xw.sheets[hoja].range(rango).number_format = 'dd-mm-yyyy'
+
+        if formato == "date2":
+            xw.sheets[hoja].range(rango).number_format = 'dd-mm-yy'
+
+        if formato == "date3":
+            xw.sheets[hoja].range(rango).number_format = 'yyyy-mm-dd'
+
+        if formato == "decimal1":
+            xw.sheets[hoja].range(rango).number_format = '0,0'
+
+        if formato == "decimal2":
+            xw.sheets[hoja].range(rango).number_format = '#.##0,0'
+    except Exception as e:
+        PrintException()
+        raise e
 
 if module == "createSheet":
     hoja = GetParams("sheet_name")
@@ -184,7 +248,6 @@ if module == "createSheet":
     last = res[-1]
 
     xw.sheets.add(name=hoja, after=last)
-
 
 if module == "copy_other":
     try:
@@ -208,7 +271,7 @@ if module == "copy_other":
             wb2.save(excel2)
             wb2.close()
             # wb1.close()
-            
+
         else:
             wb2.save()
             wb2.close()
@@ -216,7 +279,6 @@ if module == "copy_other":
         app.quit()
     except:
         PrintException()
-
 
 if module == "addRow":
 
@@ -232,48 +294,8 @@ if module == "addRow":
         if opcion_ == "add_":
 
             if platform_ == 'Windows':
-                if len(fila_) == 1:
+                if ":" in fila_:
 
-                    if tipo == "down_":
-                        fila_ = int(fila_) + 1
-                        # print(fila_)
-                        fila = str(fila_) + ':' + str(fila_)
-
-                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
-
-                    if tipo == "up_":
-                        fila = str(fila_) + ':' + str(fila_)
-                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
-
-                else:
-                    if len(fila_) > 1:
-                        if tipo == "down_":
-                            fila = fila_.split(':')
-                            f1 = fila[0]
-                            f1 = int(f1) + 1
-                            f2 = fila[1]
-                            f2 = int(f2) + 1
-                            fila = str(f1) + ':' + str(f2)
-                            # fila_ = int(fila_) + 1
-                            xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
-                        if tipo == "up_":
-                            xw.sheets[hoja].range(fila_).api.Insert(InsertShiftDirection.xlShiftDown)
-
-            else:
-                if len(fila_) == 1:
-
-                    if tipo == "down_":
-                        fila_ = int(fila_) + 1
-                        # print(fila_)
-                        fila = str(fila_) + ':' + str(fila_)
-
-                        xw.sheets[hoja].api.rows[fila].insert_into_range()
-
-                    if tipo == "up_":
-                        fila = str(fila_) + ':' + str(fila_)
-                        xw.sheets[hoja].api.rows[fila].insert_into_range()
-
-                if len(fila_) > 1:
                     if tipo == "down_":
                         fila = fila_.split(':')
                         f1 = fila[0]
@@ -281,29 +303,65 @@ if module == "addRow":
                         f2 = fila[1]
                         f2 = int(f2) + 1
                         fila = str(f1) + ':' + str(f2)
-                        #fila_ = int(fila_) + 1
+                        print('FILA down', fila)
+                        # fila_ = int(fila_) + 1
+                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+
+                    if tipo == "up_":
+                        print('FILA up', fila_)
+                        xw.sheets[hoja].range(fila_).api.Insert(InsertShiftDirection.xlShiftDown)
+
+                else:
+                    if tipo == "down_":
+                        fila_ = int(fila_) + 1
+                        # print(fila_)
+                        fila = str(fila_) + ':' + str(fila_)
+                        print('FILA down', fila)
+
+                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+
+                    if tipo == "up_":
+                        fila = str(fila_) + ':' + str(fila_)
+                        print('FILA up', fila)
+                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+
+
+            else:
+                if ":" in fila_:
+                    if tipo == "down_":
+                        fila = fila_.split(':')
+                        f1 = fila[0]
+                        f1 = int(f1) + 1
+                        f2 = fila[1]
+                        f2 = int(f2) + 1
+                        fila = str(f1) + ':' + str(f2)
+                        # fila_ = int(fila_) + 1
                         xw.sheets[hoja].api.rows[fila].insert_into_range()
                     if tipo == "up_":
                         xw.sheets[hoja].api.rows[fila_].insert_into_range()
 
-        if opcion_ == "delete_":
-            if platform_ == 'Windows':
-                if len(fila_) == 1:
-                    fila = str(fila_) + ':' + str(fila_)
-                    xw.Range(fila).api.Delete()
                 else:
-                    xw.Range(fila_).api.Delete()
+                    if tipo == "down_":
+                        fila_ = int(fila_) + 1
+                        # print(fila_)
+                        fila = str(fila_) + ':' + str(fila_)
 
+                        xw.sheets[hoja].api.rows[fila].insert_into_range()
+
+                    if tipo == "up_":
+                        fila = str(fila_) + ':' + str(fila_)
+                        xw.sheets[hoja].api.rows[fila].insert_into_range()
+
+        if opcion_ == "delete_":
+            if ":" in fila_:
+                xw.Range(fila_).api.delete()
             else:
-                if len(fila_) == 1:
-                    fila = str(fila_) + ':' + str(fila_)
-                    xw.Range(fila).api.delete()
-                else:
-                    xw.Range(fila_).api.delete()
+                fila = str(fila_) + ':' + str(fila_)
+                # print(fila)
+                xw.Range(fila).api.delete()
 
     except:
         PrintException()
-
 
 if module == "addCol":
     try:
@@ -316,38 +374,37 @@ if module == "addCol":
 
             if platform_ == 'Windows':
 
-                if len(str(col_)) == 1:
+                if ":" in col_:
+                    xw.sheets[hoja].range(col_).api.Insert(InsertShiftDirection.xlShiftToRight)
+                else:
                     col = str(col_) + ':' + str(col_)
                     xw.sheets[hoja].range(col).api.Insert(InsertShiftDirection.xlShiftToRight)
 
-                else:
-                    xw.sheets[hoja].range(col_).api.Insert(InsertShiftDirection.xlShiftToRight)
 
             else:
-                if len(str(col_)) == 1:
+                if ":" in col_:
+                    xw.sheets[hoja].api.columns[col_].insert_into_range()
+                else:
                     col = str(col_) + ':' + str(col_)
                     xw.sheets[hoja].api.columns[col].insert_into_range()
 
-                else:
-                    xw.sheets[hoja].api.columns[col_].insert_into_range()
-
         if opcion_ == "delete_":
             if platform_ == 'Windows':
-                if len(col_) == 1:
+                if ":" in col_:
+                    xw.Range(col_).api.Delete()
+                else:
                     col = str(col_) + ':' + str(col_)
                     xw.Range(col).api.Delete()
-                else:
-                    xw.Range(col_).api.Delete()
 
             else:
-                if len(col_) == 1:
+                if ":" in col_:
+                    xw.Range(col_).api.delete()
+                else:
                     col = str(col_) + ':' + str(col_)
                     xw.Range(col).api.delete()
-                else:
-                    xw.Range(col_).api.delete()
+
     except:
         PrintException()
-
 
 if module == "csvToxlsx":
     csv_path = GetParams("csv_path")
@@ -358,3 +415,103 @@ if module == "csvToxlsx":
 
     df = pd.read_csv(csv_path)
     df.to_excel(xlsx_path, index=None)
+
+if module == "countColumns":
+
+    excel = GetGlobals("excel")
+
+    sheet = GetParams("sheet")
+    result = GetParams("var_")
+
+    try:
+        excel_path = excel.file_["default"]["path"]
+        print(excel_path)
+        df = pd.read_excel(excel_path, sheetname=sheet)
+        print(df)
+        col = df.shape[1]
+
+        if result:
+            SetVar(result, col)
+
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "xlsToxlsx":
+
+    xls_path = GetParams('xls_path')
+    xlsx_path = GetParams('xlsx_path')
+    print(xls_path,xlsx_path)
+
+    try:
+        try:
+            p.save_book_as(file_name=xls_path,
+                            dest_file_name=xlsx_path)
+        except:
+
+            filename = xls_path
+            # Opening the file using 'utf-16' encoding
+            file1 = io.open(filename, "r", encoding="utf-16")
+            data = file1.readlines()
+
+            # Creating a workbook object
+            xldoc = Workbook()
+            # Adding a sheet to the workbook object
+            sheet = xldoc.add_sheet("Sheet1", cell_overwrite_ok=True)
+            # Iterating and saving the data to sheet
+            for i, row in enumerate(data):
+                # Two things are done here
+                # Removeing the '\n' which comes while reading the file using io.open
+                # Getting the values after splitting using '\t'
+                for j, val in enumerate(row.replace('\n', '').split('\t')):
+                    sheet.write(i, j, val)
+
+            # Saving the file as an excel file
+            xldoc.save(xls_path)
+
+            p.save_book_as(file_name=xls_path,
+                           dest_file_name=xlsx_path)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "getActiveCell":
+    excel = GetGlobals("excel")
+    result = GetParams("result")
+
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+           'w', 'x', 'y', 'z']
+
+    try:
+        col = int(wb.app.selection.column)
+        row = wb.app.selection.row
+
+        length = len(abc)
+        if col > length:
+            excess = col // length
+            mod = col % length
+
+            col = abc[excess - 1] + abc[mod - 1]
+        else:
+            col = abc[col - 1]
+
+        print(row, "******")
+        ans = col + str(row)
+
+        SetVar(result, ans)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "updatePivot":
+    sheet = GetParams("sheet")
+    pivotTableName = GetParams("table")
+    excel = GetGlobals("excel")
+
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+    wb.sheets[sheet].select()
+    wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
