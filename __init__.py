@@ -249,6 +249,18 @@ if module == "createSheet":
 
     xw.sheets.add(name=hoja, after=last)
 
+if module == "deleteSheet":
+
+    hoja = GetParams("sheet_name")
+    var_ = GetParams("var_")
+    res = False
+
+    for sheet in xw.sheets:
+        if hoja in sheet.name:
+            sheet.delete()
+            res = True
+
+    SetVar(var_,res)
 if module == "copy_other":
     try:
         excel1 = GetParams("excel1")
