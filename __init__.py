@@ -218,8 +218,6 @@ if module == "formatCell":
             else:
                 xw.sheets[hoja].range(rango).number_format = '0,{}'.format('0'*d)
 
-
-
         if formato == "coin_":
             xw.sheets[hoja].range(rango).number_format = '$#.##0'
 
@@ -237,6 +235,10 @@ if module == "formatCell":
 
         if formato == "decimal2":
             xw.sheets[hoja].range(rango).number_format = '#.##0,0'
+
+        if formato == "long_date":
+            xw.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+
     except Exception as e:
         PrintException()
         raise e
