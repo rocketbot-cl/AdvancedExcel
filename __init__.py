@@ -271,7 +271,7 @@ if module == "copy_other":
         rango2 = GetParams("cell_range2")
         platform_ = platform.system()
 
-        app = xw.App(visible=False)
+        app = xw.App(visible=True)
         wb1 = xw.Book(excel1)
         wb2 = xw.Book(excel2)
 
@@ -282,7 +282,7 @@ if module == "copy_other":
         if platform_ == 'Windows':
             wb2.save(excel2)
             wb2.close()
-            # wb1.close()
+            #wb1.close()
 
         else:
             wb2.save()
@@ -527,3 +527,38 @@ if module == "updatePivot":
     wb = xls['workbook']
     wb.sheets[sheet].select()
     wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
+
+if module == "filter":
+
+    data = GetParams("data")
+    data = eval(data)
+    col = GetParams("col").lower()
+    type_filter_col = GetParams("type_filter_col")
+    filter_col = GetParams("filter_col")
+    var_ = GetParams("var_")
+    list = []
+    cont = 0
+    print(filter_col)
+
+
+    try:
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z']
+
+        around_abc = len(col) - 1
+        col = col[-1]
+        col_index = around_abc * len(abc) + abc.index(col)
+        col_index = int(col_index)
+
+        if col:
+            for d in data:
+                if type_filter_col == "equal":
+                    if d[col_index] == filter_col:
+                        list.append(d)
+                if type_filter_col == "not_equal":
+                    if d[col_index] != filter_col:
+                        list.append(d)
+
+        SetVar(var_, list)
+    except:
+        PrintException()
