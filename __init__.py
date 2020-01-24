@@ -192,25 +192,42 @@ if module == "formatCell":
         if formato == "number_":
             numbers = xw.sheets[hoja].range(rango).value
             d = 0
-            if type(numbers) is not list:
+            if type(numbers[0]) != list and len(numbers) == 1:
                 numbers = [numbers]
-
-            for number in numbers:
-                idx = numbers.index(number)
-                if type(number) is str:
-                    number = number.split(",")
-                    print("number > ", number)
-                    if "." in number[0]:
-                        number[0] = number[0].replace(".", "")
-                        number = number[0] + "." + number[1]
-                    else:
+            print(numbers)
+            for i in range(len(numbers)):
+                element = numbers[i]
+                if type(element) == list:
+                    for idx in range(len(element)):
+                        print(idx)
+                        number = element[idx]
+                        print("number", number)
+                        if type(element[idx]) is str:
+                            number = number.split(",")
+                            if "." in number[0]:
+                                number[0] = number[0].replace(".", "")
+                            number = ".".join(number)
+                            if d < len(str(number).split(".")[1]):
+                                d = len(str(number).split(".")[1])
+                        element[idx] = number
+                        numbers[i] = element
+                else:
+                    number = numbers[i]
+                    if type(number) is str:
+                        number = number.split(",")
+                        print("number > ", number)
+                        if "." in number[0]:
+                            number[0] = number[0].replace(".", "")
                         number = ".".join(number)
-                if d < len(str(number).split(".")[1]):
-                    d = len(str(number).split(".")[1])
-                print(d)
 
-                numbers[idx] = number
-            print(type(numbers[0]))
+                        if d < len(str(number).split(".")[1]):
+                            d = len(str(number).split(".")[1])
+                    numbers[i] = number
+
+            if rango.split(":")[0][0] == rango.split(":")[1][0]:
+                for i in range(len(numbers)):
+                    numbers[i] = [numbers[i]]
+
             xw.sheets[hoja].range(rango).value = numbers
             print("format", xw.sheets[hoja].range(rango).number_format)
             if d == 0:
@@ -533,6 +550,7 @@ if module == "updatePivot":
 if module == "filter":
 
     data = GetParams("data")
+    print("*"*1000 + "\n", data)
     data = eval(data)
     col = GetParams("col").lower()
     type_filter_col = GetParams("type_filter_col")
@@ -554,10 +572,12 @@ if module == "filter":
 
         if col:
             for d in data:
+                print(d, "******")
                 if type_filter_col == "equal":
                     if d[col_index] == filter_col:
                         list.append(d)
                 if type_filter_col == "not_equal":
+                    print(d[col_index], "\n")
                     if d[col_index] != filter_col:
                         list.append(d)
 
