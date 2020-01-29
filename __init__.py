@@ -482,8 +482,8 @@ if module == "countRows":
         row_ = 'A'
 
     try:
-        excel_path = excel.file_["default"]["path"]
-        print(excel_path)
+        #excel_path = excel.file_["default"]["path"]
+        #print(excel_path)
         total = xw.sheets[sheet].range(row_ + str(xw.sheets[sheet].cells.last_cell.row)).end('up').row
         #print(total)
 
