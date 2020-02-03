@@ -469,6 +469,32 @@ if module == "countColumns":
         PrintException()
         raise e
 
+if module == "countRows":
+
+    excel = GetGlobals("excel")
+
+    sheet = GetParams("sheet")
+    row_ = GetParams("row_")
+    result = GetParams("var_")
+
+    if not sheet:
+        sheet = 0
+    if not row_:
+        row_ = 'A'
+
+    try:
+        #excel_path = excel.file_["default"]["path"]
+        #print(excel_path)
+        total = xw.sheets[sheet].range(row_ + str(xw.sheets[sheet].cells.last_cell.row)).end('up').row
+        #print(total)
+
+        if result:
+            SetVar(result, total)
+
+    except Exception as e:
+        PrintException()
+        raise e
+
 if module == "xlsToxlsx":
 
     xls_path = GetParams('xls_path')
@@ -559,7 +585,6 @@ if module == "filter":
     var_ = GetParams("var_")
     list = []
     cont = 0
-    print(filter_col)
 
 
     try:
@@ -573,12 +598,16 @@ if module == "filter":
 
         if col:
             for d in data:
-                print(d, "******")
+                #print(d, "******")
+                print('data',d)
+                print('f',filter_col)
                 if type_filter_col == "equal":
                     if d[col_index] == filter_col:
+                        print('equal',d[col_index],filter_col)
                         list.append(d)
+                        print('LIST',list)
                 if type_filter_col == "not_equal":
-                    print(d[col_index], "\n")
+                    print('not',d[col_index], "\n")
                     if d[col_index] != filter_col:
                         list.append(d)
 
