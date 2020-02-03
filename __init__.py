@@ -444,9 +444,10 @@ if module == "csvToxlsx":
 
     if not csv_path or not xlsx_path:
         raise Exception("Falta una ruta")
-
-    df = pd.read_csv(csv_path, sep=sep)
+    f_ = open(csv_path, 'r', enconding='latin-1')
+    df = pd.read_csv(f_, sep=sep)
     df.to_excel(xlsx_path, index=None)
+    f_.close()
 
 if module == "countColumns":
 
