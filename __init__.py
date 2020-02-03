@@ -440,11 +440,12 @@ if module == "addCol":
 if module == "csvToxlsx":
     csv_path = GetParams("csv_path")
     xlsx_path = GetParams("xlsx_path")
+    sep = GetParams("separator") or ","
 
     if not csv_path or not xlsx_path:
         raise Exception("Falta una ruta")
 
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(csv_path, sep=sep)
     df.to_excel(xlsx_path, index=None)
 
 if module == "countColumns":
