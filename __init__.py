@@ -565,7 +565,7 @@ if module == "getActiveCell":
         PrintException()
         raise e
 
-if module == "updatePivot":
+if module == "refreshPivot":
     sheet = GetParams("sheet")
     pivotTableName = GetParams("table")
     excel = GetGlobals("excel")
@@ -573,7 +573,18 @@ if module == "updatePivot":
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
     wb.sheets[sheet].select()
+    print(dir(wb.api.ActiveSheet.PivotTables(pivotTableName)))
     wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
+
+if module == "fitCells":
+    sheet = GetParams("sheet")
+    range_cell = GetParams("cell_range")
+    excel = GetGlobals("excel")
+
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+    sh = wb.sheets[sheet].autofit()
+
 
 if module == "filter":
 
@@ -615,3 +626,4 @@ if module == "filter":
         SetVar(var_, list)
     except:
         PrintException()
+
