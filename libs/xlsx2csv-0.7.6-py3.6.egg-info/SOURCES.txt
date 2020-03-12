@@ -1,0 +1,8 @@
+README
+setup.py
+xlsx2csv.py
+scripts/xlsx2csv
+xlsx2csv.egg-info/PKG-INFO
+xlsx2csv.egg-info/SOURCES.txt
+xlsx2csv.egg-info/dependency_links.txt
+xlsx2csv.egg-info/top_level.txt

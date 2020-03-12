@@ -39,6 +39,7 @@ from xlwings.constants import InsertShiftDirection
 import pandas as pd
 import io
 import decimal
+from xlsx2csv import Xlsx2csv
 
 
 module = GetParams("module")
@@ -449,6 +450,13 @@ if module == "csvToxlsx":
     df = pd.read_csv(f_, sep=sep)
     df.to_excel(xlsx_path, index=None)
     f_.close()
+
+if module == "xlsxToCsv":
+
+    csv_path = GetParams("csv_path")
+    xlsx_path = GetParams("xlsx_path")
+
+    Xlsx2csv(xlsx_path, outputencoding="utf-8").convert(csv_path)
 
 if module == "countColumns":
 
