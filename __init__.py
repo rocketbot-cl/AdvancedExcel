@@ -636,3 +636,11 @@ if module == "filter":
     except:
         PrintException()
 
+
+if module == "CloseExcel":
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    path = xls['path']
+    wb = xw.Book(path)
+    wb.save(path)
+    wb.close()
