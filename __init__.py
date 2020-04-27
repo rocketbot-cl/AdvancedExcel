@@ -108,6 +108,7 @@ if module == "InsertFormula":
     cell = GetParams("cell")
     formula = GetParams("formula")
 
+
     xw.Range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -647,3 +648,17 @@ if module == "CloseExcel":
     wb = xw.Book(path1)
     wb.save(path1)
     wb.close()
+
+if module == "getFormula":
+    excel = GetGlobals("excel")
+
+    cell = GetParams("cell")
+    result = GetParams("var_")
+
+    try:
+        formula = xw.Range(cell).formula
+        SetVar(result, formula)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
