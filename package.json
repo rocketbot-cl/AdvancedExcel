@@ -766,7 +766,7 @@
     },
     {
       "en": {
-        "title": "Copy excel to another",
+        "title": "Copy to another excel",
         "description": "Copy range to another Excel in the background",
         "title_options": null,
         "options": null
@@ -1288,13 +1288,13 @@
     {
       "en": {
         "title": "Refresh Pivot table",
-        "description": "Refresh a pivot table",
+        "description": "Refresh a pivot table. Deprecated! Use PivotTableExcel module",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Actualizar tabla dinámica",
-        "description": "Actualiza una tabla dinámica",
+        "description": "Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel",
         "title_options": null,
         "options": null
       },

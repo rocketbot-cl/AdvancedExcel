@@ -1,6 +1,29 @@
 # AdvancedExcel
 Module to insert a macro, copy from one excel to another, add or remove rows and columns and more!
 
+## Commands
+<ul id="commands_readme">
+    <li>Open without alerts</li>
+    <li>Count columns</li>
+    <li>Count Rows</li>
+    <li>Cell color</li>
+    <li>Insert Formula</li>
+    <li>Insert Macro</li>
+    <li>Select Cell</li>
+    <li>Create Sheet</li>
+    <li>Delete Sheet</li>
+    <li>Copy to another excel</li>
+    <li>Add/Delete Row</li>
+    <li>Add/Delete Column</li>
+    <li>Convert CSV to XLSX</li>
+    <li>Convert XLS to XLSX</li>
+    <li>Get active cell</li>
+    <li>Refresh Pivot table</li>
+    <li>Fit cells</li>
+    <li>Close XLSX</li>
+    <li>Get Formula</li>
+</ul>
+
 **In the example robot you must change the URL for yours.
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/AdvancedExcel/master/example/excel.png)
