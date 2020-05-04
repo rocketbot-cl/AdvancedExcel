@@ -2,7 +2,7 @@
 Module to insert a macro, copy from one excel to another, add or remove rows and columns and more!
 
 ## Commands
-<ul id="commands_readme">
+<ul class="commands_readme">
     <li>Open without alerts</li>
     <li>Count columns</li>
     <li>Count Rows</li>
