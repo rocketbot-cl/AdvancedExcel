@@ -570,7 +570,7 @@
               "en": "Sheet Name: "
             },
             "id": "sheet_name",
-            "css": "col-md-4"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -587,7 +587,7 @@
               "en": "For one column write A:A"
             },
             "id": "cell_range",
-            "css": "col-md-4"
+            "css": "col-md-6"
           },
           {
             "type": "select",
@@ -639,10 +639,27 @@
               {
                 "title": "Fecha y hora",
                 "value": "long_date"
+              },
+              {
+                "title": "Custom",
+                "value": "custom"
               }
             ],
             "id": "format_",
-            "css": "col-md-4"
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "00000",
+              "en": "00000"
+            },
+            "title": {
+              "es": "Formato personalizado: ",
+              "en": "Custom format: "
+            },
+            "id": "custom",
+            "css": "col-md-6"
           }
         ]
       },

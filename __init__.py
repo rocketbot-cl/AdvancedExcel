@@ -184,6 +184,7 @@ if module == "formatCell":
     hoja = GetParams("sheet_name")
     rango = GetParams("cell_range")
     formato = GetParams("format_")
+    custom = GetParams("custom")
 
     try:
         if len(rango) == 1:
@@ -258,6 +259,8 @@ if module == "formatCell":
 
         if formato == "long_date":
             xw.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+        if formato == 'custom':
+            xw.sheets[hoja].range(rango).number_format = custom
 
     except Exception as e:
         PrintException()
@@ -662,3 +665,4 @@ if module == "getFormula":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
