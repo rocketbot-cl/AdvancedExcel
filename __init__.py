@@ -472,7 +472,7 @@ if module == "countColumns":
     try:
         excel_path = excel.file_["default"]["path"]
         print(excel_path)
-        df = pd.read_excel(excel_path, sheetname=sheet)
+        df = pd.read_excel(excel_path, sheet_name=sheet)
         print(df)
         col = df.shape[1]
 
@@ -659,8 +659,14 @@ if module == "getFormula":
     result = GetParams("var_")
 
     try:
-        formula = xw.Range(cell).formula
-        SetVar(result, formula)
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+
+        wb = xls['workbook']
+        sht = wb.sheets["Hoja1"].select()
+        sht.columns("A:E").AutoFilter(1)
+        # formula = xw.Range(cell).formula
+        # SetVar(result, formula)
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
