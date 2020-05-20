@@ -22,6 +22,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Fit cells</li>
     <li>Close XLSX</li>
     <li>Get Formula</li>
+    <li>Add Auto Filter</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
