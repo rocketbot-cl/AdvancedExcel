@@ -472,7 +472,7 @@ if module == "countColumns":
     try:
         excel_path = excel.file_["default"]["path"]
         print(excel_path)
-        df = pd.read_excel(excel_path, sheet_name=sheet)
+        df = pd.read_excel(excel_path, sheetname=sheet)
         print(df)
         col = df.shape[1]
 
@@ -598,6 +598,46 @@ if module == "fitCells":
     wb = xls['workbook']
     sh = wb.sheets[sheet].autofit()
 
+if module == "CloseExcel":
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    path1 = xls['workbook']
+    path1 = str(str(path1).split()).replace('>', '').replace('[', '').replace(']', '')
+    path1 = eval(path1)
+    path1 = path1[1]
+    wb = xw.Book(path1)
+    wb.save(path1)
+    wb.close()
+
+if module == "getFormula":
+    excel = GetGlobals("excel")
+
+    cell = GetParams("cell")
+    result = GetParams("var_")
+
+    try:
+        formula = xw.Range(cell).formula
+        SetVar(result, formula)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "AutoFilter":
+    sheet = GetParams("sheet")
+    columns = GetParams("columns")
+    excel = GetGlobals("excel")
+
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        wb.sheets[sheet].select()
+        wb.sheets["Hoja1"].api.Columns(columns).AutoFilter(1)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
 
 if module == "filter":
 
@@ -640,35 +680,4 @@ if module == "filter":
     except:
         PrintException()
 
-
-if module == "CloseExcel":
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    path1 = xls['workbook']
-    path1 = str(str(path1).split()).replace('>', '').replace('[', '').replace(']', '')
-    path1 = eval(path1)
-    path1 = path1[1]
-    wb = xw.Book(path1)
-    wb.save(path1)
-    wb.close()
-
-if module == "getFormula":
-    excel = GetGlobals("excel")
-
-    cell = GetParams("cell")
-    result = GetParams("var_")
-
-    try:
-        excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
-
-        wb = xls['workbook']
-        sht = wb.sheets["Hoja1"].select()
-        sht.columns("A:E").AutoFilter(1)
-        # formula = xw.Range(cell).formula
-        # SetVar(result, formula)
-    except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
-        PrintException()
-        raise e
 
