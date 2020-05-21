@@ -27,6 +27,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 from __future__ import unicode_literals
 import os
 import sys
+
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
@@ -40,7 +41,6 @@ import pandas as pd
 import io
 import decimal
 from xlsx2csv import Xlsx2csv
-
 
 module = GetParams("module")
 
@@ -107,7 +107,6 @@ if module == "InsertFormula":
 
     cell = GetParams("cell")
     formula = GetParams("formula")
-
 
     xw.Range(cell).formula = formula
 
@@ -237,7 +236,7 @@ if module == "formatCell":
             if d == 0:
                 xw.sheets[hoja].range(rango).number_format = '0'
             else:
-                xw.sheets[hoja].range(rango).number_format = '0,{}'.format('0'*d)
+                xw.sheets[hoja].range(rango).number_format = '0,{}'.format('0' * d)
 
         if formato == "coin_":
             xw.sheets[hoja].range(rango).number_format = '$#.##0'
@@ -285,7 +284,7 @@ if module == "deleteSheet":
             sheet.delete()
             res = True
 
-    SetVar(var_,res)
+    SetVar(var_, res)
 if module == "copy_other":
     try:
         excel1 = GetParams("excel1")
@@ -307,7 +306,7 @@ if module == "copy_other":
         if platform_ == 'Windows':
             wb2.save(excel2)
             wb2.close()
-            #wb1.close()
+            # wb1.close()
 
         else:
             wb2.save()
@@ -456,7 +455,6 @@ if module == "csvToxlsx":
     f_.close()
 
 if module == "xlsxToCsv":
-
     csv_path = GetParams("csv_path")
     xlsx_path = GetParams("xlsx_path")
 
@@ -497,10 +495,10 @@ if module == "countRows":
         row_ = 'A'
 
     try:
-        #excel_path = excel.file_["default"]["path"]
-        #print(excel_path)
+        # excel_path = excel.file_["default"]["path"]
+        # print(excel_path)
         total = xw.sheets[sheet].range(row_ + str(xw.sheets[sheet].cells.last_cell.row)).end('up').row
-        #print(total)
+        # print(total)
 
         if result:
             SetVar(result, total)
@@ -513,12 +511,12 @@ if module == "xlsToxlsx":
 
     xls_path = GetParams('xls_path')
     xlsx_path = GetParams('xlsx_path')
-    print(xls_path,xlsx_path)
+    print(xls_path, xlsx_path)
 
     try:
         try:
             p.save_book_as(file_name=xls_path,
-                            dest_file_name=xlsx_path)
+                           dest_file_name=xlsx_path)
         except:
 
             filename = xls_path
@@ -632,52 +630,49 @@ if module == "AutoFilter":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.sheets[sheet].select()
-        wb.sheets["Hoja1"].api.Columns(columns).AutoFilter(1)
+        wb.sheets["Hoja1"].api.Columns(columns).AutoFilter()
+
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
 
+if module == "Filter":
 
-if module == "filter":
+    sheet = GetParams("sheet")
+    column = GetParams("column")
+    data = GetParams("filter")
+    excel = GetGlobals("excel")
 
-    data = GetParams("data")
-    print("*"*1000 + "\n", data)
-    data = eval(data)
-    col = GetParams("col").lower()
-    type_filter_col = GetParams("type_filter_col")
-    filter_col = GetParams("filter_col")
-    var_ = GetParams("var_")
-    list = []
-    cont = 0
+    abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+           'v', 'w', 'x', 'y', 'z']
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        wb.sheets[sheet].select()
+
+        i = abc.index(column.lower()) + 1
+        data = eval(data)
+        wb.sheets["Hoja1"].api.Columns(column).AutoFilter(i, data, 7)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "rename_sheet":
+    sheet = GetParams("sheet")
+    name = GetParams("name")
+    excel = GetGlobals("excel")
 
 
     try:
-        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'w', 'x', 'y', 'z']
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        wb.sheets[sheet].select()
+        wb.sheets[sheet].name = name
 
-        around_abc = len(col) - 1
-        col = col[-1]
-        col_index = around_abc * len(abc) + abc.index(col)
-        col_index = int(col_index)
-
-        if col:
-            for d in data:
-                #print(d, "******")
-                print('data',d)
-                print('f',filter_col)
-                if type_filter_col == "equal":
-                    if d[col_index] == filter_col:
-                        print('equal',d[col_index],filter_col)
-                        list.append(d)
-                        print('LIST',list)
-                if type_filter_col == "not_equal":
-                    print('not',d[col_index], "\n")
-                    if d[col_index] != filter_col:
-                        list.append(d)
-
-        SetVar(var_, list)
-    except:
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
-
-
+        raise e
