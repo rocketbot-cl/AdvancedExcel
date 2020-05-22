@@ -676,3 +676,34 @@ if module == "rename_sheet":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "style_cells":
+    sheet = GetParams("sheet_name")
+    range_ = GetParams("cell_range")
+    position = GetParams("position")
+    line_style = GetParams("lineStyle")
+    excel = GetGlobals("excel")
+
+
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        print(range_)
+        rng = wb.sheets[sheet].api.Range(range_)
+        line_style = int(line_style)
+        if position == "all":
+             for i in range(7,13):
+                 rng.Borders(i).LineStyle = line_style
+        elif position == "contour":
+             for i in range(7,11):
+                 rng.Borders(i).LineStyle = line_style
+        else:
+            position = int(position)
+            print(position)
+            rng.Borders(position).LineStyle = line_style
+
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
