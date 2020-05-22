@@ -1694,13 +1694,13 @@
     },
     {
       "en": {
-        "title": "Format Cell",
+        "title": "Cell Style",
         "description": "Format Cell",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Formatear Celda",
+        "title": "Estilo Celda",
         "description": "Formatear Celda",
         "title_options": null,
         "options": null

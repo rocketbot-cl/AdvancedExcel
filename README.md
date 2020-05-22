@@ -25,6 +25,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Add Auto Filter</li>
     <li>Add Filter</li>
     <li>Rename Sheet</li>
+    <li>Cell Style</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
