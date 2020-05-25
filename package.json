@@ -1567,14 +1567,14 @@
     },
     {
       "en": {
-        "title": "Add Filter",
+        "title": "Filter",
         "description": "Add filter to excel table",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Agregar Filtro",
-        "description": "Agrega filtro a una tabla excel",
+        "title": "Filtrar",
+        "description": "Filtra a una tabla excel",
         "title_options": null,
         "options": null
       },
