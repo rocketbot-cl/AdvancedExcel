@@ -1730,11 +1730,11 @@
             "title": {
               "es": "Rango a formatear: ",
               "en": "Cell: "
-            }
-          },
-          {
+            },
+
             "id": "cell_range",
             "css": "col-md-6"
+
           },
           {
             "type": "select",
