@@ -135,6 +135,7 @@ if module == "SelectCells":
     xls = excel.file_[excel.actual_id]
     cells = GetParams("cells")
     copy = GetParams("copy")
+    sheet = GetParams("sheet_name")
 
     if copy is None:
         copy = False
@@ -142,10 +143,11 @@ if module == "SelectCells":
     try:
 
         wb = xls['workbook']
-        wb.sheets.active.range(cells).select()
+        wb.sheets[sheet].select()
+        wb.sheets[sheet].range(cells).select()
 
         if copy:
-            wb.sheets.active.range(cells).copy()
+            wb.sheets[sheet].api.Range(cells).Copy()
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
@@ -687,6 +689,25 @@ if module == "style_cells":
             print(position)
             rng.Borders(position).LineStyle = line_style
 
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "Paste":
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    sheet = GetParams("sheet_name")
+    values = GetParams("values")
+    cells = GetParams("cells")
+
+    try:
+
+        wb = xls['workbook']
+        wb.sheets[sheet].select()
+        wb.sheets[sheet].range(cells).paste(paste="values" if values else None)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
