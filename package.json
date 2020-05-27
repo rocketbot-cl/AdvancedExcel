@@ -1601,11 +1601,24 @@
               "en": "A "
             },
             "title": {
+              "es": "Inicio de tabla: ",
+              "en": "Table start: "
+            },
+            "id": "start",
+            "css": "col-md-3"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A ",
+              "en": "A "
+            },
+            "title": {
               "es": "Columna: ",
               "en": "Column: "
             },
             "id": "column",
-            "css": "col-md-6"
+            "css": "col-md-3"
           },
           {
             "type": "input",
@@ -1616,6 +1629,10 @@
             "title": {
               "es": "Filtro: ",
               "en": "Filter: "
+            },
+            "help": {
+              "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
+              "en": "Use \"=\" to find blank fields, \"<>\" to find non-blank fields, and to select (No Data) fields in data types."
             },
             "id": "filter",
             "css": "col-md-12"

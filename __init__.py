@@ -630,7 +630,7 @@ if module == "AutoFilter":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Columns(columns).AutoFilter()
+        wb.sheets[sheet].api.Columns(columns).AutoFilter(1)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
@@ -640,6 +640,7 @@ if module == "AutoFilter":
 if module == "Filter":
 
     sheet = GetParams("sheet")
+    start = GetParams("start")
     column = GetParams("column")
     data = GetParams("filter")
     excel = GetGlobals("excel")
@@ -652,10 +653,10 @@ if module == "Filter":
         wb.sheets[sheet].select()
 
         i = abc.index(column.lower()) + 1
-        print(i)
-        if data:
+        j = abc.index(start.lower())
+        if data.startswith("["):
             data = eval(data)
-        wb.sheets[sheet].api.Columns(column).AutoFilter(i, data, 7)
+        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i-j, data, 7)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
