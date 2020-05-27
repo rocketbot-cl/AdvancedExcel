@@ -130,29 +130,6 @@ if module == "InsertMacro":
         tmp.CodeModule.AddFromString(content_macro.strip())
 
 if module == "SelectCells":
-    macro = """Sub RocketSelect(Ran as String, cop as Boolean)
-                Range(Ran).Select
-           
-                If cop = True Then
-                    Selection.Copy
-                End If
-                
-                Range(Ran).Select
-            End Sub
-            Sub DeleteAllMacros() 'Excel vba to delete all macros in new workbook.
-                Dim otmp As Object
-
-                With ActiveWorkbook.VBProject
-                    For Each otmp In .VBComponents
-                        If otmp.Type=100 Then
-                            otmp.CodeModule.DeleteLines 1, otmp.CodeModule.CountOfLines
-                            otmp.CodeModule.CodePane.Window.Close
-                        Else: .VBComponents.Remove otmp
-                        End If
-                    Next otmp
-                End With
-            End Sub 
-            """
 
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
@@ -162,12 +139,17 @@ if module == "SelectCells":
     if copy is None:
         copy = False
 
-    print(copy)
+    try:
 
-    tmp = xls['workbook'].api.VBProject.VBComponents.Add(1)
-    tmp.CodeModule.AddFromString(macro.strip())
-    xls['workbook'].api.Application.Run("RocketSelect", cells, copy)
-    xls['workbook'].api.Application.Run("DeleteAllMacros")
+        wb = xls['workbook']
+        wb.sheets.active.range(cells).select()
+
+        if copy:
+            wb.sheets.active.range(cells).copy()
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
@@ -630,7 +612,7 @@ if module == "AutoFilter":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Columns(columns).AutoFilter()
+        wb.sheets[sheet].api.Columns(columns).AutoFilter(1)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
@@ -640,6 +622,7 @@ if module == "AutoFilter":
 if module == "Filter":
 
     sheet = GetParams("sheet")
+    start = GetParams("start")
     column = GetParams("column")
     data = GetParams("filter")
     excel = GetGlobals("excel")
@@ -652,10 +635,10 @@ if module == "Filter":
         wb.sheets[sheet].select()
 
         i = abc.index(column.lower()) + 1
-        print(i)
-        if data:
+        j = abc.index(start.lower())
+        if data.startswith("["):
             data = eval(data)
-        wb.sheets[sheet].api.Columns(column).AutoFilter(i, data, 7)
+        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i-j, data, 7)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
