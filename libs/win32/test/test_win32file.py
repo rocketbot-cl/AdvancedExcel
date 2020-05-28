@@ -1,3 +1,4 @@
+from __future__ import print_function
 import unittest
 from pywin32_testutil import str2bytes, TestSkipped, testmain
 import win32api, win32file, win32pipe, pywintypes, winerror, win32event
@@ -142,7 +143,9 @@ class TestSimpleOps(unittest.TestCase):
             # there is nothing you can do to avoid it being skipped!
             return
         filename = tempfile.mktemp("-testFileTimes")
-        now_utc = win32timezone.utcnow()
+        # now() is always returning a timestamp with microseconds but the
+        # file APIs all have zero microseconds, so some comparisons fail.
+        now_utc = win32timezone.utcnow().replace(microsecond=0)
         now_local = now_utc.astimezone(win32timezone.TimeZoneInfo.local())
         h = win32file.CreateFile(filename,
                                  win32file.GENERIC_READ|win32file.GENERIC_WRITE,
@@ -166,7 +169,9 @@ class TestSimpleOps(unittest.TestCase):
     def testFileTimes(self):
         if issubclass(pywintypes.TimeType, datetime.datetime):
             from win32timezone import TimeZoneInfo
-            now = datetime.datetime.now(tz=TimeZoneInfo.local())
+            # now() is always returning a timestamp with microseconds but the
+            # file APIs all have zero microseconds, so some comparisons fail.
+            now = datetime.datetime.now(tz=TimeZoneInfo.utc()).replace(microsecond=0)
             nowish = now + datetime.timedelta(seconds=1)
             later = now + datetime.timedelta(seconds=120)
         else:
@@ -195,15 +200,14 @@ class TestSimpleOps(unittest.TestCase):
             self.failUnless( now <= wt <= nowish, (now, wt))
 
             # Now set the times.
-            win32file.SetFileTime(f, later, later, later)
+            win32file.SetFileTime(f, later, later, later, UTCTimes=True)
             # Get them back.
             ct, at, wt = win32file.GetFileTime(f)
             # XXX - the builtin PyTime type appears to be out by a dst offset.
             # just ignore that type here...
-            if issubclass(pywintypes.TimeType, datetime.datetime):
-                self.failUnlessEqual(ct, later)
-                self.failUnlessEqual(at, later)
-                self.failUnlessEqual(wt, later)
+            self.failUnlessEqual(ct, later)
+            self.failUnlessEqual(at, later)
+            self.failUnlessEqual(wt, later)
 
         finally:
             f.Close()

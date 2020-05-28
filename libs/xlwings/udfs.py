@@ -1,16 +1,19 @@
 import os
 import os.path
-import sys
 import re
 import tempfile
 import inspect
 from importlib import import_module
 from threading import Thread
+from importlib import reload  # requires >= py 3.4
 
-from win32com.client import Dispatch, CDispatch
+from win32com.client import Dispatch
+import pywintypes
 
-from . import conversion, xlplatform, Range, apps, PY3
+from . import conversion, xlplatform, Range, apps, Book, PRO
 from .utils import VBAWriter
+if PRO:
+    from .pro.embedded_code import dump_embedded_code, get_udf_temp_dir
 
 
 cache = {}
@@ -35,47 +38,34 @@ class AsyncThread(Thread):
             apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula_array = \
                 apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula_array
         else:
-            apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula = \
-                apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula
-
-
-if PY3:
-    try:
-        from imp import reload
-    except:
-        from importlib import reload
-
-    def func_sig(f):
-        s = inspect.signature(f)
-        vararg = None
-        args = []
-        defaults = []
-        for p in s.parameters.values():
-            if p.kind is inspect.Parameter.POSITIONAL_OR_KEYWORD:
-                args.append(p.name)
-                if p.default is not inspect.Signature.empty:
-                    defaults.append(p.default)
-            elif p.kind is inspect.Parameter.VAR_POSITIONAL:
-                args.append(p.name)
-                vararg = p.name
+            if has_dynamic_array(apps[self.pid]):
+                apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula2 = \
+                    apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula2
             else:
-                raise Exception("xlwings does not support UDFs with keyword arguments")
-        return {
-            'args': args,
-            'defaults': defaults,
-            'vararg': vararg
-        }
+                apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula = \
+                    apps[self.pid].books[self.book].sheets[self.sheet][self.address].formula
 
-else:
-    def func_sig(f):
-        s = inspect.getargspec(f)
-        if s.keywords:
+
+def func_sig(f):
+    s = inspect.signature(f)
+    vararg = None
+    args = []
+    defaults = []
+    for p in s.parameters.values():
+        if p.kind is inspect.Parameter.POSITIONAL_OR_KEYWORD:
+            args.append(p.name)
+            if p.default is not inspect.Signature.empty:
+                defaults.append(p.default)
+        elif p.kind is inspect.Parameter.VAR_POSITIONAL:
+            args.append(p.name)
+            vararg = p.name
+        else:
             raise Exception("xlwings does not support UDFs with keyword arguments")
-        return {
-            'args': (s.args + [s.varargs]) if s.varargs else s.args,
-            'defaults': s.defaults or [],
-            'vararg': s.varargs
-        }
+    return {
+        'args': args,
+        'defaults': defaults,
+        'vararg': vararg
+    }
 
 
 def get_category(**func_kwargs):
@@ -196,7 +186,7 @@ def xlarg(arg, convert=None, **kwargs):
 udf_modules = {}
 
 
-class DelayedResizeDynamicArrayFormula(object):
+class DelayedResizeDynamicArrayFormula:
     def __init__(self, target_range, caller, needs_clearing):
         self.target_range = target_range
         self.caller = caller
@@ -209,7 +199,12 @@ class DelayedResizeDynamicArrayFormula(object):
         self.target_range.api.FormulaArray = formula
 
 
-def get_udf_module(module_name):
+# Setup temp dir for embedded code
+if PRO:
+    tempdir = get_udf_temp_dir()
+
+
+def get_udf_module(module_name, xl_workbook):
     module_info = udf_modules.get(module_name, None)
     if module_info is not None:
         module = module_info['module']
@@ -221,12 +216,12 @@ def get_udf_module(module_name):
                 module_info['filetime'] = mtime
                 module_info['module'] = module
     else:
-        if sys.version_info[:2] < (2, 7):
-            # For Python 2.6. we don't handle modules in subpackages
-            module = __import__(module_name)
-        else:
-            module = import_module(module_name)
+        # Handle embedded code
+        if PRO:
+            wb = Book(impl=xlplatform.Book(Dispatch(xl_workbook)))
+            dump_embedded_code(wb, tempdir.name)
 
+        module = import_module(module_name)
         filename = os.path.normcase(module.__file__.lower())
 
         try:  # getmtime fails for zip imports and frozen modules
@@ -252,7 +247,7 @@ def get_cache_key(func, args, caller):
 
 def call_udf(module_name, func_name, args, this_workbook=None, caller=None):
 
-    module = get_udf_module(module_name)
+    module = get_udf_module(module_name, this_workbook)
     func = getattr(module, func_name)
     func_info = func.__xlfunc__
     args_info = func_info['args']
@@ -444,7 +439,7 @@ def import_udfs(module_names, xl_workbook):
     vba.writeln("""#Const App = "Microsoft Excel" 'Adjust when using outside of Excel""")
 
     for module_name in module_names:
-        module = get_udf_module(module_name)
+        module = get_udf_module(module_name, xl_workbook)
         generate_vba_wrapper(module_name, module, tf.file)
 
     tf.close()
@@ -456,7 +451,7 @@ def import_udfs(module_names, xl_workbook):
     xl_workbook.VBProject.VBComponents.Import(tf.name)
 
     for module_name in module_names:
-        module = get_udf_module(module_name)
+        module = get_udf_module(module_name, xl_workbook)
         for mvar in map(lambda attr: getattr(module, attr), dir(module)):
             if hasattr(mvar, '__xlfunc__'):
                 xlfunc = mvar.__xlfunc__
@@ -488,3 +483,15 @@ def import_udfs(module_names, xl_workbook):
         os.unlink(tf.name)
     except:
         pass
+
+
+def has_dynamic_array(app):
+    """This check in this form doesn't work on macOS, that's why it's here and not in utils"""
+    try:
+        app.api.WorksheetFunction.Unique("dummy")
+        return True
+    except pywintypes.com_error as e:
+        if e.hresult == -2147352567:
+            return False
+        else:
+            raise e

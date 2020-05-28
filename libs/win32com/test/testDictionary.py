@@ -1,6 +1,8 @@
 # testDictionary.py
 #
 import sys
+import datetime
+import time
 import win32com.server.util
 import win32com.test.util
 import win32com.client
@@ -8,18 +10,17 @@ import traceback
 import pythoncom
 import pywintypes
 import winerror
+import win32timezone
 
 import unittest
-
-error = "dictionary test error"
 
 def MakeTestDictionary():
     return win32com.client.Dispatch("Python.Dictionary")
 
 def TestDictAgainst(dict,check):
-    for key, value in check.items():
+    for key, value in list(check.items()):
         if dict(key) != value:
-            raise error("Indexing for '%s' gave the incorrect value - %s/%s" % (repr(key), repr(dict[key]), repr(check[key])))
+            raise Exception("Indexing for '%s' gave the incorrect value - %s/%s" % (repr(key), repr(dict[key]), repr(check[key])))
 
 # Ensure we have the correct version registered.
 def Register(quiet):
@@ -45,31 +46,42 @@ def TestDict(quiet=None):
     del checkDict["NewKey"]
     TestDictAgainst(dict, checkDict)
 
+    if issubclass(pywintypes.TimeType, datetime.datetime):
+        now = win32timezone.now()
+        # We want to keep the milliseconds but discard microseconds as they
+        # don't survive the conversion.
+        now = now.replace(microsecond = round(now.microsecond / 1000) * 1000)
+    else:
+        now = pythoncom.MakeTime(time.gmtime(time.time()))
+    dict["Now"] = now
+    checkDict["Now"] = now
+    TestDictAgainst(dict, checkDict)
+
     if not quiet:
         print("Failure tests")
     try:
         dict()
-        raise error("default method with no args worked when it shouldnt have!")
+        raise Exception("default method with no args worked when it shouldnt have!")
     except pythoncom.com_error as xxx_todo_changeme:
         (hr, desc, exc, argErr) = xxx_todo_changeme.args
         if hr != winerror.DISP_E_BADPARAMCOUNT:
-            raise error("Expected DISP_E_BADPARAMCOUNT - got %d (%s)" % (hr, desc))
+            raise Exception("Expected DISP_E_BADPARAMCOUNT - got %d (%s)" % (hr, desc))
 
     try:
         dict("hi", "there")
-        raise error("multiple args worked when it shouldnt have!")
+        raise Exception("multiple args worked when it shouldnt have!")
     except pythoncom.com_error as xxx_todo_changeme1:
         (hr, desc, exc, argErr) = xxx_todo_changeme1.args
         if hr != winerror.DISP_E_BADPARAMCOUNT:
-            raise error("Expected DISP_E_BADPARAMCOUNT - got %d (%s)" % (hr, desc))
+            raise Exception("Expected DISP_E_BADPARAMCOUNT - got %d (%s)" % (hr, desc))
 
     try:
         dict(0)
-        raise error("int key worked when it shouldnt have!")
+        raise Exception("int key worked when it shouldnt have!")
     except pythoncom.com_error as xxx_todo_changeme2:
         (hr, desc, exc, argErr) = xxx_todo_changeme2.args
         if hr != winerror.DISP_E_TYPEMISMATCH:
-            raise error("Expected DISP_E_TYPEMISMATCH - got %d (%s)" % (hr, desc))
+            raise Exception("Expected DISP_E_TYPEMISMATCH - got %d (%s)" % (hr, desc))
 
     if not quiet:
         print("Python.Dictionary tests complete.")

@@ -1,10 +1,9 @@
 """
 xlwings - Make Excel fly with Python!
 
-Homepage and documentation: http://xlwings.org
-See also: http://www.zoomeranalytics.com
+Homepage and documentation: https://www.xlwings.org
 
-Copyright (C) 2014-2016, Zoomer Analytics LLC.
+Copyright (C) 2014-present, Zoomer Analytics GmbH.
 All rights reserved.
 
 License: BSD 3-clause (see LICENSE.txt for details)
@@ -13,9 +12,8 @@ import os
 import sys
 import re
 import numbers
-import inspect
 
-from . import xlplatform, string_types, ShapeAlreadyExists, PY3
+from . import xlplatform, ShapeAlreadyExists
 from .utils import VersionNumber
 from . import utils
 
@@ -33,7 +31,7 @@ except ImportError:
     Image = None
 
 
-class Collection(object):
+class Collection:
 
     def __init__(self, impl):
         self.impl = impl
@@ -100,7 +98,7 @@ class Collection(object):
         )
 
 
-class Apps(object):
+class Apps:
     """
     A collection of all :meth:`app <App>` objects:
 
@@ -169,7 +167,7 @@ class Apps(object):
 apps = Apps(impl=xlplatform.Apps())
 
 
-class App(object):
+class App:
     """
     An app corresponds to an Excel instance. New Excel instances can be fired up like so:
 
@@ -328,6 +326,10 @@ class App(object):
         self.impl.display_alerts = value
 
     @property
+    def startup_path(self):
+        return self.impl.startup_path
+
+    @property
     def calculation(self):
         """
         Returns or sets a calculation value that represents the calculation mode.
@@ -391,18 +393,6 @@ class App(object):
         """
         return Range(impl=self.impl.range(cell1, cell2))
 
-    def __repr__(self):
-        return "<Excel App %s>" % self.pid
-
-    def __eq__(self, other):
-        return type(other) is App and other.pid == self.pid
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def __hash__(self):
-        return hash(self.pid)
-
     def macro(self, name):
         """
         Runs a Sub or Function in Excel VBA that are not part of a specific workbook but e.g. are part of an add-in.
@@ -435,8 +425,20 @@ class App(object):
         """
         return Macro(self, name)
 
+    def __repr__(self):
+        return "<Excel App %s>" % self.pid
 
-class Book(object):
+    def __eq__(self, other):
+        return type(other) is App and other.pid == self.pid
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __hash__(self):
+        return hash(self.pid)
+
+
+class Book:
     """
     A book object is a member of the :meth:`books <xlwings.main.Books>` collection:
 
@@ -467,10 +469,41 @@ class Book(object):
     fullname : str or path-like object, default None
         Full path or name (incl. xlsx, xlsm etc.) of existing workbook or name of an unsaved workbook. Without a full
         path, it looks for the file in the current working directory.
+    update_links : bool, default None
+        If this argument is omitted, the user is prompted to specify how links will be updated
+    read_only : bool, default False
+        True to open workbook in read-only mode
+    format : str
+        If opening a text file, this specifies the delimiter character
+    password : str
+        Password to open a protected workbook
+    write_res_password : str
+        Password to write to a write-reserved workbook
+    ignore_read_only_recommended : bool, default False
+        Set to ``True`` to mute the read-only recommended message
+    origin : int
+        For text files only. Specifies where it originated. Use XlPlatform constants.
+    delimiter : str
+        If format argument is 6, this specifies the delimiter.
+    editable : bool, default False
+        This option is only for legacy Microsoft Excel 4.0 addins.
+    notify : bool, default False
+        Notify the user when a file becomes available If the file cannot be opened in read/write mode.
+    converter : int
+        The index of the first file converter to try when opening the file.
+    add_to_mru : bool, default False
+        Add this workbook to the list of recently added workbooks.
+    local : bool, default False
+        If ``True``, saves files against the language of Excel, otherwise against the language of VBA.
+        Not supported on macOS.
+    corrupt_load : int, default xlNormalLoad
+        Can be one of xlNormalLoad, xlRepairFile or xlExtractData. Not supported on macOS.
 
     """
 
-    def __init__(self, fullname=None, impl=None):
+    def __init__(self, fullname=None, update_links=None, read_only=None, format=None, password=None, write_res_password=None,
+                 ignore_read_only_recommended=None, origin=None, delimiter=None, editable=None, notify=None, converter=None,
+                 add_to_mru=None, local=None, corrupt_load=None, impl=None):
         if not impl:
             if fullname:
                 fullname = utils.fspath(fullname)
@@ -483,10 +516,12 @@ class Book(object):
                             candidates.append((app, wb))
 
                 app = apps.active
-                if len(candidates) == 0:                    
+                if len(candidates) == 0:
                     if not app:
                         app = App(add_book=False)
-                    impl = app.books.open(fullname).impl                                     
+                    impl = app.books.open(fullname, update_links, read_only, format, password, write_res_password,
+                                          ignore_read_only_recommended, origin, delimiter, editable, notify, converter,
+                                          add_to_mru, local, corrupt_load).impl
                 elif len(candidates) > 1:
                     raise Exception("Workbook '%s' is open in more than one Excel instance." % fullname)
                 else:
@@ -523,9 +558,8 @@ class Book(object):
     def caller(cls):
         """
         References the calling book when the Python function is called from Excel via ``RunPython``.
-        Pack it into the function being called from Excel, e.g.:
+        Pack it into the function being called from Excel, e.g.::
 
-        .. code-block:: python
             import xlwings as xw
 
              def my_macro():
@@ -548,22 +582,15 @@ class Book(object):
             # Use mocking Book, see Book.set_mock_caller()
             return cls(impl=Book._mock_caller.impl)
         elif from_xl == '1':
-            fullname = wb.lower()
+            name = wb.lower()
             if sys.platform.startswith('win'):
                 app = App(impl=xlplatform.App(xl=int(hwnd)))
-                if not PY3 and isinstance(fullname, str):
-                    fullname = fullname.decode('mbcs')
-                return cls(impl=app.books.open(fullname).impl)
+                return cls(impl=app.books[name].impl)
             else:
                 # On Mac, the same file open in two instances is not supported
-                if PY3 and apps.active.version < 15:
-                    fullname = fullname.encode('utf-8', 'surrogateescape').decode('mac_latin2')
-                elif not PY3 and isinstance(fullname, str):
-                    if apps.active.version < 15:
-                        fullname = fullname.decode('mac_latin2')
-                    else:
-                        fullname = fullname.decode('utf-8')
-                return cls(impl=Book(fullname).impl)
+                if apps.active.version < 15:
+                    name = name.encode('utf-8', 'surrogateescape').decode('mac_latin2')
+                return cls(impl=Book(name).impl)
         elif xlplatform.BOOK_CALLER:
             # Called via OPTIMIZED_CONNECTION = True
             return cls(impl=xlplatform.Book(xlplatform.BOOK_CALLER))
@@ -595,27 +622,6 @@ class Book(object):
         .. versionadded:: 0.3.1
         """
         Book._mock_caller = self
-
-    @staticmethod
-    def open_template():
-        """
-        Creates a new Excel file with the xlwings VBA module already included. This method must be called from an
-        interactive Python shell::
-
-        >>> xw.Book.open_template()
-
-        See also: :ref:`command_line`
-
-        .. versionadded:: 0.3.3
-        """
-        this_dir = os.path.abspath(os.path.dirname(inspect.getfile(inspect.currentframe())))
-        template_file = 'xlwings_template.xltm'
-        try:
-            os.remove(os.path.join(this_dir, '~$' + template_file))
-        except OSError:
-            pass
-
-        xlplatform.open_template(os.path.realpath(os.path.join(this_dir, template_file)))
 
     def macro(self, name):
         """
@@ -747,13 +753,10 @@ class Book(object):
         return Range(impl=self.app.selection.impl) if self.app.selection else None
 
     def __repr__(self):
-        if not PY3:
-            return u"<Book [{0}]>".format(self.name).encode('utf-8')
-        else:
-            return "<Book [{0}]>".format(self.name)
+        return "<Book [{0}]>".format(self.name)
 
 
-class Sheet(object):
+class Sheet:
     """
     A sheet object is a member of the :meth:`sheets <xlwings.main.Sheets>` collection:
 
@@ -901,10 +904,7 @@ class Sheet(object):
         return self.impl.delete()
 
     def __repr__(self):
-        if not PY3:
-            return u"<Sheet [{1}]{0}>".format(self.name, self.book.name).encode('utf-8')
-        else:
-            return "<Sheet [{1}]{0}>".format(self.name, self.book.name)
+        return "<Sheet [{1}]{0}>".format(self.name, self.book.name)
 
     @property
     def charts(self):
@@ -948,13 +948,13 @@ class Sheet(object):
         return Range(impl=self.impl.used_range)
 
     def __getitem__(self, item):
-        if isinstance(item, string_types):
+        if isinstance(item, str):
             return self.range(item)
         else:
             return self.cells[item]
 
 
-class Range(object):
+class Range:
     """
     Returns a Range object that represents a cell or a range of cells.
 
@@ -998,7 +998,7 @@ class Range(object):
                 if cell1.sheet != cell2.sheet:
                     raise ValueError("Ranges are not on the same sheet")
                 impl = cell1.sheet.range(cell1, cell2).impl
-            elif cell2 is None and isinstance(cell1, string_types):
+            elif cell2 is None and isinstance(cell1, str):
                 impl = apps.active.range(cell1).impl
             elif cell2 is None and isinstance(cell1, tuple):
                 impl = sheets.active.range(cell1, cell2).impl
@@ -1187,6 +1187,15 @@ class Range(object):
     @formula.setter
     def formula(self, value):
         self.impl.formula = value
+
+    @property
+    def formula2(self):
+        """Gets or sets the formula2 for the given Range."""
+        return self.impl.formula2
+
+    @formula2.setter
+    def formula2(self, value):
+        self.impl.formula2 = value
 
     @property
     def formula_array(self):
@@ -1617,10 +1626,81 @@ class Range(object):
             raise TypeError("Cell indices must be integers or slices, not %s" % type(key).__name__)
 
     def __repr__(self):
-        if not PY3:
-            return u"<Range [{1}]{0}!{2}>".format(self.sheet.name, self.sheet.book.name, self.address).encode('utf-8')
-        else:
-            return "<Range [{1}]{0}!{2}>".format(self.sheet.name, self.sheet.book.name, self.address)
+        return "<Range [{1}]{0}!{2}>".format(self.sheet.name, self.sheet.book.name, self.address)
+
+    def insert(self, shift=None, copy_origin='format_from_left_or_above'):
+        """
+        Insert a cell or range of cells into the sheet.
+
+        Parameters
+        ----------
+        shift : str, default None
+            Use ``right`` or ``down``. If omitted, Excel decides based on the shape of the range.
+        copy_origin : str, default format_from_left_or_above
+            Use ``format_from_left_or_above`` or ``format_from_right_or_below``. Note that this is not supported on macOS.
+
+        Returns
+        -------
+        None
+
+        """
+        self.impl.insert(shift, copy_origin)
+
+    def delete(self, shift=None):
+        """
+        Deletes a cell or range of cells.
+
+        Parameters
+        ----------
+        shift : str, default None
+            Use ``left`` or ``up``. If omitted, Excel decides based on the shape of the range.
+
+        Returns
+        -------
+        None
+
+        """
+        self.impl.delete(shift)
+
+    def copy(self, destination=None):
+        """
+        Copy a range to a destination range or clipboard.
+
+        Parameters
+        ----------
+        destination : xlwings.Range
+            xlwings Range to which the specified range will be copied. If omitted, the range is copied to the Clipboard.
+
+        Returns
+        -------
+        None
+
+        """
+        self.impl.copy(destination)
+
+    def paste(self, paste=None, operation=None, skip_blanks=False, transpose=False):
+        """
+        Pastes a range from the clipboard into the specified range.
+
+        Parameters
+        ----------
+        paste : str, default None
+            One of ``all_merging_conditional_formats``, ``all``, ``all_except_borders``, ``all_using_source_theme``,
+            ``column_widths``, ``comments``, ``formats``, ``formulas``, ``formulas_and_number_formats``, ``validation``,
+            ``values``, ``values_and_number_formats``.
+        operation : str, default None
+            One of "add", "divide", "multiply", "subtract".
+        skip_blanks : bool, default False
+            Set to ``True`` to skip over blank cells
+        transpose : bool, default False
+            Set to ``True`` to transpose rows and columns.
+
+        Returns
+        -------
+        None
+
+        """
+        self.impl.paste(paste=paste, operation=operation, skip_blanks=skip_blanks, transpose=transpose)
 
     @property
     def hyperlink(self):
@@ -1755,13 +1835,45 @@ class Range(object):
         """
         self.impl.select()
 
+    @property
+    def merge_area(self):
+        """
+        Returns a Range object that represents the merged Range containing the specified cell.
+        If the specified cell isn't in a merged range, this property returns the specified cell.
+
+        """
+        return Range(impl=self.impl.merge_area)
+
+    @property
+    def merge_cells(self):
+        """
+        Returns ``True`` if the Range contains merged cells, otherwise ``False``
+        """
+        return self.impl.merge_cells
+
+    def merge(self, across=False):
+        """
+        Creates a merged cell from the specified Range object.
+
+        Parameters
+        ----------
+        across : bool, default False
+            True to merge cells in each row of the specified Range as separate merged cells.
+        """
+        self.impl.merge(across)
+
+    def unmerge(self):
+        """
+        Separates a merged area into individual cells.
+        """
+        self.impl.unmerge()
 
 # These have to be after definition of Range to resolve circular reference
 from . import conversion
 from . import expansion
 
 
-class Ranges(object):
+class Ranges:
     pass
 
 
@@ -1895,7 +2007,7 @@ class RangeColumns(Ranges):
         )
 
 
-class Shape(object):
+class Shape:
     """
     The shape object is a member of the :meth:`shapes <xlwings.main.Shapes>` collection:
 
@@ -1916,6 +2028,15 @@ class Shape(object):
                 raise ValueError("Invalid arguments")
 
         self.impl = impl
+
+    @property
+    def api(self):
+        """
+        Returns the native object (``pywin32`` or ``appscript`` obj) of the engine being used.
+
+        .. versionadded:: 0.19.2
+        """
+        return self.impl.api
 
     @property
     def name(self):
@@ -2007,6 +2128,40 @@ class Shape(object):
         """
         self.impl.activate()
 
+    def scale_height(self, factor, relative_to_original_size=False, scale='scale_from_top_left'):
+        """
+        factor : float
+            For example 1.5 to scale it up to 150%
+
+        relative_to_original_size : bool, optional
+            If ``False``, it scales relative to current height (default).
+            For ``True`` must be a picture or OLE object.
+
+        scale : str, optional
+            One of ``scale_from_top_left`` (default), ``scale_from_bottom_right``, ``scale_from_middle``
+
+        .. versionadded:: 0.19.2
+        """
+        self.impl.scale_height(factor=factor, relative_to_original_size=relative_to_original_size,
+                               scale=scale)
+
+    def scale_width(self, factor, relative_to_original_size=False, scale='scale_from_top_left'):
+        """
+        factor : float
+            For example 1.5 to scale it up to 150%
+
+        relative_to_original_size : bool, optional
+            If ``False``, it scales relative to current width (default).
+            For ``True`` must be a picture or OLE object.
+
+        scale : str, optional
+            One of ``scale_from_top_left`` (default), ``scale_from_bottom_right``, ``scale_from_middle``
+
+        .. versionadded:: 0.19.2
+        """
+        self.impl.scale_width(factor=factor, relative_to_original_size=relative_to_original_size,
+                              scale=scale)
+
     @property
     def parent(self):
         """
@@ -2046,7 +2201,7 @@ class Shapes(Collection):
     _wrap = Shape
 
 
-class Chart(object):
+class Chart:
     """
     The chart object is a member of the :meth:`charts <xlwings.main.Charts>` collection:
 
@@ -2236,7 +2391,7 @@ class Charts(Collection):
         return Chart(impl=impl)
 
 
-class Picture(object):
+class Picture:
     """
     The picture object is a member of the :meth:`pictures <xlwings.main.Pictures>` collection:
 
@@ -2383,7 +2538,7 @@ class Picture(object):
         name = self.name
 
         # todo: link_to_file, save_with_document
-        picture = self.parent.pictures.add(filename, left=left, top=top, width=width, height=height)
+        picture = self.parent.pictures.add(filename, left=left, top=top, width=width, height=height, scale=False)
         self.delete()
 
         picture.name = name
@@ -2408,7 +2563,8 @@ class Pictures(Collection):
     def parent(self):
         return Sheet(impl=self.impl.parent)
 
-    def add(self, image, link_to_file=False, save_with_document=True, left=0, top=0, width=None, height=None, name=None, update=False):
+    def add(self, image, link_to_file=False, save_with_document=True, left=0, top=0, width=None, height=None,
+            name=None, update=False, scale=1):
         """
         Adds a picture to the specified sheet.
 
@@ -2499,12 +2655,17 @@ class Pictures(Collection):
             filename, link_to_file, save_with_document, left, top, width, height
         ))
 
+        if scale:
+            # By default, Excel usually distorts the width/height. This corrects it.
+            self.parent.shapes[picture.name].scale_width(factor=scale, relative_to_original_size=True)
+            self.parent.shapes[picture.name].scale_height(factor=scale, relative_to_original_size=True)
+
         if name is not None:
             picture.name = name
         return picture
 
 
-class Names(object):
+class Names:
     """
     A collection of all :meth:`name <Name>` objects in the workbook:
 
@@ -2606,7 +2767,7 @@ class Names(object):
         return "[" + ", ".join(r) + "]"
 
 
-class Name(object):
+class Name:
     """
     The name object is a member of the :meth:`names <xlwings.main.Names>` collection:
 
@@ -2711,7 +2872,7 @@ def view(obj, sheet=None):
     sheet.autofit()
 
 
-class Macro(object):
+class Macro:
     def __init__(self, app, macro):
         self.app = app
         self.macro = macro
@@ -2752,7 +2913,9 @@ class Books(Collection):
         """
         return Book(impl=self.impl.add())
 
-    def open(self, fullname):
+    def open(self, fullname, update_links=None, read_only=None, format=None, password=None, write_res_password=None,
+             ignore_read_only_recommended=None, origin=None, delimiter=None, editable=None, notify=None, converter=None,
+             add_to_mru=None, local=None, corrupt_load=None):
         """
         Opens a Book if it is not open yet and returns it. If it is already open, it doesn't raise an exception but
         simply returns the Book object.
@@ -2763,6 +2926,9 @@ class Books(Collection):
             filename or fully qualified filename, e.g. ``r'C:\\path\\to\\file.xlsx'`` or ``'file.xlsm'``. Without a full
             path, it looks for the file in the current working directory.
 
+        Other Parameters
+            see: :meth:`xlwings.Book()`
+
         Returns
         -------
         Book : Book that has been opened.
@@ -2770,25 +2936,19 @@ class Books(Collection):
         """
         fullname = utils.fspath(fullname)
         if not os.path.exists(fullname):
-            if PY3:
-                raise FileNotFoundError("No such file: '%s'" % fullname)
-            else:
-                raise IOError("No such file: '%s'" % fullname)
+            raise FileNotFoundError("No such file: '%s'" % fullname)
         fullname = os.path.realpath(fullname)
         _, name = os.path.split(fullname)
-        try:            
+        try:
             impl = self.impl(name)
-            # on windows, samefile only available on Py>=3.2
-            if hasattr(os.path, 'samefile'):
-                throw = not os.path.samefile(impl.fullname, fullname)
-            else:
-                throw = (os.path.normpath(os.path.realpath(impl.fullname.lower())) != os.path.normpath(fullname.lower()))
-            if throw:
+            if not os.path.samefile(impl.fullname, fullname):
                 raise ValueError(
                     "Cannot open two workbooks named '%s', even if they are saved in different locations." % name
                 )
         except KeyError:
-            impl = self.impl.open(fullname)
+            impl = self.impl.open(fullname, update_links, read_only, format, password, write_res_password,
+                                  ignore_read_only_recommended, origin, delimiter, editable, notify, converter,
+                                  add_to_mru, local, corrupt_load)
         return Book(impl=impl)
 
 

@@ -1,13 +1,9 @@
-from __future__ import division
+import os
+import tempfile
 import datetime as dt
-
 from functools import total_ordering
 
-from . import string_types
-import os, tempfile
-
-missing = object()
-
+import xlwings
 
 try:
     import numpy as np
@@ -16,8 +12,17 @@ except ImportError:
 
 try:
     import matplotlib as mpl
+    import matplotlib.figure
 except ImportError:
     mpl = None
+
+try:
+    import plotly.graph_objects as plotly_go
+except ImportError:
+    plotly_go = None
+
+
+missing = object()
 
 
 def int_to_rgb(number):
@@ -65,13 +70,13 @@ def col_name(i):
         raise IndexError(i)
 
 
-class VBAWriter(object):
+class VBAWriter:
 
     MAX_VBA_LINE_LENGTH = 1024
     VBA_LINE_SPLIT = ' _\n'
     MAX_VBA_SPLITTED_LINE_LENGTH = MAX_VBA_LINE_LENGTH - len(VBA_LINE_SPLIT)
 
-    class Block(object):
+    class Block:
         def __init__(self, writer, start):
             self.writer = writer
             self.start = start
@@ -82,7 +87,6 @@ class VBAWriter(object):
 
         def __exit__(self, exc_type, exc_val, exc_tb):
             self.writer._indent -= 1
-            #self.writer.writeln(self.end)
 
     def __init__(self, f):
         self.f = f
@@ -142,7 +146,7 @@ def try_parse_int(x):
 
 
 @total_ordering
-class VersionNumber(object):
+class VersionNumber:
 
     def __init__(self, s):
         self.value = tuple(map(try_parse_int, s.split(".")))
@@ -164,7 +168,7 @@ class VersionNumber(object):
     def __eq__(self, other):
         if isinstance(other, VersionNumber):
             return self.value == other.value
-        elif isinstance(other, string_types):
+        elif isinstance(other, str):
             return self.value == VersionNumber(other).value
         elif isinstance(other, tuple):
             return self.value[:len(other)] == other
@@ -176,7 +180,7 @@ class VersionNumber(object):
     def __lt__(self, other):
         if isinstance(other, VersionNumber):
             return self.value < other.value
-        elif isinstance(other, string_types):
+        elif isinstance(other, str):
             return self.value < VersionNumber(other).value
         elif isinstance(other, tuple):
             return self.value[:len(other)] < other
@@ -187,14 +191,20 @@ class VersionNumber(object):
 
 
 def process_image(image, width, height):
-
     image = fspath(image)
-    if isinstance(image, string_types):
+    if isinstance(image, str):
         return image, width, height
     elif mpl and isinstance(image, mpl.figure.Figure):
-        temp_dir = os.path.realpath(tempfile.gettempdir())
-        filename = os.path.join(temp_dir, 'xlwings_plot.png')
+        image_type = 'mpl'
+    elif plotly_go and isinstance(image, plotly_go.Figure) and xlwings.PRO:
+        image_type = 'plotly'
+    else:
+        raise TypeError("Don't know what to do with that image object")
 
+    temp_dir = os.path.realpath(tempfile.gettempdir())
+    filename = os.path.join(temp_dir, 'xlwings_plot.png')
+
+    if image_type == 'mpl':
         canvas = mpl.backends.backend_agg.FigureCanvas(image)
         canvas.draw()
         image.savefig(filename, format='png', bbox_inches='tight')
@@ -204,10 +214,9 @@ def process_image(image, width, height):
 
         if height is None:
             height = image.bbox.bounds[2:][1]
-
-        return filename, width, height
-    else:
-        raise TypeError("Don't know what to do with that image object")
+    elif image_type == 'plotly':
+        image.write_image(filename, width=None, height=None)
+    return filename, width, height
 
 
 def fspath(path):
@@ -221,3 +230,11 @@ def fspath(path):
         return os.fspath(path)
     else:
         return path
+
+
+def read_config_sheet(book):
+    try:
+        return book.sheets['xlwings.conf']['A1'].options(dict, expand='table').value
+    except:
+        # A missing sheet currently produces different errors on mac and win
+        return {}

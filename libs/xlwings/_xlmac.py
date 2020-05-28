@@ -14,7 +14,7 @@ from appscript.reference import CommandError
 
 from .constants import ColorIndex
 from .utils import int_to_rgb, np_datetime_to_datetime, col_name, VersionNumber
-from . import mac_dict, PY3, string_types
+from . import mac_dict
 
 try:
     import pandas as pd
@@ -25,13 +25,16 @@ try:
 except ImportError:
     np = None
 
+USER_CONFIG_FILE = os.path.join(os.path.expanduser("~"), 'Library', 'Containers',
+                                'com.microsoft.Excel', 'Data', 'xlwings.conf')
+
 # Time types
 time_types = (dt.date, dt.datetime)
 if np:
     time_types = time_types + (np.datetime64,)
 
 
-class Apps(object):
+class Apps:
 
     def _iter_excel_instances(self):
         asn = subprocess.check_output(['lsappinfo', 'visibleprocesslist', '-includehidden']).decode('utf-8')
@@ -57,7 +60,7 @@ class Apps(object):
         return App(xl=pid)
 
 
-class App(object):
+class App:
 
     def __init__(self, spec=None, add_book=None, xl=None):
         if xl is None:
@@ -132,6 +135,10 @@ class App(object):
         self.xl.display_alerts.set(value)
 
     @property
+    def startup_path(self):
+        return hfs_to_posix_path(self.xl.startup_path.get())
+
+    @property
     def calculation(self):
         return calculation_k2s[self.xl.calculation.get()]
 
@@ -154,12 +161,11 @@ class App(object):
         return None
 
     def run(self, macro, args):
-        # kwargs = {'arg{0}'.format(i): n for i, n in enumerate(args, 1)}  # only for > PY 2.6
-        kwargs = dict(('arg{0}'.format(i), n) for i, n in enumerate(args, 1))
+        kwargs = {'arg{0}'.format(i): n for i, n in enumerate(args, 1)}
         return self.xl.run_VB_macro(macro, **kwargs)
 
 
-class Books(object):
+class Books:
 
     def __init__(self, app):
         self.app = app
@@ -190,10 +196,28 @@ class Books(object):
         wb = Book(self.app, xl.name.get())
         return wb
 
-    def open(self, fullname):
+    def open(self, fullname, update_links=None, read_only=None, format=None, password=None, write_res_password=None,
+             ignore_read_only_recommended=None, origin=None, delimiter=None, editable=None, notify=None, converter=None,
+             add_to_mru=None, local=None, corrupt_load=None):
+        # TODO: format and origin currently require a native appscript keyword, read_only doesn't seem to work
+        # Unsupported params
+        if local is not None:
+            raise Exception('local is not supported on macOS')
+        if corrupt_load is not None:
+            raise Exception('corrupt_load is not supported on macOS')
+        # update_links: on Windows only constants 0 and 3 seem to be supported in this context
+        if update_links:
+            update_links = kw.update_remote_and_external_links
+        else:
+            update_links = kw.do_not_update_links
+
         self.app.activate()
         filename = os.path.basename(fullname)
-        self.app.xl.open(fullname)
+        self.app.xl.open_workbook(workbook_file_name=fullname, update_links=update_links, read_only=read_only,
+                                  format=format, password=password, write_reserved_password=write_res_password,
+                                  ignore_read_only_recommended=ignore_read_only_recommended,
+                                  origin=origin, delimiter=delimiter, editable=editable, notify=notify,
+                                  converter=converter, add_to_mru=add_to_mru)
         wb = Book(self.app, filename)
         return wb
 
@@ -203,7 +227,7 @@ class Books(object):
             yield Book(self.app, i + 1)
 
 
-class Book(object):
+class Book:
     def __init__(self, app, name_or_index):
         self.app = app
         self.xl = app.xl.workbooks[name_or_index]
@@ -259,7 +283,7 @@ class Book(object):
         self.xl.activate_object()
 
 
-class Sheets(object):
+class Sheets:
 
     def __init__(self, workbook):
         self.workbook = workbook
@@ -293,7 +317,7 @@ class Sheets(object):
         return Sheet(self.workbook, xl.name.get())
 
 
-class Sheet(object):
+class Sheet:
 
     def __init__(self, workbook, name_or_index):
         self.workbook = workbook
@@ -340,7 +364,7 @@ class Sheet(object):
             row1 = min(arg1.row, arg2.row)
             col1 = min(arg1.column, arg2.column)
             address1 = self.xl.rows[row1].columns[col1].get_address()
-        elif isinstance(arg1, string_types):
+        elif isinstance(arg1, str):
             address1 = arg1.split(':')[0]
         else:
             raise ValueError("Invalid parameters")
@@ -355,10 +379,10 @@ class Sheet(object):
             row2 = max(arg1.row + arg1.shape[0] - 1, arg2.row + arg2.shape[0] - 1)
             col2 = max(arg1.column + arg1.shape[1] - 1, arg2.column + arg2.shape[1] - 1)
             address2 = self.xl.rows[row2].columns[col2].get_address()
-        elif isinstance(arg2, string_types):
+        elif isinstance(arg2, str):
             address2 = arg2
         elif arg2 is None:
-            if isinstance(arg1, string_types) and len(arg1.split(':')) == 2:
+            if isinstance(arg1, str) and len(arg1.split(':')) == 2:
                 address2 = arg1.split(':')[1]
             else:
                 return Range(self, "{0}".format(address1))
@@ -421,7 +445,7 @@ class Sheet(object):
         return Range(self, self.xl.used_range.get_address())
 
 
-class Range(object):
+class Range:
 
     def __init__(self, sheet, address):
         self.sheet = sheet
@@ -506,6 +530,16 @@ class Range(object):
     def formula(self, value):
         if self.xl is not None:
             self.xl.formula.set(value)
+
+    @property
+    def formula2(self):
+        if self.xl is not None:
+            return self.xl.formula2.get()
+
+    @formula2.setter
+    def formula2(self, value):
+        if self.xl is not None:
+            self.xl.formula2.set(value)
 
     @property
     def formula_array(self):
@@ -610,6 +644,45 @@ class Range(object):
                 self.sheet.xl.columns[address].autofit()
             self.sheet.book.app.screen_updating = alerts_state
 
+    def insert(self, shift=None, copy_origin=None):
+        # copy_origin is not supported on mac
+        shifts = {'down': kw.shift_down, 'right': kw.shift_to_right, None: None}
+        self.xl.insert_into_range(shift=shifts[shift])
+
+    def delete(self, shift=None):
+        shifts = {'up': kw.shift_up, 'left': kw.shift_to_left, None: None}
+        self.xl.delete_range(shift=shifts[shift])
+
+    def copy(self, destination=None):
+        self.xl.copy_range(destination=destination.api if destination else None)
+
+    def paste(self, paste=None, operation=None, skip_blanks=False, transpose=False):
+        pastes = {
+            # all_merging_conditional_formats unsupported on mac
+            "all": kw.paste_all,
+            "all_except_borders": kw.paste_all_except_borders,
+            "all_using_source_theme": kw.paste_all_using_source_theme,
+            "column_widths": kw.paste_column_widths,
+            "comments": kw.paste_comments,
+            "formats": kw.paste_formats,
+            "formulas": kw.paste_formulas,
+            "formulas_and_number_formats": kw.paste_formulas_and_number_formats,
+            "validation": kw.paste_validation,
+            "values": kw.paste_values,
+            "values_and_number_formats": kw.paste_values_and_number_formats,
+            None: None
+        }
+
+        operations = {
+            "add": kw.paste_special_operation_add,
+            "divide": kw.paste_special_operation_divide,
+            "multiply": kw.paste_special_operation_multiply,
+            "subtract": kw.paste_special_operation_subtract,
+            None: None
+        }
+
+        self.xl.paste_special(what=pastes[paste], operation=operations[operation], skip_blanks=skip_blanks, transpose=transpose)
+
     @property
     def hyperlink(self):
         try:
@@ -689,8 +762,22 @@ class Range(object):
         if self.xl is not None:
             return self.xl.select()
 
+    @property
+    def merge_area(self):
+        return Range(self.sheet, self.xl.merge_area.get_address())
 
-class Shape(object):
+    @property
+    def merge_cells(self):
+        return self.xl.merge_cells.get()
+
+    def merge(self, across):
+        self.xl.merge(across=across)
+
+    def unmerge(self):
+        self.xl.unmerge()
+
+
+class Shape:
     def __init__(self, parent, key):
         self.parent = parent
         self.xl = parent.xl.shapes[key]
@@ -754,8 +841,16 @@ class Shape(object):
         # self.xl.activate_object()  # doesn't work?
         self.xl.select()
 
+    def scale_height(self, factor, relative_to_original_size, scale):
+        self.xl.scale_height(scale=scaling[scale], relative_to_original_size=relative_to_original_size,
+                             factor=factor)
 
-class Collection(object):
+    def scale_width(self, factor, relative_to_original_size, scale):
+        self.xl.scale_width(scale=scaling[scale], relative_to_original_size=relative_to_original_size,
+                            factor=factor)
+
+
+class Collection:
 
     def __init__(self, parent):
         self.parent = parent
@@ -781,7 +876,7 @@ class Collection(object):
         return self.xl[key].exists()
 
 
-class Chart(object):
+class Chart:
 
     def __init__(self, parent, key):
         self.parent = parent
@@ -896,7 +991,7 @@ class Charts(Collection):
         )
 
 
-class Picture(object):
+class Picture:
 
     def __init__(self, parent, key):
         self.parent = parent
@@ -990,7 +1085,7 @@ class Pictures(Collection):
         return picture
 
 
-class Names(object):
+class Names:
     def __init__(self, parent, xl):
         self.parent = parent
         self.xl = xl
@@ -1022,7 +1117,7 @@ class Names(object):
                                                      }))
 
 
-class Name(object):
+class Name:
     def __init__(self, parent, xl):
         self.parent = parent
         self.xl = xl
@@ -1050,7 +1145,7 @@ class Name(object):
     def refers_to_range(self):
         book = self.parent if isinstance(self.parent, Book) else self.parent.book
         external_address = self.xl.reference_range.get_address(external=True)
-        match = re.search(r"\](.*)!(.*)", external_address)
+        match = re.search(r"\](.*?)'?!(.*)", external_address)
         return Range(Sheet(book, match.group(1)), match.group(2))
 
 
@@ -1133,7 +1228,7 @@ def clean_value_data(data, datetime_builder, empty_as, number_builder):
 def prepare_xl_data_element(x):
     if x is None:
         return ""
-    elif np and isinstance(x, float) and np.isnan(x):
+    elif np and isinstance(x, (np.floating, float)) and np.isnan(x):
         return ""
     elif np and isinstance(x, np.datetime64):
         # handle numpy.datetime64
@@ -1154,10 +1249,6 @@ def prepare_xl_data_element(x):
         return float(x)
 
     return x
-
-
-def open_template(fullpath):
-    subprocess.call(['open', fullpath])
 
 
 # --- constants ---
@@ -1291,6 +1382,12 @@ shape_types_k2s = {
     kw.shape_type_table: 'table',
     kw.shape_type_ink: 'ink',
     kw.shape_type_ink_comment: 'ink_comment',
+}
+
+scaling = {
+    "scale_from_top_left": kw.scale_from_top_left,
+    "scale_from_bottom_right": kw.scale_from_bottom_right,
+    "scale_from_middle": kw.scale_from_middle
 }
 
 shape_types_s2k = {v: k for k, v in shape_types_k2s.items()}
