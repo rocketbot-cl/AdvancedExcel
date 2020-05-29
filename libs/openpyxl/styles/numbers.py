@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 import re
 
@@ -41,11 +41,11 @@ BUILTIN_FORMATS = {
     39: '#,##0.00_);(#,##0.00)',
     40: '#,##0.00_);[Red](#,##0.00)',
 
-    41: r'_(* #,##0_);_(* \(#,##0\);_(* "-"_);_(@_)',
-    42: r'_("$"* #,##0_);_("$"* \(#,##0\);_("$"* "-"_);_(@_)',
-    43: r'_(* #,##0.00_);_(* \(#,##0.00\);_(* "-"??_);_(@_)',
+    41: '_(* #,##0_);_(* \(#,##0\);_(* "-"_);_(@_)',
+    42: '_("$"* #,##0_);_("$"* \(#,##0\);_("$"* "-"_);_(@_)',
+    43: '_(* #,##0.00_);_(* \(#,##0.00\);_(* "-"??_);_(@_)',
 
-    44: r'_("$"* #,##0.00_)_("$"* \(#,##0.00\)_("$"* "-"??_)_(@_)',
+    44: '_("$"* #,##0.00_)_("$"* \(#,##0.00\)_("$"* "-"??_)_(@_)',
     45: 'mm:ss',
     46: '[h]:mm:ss',
     47: 'mmss.0',
@@ -91,42 +91,16 @@ FORMAT_CURRENCY_USD = '$#,##0_-'
 FORMAT_CURRENCY_EUR_SIMPLE = '[$EUR ]#,##0.00_-'
 
 
-COLORS = r"\[(BLACK|BLUE|CYAN|GREEN|MAGENTA|RED|WHITE|YELLOW)\]"
-LITERAL_GROUP = r'"[^"]+"'
-LOCALE_GROUP = r'\[\$[^\]]+\]'
-STRIP_RE = re.compile("{0}|{1}|{2}".format(COLORS, LITERAL_GROUP, LOCALE_GROUP), re.IGNORECASE + re.UNICODE)
-
-
-# Spec 18.8.31 numFmts
-# +ve;-ve;zero;text
+DATE_INDICATORS = 'dmyhs'
+BAD_DATE_RE = re.compile(r'((?<=\[)|").*[dmhys]+.*(\]|")', re.UNICODE)
 
 def is_date_format(fmt):
     if fmt is None:
         return False
-    fmt = fmt.split(";")[0] # only look at the first format
-    fmt = STRIP_RE.sub("", fmt)
-    return re.search("[dmhysDMHYS]", fmt) is not None
-
-
-def is_datetime(fmt):
-    """
-    Return date, time or datetime
-    """
-    if not is_date_format(fmt):
-        return
-
-    DATE = TIME = False
-
-    if any((x in fmt for x in 'dy')):
-        DATE = True
-    if any((x in fmt for x in 'hs')):
-        TIME = True
-
-    if DATE and TIME:
-        return "datetime"
-    if DATE:
-        return "date"
-    return "time"
+    fmt = fmt.lower()
+    if any([x in fmt for x in DATE_INDICATORS]):
+        return not BAD_DATE_RE.search(fmt)
+    return False
 
 
 def is_builtin(fmt):

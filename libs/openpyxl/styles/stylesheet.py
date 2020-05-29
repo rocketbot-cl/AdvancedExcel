@@ -1,5 +1,3 @@
-# Copyright (c) 2010-2019 openpyxl
-
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
     Alias,
@@ -139,6 +137,8 @@ class Stylesheet(Serialisable):
         for style in wb._named_styles:
             self.cellStyles.cellStyle.append(style.as_name())
             self.cellStyleXfs.xf.append(style.as_xf())
+            if style.as_xf().fillId == 21:
+                style.name
 
 
     @property

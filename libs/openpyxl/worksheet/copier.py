@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 #standard lib imports
 from copy import copy
@@ -40,7 +40,7 @@ class WorksheetCopy(object):
 
         self.target.sheet_format = copy(self.source.sheet_format)
         self.target.sheet_properties = copy(self.source.sheet_properties)
-        self.target.merged_cells = copy(self.source.merged_cells)
+        self.target._merged_cells = copy(self.source._merged_cells)
 
 
     def _copy_cells(self):

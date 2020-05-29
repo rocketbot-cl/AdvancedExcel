@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# copyright openpyxl 2010-2015
 
 from copy import copy
 from keyword import kwlist
@@ -7,11 +7,7 @@ KEYWORDS = frozenset(kwlist)
 
 from . import Descriptor
 from . import _Serialiasable
-from .sequence import (
-    Sequence,
-    NestedSequence,
-    MultiSequencePart,
-)
+from .sequence import Sequence, NestedSequence
 from .namespace import namespaced
 
 from openpyxl.compat import safe_string
@@ -91,9 +87,6 @@ class Serialisable(_Serialiasable):
             elif isinstance(desc, Sequence):
                 attrib.setdefault(tag, [])
                 attrib[tag].append(obj)
-            elif isinstance(desc, MultiSequencePart):
-                attrib.setdefault(desc.store, [])
-                attrib[desc.store].append(obj)
             else:
                 attrib[tag] = obj
 

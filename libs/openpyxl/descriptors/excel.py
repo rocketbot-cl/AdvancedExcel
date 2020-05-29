@@ -1,14 +1,11 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+#copyright openpyxl 2010-2015
 
 """
 Excel specific descriptors
 """
 
 from openpyxl.xml.constants import REL_NS
-from openpyxl.compat import safe_string, unicode
-from openpyxl.xml.functions import Element
-
 from . import (
     MatchPattern,
     MinMax,
@@ -27,7 +24,7 @@ class HexBinary(MatchPattern):
 
 class UniversalMeasure(MatchPattern):
 
-    pattern = r"[0-9]+(\.[0-9]+)?(mm|cm|in|pt|pc|pi)"
+    pattern = "[0-9]+(\.[0-9]+)?(mm|cm|in|pt|pc|pi)"
 
 
 class TextPoint(MinMax):
@@ -44,17 +41,9 @@ class TextPoint(MinMax):
 Coordinate = Integer
 
 
-class Percentage(MinMax):
+class Percentage(MatchPattern):
 
-    pattern = r"((100)|([0-9][0-9]?))(\.[0-9][0-9]?)?%" # strict
-    min = -1000000
-    max = 1000000
-
-    def __set__(self, instance, value):
-        if isinstance(value, unicode) and "%" in value:
-            value = value.replace("%", "")
-            value = int(float(value) * 1000)
-        super(Percentage, self).__set__(instance, value)
+    pattern = "((100)|([0-9][0-9]?))(\.[0-9][0-9]?)?%"
 
 
 class Extension(Serialisable):
@@ -90,12 +79,12 @@ class Base64Binary(MatchPattern):
 
 class Guid(MatchPattern):
     # https://msdn.microsoft.com/en-us/library/dd946381(v=office.12).aspx
-    pattern = r"{[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}\}"
+    pattern = "{[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}\}"
 
 
 class CellRange(MatchPattern):
 
-    pattern = r"^[$]?([A-Za-z]{1,3})[$]?(\d+)(:[$]?([A-Za-z]{1,3})[$]?(\d+)?)?$|^[A-Za-z]{1,3}:[A-Za-z]{1,3}$"
+    pattern = """^[$]?([A-Za-z]{1,3})[$]?(\d+)(:[$]?([A-Za-z]{1,3})[$]?(\d+)?)?$|^[A-Za-z]{1,3}:[A-Za-z]{1,3}$"""
     allow_none = True
 
     def __set__(self, instance, value):
@@ -103,12 +92,3 @@ class CellRange(MatchPattern):
         if value is not None:
             value = value.upper()
         super(CellRange, self).__set__(instance, value)
-
-
-def _explicit_none(tagname, value, namespace=None):
-    """
-    Override serialisation because explicit none required
-    """
-    if namespace is not None:
-        tagname = "{%s}%s" % (namespace, tagname)
-    return Element(tagname, val=safe_string(value))

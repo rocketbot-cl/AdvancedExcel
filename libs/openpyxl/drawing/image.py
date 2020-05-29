@@ -1,13 +1,11 @@
 from __future__ import absolute_import
 from __future__ import division
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from io import BytesIO
+from .drawing import Drawing
+from openpyxl.compat import deprecated
 
-try:
-    from PIL import Image as PILImage
-except ImportError:
-    PILImage = False
 
 def bounding_box(bw, bh, w, h):
     """
@@ -26,8 +24,13 @@ def bounding_box(bw, bh, w, h):
 
 
 def _import_image(img):
-    if not PILImage:
-        raise ImportError('You must install Pillow to fetch image objects')
+    try:
+        try:
+            import Image as PILImage
+        except ImportError:
+            from PIL import Image as PILImage
+    except ImportError:
+        raise ImportError('You must install PIL to fetch image objects')
 
     if not isinstance(img, PILImage.Image):
         img = PILImage.open(img)
@@ -36,25 +39,51 @@ def _import_image(img):
 
 
 class Image(object):
-    """Image in a spreadsheet"""
+    """ Raw Image class """
 
     _id = 1
     _path = "/xl/media/image{0}.{1}"
-    anchor = "A1"
 
-    def __init__(self, img):
+    def __init__(self, img, coordinates=((0, 0), (1, 1)), size=(None, None),
+                 nochangeaspect=True, nochangearrowheads=True):
 
         self.ref = img
 
         # don't keep the image open
         image = _import_image(img)
-        self.width = image.size[0]
-        self.height = image.size[1]
-        try:
-            self.format = image.format.lower()
-        except AttributeError:
-            self.format = "png"
-        image.close()
+        self.format = image.format.lower()
+        self.nochangeaspect = nochangeaspect # deprecated
+        self.nochangearrowheads = nochangearrowheads # deprecated
+
+        newsize = bounding_box(
+            size[0], size[1],
+            image.size[0], image.size[1]
+        )
+        size = newsize
+
+        # the containing drawing
+        self.drawing = Drawing()
+        self.drawing.coordinates = coordinates # deprecated
+        self.drawing.width = size[0]
+        self.drawing.height = size[1]
+
+
+    @deprecated("Anchors can be passed in when an image is added to a worksheet")
+    def anchor(self, cell, anchortype="absolute"):
+        """ anchors the image to the given cell
+            optional parameter anchortype supports 'absolute' or 'oneCell'"""
+        self.drawing.anchortype = anchortype
+        if anchortype == "absolute":
+            self.drawing.left, self.drawing.top = cell.anchor
+            return ((cell.column, cell.row),
+                    cell.parent.point_pos(self.drawing.top + self.drawing.height,
+                                          self.drawing.left + self.drawing.width))
+        elif anchortype == "oneCell":
+            self.drawing.anchorcol = cell.col_idx - 1
+            self.drawing.anchorrow = cell.row - 1
+            return ((self.drawing.anchorcol, self.drawing.anchorrow), None)
+        else:
+            raise ValueError("unknown anchortype %s" % anchortype)
 
 
     def _data(self):

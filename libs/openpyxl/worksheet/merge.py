@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -8,25 +8,17 @@ from openpyxl.descriptors import (
     Sequence,
 )
 
-from .cell_range import CellRange
 
-
-class MergeCell(CellRange):
+class MergeCell(Serialisable):
 
     tagname = "mergeCell"
-    ref = CellRange.coord
 
-    __attrs__ = ("ref",)
-
+    ref = String()
 
     def __init__(self,
                  ref=None,
                 ):
-        super(MergeCell, self).__init__(ref)
-
-
-    def __copy__(self):
-        return self.__class__(self.ref)
+        self.ref = ref
 
 
 class MergeCells(Serialisable):

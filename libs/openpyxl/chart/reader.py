@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """
 Read a chart
@@ -16,22 +16,26 @@ _types = ('areaChart', 'area3DChart', 'lineChart', 'line3DChart',
 _axes = ('valAx', 'catAx', 'dateAx', 'serAx',)
 
 
-def read_chart(chartspace):
-    cs = chartspace
+def reader(src):
+    node = fromstring(src)
+    cs = ChartSpace.from_tree(node)
     plot = cs.chart.plotArea
-
-    chart = plot._charts[0]
-    chart._charts = plot._charts
+    for t in _types:
+        chart = getattr(plot, t, None)
+        if chart is not None:
+            break # this ignores multiple charts
 
     chart.title = cs.chart.title
-    chart.display_blanks = cs.chart.dispBlanksAs
-    chart.visible_cells_only = cs.chart.plotVisOnly
     chart.layout = plot.layout
     chart.legend = cs.chart.legend
 
-    # 3d attributes
-    chart.floor = cs.chart.floor
-    chart.sideWall = cs.chart.sideWall
-    chart.backWall = cs.chart.backWall
-
+    for x in _axes:
+        ax = getattr(plot, x)
+        if ax:
+            if x == 'valAx':
+                chart.y_axis = ax[0]
+            elif x == 'serAx':
+                chart.z_axis = ax[0]
+            else:
+                chart.x_axis = ax[0]
     return chart

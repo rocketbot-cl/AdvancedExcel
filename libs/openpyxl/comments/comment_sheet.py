@@ -1,7 +1,8 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 ## Incomplete!
+
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
     Typed,
@@ -122,8 +123,6 @@ class CommentRecord(Serialisable):
                  text=None,
                  commentPr=None,
                  author=None,
-                 height=79,
-                 width=144
                 ):
         self.ref = ref
         self.authorId = authorId
@@ -134,8 +133,6 @@ class CommentRecord(Serialisable):
         self.text = text
         self.commentPr = commentPr
         self.author = author
-        self.height = height
-        self.width = width
 
 
     @classmethod
@@ -147,8 +144,6 @@ class CommentRecord(Serialisable):
         ref = cell.coordinate
         self = cls(ref=ref, author=comment.author)
         self.text.t = comment.content
-        self.height = comment.height
-        self.width = comment.width
         return self
 
 
@@ -199,7 +194,7 @@ class CommentSheet(Serialisable):
         authors = self.authors.author
 
         for c in self.commentList:
-            yield c.ref, Comment(c.content, authors[c.authorId], c.height, c.width)
+            yield c.ref, Comment(c.content, authors[c.authorId])
 
 
     @classmethod

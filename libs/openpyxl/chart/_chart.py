@@ -1,7 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
-
-from collections import OrderedDict
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.compat import basestring
 
@@ -11,12 +9,10 @@ from openpyxl.descriptors import (
     Alias,
     MinMax,
     Bool,
-    Set,
 )
 from openpyxl.descriptors.nested import Nested
-from openpyxl.descriptors.sequence import NestedSequence, ValueSequence
 from openpyxl.descriptors.serialisable import Serialisable
-from openpyxl.xml.constants import PACKAGE_CHARTS
+from openpyxl.xml.constants import CHART_NS, PACKAGE_CHARTS
 
 from ._3d import _3DBase
 from .data_source import AxDataSource, NumRef
@@ -50,9 +46,6 @@ class ChartBase(Serialisable):
     legend = Typed(expected_type=Legend, allow_none=True)
     layout = Typed(expected_type=Layout, allow_none=True)
     roundedCorners = Bool(allow_none=True)
-    axId = ValueSequence(expected_type=int)
-    visible_cells_only = Bool()
-    display_blanks = Set(values=['span', 'gap', 'zero'])
 
     _series_type = ""
     ser = ()
@@ -69,8 +62,7 @@ class ChartBase(Serialisable):
 
     __elements__ = ()
 
-
-    def __init__(self, axId=(), **kw):
+    def __init__(self, **kw):
         self._charts = [self]
         self.title = None
         self.layout = None
@@ -79,9 +71,7 @@ class ChartBase(Serialisable):
         self.graphical_properties = None
         self.style = None
         self.plot_area = PlotArea()
-        self.axId = axId
-        self.display_blanks = 'gap'
-
+        super(ChartBase, self).__init__(**kw)
 
     def __hash__(self):
         """
@@ -99,8 +89,7 @@ class ChartBase(Serialisable):
         return self
 
 
-    def to_tree(self, namespace=None, tagname=None, idx=None):
-        self.axId = [id for id in self._axes]
+    def to_tree(self, tagname=None, idx=None):
         if self.ser is not None:
             for s in self.ser:
                 s.__elements__ = attribute_mapping[self._series_type]
@@ -115,8 +104,19 @@ class ChartBase(Serialisable):
         for chart in self._charts:
             if chart not in self.plot_area._charts:
                 chart.idx_base = idx_base
+                self.plot_area._charts.append(chart)
                 idx_base += len(chart.series)
-        self.plot_area._charts = self._charts
+
+        axIds = []
+        for axId in ("x_axis", "y_axis", 'z_axis'):
+            for chart in self._charts:
+                axis = getattr(chart, axId, None)
+                if axis is None:
+                    continue
+                if axis.axId not in axIds:
+                    ax = getattr(self.plot_area, axis.tagname)
+                    ax.append(axis)
+                    axIds.append(axis.axId)
 
         container = ChartContainer(plotArea=self.plot_area, legend=self.legend, title=self.title)
         if isinstance(chart, _3DBase):
@@ -124,20 +124,22 @@ class ChartBase(Serialisable):
             container.floor = chart.floor
             container.sideWall = chart.sideWall
             container.backWall = chart.backWall
-        container.plotVisOnly = self.visible_cells_only
-        container.dispBlanksAs = self.display_blanks
         cs = ChartSpace(chart=container)
         cs.style = self.style
         cs.roundedCorners = self.roundedCorners
-        return cs.to_tree()
+        tree = cs.to_tree()
+        tree.set("xmlns", CHART_NS)
+        return tree
 
 
     @property
-    def _axes(self):
+    def axId(self):
         x = getattr(self, "x_axis", None)
         y = getattr(self, "y_axis", None)
         z = getattr(self, "z_axis", None)
-        return OrderedDict([(axis.axId, axis) for axis in (x, y, z) if axis])
+        ids = [AxId(axis.axId) for axis in (x, y, z) if axis]
+
+        return ids
 
 
     def set_categories(self, labels):

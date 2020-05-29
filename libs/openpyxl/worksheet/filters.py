@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 import re
 
@@ -301,15 +301,17 @@ class FilterColumn(Serialisable):
         self.colId = colId
         self.hiddenButton = hiddenButton
         self.showButton = showButton
+        if filters is None:
+            filters = Filters()
         self.filters = filters
         self.top10 = top10
         self.customFilters = customFilters
         self.dynamicFilter = dynamicFilter
         self.colorFilter = colorFilter
         self.iconFilter = iconFilter
-        if blank is not None and self.filters:
+        if blank is not None:
             self.filters.blank = blank
-        if vals is not None and self.filters:
+        if vals is not None:
             self.filters.filter = vals
 
 
@@ -352,7 +354,7 @@ class AutoFilter(Serialisable):
         :param blank: Show rows that have blank cell if True (default=``False``)
         :type  blank: bool
         """
-        self.filterColumn.append(FilterColumn(colId=col_id, filters=Filters(blank=blank, filter=vals)))
+        self.filterColumn.append(FilterColumn(colId=col_id, vals=vals, blank=blank))
 
 
     def add_sort_condition(self, ref, descending=False):

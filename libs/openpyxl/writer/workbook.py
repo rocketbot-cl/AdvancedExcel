@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """Write the workbook global settings to the archive."""
 
@@ -21,7 +21,7 @@ from openpyxl.chartsheet import Chartsheet
 from openpyxl.packaging.relationship import Relationship, RelationshipList
 from openpyxl.workbook.defined_name import DefinedName
 from openpyxl.workbook.external_reference import ExternalReference
-from openpyxl.workbook.parser import ChildSheet, WorkbookPackage, PivotCache
+from openpyxl.workbook.parser import ChildSheet, WorkbookPackage
 from openpyxl.workbook.properties import CalcProperties, WorkbookProperties
 from openpyxl.workbook.views import BookView
 from openpyxl.utils.datetime import CALENDAR_MAC_1904
@@ -83,7 +83,7 @@ def write_workbook(workbook):
     props = WorkbookProperties() # needs a mapping to the workbook for preservation
     if wb.code_name is not None:
         props.codeName = wb.code_name
-    if wb.epoch == CALENDAR_MAC_1904:
+    if wb.excel_base_date == CALENDAR_MAC_1904:
         props.date1904 = True
     root.workbookPr = props
 
@@ -92,9 +92,8 @@ def write_workbook(workbook):
 
     # book views
     active = get_active_sheet(wb)
-    if wb.views:
-        wb.views[0].activeTab = active
-    root.bookViews = wb.views
+    view = BookView(activeTab=active)
+    root.bookViews =[view]
 
     # worksheets
     for idx, sheet in enumerate(wb._sheets, 1):
@@ -146,19 +145,7 @@ def write_workbook(workbook):
 
     root.definedNames = defined_names
 
-    # pivots
-    pivot_caches = set()
-    for pivot in wb._pivots:
-        if pivot.cache not in pivot_caches:
-            pivot_caches.add(pivot.cache)
-            c = PivotCache(cacheId=pivot.cacheId)
-            root.pivotCaches.append(c)
-            rel = Relationship(Type=pivot.cache.rel_type, Target=pivot.cache.path)
-            wb.rels.append(rel)
-            c.id = rel.id
-    wb._pivots = [] # reset
-
-    root.calcPr = wb.calculation
+    root.calcPr = CalcProperties(calcId=124519, fullCalcOnLoad=True)
 
     return tostring(root.to_tree())
 

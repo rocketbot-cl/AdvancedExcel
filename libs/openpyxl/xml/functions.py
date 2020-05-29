@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """
 XML compatability functions
@@ -11,78 +11,46 @@ from functools import partial
 # compatibility
 
 # package imports
-from openpyxl import DEFUSEDXML, LXML
+from openpyxl import LXML
 
 if LXML is True:
     from lxml.etree import (
     Element,
     ElementTree,
     SubElement,
+    fromstring,
+    tostring,
     register_namespace,
     QName,
     xmlfile,
     XMLParser,
     )
-    from lxml.etree import XMLSyntaxError
-
-    if DEFUSEDXML is True:
-        from defusedxml.common import DefusedXmlException
-        from defusedxml.cElementTree import iterparse
-        from defusedxml.lxml import fromstring as _fromstring, tostring
-
-        def fromstring(*args, **kwargs):
-            try:
-                return _fromstring(*args, **kwargs)
-            except XMLSyntaxError as e:
-                raise DefusedXmlException(str(e))
-    else:
-        from lxml.etree import fromstring, tostring
-        from xml.etree.cElementTree import iterparse
-        # do not resolve entities
-        safe_parser = XMLParser(resolve_entities=False)
-        fromstring = partial(fromstring, parser=safe_parser)
-
+    from xml.etree.cElementTree import iterparse
+    # do not resolve entities
+    safe_parser = XMLParser(resolve_entities=False)
+    fromstring = partial(fromstring, parser=safe_parser)
 else:
     try:
         from xml.etree.cElementTree import (
         ElementTree,
         Element,
         SubElement,
-        QName,
-        register_namespace
+        fromstring,
+        tostring,
+        iterparse,
+        QName
         )
-        if DEFUSEDXML is True:
-            from defusedxml.cElementTree import (
-            fromstring,
-            tostring,
-            iterparse,
-            )
-        else:
-            from xml.etree.cElementTree import (
-            fromstring,
-            tostring,
-            iterparse
-            )
     except ImportError:
         from xml.etree.ElementTree import (
         ElementTree,
         Element,
         SubElement,
-        QName,
-        register_namespace
+        fromstring,
+        tostring,
+        iterparse,
+        QName
         )
-        if DEFUSEDXML is True:
-            from defusedxml.ElementTree import (
-            fromstring,
-            tostring,
-            iterparse,
-            )
-        else:
-            from xml.etree.ElementTree import (
-            fromstring,
-            tostring,
-            iterparse,
-            )
+    from .namespace import register_namespace
     from et_xmlfile import xmlfile
 
 
@@ -123,17 +91,17 @@ tostring = partial(tostring, encoding="utf-8")
 
 
 def safe_iterator(node, tag=None):
-    """Return an iterator or an empty list"""
+    """Return an iterator that is compatible with Python 2.6"""
     if node is None:
         return []
-    return node.iter(tag)
-
+    if hasattr(node, "iter"):
+        return node.iter(tag)
+    else:
+        return node.getiterator(tag)
 
 
 NS_REGEX = re.compile("({(?P<namespace>.*)})?(?P<localname>.*)")
 
 def localname(node):
-    if callable(node.tag):
-        return "comment"
     m = NS_REGEX.match(node.tag)
     return m.group('localname')

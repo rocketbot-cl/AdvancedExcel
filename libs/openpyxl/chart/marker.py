@@ -1,5 +1,8 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
+
+from openpyxl.compat import safe_string
+from openpyxl.xml.functions import Element
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -9,7 +12,6 @@ from openpyxl.descriptors import (
 
 from openpyxl.descriptors.excel import(
     ExtensionList,
-    _explicit_none,
 )
 
 from openpyxl.descriptors.nested import (
@@ -26,13 +28,22 @@ from .text import *
 from .error_bar import *
 
 
+def _marker_symbol(tagname, value, namespace=None):
+    """
+    Override serialisation because explicit none required
+    """
+    if namespace is not None:
+        tagname = "{%s}%s" % (namespace, tagname)
+    return Element(tagname, val=safe_string(value))
+
+
 class Marker(Serialisable):
 
     tagname = "marker"
 
     symbol = NestedNoneSet(values=(['circle', 'dash', 'diamond', 'dot', 'picture',
                               'plus', 'square', 'star', 'triangle', 'x', 'auto']),
-                           to_tree=_explicit_none)
+                           to_tree=_marker_symbol)
     size = NestedMinMax(min=2, max=72, allow_none=True)
     spPr = Typed(expected_type=GraphicalProperties, allow_none=True)
     graphicalProperties = Alias('spPr')

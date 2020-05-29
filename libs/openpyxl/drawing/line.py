@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -17,7 +17,6 @@ from openpyxl.descriptors import (
 from openpyxl.descriptors.excel import Coordinate, Percentage
 
 from openpyxl.descriptors.nested import (
-    NestedInteger,
     NestedSet,
     NestedNoneSet,
     EmptyTag,
@@ -81,6 +80,19 @@ class DashStopList(Serialisable):
         self.ds = ds
 
 
+class LineJoinMiterProperties(Serialisable):
+
+    tagname = "miter"
+    namespace = DRAWING_NS
+
+    lim = Integer(allow_none=True)
+
+    def __init__(self,
+                 lim=None,
+                ):
+        self.lim = lim
+
+
 class LineProperties(Serialisable):
 
     tagname = "ln"
@@ -106,14 +118,14 @@ class LineProperties(Serialisable):
 
     round = EmptyTag()
     bevel = EmptyTag()
-    miter = NestedInteger(allow_none=True, attribute="lim")
+    miter = Typed(expected_type=LineJoinMiterProperties, allow_none=True)
 
     headEnd = Typed(expected_type=LineEndProperties, allow_none=True)
     tailEnd = Typed(expected_type=LineEndProperties, allow_none=True)
     extLst = Typed(expected_type=OfficeArtExtensionList, allow_none=True)
 
     __elements__ = ('noFill', 'solidFill', 'gradFill', 'pattFill',
-                    'prstDash', 'custDash', 'round', 'bevel', 'miter', 'headEnd', 'tailEnd')
+                    'prstDash', 'custDash', 'round', 'bevel', 'mitre', 'headEnd', 'tailEnd')
 
     def __init__(self,
                  w=None,
@@ -128,7 +140,7 @@ class LineProperties(Serialisable):
                  custDash=None,
                  round=None,
                  bevel=None,
-                 miter=None,
+                 mitre=None,
                  headEnd=None,
                  tailEnd=None,
                  extLst=None,
@@ -147,6 +159,6 @@ class LineProperties(Serialisable):
         self.custDash = custDash
         self.round = round
         self.bevel = bevel
-        self.miter = miter
+        self.mitre = bevel
         self.headEnd = headEnd
         self.tailEnd = tailEnd

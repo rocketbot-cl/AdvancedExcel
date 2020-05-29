@@ -1,4 +1,4 @@
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 
 class IndexedList(list):

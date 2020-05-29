@@ -1,13 +1,12 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """Workbook is the top-level container for all document information."""
-from copy import copy
 
-from openpyxl.compat import deprecated, long
+from openpyxl.compat import deprecated
+from openpyxl.compat import OrderedDict
 from openpyxl.worksheet import Worksheet
 from openpyxl.worksheet.read_only import ReadOnlyWorksheet
-from openpyxl.worksheet.write_only import WriteOnlyWorksheet
 from openpyxl.worksheet.copier import WorksheetCopy
 
 from openpyxl.utils import quote_sheetname
@@ -15,7 +14,8 @@ from openpyxl.utils.indexed_list import IndexedList
 from openpyxl.utils.datetime  import CALENDAR_WINDOWS_1900
 from openpyxl.utils.exceptions import ReadOnlyWorkbookException
 
-from openpyxl.writer.excel import save_workbook, save_dump
+from openpyxl.writer.write_only import WriteOnlyWorksheet, save_dump
+from openpyxl.writer.excel import save_workbook
 
 from openpyxl.styles.cell_style import StyleArray
 from openpyxl.styles.named_styles import NamedStyle
@@ -33,11 +33,7 @@ from openpyxl.chartsheet import Chartsheet
 from .defined_name import DefinedName, DefinedNameList
 from openpyxl.packaging.core import DocumentProperties
 from openpyxl.packaging.relationship import RelationshipList
-from .child import _WorkbookChild
 from .protection import DocumentSecurity
-from .properties import CalcProperties
-from .views import BookView
-
 
 from openpyxl.xml.constants import (
     XLSM,
@@ -46,7 +42,6 @@ from openpyxl.xml.constants import (
     XLTX
 )
 
-INTEGER_TYPES = (int, long)
 
 class Workbook(object):
     """Workbook is the container for all other parts of the document."""
@@ -59,10 +54,8 @@ class Workbook(object):
 
     def __init__(self,
                  write_only=False,
-                 iso_dates=False,
                  ):
         self._sheets = []
-        self._pivots = []
         self._active_sheet_index = 0
         self.defined_names = DefinedNameList()
         self._external_links = []
@@ -78,16 +71,13 @@ class Workbook(object):
         self.is_template = False
         self._differential_styles = DifferentialStyleList()
         self.code_name = None
-        self.epoch = CALENDAR_WINDOWS_1900
+        self.excel_base_date = CALENDAR_WINDOWS_1900
         self.encoding = "utf-8"
-        self.iso_dates = iso_dates
 
         if not self.write_only:
             self._sheets.append(Worksheet(self))
 
         self.rels = RelationshipList()
-        self.calculation = CalcProperties()
-        self.views = [BookView()]
 
 
     def _setup_styles(self):
@@ -112,7 +102,7 @@ class Workbook(object):
         self._colors = COLOR_INDEX
         self._cell_styles = IndexedList([StyleArray()])
         self._named_styles = NamedStyleList()
-        self.add_named_style(NamedStyle(font=copy(DEFAULT_FONT), builtinId=0))
+        self.add_named_style(NamedStyle(font=DEFAULT_FONT, builtinId=0))
         self._table_styles = TableStyleList()
 
 
@@ -137,15 +127,10 @@ class Workbook(object):
         """Returns the current active sheet."""
         return self.active
 
-
-    @property
-    def excel_base_date(self):
-        return self.epoch
-
     @property
     def active(self):
         """Get the currently active sheet or None
-
+        
         :type: :class:`openpyxl.worksheet.worksheet.Worksheet`
         """
         try:
@@ -156,23 +141,7 @@ class Workbook(object):
     @active.setter
     def active(self, value):
         """Set the active sheet"""
-        if not isinstance(value, (_WorkbookChild, INTEGER_TYPES)):
-            raise TypeError("Value must be either a worksheet, chartsheet or numerical index")
-        if isinstance(value, INTEGER_TYPES):
-            self._active_sheet_index = value
-            return
-            #if self._sheets and 0 <= value < len(self._sheets):
-                #value = self._sheets[value]
-            #else:
-                #raise ValueError("Sheet index is outside the range of possible values", value)
-        if value not in self._sheets:
-            raise ValueError("Worksheet is not in the workbook")
-        if value.sheet_state != "visible":
-            raise ValueError("Only visible sheets can be made active")
-
-        idx = self._sheets.index(value)
-        self._active_sheet_index = idx
-
+        self._active_sheet_index = value
 
     def create_sheet(self, title=None, index=None):
         """Create a worksheet (at an optional index).
@@ -265,7 +234,7 @@ class Workbook(object):
         :type name: string
 
         """
-        for sheet in self.worksheets + self.chartsheets:
+        for sheet in self.worksheets:
             if sheet.title == key:
                 return sheet
         raise KeyError("Worksheet {0} does not exist.".format(key))
@@ -285,7 +254,7 @@ class Workbook(object):
     @property
     def worksheets(self):
         """A list of sheets in this workbook
-
+        
         :type: list of :class:`openpyxl.worksheet.worksheet.Worksheet`
         """
         return [s for s in self._sheets if isinstance(s, (Worksheet, ReadOnlyWorksheet, WriteOnlyWorksheet))]

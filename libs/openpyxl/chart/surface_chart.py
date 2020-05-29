@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -68,12 +68,11 @@ class _SurfaceChartBase(ChartBase):
                  wireframe=None,
                  ser=(),
                  bandFmts=None,
-                 **kw
                 ):
         self.wireframe = wireframe
         self.ser = ser
         self.bandFmts = bandFmts
-        super(_SurfaceChartBase, self).__init__(**kw)
+        super(_SurfaceChartBase, self).__init__()
 
 
 class SurfaceChart3D(_SurfaceChartBase, _3DBase):
@@ -92,7 +91,7 @@ class SurfaceChart3D(_SurfaceChartBase, _3DBase):
 
     __elements__ = _SurfaceChartBase.__elements__ + ('axId',)
 
-    def __init__(self, **kw):
+    def __init__(self, axId=None, **kw):
         self.x_axis = TextAxis()
         self.y_axis = NumericAxis()
         self.z_axis = SeriesAxis()

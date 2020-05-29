@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """Read an xlsx file into Python"""
 
@@ -12,7 +12,6 @@ import warnings
 
 # compatibility imports
 from openpyxl.compat import unicode, file
-from openpyxl.pivot.table import TableDefinition
 
 # Allow blanket setting of KEEP_VBA for testing
 try:
@@ -51,16 +50,37 @@ from openpyxl.packaging.relationship import get_dependents, get_rels_path
 
 from openpyxl.worksheet.read_only import ReadOnlyWorksheet
 from openpyxl.worksheet.table import Table
-from openpyxl.drawing.spreadsheet_drawing import SpreadsheetDrawing
 
 from openpyxl.xml.functions import fromstring
 
 from .worksheet import WorkSheetParser
-from .drawings import find_images
 
 # Use exc_info for Python 2 compatibility with "except Exception[,/ as] e"
 
+
+CENTRAL_DIRECTORY_SIGNATURE = b'\x50\x4b\x05\x06'
 SUPPORTED_FORMATS = ('.xlsx', '.xlsm', '.xltx', '.xltm')
+
+
+def repair_central_directory(zipFile, is_file_instance):
+    ''' trims trailing data from the central directory
+    code taken from http://stackoverflow.com/a/7457686/570216, courtesy of Uri Cohen
+    '''
+
+    f = zipFile if is_file_instance else open(zipFile, 'rb+')
+    data = f.read()
+    pos = data.find(CENTRAL_DIRECTORY_SIGNATURE)  # End of central directory signature
+    if (pos > 0):
+        sio = BytesIO(data)
+        sio.seek(pos + 22)  # size of 'ZIP end of central directory record'
+        sio.truncate()
+        sio.seek(0)
+        return sio
+
+    f.seek(0)
+    return f
+
+
 
 def _validate_archive(filename):
     """
@@ -94,7 +114,11 @@ def _validate_archive(filename):
         if getattr(filename, 'encoding', None) is not None:
             raise IOError("File-object must be opened in binary mode")
 
-    archive = ZipFile(filename, 'r')
+    try:
+        archive = ZipFile(filename, 'r', ZIP_DEFLATED)
+    except BadZipfile:
+        f = repair_central_directory(filename, is_file_like)
+        archive = ZipFile(f, 'r', ZIP_DEFLATED)
     return archive
 
 
@@ -145,6 +169,7 @@ def load_workbook(filename, read_only=False, keep_vba=KEEP_VBA,
 
     """
     archive = _validate_archive(filename)
+    read_only = read_only
 
     src = archive.read(ARC_CONTENT_TYPES)
     root = fromstring(src)
@@ -194,12 +219,9 @@ def load_workbook(filename, read_only=False, keep_vba=KEEP_VBA,
         wb.loaded_theme = archive.read(ARC_THEME)
 
     apply_stylesheet(archive, wb) # bind styles to workbook
-    pivot_caches = parser.pivot_caches
 
     # get worksheets
     for sheet, rel in parser.find_sheets():
-        if "chartsheet" in rel.Type:
-            continue
         sheet_name = sheet.name
         worksheet_path = rel.target
         rels_path = get_rels_path(worksheet_path)
@@ -242,23 +264,6 @@ def load_workbook(filename, read_only=False, keep_vba=KEEP_VBA,
                     xml = fromstring(src)
                     table = Table.from_tree(xml)
                     ws.add_table(table)
-
-                drawings = rels.find(SpreadsheetDrawing._rel_type)
-                for rel in drawings:
-                    charts, images = find_images(archive, rel.target)
-                    for c in charts:
-                        ws.add_chart(c, c.anchor)
-                    for im in images:
-                        ws.add_image(im, im.anchor)
-
-                pivot_rel = rels.find(TableDefinition.rel_type)
-                for r in pivot_rel:
-                    pivot_path = r.Target
-                    src = archive.read(pivot_path)
-                    tree = fromstring(src)
-                    pivot = TableDefinition.from_tree(tree)
-                    pivot.cache = pivot_caches[pivot.cacheId]
-                    ws.add_pivot(pivot)
 
         ws.sheet_state = sheet.state
         ws._rels = [] # reset

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -21,28 +21,26 @@ from openpyxl.packaging.relationship import (
     RelationshipList,
 )
 from openpyxl.utils import coordinate_to_tuple
-from openpyxl.utils.units import (
-    cm_to_EMU,
-    pixels_to_EMU,
-)
+from openpyxl.utils.units import cm_to_EMU
 from openpyxl.drawing.image import Image
 
 from openpyxl.xml.constants import SHEET_DRAWING_NS
 
 from openpyxl.chart._chart import ChartBase
-from .xdr import (
-    XDRPoint2D,
-    XDRPositiveSize2D,
+from .shapes import (
+    Point2D,
+    PositiveSize2D,
+    PresetGeometry2D,
 )
 from .fill import Blip
-from .connector import Shape
 from .graphic import (
     GroupShape,
     GraphicFrame,
+    Shape,
+    PictureFrame,
+    ChartRelation,
+    Shape,
     )
-from .geometry import PresetGeometry2D
-from .picture import PictureFrame
-from .relation import ChartRelation
 
 
 class AnchorClientData(Serialisable):
@@ -121,8 +119,8 @@ class AbsoluteAnchor(_AnchorBase):
 
     tagname = "absoluteAnchor"
 
-    pos = Typed(expected_type=XDRPoint2D)
-    ext = Typed(expected_type=XDRPositiveSize2D)
+    pos = Typed(expected_type=Point2D)
+    ext = Typed(expected_type=PositiveSize2D)
 
     sp = _AnchorBase.sp
     grpSp = _AnchorBase.grpSp
@@ -140,10 +138,10 @@ class AbsoluteAnchor(_AnchorBase):
                  **kw
                 ):
         if pos is None:
-            pos = XDRPoint2D(0, 0)
+            pos = Point2D(0, 0)
         self.pos = pos
         if ext is None:
-            ext = XDRPositiveSize2D(0, 0)
+            ext = PositiveSize2D(0, 0)
         self.ext = ext
         super(AbsoluteAnchor, self).__init__(**kw)
 
@@ -153,7 +151,7 @@ class OneCellAnchor(_AnchorBase):
     tagname = "oneCellAnchor"
 
     _from = Typed(expected_type=AnchorMarker)
-    ext = Typed(expected_type=XDRPositiveSize2D)
+    ext = Typed(expected_type=PositiveSize2D)
 
     sp = _AnchorBase.sp
     grpSp = _AnchorBase.grpSp
@@ -175,7 +173,7 @@ class OneCellAnchor(_AnchorBase):
             _from = AnchorMarker()
         self._from = _from
         if ext is None:
-            ext = XDRPositiveSize2D(0, 0)
+            ext = PositiveSize2D(0, 0)
         self.ext = ext
         super(OneCellAnchor, self).__init__(**kw)
 
@@ -214,31 +212,10 @@ class TwoCellAnchor(_AnchorBase):
         super(TwoCellAnchor, self).__init__(**kw)
 
 
-def _check_anchor(obj):
-    """
-    Check whether an object has an existing Anchor object
-    If not create a OneCellAnchor using the provided coordinate
-    """
-    anchor = obj.anchor
-    if not isinstance(anchor, _AnchorBase):
-        row, col = coordinate_to_tuple(anchor)
-        anchor = OneCellAnchor()
-        anchor._from.row = row -1
-        anchor._from.col = col -1
-        if isinstance(obj, ChartBase):
-            anchor.ext.width = cm_to_EMU(obj.width)
-            anchor.ext.height = cm_to_EMU(obj.height)
-        elif isinstance(obj, Image):
-            anchor.ext.width = pixels_to_EMU(obj.width)
-            anchor.ext.height = pixels_to_EMU(obj.height)
-    return anchor
-
-
 class SpreadsheetDrawing(Serialisable):
 
     tagname = "wsDr"
     mime_type = "application/vnd.openxmlformats-officedocument.drawing+xml"
-    _rel_type = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing"
     _path = PartName="/xl/drawings/drawing{0}.xml"
     _id = None
 
@@ -280,17 +257,21 @@ class SpreadsheetDrawing(Serialisable):
         """
         anchors = []
         for idx, obj in enumerate(self.charts + self.images, 1):
-            anchor = _check_anchor(obj)
             if isinstance(obj, ChartBase):
                 rel = Relationship(type="chart", Target=obj.path)
+                anchor = obj.anchor
+                if not isinstance(anchor, _AnchorBase):
+                    row, col = coordinate_to_tuple(anchor)
+                    anchor = OneCellAnchor()
+                    anchor._from.row = row -1
+                    anchor._from.col = col -1
+                    anchor.ext.width = cm_to_EMU(obj.width)
+                    anchor.ext.height = cm_to_EMU(obj.height)
                 anchor.graphicFrame = self._chart_frame(idx)
             elif isinstance(obj, Image):
                 rel = Relationship(type="image", Target=obj.path)
-                child = anchor.pic or anchor.groupShape and anchor.groupShape.pic
-                if not child:
-                    anchor.pic = self._picture_frame(idx)
-                else:
-                    child.blipFill.blip.embed = "rId{0}".format(idx)
+                anchor = obj.drawing.anchor
+                anchor.pic = self._picture_frame(idx)
 
             anchors.append(anchor)
             self._rels.append(rel)
@@ -342,40 +323,3 @@ class SpreadsheetDrawing(Serialisable):
     @property
     def path(self):
         return self._path.format(self._id)
-
-
-    @property
-    def _chart_rels(self):
-        """
-        Get relationship information for each chart and bind anchor to it
-        """
-        rels = []
-        anchors = self.absoluteAnchor + self.oneCellAnchor + self.twoCellAnchor
-        for anchor in anchors:
-            if anchor.graphicFrame is not None:
-                graphic = anchor.graphicFrame.graphic
-                rel = graphic.graphicData.chart
-                if rel is not None:
-                    rel.anchor = anchor
-                    rel.anchor.graphicFrame = None
-                    rels.append(rel)
-        return rels
-
-
-    @property
-    def _blip_rels(self):
-        """
-        Get relationship information for each blip and bind anchor to it
-        """
-        rels = []
-        anchors = self.absoluteAnchor + self.oneCellAnchor + self.twoCellAnchor
-
-        for anchor in anchors:
-            child = anchor.pic or anchor.groupShape and anchor.groupShape.pic
-            if child and child.blipFill:
-                rel = child.blipFill.blip
-                if rel is not None:
-                    rel.anchor = anchor
-                    rels.append(rel)
-
-        return rels

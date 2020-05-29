@@ -1,5 +1,3 @@
-# Copyright (c) 2010-2019 openpyxl
-
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
     Sequence,
@@ -43,8 +41,8 @@ class RadarChart(ChartBase):
                  varyColors=None,
                  ser=(),
                  dLbls=None,
+                 axId=None,
                  extLst=None,
-                 **kw
                 ):
         self.radarStyle = radarStyle
         self.varyColors = varyColors
@@ -52,4 +50,5 @@ class RadarChart(ChartBase):
         self.dLbls = dLbls
         self.x_axis = TextAxis()
         self.y_axis = NumericAxis()
-        super(RadarChart, self).__init__(**kw)
+        super(RadarChart, self).__init__()
+

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from copy import copy
 
@@ -103,7 +103,7 @@ class RowDimension(Dimension):
         if visible is not None:
             hidden = not visible
         if outline_level is not None:
-            outlineLevel = outline_level
+            outlineLevel = outlineLevel
         self.thickBot = thickBot
         self.thickTop = thickTop
         super(RowDimension, self).__init__(index, hidden, outlineLevel,
@@ -180,8 +180,7 @@ class ColumnDimension(Dimension):
 
     def to_tree(self):
         attrs = dict(self)
-        if set(attrs) != set(['min', 'max']):
-            return Element("col", **attrs)
+        return Element("col", **attrs)
 
 
 class DimensionHolder(BoundDictionary):
@@ -192,35 +191,29 @@ class DimensionHolder(BoundDictionary):
     def __init__(self, worksheet, reference="index", default_factory=None):
         self.worksheet = worksheet
         self.max_outline = None
-        self.default_factory = default_factory
         super(DimensionHolder, self).__init__(reference, default_factory)
 
 
     def group(self, start, end=None, outline_level=1, hidden=False):
-        """allow grouping a range of consecutive rows or columns together
+        """allow grouping a range of consecutive columns together
 
-        :param start: first row or column to be grouped (mandatory)
-        :param end: last row or column to be grouped (optional, default to start)
+        :param start: first column to be grouped (mandatory)
+        :param end: last column to be grouped (optional, default to start)
         :param outline_level: outline level
         :param hidden: should the group be hidden on workbook open or not
         """
         if end is None:
             end = start
 
-        if isinstance(self.default_factory(), ColumnDimension):
-            new_dim = self[start]
-            new_dim.outline_level = outline_level
-            new_dim.hidden = hidden
-            work_sequence = get_column_interval(start, end)[1:]
-            for column_letter in work_sequence:
-                if column_letter in self:
-                    del self[column_letter]
-            new_dim.min, new_dim.max = map(column_index_from_string, (start, end))
-        elif isinstance(self.default_factory(), RowDimension):
-            for el in range(start, end + 1):
-                new_dim = self.worksheet.row_dimensions[el]
-                new_dim.outline_level = outline_level
-                new_dim.hidden = hidden
+        new_dim = self[start]
+        new_dim.outline_level = outline_level
+        new_dim.hidden = hidden
+
+        work_sequence = get_column_interval(start, end)[1:]
+        for column_letter in work_sequence:
+            if column_letter in self:
+                del self[column_letter]
+        new_dim.min, new_dim.max = map(column_index_from_string, (start, end))
 
 
     def to_tree(self):
@@ -297,3 +290,4 @@ class SheetDimension(Serialisable):
     @property
     def boundaries(self):
         return range_boundaries(self.ref)
+

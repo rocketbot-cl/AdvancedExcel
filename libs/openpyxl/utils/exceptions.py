@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 
 """Definitions for openpyxl shared exception classes."""
@@ -20,6 +20,10 @@ class NamedRangeException(Exception):
 
 class SheetTitleException(Exception):
     """Error for bad sheet names."""
+
+
+class InsufficientCoordinatesException(Exception):
+    """Error for partially specified cell coordinates."""
 
 
 class InvalidFileException(Exception):

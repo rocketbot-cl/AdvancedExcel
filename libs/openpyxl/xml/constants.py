@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 
 """Constants for fixed paths in a file and xml namespace urls."""
@@ -21,8 +21,6 @@ PACKAGE_CHARTS = PACKAGE_XL + '/' + 'charts'
 PACKAGE_IMAGES = PACKAGE_XL + '/' + 'media'
 PACKAGE_WORKSHEET_RELS = PACKAGE_WORKSHEETS + '/' + '_rels'
 PACKAGE_CHARTSHEETS_RELS = PACKAGE_CHARTSHEETS + '/' + '_rels'
-PACKAGE_PIVOT_TABLE = PACKAGE_XL + '/' + 'pivotTables'
-PACKAGE_PIVOT_CACHE = PACKAGE_XL + '/' + 'pivotCache'
 
 ARC_CONTENT_TYPES = '[Content_Types].xml'
 ARC_ROOT_RELS = PACKAGE_RELS + '/.rels'
@@ -45,7 +43,6 @@ DCTERMS_PREFIX = 'dcterms'
 DOC_NS = "http://schemas.openxmlformats.org/officeDocument/2006/"
 REL_NS = DOC_NS + "relationships"
 COMMENTS_NS = REL_NS + "/comments"
-IMAGE_NS = REL_NS + "/image"
 VML_NS =  REL_NS + "/vmlDrawing"
 VTYPES_NS = DOC_NS + 'docPropsVTypes'
 XPROPS_NS = DOC_NS + 'extended-properties'

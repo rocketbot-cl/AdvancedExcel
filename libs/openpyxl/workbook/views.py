@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2015 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -40,19 +40,19 @@ class BookView(Serialisable):
     __elements__ = ()
 
     def __init__(self,
-                 visibility="visible",
-                 minimized=False,
-                 showHorizontalScroll=True,
-                 showVerticalScroll=True,
-                 showSheetTabs=True,
+                 visibility=None,
+                 minimized=None,
+                 showHorizontalScroll=None,
+                 showVerticalScroll=None,
+                 showSheetTabs=None,
                  xWindow=None,
                  yWindow=None,
                  windowWidth=None,
                  windowHeight=None,
-                 tabRatio=600,
-                 firstSheet=0,
-                 activeTab=0,
-                 autoFilterDateGrouping=True,
+                 tabRatio=None,
+                 firstSheet=None,
+                 activeTab=None,
+                 autoFilterDateGrouping=None,
                  extLst=None,
                 ):
         self.visibility = visibility

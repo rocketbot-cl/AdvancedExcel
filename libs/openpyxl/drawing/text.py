@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.compat import unicode
 
@@ -19,8 +19,7 @@ from openpyxl.descriptors.excel import (
     HexBinary,
     TextPoint,
     Coordinate,
-    ExtensionList,
-    Relation,
+    ExtensionList
 )
 from openpyxl.descriptors.nested import (
     NestedInteger,
@@ -35,7 +34,7 @@ from openpyxl.xml.constants import DRAWING_NS
 from .colors import ColorChoiceDescriptor
 from .effect import *
 from .fill import *
-from .geometry import (
+from .shapes import (
     LineProperties,
     Color,
     Scene3D
@@ -47,7 +46,7 @@ from openpyxl.descriptors.nested import NestedBool
 
 class EmbeddedWAVAudioFile(Serialisable):
 
-    name = String(allow_none=True)
+    name = Typed(expected_type=String, allow_none=True)
 
     def __init__(self,
                  name=None,
@@ -57,21 +56,15 @@ class EmbeddedWAVAudioFile(Serialisable):
 
 class Hyperlink(Serialisable):
 
-    tagname = "hlinkClick"
-    namespace = DRAWING_NS
-
-    invalidUrl = String(allow_none=True)
-    action = String(allow_none=True)
-    tgtFrame = String(allow_none=True)
-    tooltip = String(allow_none=True)
-    history = Bool(allow_none=True)
-    highlightClick = Bool(allow_none=True)
-    endSnd = Bool(allow_none=True)
+    invalidUrl = Typed(expected_type=String, allow_none=True)
+    action = Typed(expected_type=String, allow_none=True)
+    tgtFrame = Typed(expected_type=String, allow_none=True)
+    tooltip = Typed(expected_type=String, allow_none=True)
+    history = Typed(expected_type=Bool, allow_none=True)
+    highlightClick = Typed(expected_type=Bool, allow_none=True)
+    endSnd = Typed(expected_type=Bool, allow_none=True)
     snd = Typed(expected_type=EmbeddedWAVAudioFile, allow_none=True)
     extLst = Typed(expected_type=OfficeArtExtensionList, allow_none=True)
-    id = Relation(allow_none=True)
-
-    __elements__ = ('snd',)
 
     def __init__(self,
                  invalidUrl=None,
@@ -83,7 +76,6 @@ class Hyperlink(Serialisable):
                  endSnd=None,
                  snd=None,
                  extLst=None,
-                 id=None,
                 ):
         self.invalidUrl = invalidUrl
         self.action = action
@@ -93,7 +85,7 @@ class Hyperlink(Serialisable):
         self.highlightClick = highlightClick
         self.endSnd = endSnd
         self.snd = snd
-        self.id = id
+        self.extLst = extLst
 
 
 class Font(Serialisable):
@@ -102,9 +94,9 @@ class Font(Serialisable):
     namespace = DRAWING_NS
 
     typeface = String()
-    panose = HexBinary(allow_none=True)
-    pitchFamily = MinMax(min=0, max=52, allow_none=True)
-    charset = Integer(allow_none=True)
+    panose = Typed(expected_type=HexBinary, allow_none=True)
+    pitchFamily = Typed(expected_type=MinMax, allow_none=True)
+    charset = Typed(expected_type=MinMax, allow_none=True)
 
     def __init__(self,
                  typeface=None,
@@ -172,10 +164,10 @@ class CharacterProperties(Serialisable):
     uFillTx = EmptyTag()
     uFill = EmptyTag()
 
-    __elements__ = ('ln', 'noFill', 'solidFill', 'gradFill', 'blipFill',
-                    'pattFill', 'grpFill', 'effectLst', 'effectDag', 'highlight','uLnTx',
-                    'uLn', 'uFillTx', 'uFill', 'latin', 'ea', 'cs', 'sym', 'hlinkClick',
-                    'hlinkMouseOver', 'rtl', )
+    __elements__ = ('ln', 'highlight', 'latin', 'ea', 'cs', 'sym',
+                    'hlinkClick', 'hlinkMouseOver', 'rtl', 'noFill', 'solidFill', 'gradFill',
+                    'blipFill', 'pattFill', 'grpFill', 'effectLst', 'effectDag', 'uLnTx',
+                    'uLn', 'uFillTx', 'uFill')
 
     def __init__(self,
                  kumimoji=None,
@@ -287,8 +279,8 @@ class TabStopList(Serialisable):
 
 class Spacing(Serialisable):
 
-    spcPct = NestedInteger(allow_none=True)
-    spcPts = NestedInteger(allow_none=True)
+    spcPct = NestedInteger()
+    spcPts = NestedInteger()
 
     __elements__ = ('spcPct', 'spcPts')
 
@@ -479,23 +471,20 @@ class RegularTextRun(Serialisable):
 
     rPr = Typed(expected_type=CharacterProperties, allow_none=True)
     properties = Alias("rPr")
-    t = NestedText(expected_type=unicode)
+    t = NestedText(expected_type=unicode, allow_none=True)
     value = Alias("t")
 
     __elements__ = ('rPr', 't')
 
     def __init__(self,
                  rPr=None,
-                 t="",
+                 t=None,
                 ):
         self.rPr = rPr
         self.t = t
 
 
 class LineBreak(Serialisable):
-
-    tagname = "br"
-    namespace = DRAWING_NS
 
     rPr = Typed(expected_type=CharacterProperties, allow_none=True)
 
@@ -513,7 +502,7 @@ class TextField(Serialisable):
     type = String(allow_none=True)
     rPr = Typed(expected_type=CharacterProperties, allow_none=True)
     pPr = Typed(expected_type=ParagraphProperties, allow_none=True)
-    t = String(allow_none=True)
+    t = Typed(expected_type=String, allow_none=True)
 
     __elements__ = ('rPr', 'pPr')
 
@@ -540,12 +529,12 @@ class Paragraph(Serialisable):
     pPr = Typed(expected_type=ParagraphProperties, allow_none=True)
     properties = Alias("pPr")
     endParaRPr = Typed(expected_type=CharacterProperties, allow_none=True)
-    r = Sequence(expected_type=RegularTextRun)
+    r = Typed(expected_type=RegularTextRun, allow_none=True)
     text = Alias('r')
     br = Typed(expected_type=LineBreak, allow_none=True)
     fld = Typed(expected_type=TextField, allow_none=True)
 
-    __elements__ = ('pPr', 'r', 'br', 'fld', 'endParaRPr')
+    __elements__ = ('pPr', 'endParaRPr', 'r', 'br', 'fld')
 
     def __init__(self,
                  pPr=None,
@@ -557,7 +546,7 @@ class Paragraph(Serialisable):
         self.pPr = pPr
         self.endParaRPr = endParaRPr
         if r is None:
-            r = [RegularTextRun()]
+            r = RegularTextRun()
         self.r = r
         self.br = br
         self.fld = fld
@@ -565,8 +554,8 @@ class Paragraph(Serialisable):
 
 class GeomGuide(Serialisable):
 
-    name = String(())
-    fmla = String(())
+    name = Typed(expected_type=String())
+    fmla = Typed(expected_type=String())
 
     def __init__(self,
                  name=None,

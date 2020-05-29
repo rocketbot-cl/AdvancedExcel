@@ -1,16 +1,16 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
+
 
 class Comment(object):
 
     _parent = None
 
-    def __init__(self, text, author, height=79, width=144):
+    def __init__(self, text, author):
         self.content = text
         self.author = author
-        self.height = height
-        self.width = width
-
+        self.width = '108pt'
+        self.height = '59.25pt'
 
     @property
     def parent(self):
@@ -29,7 +29,9 @@ class Comment(object):
 
     def __copy__(self):
         """Create a detached copy of this comment."""
-        clone = self.__class__(self.content, self.author, self.height, self.width)
+        clone = self.__class__(self.content, self.author)
+        clone.width = self.width
+        clone.height = self.height
         return clone
 
 

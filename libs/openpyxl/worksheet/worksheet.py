@@ -1,12 +1,11 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """Worksheet is the 2nd-level container in Excel."""
 
 
 # Python stdlib imports
 from itertools import islice, product
-from operator import attrgetter
 import re
 from inspect import isgenerator
 from warnings import warn
@@ -35,6 +34,7 @@ from openpyxl.utils.cell import COORD_RE
 from openpyxl.cell import Cell
 from openpyxl.utils.exceptions import (
     SheetTitleException,
+    InsufficientCoordinatesException,
     NamedRangeException
 )
 from openpyxl.utils.units import (
@@ -68,7 +68,6 @@ from .views import (
     Selection,
     SheetViewList,
 )
-from .cell_range import MultiCellRange, CellRange
 from .properties import WorksheetProperties
 from .pagebreak import PageBreak
 
@@ -123,8 +122,7 @@ class Worksheet(_WorkbookChild):
         self._setup()
 
     def _setup(self):
-        self.row_dimensions = DimensionHolder(worksheet=self,
-                                              default_factory=self._add_row)
+        self.row_dimensions = BoundDictionary("index", self._add_row)
         self.column_dimensions = DimensionHolder(worksheet=self,
                                                  default_factory=self._add_column)
         self.page_breaks = PageBreak()
@@ -134,9 +132,8 @@ class Worksheet(_WorkbookChild):
         self._rels = RelationshipList()
         self._drawing = None
         self._comments = []
-        self.merged_cells = MultiCellRange()
+        self._merged_cells = []
         self._tables = []
-        self._pivots = []
         self.data_validations = DataValidationList()
         self._hyperlinks = []
         self.sheet_state = 'visible'
@@ -168,12 +165,12 @@ class Worksheet(_WorkbookChild):
 
     @property
     def selected_cell(self):
-        return self.sheet_view.selection[0].sqref
+        return self.sheet_view.selection.sqref
 
 
     @property
     def active_cell(self):
-        return self.sheet_view.selection[0].activeCell
+        return self.sheet_view.selection.activeCell
 
     @property
     def show_gridlines(self):
@@ -271,9 +268,8 @@ class Worksheet(_WorkbookChild):
             self.print_title_rows = '1:%d' % n
 
 
-    def cell(self, row, column, value=None):
-        """
-        Returns a cell object based on the given coordinates.
+    def cell(self, coordinate=None, row=None, column=None, value=None):
+        """Returns a cell object based on the given coordinates.
 
         Usage: cell(row=15, column=1, value=5)
 
@@ -286,11 +282,26 @@ class Worksheet(_WorkbookChild):
         :param column: column index of the cell (e.g. 3)
         :type column: int
 
+        :param coordinate: coordinates of the cell (e.g. 'B12')
+        :type coordinate: string
+
         :param value: value of the cell (e.g. 5)
         :type value: numeric or time or string or bool or none
 
+        :raise: InsufficientCoordinatesException when neither row nor column are not given
+
         :rtype: openpyxl.cell.cell.Cell
+
         """
+
+        if (row is None or column is None) and coordinate is None:
+            msg = "You have to provide a value either for " \
+                   "'coordinate' or for 'row' *and* 'column'"
+            raise InsufficientCoordinatesException(msg)
+
+        if coordinate is not None:
+            warn("Using a coordinate with ws.cell is deprecated. Use ws[coordinate] instead")
+            row, column = coordinate_to_tuple(coordinate)
 
         if row < 1 or column < 1:
             raise ValueError("Row or column values must be at least 1")
@@ -373,18 +384,12 @@ class Worksheet(_WorkbookChild):
         return self.iter_rows()
 
 
-    def __delitem__(self, key):
-        row, column = coordinate_to_tuple(key)
-        if (row, column) in self._cells:
-            del self._cells[(row, column)]
-
-
     @property
     def min_row(self):
         """The minimium row index containing data (1-based)
 
         :type: int
-        """
+        """        
         min_row = 1
         if self._cells:
             rows = set(c[0] for c in self._cells)
@@ -410,7 +415,7 @@ class Worksheet(_WorkbookChild):
         """The minimum column index containing data (1-based)
 
         :type: int
-        """
+        """        
         min_col = 1
         if self._cells:
             cols = set(c[1] for c in self._cells)
@@ -526,7 +531,7 @@ class Worksheet(_WorkbookChild):
     @property
     def rows(self):
         """Produces all cells in the worksheet, by row (see :func:`iter_rows`)
-
+        
         :type: generator
         """
         return self.iter_rows()
@@ -560,7 +565,7 @@ class Worksheet(_WorkbookChild):
         :param max_col: largest column index (1-based index)
         :type max_col: int
 
-        :param max_row: largest row index (1-based index)
+        :param max_row: smallest row index (1-based index)
         :type max_row: int
 
         :rtype: generator
@@ -611,7 +616,7 @@ class Worksheet(_WorkbookChild):
         :param max_col: largest column index (1-based index)
         :type max_col: int
 
-        :param max_row: largest row index (1-based index)
+        :param max_row: smallest row index (1-based index)
         :type max_row: int
 
         :rtype: generator
@@ -671,7 +676,6 @@ class Worksheet(_WorkbookChild):
         """
         self.data_validations.append(data_validation)
 
-
     def add_chart(self, chart, anchor=None):
         """
         Add a chart to the sheet
@@ -681,14 +685,14 @@ class Worksheet(_WorkbookChild):
             chart.anchor = anchor
         self._charts.append(chart)
 
-
     def add_image(self, img, anchor=None):
         """
         Add an image to the sheet.
         Optionally provide a cell for the top-left anchor
         """
         if anchor is not None:
-            img.anchor = anchor
+            cell = self[anchor]
+            img.anchor(cell, anchortype="oneCell")
         self._images.append(img)
 
 
@@ -696,51 +700,74 @@ class Worksheet(_WorkbookChild):
         self._tables.append(table)
 
 
-    def add_pivot(self, pivot):
-        self._pivots.append(pivot)
-
-
     def merge_cells(self, range_string=None, start_row=None, start_column=None, end_row=None, end_column=None):
-        cr = CellRange(range_string=range_string, min_col=start_column, min_row=start_row,
-                      max_col=end_column, max_row=end_row)
         """ Set merge on a cell range.  Range is a cell range (e.g. A1:E1) """
+        if not range_string and not all((start_row, start_column, end_row, end_column)):
+            msg = "You have to provide a value either for 'coordinate' or for\
+            'start_row', 'start_column', 'end_row' *and* 'end_column'"
+            raise ValueError(msg)
+        elif not range_string:
+            range_string = '%s%s:%s%s' % (get_column_letter(start_column),
+                                          start_row,
+                                          get_column_letter(end_column),
+                                          end_row)
+        elif ":" not in range_string:
+            if COORD_RE.match(range_string):
+                return  # Single cell, do nothing
+            raise ValueError("Range must be a cell range (e.g. A1:E1)")
+        else:
+            range_string = range_string.replace('$', '')
 
-        self.merged_cells.add(cr.coord)
-        self._clean_merge_range(cr)
+        if range_string not in self._merged_cells:
+            self._merged_cells.append(range_string)
 
-
-    def _clean_merge_range(self, cr):
-        """
-        Remove all but the top left-cell from a range of merged cells
-        """
-
-        min_col, min_row, max_col, max_row = cr.bounds
+        min_col, min_row, max_col, max_row = range_boundaries(range_string)
         rows = range(min_row, max_row+1)
         cols = range(min_col, max_col+1)
         cells = product(rows, cols)
-
+        # all but the top-left cell are removed
         for c in islice(cells, 1, None):
             if c in self._cells:
                 del self._cells[c]
 
 
     @property
-    @deprecated("Use ws.merged_cells.ranges")
+    def merged_cells(self):
+        """Utility for checking whether a cell has been merged or not"""
+        cells = set()
+        for _range in self._merged_cells:
+            for row in rows_from_range(_range):
+                cells = cells.union(set(row))
+        return cells
+
+
+    @property
     def merged_cell_ranges(self):
         """Return a copy of cell ranges"""
-        return self.merged_cells.ranges[:]
+        return self._merged_cells[:]
 
 
     def unmerge_cells(self, range_string=None, start_row=None, start_column=None, end_row=None, end_column=None):
         """ Remove merge on a cell range.  Range is a cell range (e.g. A1:E1) """
-        cr = CellRange(range_string=range_string, min_col=start_column, min_row=start_row,
-                      max_col=end_column, max_row=end_row)
+        if not range_string:
+            if start_row is None or start_column is None or end_row is None or end_column is None:
+                msg = "You have to provide a value either for "\
+                    "'coordinate' or for 'start_row', 'start_column', 'end_row' *and* 'end_column'"
+                raise InsufficientCoordinatesException(msg)
+            else:
+                range_string = '%s%s:%s%s' % (get_column_letter(start_column), start_row, get_column_letter(end_column), end_row)
+        elif len(range_string.split(':')) != 2:
+            msg = "Range must be a cell range (e.g. A1:E1)"
+            raise InsufficientCoordinatesException(msg)
+        else:
+            range_string = range_string.replace('$', '')
 
-        if cr.coord not in self.merged_cells:
-            raise ValueError("Cell range {0} is not merged".format(cr.coord))
+        if range_string in self._merged_cells:
+            self._merged_cells.remove(range_string)
 
-        self.merged_cells.remove(cr)
-
+        else:
+            msg = 'Cell range %s not known as merged.' % range_string
+            raise InsufficientCoordinatesException(msg)
 
     def append(self, iterable):
         """Appends a group of values at the bottom of the current sheet.
@@ -790,87 +817,51 @@ class Worksheet(_WorkbookChild):
         self._current_row = row_idx
 
 
-    def _move_cells(self, min_row=None, min_col=None, offset=0, row_or_col="row"):
-        """
-        Move either rows or columns around by the offset
-        """
-        reverse = offset > 0 # start at the end if inserting
-
-        # need to make affected ranges contiguous
-        cells = self.iter_rows(min_row=min_row)
-
-        if row_or_col == 'col':
-            cells = self.iter_cols(min_col=min_col)
-        cells = list(cells)
-
-        cells = sorted(self._cells.values(), key=attrgetter(row_or_col), reverse=reverse)
-
-        for cell in cells:
-            if min_row and cell.row < min_row:
-                continue
-            elif min_col and cell.col_idx < min_col:
-                continue
-
-            del self._cells[(cell.row, cell.col_idx)] # remove old ref
-
-            val = getattr(cell, row_or_col)
-            setattr(cell, row_or_col, val+offset) # calculate new coords
-
-            self._cells[(cell.row, cell.col_idx)] = cell # add new ref
-
-
-    def insert_rows(self, idx, amount=1):
-        """
-        Insert row or rows before row==idx
-        """
-        self._move_cells(min_row=idx, offset=amount, row_or_col="row")
-        self._current_row = self.max_row
-
-
-    def insert_cols(self, idx, amount=1):
-        """
-        Insert column or columns before col==idx
-        """
-        self._move_cells(min_col=idx, offset=amount, row_or_col="col_idx")
-
-
-    def delete_rows(self, idx, amount=1):
-        """
-        Delete row or rows from row==idx
-        """
-
-        remainder = _gutter(idx, amount, self.max_row)
-
-        self._move_cells(min_row=idx+amount, offset=-amount, row_or_col="row")
-
-        for row in remainder:
-            for col in range(self.min_column, self.max_column+1):
-                if (row, col) in self._cells:
-                    del self._cells[row, col]
-        self._current_row = self.max_row
-        if not self._cells:
-            self._current_row = 0
-
-
-    def delete_cols(self, idx, amount=1):
-        """
-        Delete column or columns from col==idx
-        """
-
-        remainder = _gutter(idx, amount, self.max_column)
-
-        self._move_cells(min_col=idx+amount, offset=-amount, row_or_col="col_idx")
-
-        for col in remainder:
-            for row in range(self.min_row, self.max_row+1):
-                if (row, col) in self._cells:
-                    del self._cells[row, col]
-
-
     def _invalid_row(self, iterable):
         raise TypeError('Value must be a list, tuple, range or generator, or a dict. Supplied value is {0}'.format(
             type(iterable))
                         )
+
+
+    @deprecated("Charts and images should be positioned using anchor objects")
+    def point_pos(self, left=0, top=0):
+        """ tells which cell is under the given coordinates (in pixels)
+        counting from the top-left corner of the sheet.
+        Can be used to locate images and charts on the worksheet """
+
+        if left < 0 or top < 0:
+            raise ValueError("Coordinates must be positive")
+
+        current_col = 1
+        current_row = 1
+        column_dimensions = self.column_dimensions
+        row_dimensions = self.row_dimensions
+        default_width = points_to_pixels(DEFAULT_COLUMN_WIDTH)
+        default_height = points_to_pixels(DEFAULT_ROW_HEIGHT)
+        left_pos = 0
+        top_pos = 0
+
+        while left_pos <= left:
+            letter = get_column_letter(current_col)
+            current_col += 1
+            if letter in column_dimensions:
+                cdw = column_dimensions[letter].width
+                if cdw is not None:
+                    left_pos += points_to_pixels(cdw)
+                    continue
+            left_pos += default_width
+
+        while top_pos <= top:
+            row = current_row
+            current_row += 1
+            if row in row_dimensions:
+                rdh = row_dimensions[row].height
+                if rdh is not None:
+                    top_pos += points_to_pixels(rdh)
+                    continue
+            top_pos += default_height
+
+        return (letter, row)
 
 
     def _add_column(self):
@@ -943,7 +934,7 @@ class Worksheet(_WorkbookChild):
     def print_area(self):
         """
         The print area for the worksheet, or None if not set. To set, supply a range
-        like 'A1:D4' or a list of ranges.
+        like 'A1:D4' or a list of ranges. 
         """
         return self._print_area
 
@@ -957,13 +948,3 @@ class Worksheet(_WorkbookChild):
             value = [value]
 
         self._print_area = [absolute_coordinate(v) for v in value]
-
-
-def _gutter(idx, offset, max_val):
-    """
-    When deleting rows and columns are deleted we rely on overwriting.
-    This may not be the case for a large offset on small set of cells:
-    range(cells_to_delete) > range(cell_to_be_moved)
-    """
-    gutter = range(max(max_val+1-offset, idx), min(idx+offset, max_val)+1)
-    return gutter

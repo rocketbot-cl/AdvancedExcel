@@ -1,0 +1,14 @@
+..\..\..\bin\xml2xlsx-script.py
+..\..\..\bin\xml2xlsx.exe
+..\..\..\bin\xml2xlsx.exe.manifest
+..\xml2xlsx\__init__.py
+..\xml2xlsx\__pycache__\__init__.cpython-36.pyc
+..\xml2xlsx\__pycache__\command_line.cpython-36.pyc
+..\xml2xlsx\command_line.py
+PKG-INFO
+SOURCES.txt
+dependency_links.txt
+entry_points.txt
+not-zip-safe
+requires.txt
+top_level.txt

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.descriptors.serialisable import Serialisable
 from openpyxl.descriptors import (
@@ -46,7 +46,7 @@ class TableStyleInfo(Serialisable):
 
     tagname = "tableStyleInfo"
 
-    name = String(allow_none=True)
+    name = NoneSet(values=TABLESTYLES + PIVOTSTYLES)
     showFirstColumn = Bool(allow_none=True)
     showLastColumn = Bool(allow_none=True)
     showRowStripes = Bool(allow_none=True)

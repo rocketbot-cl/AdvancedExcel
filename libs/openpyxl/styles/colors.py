@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 import re
 from openpyxl.compat import safe_string, basestring
@@ -57,12 +57,11 @@ class RGB(Typed):
     expected_type = basestring
 
     def __set__(self, instance, value):
-        if not self.allow_none:
-            m = aRGB_REGEX.match(value)
-            if m is None:
-                raise ValueError("Colors must be aRGB hex values")
-            if len(value) == 6:
-                value = "00" + value
+        m = aRGB_REGEX.match(value)
+        if m is None:
+            raise ValueError("Colors must be aRGB hex values")
+        if len(value) == 6:
+            value = "00" + value
         super(RGB, self).__set__(instance, value)
 
 

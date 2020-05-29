@@ -707,9 +707,24 @@ if module == "Paste":
 
         wb = xls['workbook']
         wb.sheets[sheet].select()
-        wb.sheets[sheet].range(cells).paste(paste="values" if values else None)
+        wb.sheets[sheet].api.Range(cells).PasteSpecial(Paste=12 if values else 7)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+# if module == "xml2xlsx":
+#     path = GetParams("path")
+#     path_xml = GetParams("xml")
+#
+#     try:
+#         with open(path_xml, 'w') as xml_file:
+#             xml = xml_file.read()
+#
+#         with open(path, 'wb') as file:
+#             file.write(xml2xlsx(xml))
+#
+#     except Exception as e:
+#         PrintException()
+#         raise e

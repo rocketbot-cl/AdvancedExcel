@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.compat.abc import ABC
 from abc import abstractmethod, abstractproperty
@@ -58,3 +58,4 @@ class AbstractCell(ABC):
     @abstractproperty
     def is_date(self):
         pass
+

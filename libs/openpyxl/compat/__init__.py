@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 
 from .strings import (
@@ -13,22 +13,16 @@ from .strings import (
     )
 from .numbers import long, NUMERIC_TYPES
 
+# Python 2.6
+try:
+    from collections import OrderedDict
+except ImportError:
+    from .odict import OrderedDict
 
 try:
     range = xrange
 except NameError:
     range = range
-
-try:
-    from itertools import accumulate
-except ImportError:
-    from .accumulate import accumulate
-
-try:
-    from itertools import izip as zip
-except ImportError:
-    zip = zip
-
 
 import warnings
 from functools import wraps
@@ -56,12 +50,13 @@ def deprecated(reason):
 
             @wraps(func1)
             def new_func1(*args, **kwargs):
-                #warnings.simplefilter('default', DeprecationWarning)
+                warnings.simplefilter('always', DeprecationWarning)
                 warnings.warn(
                     fmt1.format(name=func1.__name__, reason=reason),
                     category=DeprecationWarning,
                     stacklevel=2
                 )
+                warnings.simplefilter('default', DeprecationWarning)
                 return func1(*args, **kwargs)
 
             # Enhance docstring with a deprecation note
@@ -76,6 +71,7 @@ def deprecated(reason):
 
     elif inspect.isclass(reason) or inspect.isfunction(reason):
         raise TypeError("Reason for deprecation must be supplied")
-
+        
     else:
         raise TypeError(repr(type(reason)))
+        

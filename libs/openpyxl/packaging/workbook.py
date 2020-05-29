@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2015 openpyxl
 
 """
 OO-based reader
@@ -10,11 +10,7 @@ from warnings import warn
 
 from openpyxl.xml.functions import fromstring
 
-from openpyxl.packaging.relationship import (
-    get_dependents,
-    get_rels_path,
-    get_rel,
-)
+from openpyxl.packaging.relationship import get_dependents, get_rels_path
 from openpyxl.packaging.manifest import Manifest
 from openpyxl.workbook.parser import WorkbookPackage
 from openpyxl.workbook.workbook import Workbook
@@ -23,8 +19,6 @@ from openpyxl.workbook.defined_name import (
     _unpack_print_titles,
 )
 from openpyxl.workbook.external_link.external import read_external_link
-from openpyxl.pivot.cache import CacheDefinition
-from openpyxl.pivot.record import RecordList
 
 from openpyxl.utils.datetime import CALENDAR_MAC_1904
 
@@ -52,14 +46,11 @@ class WorkbookParser:
         node = fromstring(src)
         package = WorkbookPackage.from_tree(node)
         if package.properties.date1904:
-            self.wb.epoch = CALENDAR_MAC_1904
+            self.wb.excel_base_date = CALENDAR_MAC_1904
 
         self.wb.code_name = package.properties.codeName
         self.wb.active = package.active
-        self.wb.views = package.bookViews
         self.sheets = package.sheets
-        self.wb.calculation = package.calcPr
-        self.caches = package.pivotCaches
 
         #external links contain cached worksheets and can be very big
         if not self.wb.keep_links:
@@ -113,20 +104,3 @@ class WorkbookParser:
             else:
                 defns.append(defn)
         self.wb.defined_names.definedName = defns
-
-
-    @property
-    def pivot_caches(self):
-        """
-        Get PivotCache objects
-        """
-        d = {}
-        for c in self.caches:
-            cache = get_rel(self.archive, self.rels, id=c.id, cls=CacheDefinition)
-            if cache.deps:
-                records = get_rel(self.archive, cache.deps, cache.id, RecordList)
-            else:
-                records = None
-            cache.records = records
-            d[c.cacheId]  = cache
-        return d

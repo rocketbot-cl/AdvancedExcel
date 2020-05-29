@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 from openpyxl.compat import basestring
 
@@ -12,7 +12,7 @@ from openpyxl.descriptors import (
 from openpyxl.descriptors.excel import ExtensionList
 from openpyxl.descriptors.nested import NestedBool
 
-from .text import Text, RichText
+from .text import Text, RichTextProperties
 from .layout import Layout
 from .shapes import GraphicalProperties
 
@@ -32,7 +32,7 @@ class Title(Serialisable):
     overlay = NestedBool(allow_none=True)
     spPr = Typed(expected_type=GraphicalProperties, allow_none=True)
     graphicalProperties = Alias('spPr')
-    txPr = Typed(expected_type=RichText, allow_none=True)
+    txPr = Typed(expected_type=RichTextProperties, allow_none=True)
     body = Alias('txPr')
     extLst = Typed(expected_type=ExtensionList, allow_none=True)
 
@@ -55,10 +55,9 @@ class Title(Serialisable):
         self.txPr = txPr
 
 
-
 def title_maker(text):
     title = Title()
-    paras = [Paragraph(r=[RegularTextRun(t=s)]) for s in text.split("\n")]
+    paras = [Paragraph(r=RegularTextRun(t=s)) for s in text.split("\n")]
 
     title.tx.rich.paragraphs = paras
     return title

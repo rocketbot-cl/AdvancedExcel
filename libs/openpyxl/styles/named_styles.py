@@ -1,8 +1,8 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
-from collections import OrderedDict
 from openpyxl.compat import safe_string
+from openpyxl.compat import OrderedDict
 
 from openpyxl.descriptors import (
     Typed,
@@ -140,10 +140,6 @@ class NamedStyle(Serialisable):
         xf.xfId = None
         xf.pivotButton = None
         xf.quotePrefix = None
-        if self.alignment != Alignment():
-            xf.alignment = self.alignment
-        if self.protection != Protection():
-            xf.protection = self.protection
         return xf
 
 

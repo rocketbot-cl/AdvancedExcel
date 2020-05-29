@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """
 File manifest
@@ -148,19 +148,9 @@ class Manifest(Serialisable):
         """
         Find specific content-type
         """
-        try:
-            return next(self.findall(content_type))
-        except StopIteration:
-            return
-
-
-    def findall(self, content_type):
-        """
-        Find all elements of a specific content-type
-        """
         for t in self.Override:
             if t.ContentType == content_type:
-                yield t
+                return t
 
 
     def append(self, obj):

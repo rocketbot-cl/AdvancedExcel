@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 import re
 
@@ -178,16 +178,10 @@ class DefinedNameList(Serialisable):
 
     def _cleanup(self):
         """
-        Strip invalid definitions and remove special hidden ones
+        Strip broken or unknown definitions
         """
-        valid_names = []
-        for n in self.definedName:
-            if n.name in ("_xlnm.Print_Titles", "_xlnm.Print_Area") and n.localSheetId is None:
-                continue
-            elif n.name == "_xlnm._FilterDatabase":
-                continue
-            valid_names.append(n)
-        self.definedName = valid_names
+        self.delete("_xlnm.Print_Titles")
+        self.delete("_xlnm.Print_Area")
 
 
     def _duplicate(self, defn):

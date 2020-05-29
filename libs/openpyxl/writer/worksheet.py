@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-# Copyright (c) 2010-2019 openpyxl
+# Copyright (c) 2010-2017 openpyxl
 
 """Write worksheets to xml representations."""
 
@@ -31,10 +31,10 @@ from openpyxl.worksheet.dimensions import (
 from .etree_worksheet import write_rows
 
 
-def write_mergecells(ws):
+def write_mergecells(worksheet):
     """Write merged cells to xml."""
 
-    merged = [MergeCell(str(ref)) for ref in ws.merged_cells]
+    merged = [MergeCell(ref) for ref in worksheet._merged_cells]
 
     if merged:
         return MergeCells(mergeCell=merged).to_tree()
@@ -107,7 +107,7 @@ def write_worksheet(worksheet):
             # write data
             write_rows(xf, ws)
 
-            if ws.protection:
+            if ws.protection.sheet:
                 xf.write(ws.protection.to_tree())
 
             if ws.auto_filter:
