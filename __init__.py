@@ -635,12 +635,20 @@ if module == "Filter":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.sheets[sheet].select()
-
-        i = abc.index(column.lower()) + 1
+        length = len(abc)
+        # i = sum(n -> 0): len^(n-1)*abc.index(c[n]) +1 ; c: column, n: len str, len: len abc
+        i = 0
+        n = len(column)
+        while n >= 1:
+            print(length**(n-1), n)
+            i += (length**(n-1))*(abc.index(column[n-1].lower())+1)
+            n -= 1
+        print(i)
         j = abc.index(start.lower())
         if data.startswith("["):
             data = eval(data)
         wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i-j, data, 7)
+        i = 0
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
@@ -713,18 +721,3 @@ if module == "Paste":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
-
-# if module == "xml2xlsx":
-#     path = GetParams("path")
-#     path_xml = GetParams("xml")
-#
-#     try:
-#         with open(path_xml, 'w') as xml_file:
-#             xml = xml_file.read()
-#
-#         with open(path, 'wb') as file:
-#             file.write(xml2xlsx(xml))
-#
-#     except Exception as e:
-#         PrintException()
-#         raise e
