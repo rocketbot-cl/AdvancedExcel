@@ -640,14 +640,15 @@ if module == "Filter":
         i = 0
         n = len(column)
         while n >= 1:
-            print(length**(n-1), n)
-            i += (length**(n-1))*(abc.index(column[n-1].lower())+1)
+
+            i += (length ** (n - 1)) * (abc.index(column[-n].lower()) + 1)
             n -= 1
-        print(i)
+
         j = abc.index(start.lower())
+
         if data.startswith("["):
             data = eval(data)
-        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i-j, data, 7)
+        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i - j, data, 7)
         i = 0
 
     except Exception as e:
@@ -659,7 +660,6 @@ if module == "rename_sheet":
     sheet = GetParams("sheet")
     name = GetParams("name")
     excel = GetGlobals("excel")
-
 
     try:
         xls = excel.file_[excel.actual_id]
@@ -679,7 +679,6 @@ if module == "style_cells":
     line_style = GetParams("lineStyle")
     excel = GetGlobals("excel")
 
-
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
@@ -687,11 +686,11 @@ if module == "style_cells":
         rng = wb.sheets[sheet].api.Range(range_)
         line_style = int(line_style)
         if position == "all":
-             for i in range(7,13):
-                 rng.Borders(i).LineStyle = line_style
+            for i in range(7, 13):
+                rng.Borders(i).LineStyle = line_style
         elif position == "contour":
-             for i in range(7,11):
-                 rng.Borders(i).LineStyle = line_style
+            for i in range(7, 11):
+                rng.Borders(i).LineStyle = line_style
         else:
             position = int(position)
             print(position)
