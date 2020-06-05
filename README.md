@@ -26,7 +26,12 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Add Filter</li>
     <li>Rename Sheet</li>
     <li>Cell Style</li>
+    <li>Focus Excel</li>
 </ul>
+
+## Updates
+- Focus Excel commands: Rocketbot can now set Excel to the foreground window
+
 
 **In the example robot you must change the URL for yours.
 
