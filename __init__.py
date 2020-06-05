@@ -720,3 +720,33 @@ if module == "Paste":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+
+if module == "focus":
+    try:
+        from time import sleep
+        from uiautomation import uiautomation as auto
+
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        sleep(1)
+        print(wb.app.impl.hwnd)
+        name = f'\u202a{xls["path"].split(os.sep)[-1]}\u202c  -  Excel'
+        control = auto.TitleBarControl(Name=name)
+        control.SetFocus()
+    except Exception as e:
+        if e.text != 'Error no especificado':
+            print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+            PrintException()
+            raise e
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+../../bin/__pycache__/automation.cpython-36.pyc,,
+../../bin/automation.py,sha256=Qw6k2FMuDb0qarKs0E-I4zbda73wnTkcb69NyOW4CvA,4676
+uiautomation-2.0.5.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+uiautomation-2.0.5.dist-info/LICENSE,sha256=fDYXKwn6sXZyAjK-hThMsdXMZO5A3Q9Q0zW6BKo9cfs,11537
+uiautomation-2.0.5.dist-info/METADATA,sha256=ZqRmY8mZOlLuyQEbq_Vqmm1UPm94h4kVhcScL1rB3cU,694
+uiautomation-2.0.5.dist-info/RECORD,,
+uiautomation-2.0.5.dist-info/WHEEL,sha256=6T3TYZE4YFi2HTS1BeZHNXAi8N52OZT4O-dJ6-ome_4,116
+uiautomation-2.0.5.dist-info/top_level.txt,sha256=XAA4nCZEKrHlEduVpO-0h_Zbp45jT9A0-T-392SBn24,13
+uiautomation/__init__.py,sha256=CGK0nDGraSGVTlMmV34QSpoIyq9U16vxS0lXeGLwoaM,101
+uiautomation/__pycache__/__init__.cpython-36.pyc,,
+uiautomation/__pycache__/uiautomation.cpython-36.pyc,,
+uiautomation/__pycache__/version.cpython-36.pyc,,
+uiautomation/bin/UIAutomationClient_VC140_X64.dll,sha256=jIi2ielcLmxwB6RtAqU5-dmd_LNpu4lpp5tvfCHRmik,93184
+uiautomation/bin/UIAutomationClient_VC140_X86.dll,sha256=2Z83WZ27cRnCsxjCp29aJg1LiTbEYd6lzInuZ4jzOF4,76800
+uiautomation/uiautomation.py,sha256=MfflAnT4lR6-684-pzdjSfMtvxKFwU_l6Uu6-HN1NuI,360587
+uiautomation/version.py,sha256=V8tafegt5EJPpw_OdTJ2xlmX0IbL6epFkgwbhD7aB-M,19
