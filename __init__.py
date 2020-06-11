@@ -53,7 +53,7 @@ if module == "Open":
         app.display_alerts = False
         file_path = file_path.replace("/", os.sep)
 
-        wb = app.books.api.Open(file_path, UpdateLinks=False)
+        wb = app.books.api.Open(file_path, IgnoreReadOnlyRecommended=True, UpdateLinks=False, CorruptLoad=2)
         # wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
@@ -65,8 +65,10 @@ if module == "Open":
         excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = file_path
 
-    except:
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
+        raise e
 
 if module == "CellColor":
     excel = GetGlobals("excel")
@@ -271,8 +273,8 @@ if module == "deleteSheet":
     SetVar(var_, res)
 if module == "copy_other":
     try:
-        excel1 = GetParams("excel1")
-        excel2 = GetParams("excel2")
+        excel1 = GetParams("excel1").replace("\\", os.sep)
+        excel2 = GetParams("excel2").replace("\\", os.sep)
         hoja1 = GetParams("sheet_name1")
         hoja2 = GetParams("sheet_name2")
         rango1 = GetParams("cell_range1")
@@ -297,8 +299,10 @@ if module == "copy_other":
             wb2.close()
 
         app.quit()
-    except:
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
+        raise e
 
 if module == "addRow":
 
