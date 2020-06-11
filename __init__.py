@@ -587,12 +587,7 @@ if module == "fitCells":
 if module == "CloseExcel":
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
-    path1 = xls['workbook']
-    path1 = str(str(path1).split()).replace('>', '').replace('[', '').replace(']', '')
-    path1 = eval(path1)
-    path1 = path1[1]
-    wb = xw.Book(path1)
-    wb.save(path1)
+    wb = xls['workbook']
     wb.close()
 
 if module == "getFormula":
