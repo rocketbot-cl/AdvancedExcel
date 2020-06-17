@@ -740,6 +740,27 @@ if module == "focus":
             PrintException()
             raise e
 
+if module == "remove_duplicate":
+    sheet = GetParams("sheet_name")
+    range_ = GetParams("range")
+    column = GetParams("column")
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+
+    try:
+        wb = xls['workbook']
+        sheet_selected = wb.sheets[sheet]
+        sheet_selected.select()
+        column = eval(column) if column.startswith("[") else [column]
+        column_choice = []
+        for col in column:
+            column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
+        sheet_selected.api.Range(range_).RemoveDuplicates(Columns=column_choice, Header=1)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
 
 
 

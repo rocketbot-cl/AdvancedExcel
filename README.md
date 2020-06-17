@@ -30,8 +30,11 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 </ul>
 
 ## Updates
-- Focus Excel commands: Rocketbot can now set Excel to the foreground window
 
+### 5-Jun-2020
+- Focus Excel: Rocketbot can now set Excel to the foreground window
+### 17-Jun-2020
+- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
 
 **In the example robot you must change the URL for yours.
 
