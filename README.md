@@ -20,13 +20,15 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Get active cell</li>
     <li>Refresh Pivot table</li>
     <li>Fit cells</li>
-    <li>Close XLSX</li>
     <li>Get Formula</li>
     <li>Add Auto Filter</li>
     <li>Add Filter</li>
     <li>Rename Sheet</li>
     <li>Cell Style</li>
     <li>Focus Excel</li>
+    <li>Remove Duplicates</li>
+    <li>Close XLSX</li>
+    <li>Save Excel</li>
 </ul>
 
 ## Updates
