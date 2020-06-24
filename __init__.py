@@ -445,8 +445,15 @@ if module == "csvToxlsx":
 if module == "xlsxToCsv":
     csv_path = GetParams("csv_path")
     xlsx_path = GetParams("xlsx_path")
+    delimiter = GetParams("delimiter")
 
-    Xlsx2csv(xlsx_path, outputencoding="utf-8").convert(csv_path)
+    try:
+        if not delimiter:
+            delimiter = ","
+        Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter).convert(csv_path)
+    except Exception as e:
+        PrintException()
+        raise e
 
 if module == "countColumns":
 
