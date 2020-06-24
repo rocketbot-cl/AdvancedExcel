@@ -769,7 +769,14 @@ if module == "remove_duplicate":
         PrintException()
         raise e
 
+if module == "save_mac":
 
+    excel = GetGlobals("excel")
+    path_file = GetParams('path_file')
+    xls = excel.file_[excel.actual_id]
+
+    wb = xls['workbook']
+    wb.save(path_file)
 
 
 
