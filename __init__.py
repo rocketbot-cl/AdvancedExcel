@@ -823,8 +823,6 @@ if module == "copyMove":
         raise e
 
 
-
-
 if module == "exportPDF":
     path_file = GetParams('path_file')
     option = GetParams('option')
