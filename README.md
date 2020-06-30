@@ -40,7 +40,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 ### 17-Jun-2020
 - Remove duplicates: Rocketbot can now remove duplicate data on range Excel
 ### 30-Jun-2020
-- Csv to xlsx: Checkbox header, to decide if the csv has a header
+- Csv to xlsx: Checkbox header was added to decide if the csv has a header
 - Export to Advanced PDF: Rocketbot export to PDF command enhancement
 - Copy-Move Sheet: Replicate move/copy sheet command Excel
 
