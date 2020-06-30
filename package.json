@@ -1142,7 +1142,17 @@
               "en": "XLSX file path"
             },
             "id": "xlsx_path",
-            "css": "col-md-12"
+            "css": "col-md-9"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": "",
+            "title": {
+              "es": "Tiene cabeceras?",
+              "en": "Do it have headers?"
+            },
+            "id": "header",
+            "css": "col-md-3"
           }
         ]
       },
