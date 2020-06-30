@@ -779,7 +779,42 @@ if module == "save_mac":
     wb.save(path_file)
 
 
+if module == "exportPDF":
+    path_file = GetParams('path_file')
+    option = GetParams('option')
+    check_zoom = GetParams('check_zoom')
+    check_tall = GetParams('check_tall')
+    check_wide = GetParams('check_wide')
 
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+    sh = xls['sheet']
+
+    try:
+        if option:
+            if option == "all":
+                sh.autofit()
+
+            if option == "columns":
+                sh.autofit('c')
+
+            if option == "rows":
+                sh.autofit('r')
+
+        if check_zoom:
+            sh.api.PageSetup.Zoom = False
+        if check_tall:
+            sh.api.PageSetup.FitToPagesTall = False
+        if check_wide:
+            sh.api.PageSetup.FitToPagesWide = 1
+
+        wb.api.ActiveSheet.ExportAsFixedFormat(0, path_file.replace("/", os.sep))
+
+    except Exception as e:
+        PrintException()
+        raise e
 
 
 
