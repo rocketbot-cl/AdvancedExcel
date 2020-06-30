@@ -434,12 +434,13 @@ if module == "csvToxlsx":
     csv_path = GetParams("csv_path")
     xlsx_path = GetParams("xlsx_path")
     sep = GetParams("separator") or ","
+    with_header = GetParams("header")
 
     if not csv_path or not xlsx_path:
         raise Exception("Falta una ruta")
     f_ = open(csv_path, 'r', encoding='latin-1')
     df = pd.read_csv(f_, sep=sep)
-    df.to_excel(xlsx_path, index=None)
+    df.to_excel(xlsx_path, index=None, header=with_header)
     f_.close()
 
 if module == "xlsxToCsv":
@@ -777,6 +778,51 @@ if module == "save_mac":
 
     wb = xls['workbook']
     wb.save(path_file)
+
+if module == "copyMove":
+
+    excel = GetGlobals("excel")
+    sheet1 = GetParams('sheet_name1')
+    sheet2 = GetParams('sheet_name2')
+    book = GetParams("book")
+    copy_ = GetParams("copy")
+    xls = excel.file_[excel.actual_id]
+
+    wb = xls['workbook']
+    try:
+        sheet_selected = wb.sheets[sheet1]
+        sheet_selected.select()
+        if not sheet2:
+            sheet2 = "tmp"
+
+        if book:
+
+            wb2 = wb.app.books.open(book)
+
+            wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
+            destiny = wb2.api.Sheets(sheet2)
+        else:
+            destiny = wb.api.Sheets(sheet2)
+            wb.sheets.add(name=sheet2, after=wb.sheets[-1])
+
+        if copy_:
+            sheet_selected.api.Copy(Before=destiny)
+        else:
+            sheet_selected.api.Move(Before=destiny)
+
+        try:
+            wb2.sheets["tmp"].select() if book else wb.sheets["tmp"].select()
+            wb2.sheets["tmp"].delete() if book else wb.sheets["tmp"].delete()
+        except:
+            pass
+
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+
 
 
 
