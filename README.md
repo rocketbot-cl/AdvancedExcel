@@ -31,6 +31,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Save Excel</li>
     <li>Export to Advanced PDF</li>
     <li>Copy-Move Sheet</li>
+    <li>Insert Form</li>
 </ul>
 
 ## Updates
