@@ -824,6 +824,10 @@ if module == "copyMove":
 
 
 if module == "exportPDF":
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
     path_file = GetParams('path_file')
     option = GetParams('option')
     check_zoom = GetParams('check_zoom')
@@ -861,5 +865,15 @@ if module == "exportPDF":
         raise e
 
 
+if module == "ImportForm":
+    form_path = GetParams('form_path')
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
 
+    try:
+        wb.api.VBProject.VBComponents.Import(form_path)
 
+    except Exception as e:
+        PrintException()
+        raise e
