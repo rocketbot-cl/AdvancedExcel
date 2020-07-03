@@ -634,29 +634,21 @@ if module == "Filter":
     start = GetParams("start")
     column = GetParams("column")
     data = GetParams("filter")
+    result = GetParams("var_")
     excel = GetGlobals("excel")
 
-    abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-           'v', 'w', 'x', 'y', 'z']
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.sheets[sheet].select()
-        length = len(abc)
-        # i = sum(n -> 0): len^(n-1)*abc.index(c[n]) +1 ; c: column, n: len str, len: len abc
-        i = 0
-        n = len(column)
-        while n >= 1:
+        n_start = wb.sheets[sheet].range(start + str(1)).column
+        n_end =  wb.sheets[sheet].range(column + str(1)).column
 
-            i += (length ** (n - 1)) * (abc.index(column[-n].lower()) + 1)
-            n -= 1
-
-        j = abc.index(start.lower())
-
+        filter_column = n_end-n_start + 1
         if data.startswith("["):
             data = eval(data)
-        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(i - j, data, 7)
-        i = 0
+        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(filter_column, data, 7)
+
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
@@ -875,5 +867,35 @@ if module == "ImportForm":
         wb.api.VBProject.VBComponents.Import(form_path)
 
     except Exception as e:
+        PrintException()
+        raise e
+
+if module == "GetCells":
+    sheet = GetParams("sheet")
+    range_ = GetParams("range")
+    result = GetParams("var_")
+    extends = GetParams("more_data")
+    excel = GetGlobals("excel")
+
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+    try:
+        filtered_cells = wb.sheets[sheet].api.Range(range_).SpecialCells(12)
+        cell_values = []
+
+        for r in filtered_cells.Address.split(","):
+            if extends:
+                info = {"range": r.replace("$",""), "data": list(wb.sheets[sheet].api.Range(r).Value[0])}
+                cell_values.append(info)
+            else:
+                cell_values.append(list(wb.sheets[sheet].api.Range(r).Value[0]))
+
+        print(cell_values)
+
+        if result:
+            SetVar(result, cell_values)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
