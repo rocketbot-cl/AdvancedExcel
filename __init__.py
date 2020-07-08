@@ -145,6 +145,8 @@ if module == "SelectCells":
     try:
 
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
         wb.sheets[sheet].range(cells).select()
 
@@ -161,6 +163,10 @@ if module == "copyPaste":
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
 
+    if not hoja1 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja1} does not exist in the book")
+    if not hoja2 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja2} does not exist in the book")
     my_values = xw.sheets[hoja1].range(rango1).options(ndim=2).value
 
     xw.sheets[hoja2].range(rango2).value = my_values
@@ -172,6 +178,8 @@ if module == "formatCell":
     custom = GetParams("custom")
 
     try:
+        if not hoja in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja} does not exist in the book")
         if len(rango) == 1:
             rango = rango + ':' + rango
         if formato == "text":
@@ -280,14 +288,22 @@ if module == "copy_other":
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
         platform_ = platform.system()
+        excel = GetGlobals("excel")
 
-        app = xw.App(visible=True)
-        wb1 = xw.Book(excel1)
-        wb2 = xw.Book(excel2)
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
 
-        my_values = wb1.sheets[hoja1].range(rango1).options(ndim=2).value
+        wb1 = wb.app.books.open(excel1)
+        wb2 = wb.app.books.open(excel2)
+        if not hoja1 in [sh.name for sh in wb1.sheets]:
+            raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+        if not hoja2 in [sh.name for sh in wb2.sheets]:
+            raise Exception(f"The name {hoja2} does not exist in the book  {excel1.split('/')[-1]}")
 
-        wb2.sheets[hoja2].range(rango2).value = my_values
+        origin_sheet = wb1.sheets[hoja1]
+        my_values = origin_sheet.range(rango1).options(ndim=2).value
+        destiny_sheet = wb2.sheets[hoja2]
+        destiny_sheet.range(rango2).value = my_values
 
         if platform_ == 'Windows':
             wb2.save(excel2)
@@ -298,7 +314,6 @@ if module == "copy_other":
             wb2.save()
             wb2.close()
 
-        app.quit()
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
@@ -315,6 +330,8 @@ if module == "addRow":
         print(tipo)
         platform_ = platform.system()
 
+        if not hoja in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja} does not exist in the book")
         if opcion_ == "add_":
 
             if platform_ == 'Windows':
@@ -393,6 +410,9 @@ if module == "addCol":
         col_ = GetParams("col_")
         opcion_ = GetParams("option_")
         platform_ = platform.system()
+
+        if not hoja in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja} does not exist in the book")
 
         if opcion_ == "add_":
 
@@ -579,6 +599,8 @@ if module == "refreshPivot":
 
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
+    if not sheet in [sh.name for sh in wb.sheets]:
+        raise Exception(f"The name {sheet} does not exist in the book")
     wb.sheets[sheet].select()
     print(dir(wb.api.ActiveSheet.PivotTables(pivotTableName)))
     wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
@@ -590,6 +612,8 @@ if module == "fitCells":
 
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
+    if not sheet in [sh.name for sh in wb.sheets]:
+        raise Exception(f"The name {sheet} does not exist in the book")
     sh = wb.sheets[sheet].autofit()
 
 if module == "CloseExcel":
@@ -620,6 +644,8 @@ if module == "AutoFilter":
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
         wb.sheets[sheet].api.Columns(columns).AutoFilter(1)
 
@@ -640,6 +666,8 @@ if module == "Filter":
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
         n_start = wb.sheets[sheet].range(start + str(1)).column
         n_end =  wb.sheets[sheet].range(column + str(1)).column
@@ -663,6 +691,8 @@ if module == "rename_sheet":
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
         wb.sheets[sheet].name = name
 
@@ -682,6 +712,8 @@ if module == "style_cells":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         print(range_)
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         rng = wb.sheets[sheet].api.Range(range_)
         line_style = int(line_style)
         if position == "all":
@@ -712,6 +744,8 @@ if module == "Paste":
     try:
 
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
         wb.sheets[sheet].api.Range(cells).PasteSpecial(Paste=12 if values else 7)
 
@@ -750,6 +784,8 @@ if module == "remove_duplicate":
 
     try:
         wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected = wb.sheets[sheet]
         sheet_selected.select()
         column = eval(column) if column.startswith("[") else [column]
@@ -782,6 +818,8 @@ if module == "copyMove":
 
     wb = xls['workbook']
     try:
+        if not sheet1 in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet1} does not exist in the book")
         sheet_selected = wb.sheets[sheet1]
         sheet_selected.select()
         if not sheet2:
@@ -880,7 +918,10 @@ if module == "GetCells":
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
     try:
-        filtered_cells = wb.sheets[sheet].api.Range(range_).SpecialCells(12)
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        sheet_selected_api = wb.sheets[sheet].api
+        filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         cell_values = []
 
         for r in filtered_cells.Address.split(","):
