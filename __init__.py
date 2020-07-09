@@ -675,7 +675,11 @@ if module == "Filter":
         filter_column = n_end-n_start + 1
         if data.startswith("["):
             data = eval(data)
-        wb.sheets[sheet].api.Range(column + str(1)).AutoFilter(filter_column, data, 7)
+
+        if not column[-1].isdigit():
+            column = column + str(1)
+
+        wb.sheets[sheet].api.Range(column).AutoFilter(filter_column, data, 7)
 
 
     except Exception as e:
