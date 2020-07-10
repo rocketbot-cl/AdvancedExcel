@@ -669,17 +669,23 @@ if module == "Filter":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
-        n_start = wb.sheets[sheet].range(start + str(1)).column
+        if ":" in start:
+            range_ = start
+            start = start.split(":")[0]
+        else:
+            start = start + str(1)
+            range_ = column + str(1)
+
+        n_start = wb.sheets[sheet].range(start).column
         n_end =  wb.sheets[sheet].range(column + str(1)).column
 
         filter_column = n_end-n_start + 1
         if data.startswith("["):
             data = eval(data)
 
-        if not column[-1].isdigit():
-            column = column + str(1)
 
-        wb.sheets[sheet].api.Range(column).AutoFilter(filter_column, data, 7)
+
+        wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
 
 
     except Exception as e:
