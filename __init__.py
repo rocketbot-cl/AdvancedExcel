@@ -261,11 +261,22 @@ if module == "formatCell":
 
 if module == "createSheet":
     hoja = GetParams("sheet_name")
+    last = GetParams("after")
+    excel = GetGlobals("excel")
 
-    res = [a.name for a in xw.sheets]
-    last = res[-1]
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
 
-    xw.sheets.add(name=hoja, after=last)
+        if not last:
+            res = [a.name for a in wb.sheets]
+            last = res[-1]
+
+        wb.sheets.add(name=hoja, after=last)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "deleteSheet":
 
