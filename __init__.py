@@ -961,3 +961,19 @@ if module == "GetCells":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "Replace":
+    sheet = GetParams("sheet")
+    range_ = GetParams("range")
+    what = GetParams("what")
+    replacement = GetParams("replace")
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        wb.sheets[sheet].range(range_).api.Replace(what, replacement)
+
+    except Exception as e:
+        PrintException()
+        raise e
