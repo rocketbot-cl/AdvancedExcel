@@ -658,7 +658,7 @@ if module == "AutoFilter":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Columns(columns).AutoFilter(1)
+        wb.sheets[sheet].api.Columns(columns).AutoFilter(10)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
@@ -799,7 +799,7 @@ if module == "remove_duplicate":
     sheet = GetParams("sheet_name")
     range_ = GetParams("range")
     column = GetParams("column")
-
+    with_header = GetParams("header")
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
 
@@ -813,7 +813,7 @@ if module == "remove_duplicate":
         column_choice = []
         for col in column:
             column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
-        sheet_selected.api.Range(range_).RemoveDuplicates(Columns=column_choice, Header=1)
+        sheet_selected.api.Range(range_).RemoveDuplicates(Columns=column_choice, Header=int(bool(with_header)))
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
