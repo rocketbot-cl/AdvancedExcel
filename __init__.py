@@ -962,6 +962,8 @@ if module == "GetCells":
                 elif type(value) is not str:
                     for v in value:
                         cell_values.append(list(v))
+                else:
+                    cell_values.append(value)
 
         if result:
             SetVar(result, cell_values)
