@@ -959,7 +959,7 @@ if module == "GetCells":
                 if len(value) == 1:
                     value = list(value[0])
                     cell_values.append(value)
-                else:
+                elif type(value) is not str:
                     for v in value:
                         cell_values.append(list(v))
 
