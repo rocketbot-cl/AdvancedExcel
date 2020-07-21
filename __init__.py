@@ -945,13 +945,23 @@ if module == "GetCells":
         cell_values = []
 
         for r in filtered_cells.Address.split(","):
+            value = wb.sheets[sheet].api.Range(r).Value
             if extends:
-                info = {"range": r.replace("$",""), "data": list(wb.sheets[sheet].api.Range(r).Value[0])}
-                cell_values.append(info)
-            else:
-                cell_values.append(list(wb.sheets[sheet].api.Range(r).Value[0]))
+                if len(value) == 1:
+                    value = [list(v) for v in value][0]
+                elif type(value) is not str:
+                    value = [list(v) for v in value]
 
-        print(cell_values)
+                    info = {"range": r.replace("$",""), "data": value}
+                    cell_values.append(info)
+            else:
+                print(value)
+                if len(value) == 1:
+                    value = list(value[0])
+                    cell_values.append(value)
+                else:
+                    for v in value:
+                        cell_values.append(list(v))
 
         if result:
             SetVar(result, cell_values)
