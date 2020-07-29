@@ -688,12 +688,11 @@ if module == "Filter":
             range_ = column + str(1)
 
         n_start = wb.sheets[sheet].range(start).column
-        n_end =  wb.sheets[sheet].range(column + str(1)).column
+        n_end = wb.sheets[sheet].range(column + str(1)).column
 
-        filter_column = n_end-n_start + 1
+        filter_column = n_end - n_start + 1
         if data.startswith("["):
             data = eval(data)
-
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
 
@@ -774,7 +773,6 @@ if module == "Paste":
         PrintException()
         raise e
 
-
 if module == "focus":
     try:
         from time import sleep
@@ -819,7 +817,6 @@ if module == "remove_duplicate":
         raise e
 
 if module == "save_mac":
-
     excel = GetGlobals("excel")
     path_file = GetParams('path_file')
     xls = excel.file_[excel.actual_id]
@@ -872,7 +869,6 @@ if module == "copyMove":
         PrintException()
         raise e
 
-
 if module == "exportPDF":
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
@@ -883,7 +879,6 @@ if module == "exportPDF":
     check_zoom = GetParams('check_zoom')
     check_tall = GetParams('check_tall')
     check_wide = GetParams('check_wide')
-
 
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
@@ -913,7 +908,6 @@ if module == "exportPDF":
     except Exception as e:
         PrintException()
         raise e
-
 
 if module == "ImportForm":
     form_path = GetParams('form_path')
@@ -952,7 +946,7 @@ if module == "GetCells":
                 elif type(value) is not str:
                     value = [list(v) for v in value]
 
-                    info = {"range": r.replace("$",""), "data": value}
+                    info = {"range": r.replace("$", ""), "data": value}
                     cell_values.append(info)
             else:
 
