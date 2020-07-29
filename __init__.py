@@ -955,13 +955,16 @@ if module == "GetCells":
                     info = {"range": r.replace("$",""), "data": value}
                     cell_values.append(info)
             else:
-                print(value)
-                if len(value) == 1:
+
+                if type(value) is not str:
+                    try:
+                        for v in value:
+                            cell_values.append(list(v))
+                    except TypeError:
+                        cell_values.append([value])
+                elif len(value) == 1:
                     value = list(value[0])
                     cell_values.append(value)
-                elif type(value) is not str:
-                    for v in value:
-                        cell_values.append(list(v))
                 else:
                     cell_values.append(value)
 
