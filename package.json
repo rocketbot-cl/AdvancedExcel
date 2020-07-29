@@ -179,7 +179,7 @@
             },
             "title": {
               "es": "Columna:",
-              "en": "Row: "
+              "en": "Column: "
             },
             "help": {
               "es": "Si se deja vacío por defecto será la columna A",
