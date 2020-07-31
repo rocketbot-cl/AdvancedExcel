@@ -985,3 +985,26 @@ if module == "Replace":
     except Exception as e:
         PrintException()
         raise e
+
+if module == "Order":
+    sheet_name= GetParams("sheet")
+    range_ = GetParams("range")
+    column = GetParams("column")
+    order = GetParams("order")
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        sheet = wb.sheets[sheet_name]
+        if order:
+            order = int(order)
+        else:
+            order = 1
+        sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order)
+
+    except Exception as e:
+        PrintException()
+        raise e
