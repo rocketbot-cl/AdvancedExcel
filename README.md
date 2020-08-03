@@ -32,6 +32,9 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Export to Advanced PDF</li>
     <li>Copy-Move Sheet</li>
     <li>Insert Form</li>
+    <li>Read Filtered Cells</li>
+    <li>Replace</li>
+    <li>Order</li>
 </ul>
 
 ## Updates
@@ -43,8 +46,14 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 ### 30-Jun-2020
 - Csv to xlsx: Checkbox header was added to decide if the csv has a header
 - Export to Advanced PDF: Rocketbot export to PDF command enhancement
-- Copy-Move Sheet: Replicate move/copy sheet command Excel
-
+- Copy-Move Sheet: Replicate move/copy sheet command of Excel
+### 2-Jul-2020
+- Insert Form: Rocketbot can insert VBA Form to Excel
+### 15-Jul-2020
+- Read Filtered Cells: Read cell after execute Filter command
+- Replace: Replicate Excel Replace command 
+### 31-Jul-2020
+-Order: Replicate Excel Order command 
 
 **In the example robot you must change the URL for yours.
 
