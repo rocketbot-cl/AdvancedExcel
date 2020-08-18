@@ -631,7 +631,7 @@ if module == "CloseExcel":
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
-    wb.close()
+    xw.books.active.close()
 
 if module == "getFormula":
     excel = GetGlobals("excel")
