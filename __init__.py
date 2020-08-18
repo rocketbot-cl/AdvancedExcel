@@ -658,7 +658,7 @@ if module == "AutoFilter":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Columns(columns).AutoFilter(9)
+        wb.sheets[sheet].api.Range(columns).AutoFilter()
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
