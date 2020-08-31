@@ -983,6 +983,7 @@ if module == "Replace":
         wb.sheets[sheet].range(range_).api.Replace(what, replacement)
 
     except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1006,5 +1007,30 @@ if module == "Order":
         sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order)
 
     except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "Text2Column":
+    sheet_name= GetParams("sheet")
+    range_ = GetParams("range")
+    delimiter = GetParams("delimiter")
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        sheet = wb.sheets[sheet_name]
+        sheet.api.Range(range_).Select()
+        print(delimiter)
+        sheet.api.Range(range_).TextToColumns(
+            DataType=1, ConsecutiveDelimiter=False, Tab=False, Semicolon=False, Comma=False, Space=False,
+            Other=True, OtherChar=".")
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
