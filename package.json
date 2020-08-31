@@ -2630,13 +2630,13 @@
     },
     {
       "en": {
-        "title": "Order",
+        "title": "Text to Columns",
         "description": "Run replace action to excel ",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Ordenar",
+        "title": "Texto en Columnas",
         "description": "Ejecuta la opción de reemplazar de excel",
         "title_options": null,
         "options": null
