@@ -1011,6 +1011,18 @@ if module == "Order":
         PrintException()
         raise e
 
+if module == "refreshAll":
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        wb.api.RefreshAll()
+    except Exception as e:
+        PrintException()
+        raise e
+
+
 # if module == "Text2Column":
 #     sheet_name= GetParams("sheet")
 #     range_ = GetParams("range")
