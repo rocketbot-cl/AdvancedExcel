@@ -41,9 +41,9 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 ## Updates
 
 ### 2-Sep-2020
--Find: Replicate Excel Find command 
+- Find: Replicate Excel Find command 
 ### 31-Jul-2020
--Order: Replicate Excel Order command 
+- Order: Replicate Excel Order command 
 ### 15-Jul-2020
 - Read Filtered Cells: Read cell after execute Filter command
 - Replace: Replicate Excel Replace command 
