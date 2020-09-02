@@ -35,25 +35,33 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Read Filtered Cells</li>
     <li>Replace</li>
     <li>Order</li>
+    <li>Find</li>
 </ul>
 
 ## Updates
 
-### 5-Jun-2020
-- Focus Excel: Rocketbot can now set Excel to the foreground window
-### 17-Jun-2020
-- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
+### 2-Sep-2020
+-Find: Replicate Excel Find command 
+### 31-Jul-2020
+-Order: Replicate Excel Order command 
+### 15-Jul-2020
+- Read Filtered Cells: Read cell after execute Filter command
+- Replace: Replicate Excel Replace command 
+### 2-Jul-2020
+- Insert Form: Rocketbot can insert VBA Form to Excel
 ### 30-Jun-2020
 - Csv to xlsx: Checkbox header was added to decide if the csv has a header
 - Export to Advanced PDF: Rocketbot export to PDF command enhancement
 - Copy-Move Sheet: Replicate move/copy sheet command of Excel
-### 2-Jul-2020
-- Insert Form: Rocketbot can insert VBA Form to Excel
-### 15-Jul-2020
-- Read Filtered Cells: Read cell after execute Filter command
-- Replace: Replicate Excel Replace command 
-### 31-Jul-2020
--Order: Replicate Excel Order command 
+### 17-Jun-2020
+- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
+### 5-Jun-2020
+- Focus Excel: Rocketbot can now set Excel to the foreground window
+
+
+
+
+
 
 **In the example robot you must change the URL for yours.
 
