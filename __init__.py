@@ -838,7 +838,7 @@ if module == "copyMove":
         if not sheet1 in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet1} does not exist in the book")
         sheet_selected = wb.sheets[sheet1]
-        sheet_selected.select()
+        # sheet_selected.select()
         if not sheet2:
             sheet2 = "tmp"
 
@@ -1038,8 +1038,32 @@ if module == "find":
             raise Exception(f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
+        print(sheet.api.Range(range_).Find, result)
         SetVar(var_, result.address)
 
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "LockCells":
+    sheet_name= GetParams("sheet")
+    range_ = GetParams("range")
+    locked = GetParams("locked")
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        locked = eval(locked) if locked else False
+
+        sheet = wb.sheets[sheet_name]
+        result = sheet.api.Range(range_).Locked = locked
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")

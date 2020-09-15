@@ -36,10 +36,18 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Replace</li>
     <li>Order</li>
     <li>Find</li>
+    <li>Lock Cells</li>
 </ul>
+
+**In the example robot you must change the URL for yours.
+
+![alt text](https://raw.githubusercontent.com/rocketbot-cl/AdvancedExcel/master/example/excel.png)
+
 
 ## Updates
 
+### 15-Sep-2020
+- Lock Cells: Lock or unlock cells 
 ### 2-Sep-2020
 - Find: Replicate Excel Find command 
 ### 31-Jul-2020
@@ -59,13 +67,6 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 - Focus Excel: Rocketbot can now set Excel to the foreground window
 
 
-
-
-
-
-**In the example robot you must change the URL for yours.
-
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/AdvancedExcel/master/example/excel.png)
 
 <h2>Dependencies</h2>
 
