@@ -37,6 +37,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Order</li>
     <li>Find</li>
     <li>Lock Cells</li>
+    <li>Add Chart</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -46,6 +47,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 16-Sep-2020
+- Add chart: Create a new chart on excel sheet 
 ### 15-Sep-2020
 - Lock Cells: Lock or unlock cells 
 ### 2-Sep-2020

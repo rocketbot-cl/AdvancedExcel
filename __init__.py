@@ -1069,3 +1069,46 @@ if module == "LockCells":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+
+
+
+if module == "add_chart":
+
+    sheet_name= GetParams("sheet")
+    range_ = GetParams("range")
+    cell = GetParams("cell")
+    type_ = GetParams("type")
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        if not type_ or not bool(type_):
+            raise Exception("The type of chart has not been selected")
+
+        type_ = int(type_)
+        sheet = wb.sheets[sheet_name]
+
+        cell = sheet.api.Range(cell)
+        range_ = sheet.api.Range(range_)
+
+
+        active_chart = sheet.api.Shapes.AddChart2(-1, type_, cell.Left, cell.Top).Chart
+        if type_ is 118:
+            try:
+                active_chart.SetSourceData(Source=range_)
+            except:
+                pass
+        else:
+            active_chart.SetSourceData(Source=range_)
+
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
