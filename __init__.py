@@ -48,12 +48,15 @@ if module == "Open":
     excel = GetGlobals("excel")
     id_ = GetParams("id")
     file_path = GetParams("path")
+    password = GetParams("password")
     try:
         app = xw.App(add_book=False)
-        app.display_alerts = False
+        app.api.DisplayAlerts = False
         file_path = file_path.replace("/", os.sep)
 
-        wb = app.books.api.Open(file_path, IgnoreReadOnlyRecommended=True, UpdateLinks=False, CorruptLoad=2)
+        wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
+                                    CorruptLoad=2)
+
         # wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
@@ -549,6 +552,7 @@ if module == "xlsToxlsx":
             filename = xls_path
             # Opening the file using 'utf-16' encoding
             file1 = io.open(filename, "r", encoding="utf-16")
+            print(dir(file1), file1.read())
             data = file1.readlines()
 
             # Creating a workbook object
@@ -569,6 +573,7 @@ if module == "xlsToxlsx":
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
     except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
         PrintException()
         raise e
 

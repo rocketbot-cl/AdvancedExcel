@@ -47,6 +47,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 24-Sep-2020
+- Open without alerts: Add field 'Password'
 ### 16-Sep-2020
 - Add chart: Create a new chart on excel sheet 
 ### 15-Sep-2020
