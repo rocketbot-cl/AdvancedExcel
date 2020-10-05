@@ -498,9 +498,13 @@ if module == "countColumns":
     result = GetParams("var_")
 
     try:
-        excel_path = excel.file_["default"]["path"]
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        # excel_path = excel.file_["default"]["path"]
+        excel_path = wb.fullname
         print(excel_path)
-        df = pd.read_excel(excel_path, sheetname=sheet)
+
+        df = pd.read_excel(excel_path, sheet_name=sheet)
         print(df)
         col = df.shape[1]
 
@@ -941,6 +945,20 @@ if module == "GetCells":
         sheet_selected_api = wb.sheets[sheet].api
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         cell_values = []
+
+        for r in filtered_cells.Address.split(","):
+            range_cell = []
+            for ro in wb.sheets[sheet].api.Range(r).Rows:
+                range_cell.append(list(ro.Value[0]))
+
+            if extends:
+                info = {"range": r.replace("$", ""), "data": range_cell}
+                cell_values.append(info)
+            else:
+                cell_values = cell_values + range_cell if len(cell_values) > 0 else [range_cell]
+
+        print(cell_values, "\n\n")
+        exit()
 
         for r in filtered_cells.Address.split(","):
             value = wb.sheets[sheet].api.Range(r).Value
