@@ -848,10 +848,9 @@ if module == "copyMove":
             sheet2 = "tmp"
 
         if book:
-
             wb2 = wb.app.books.open(book)
-
-            wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
+            if sheet2 == "tmp":
+                wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
             destiny = wb2.api.Sheets(sheet2)
         else:
             destiny = wb.api.Sheets(sheet2)
@@ -1074,9 +1073,6 @@ if module == "LockCells":
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
         PrintException()
         raise e
-
-
-
 
 if module == "add_chart":
 

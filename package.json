@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "24.1",
+  "version": "24.2",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -2275,8 +2275,12 @@
               "en": "Sheet2"
             },
             "title": {
-              "es": "Hoja destino: ",
-              "en": "Destiny Sheet"
+              "es": "Mover/copiar antes de hoja: ",
+              "en": "Move/copy before sheet:"
+            },
+            "help": {
+              "es": "Dejar vacío si quieres moverlo al final",
+              "en": "Empty if you want move to final"
             },
             "id": "sheet_name2",
             "css": "col-md-6"
