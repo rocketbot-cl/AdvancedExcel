@@ -868,6 +868,8 @@ if module == "copyMove":
         try:
             wb2.sheets["tmp"].select() if book else wb.sheets["tmp"].select()
             wb2.sheets["tmp"].delete() if book else wb.sheets["tmp"].delete()
+            wb2.save()
+            wb2.close()
         except:
             pass
 
