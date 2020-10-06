@@ -942,6 +942,7 @@ if module == "GetCells":
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
+
         sheet_selected_api = wb.sheets[sheet].api
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         cell_values = []
@@ -951,39 +952,12 @@ if module == "GetCells":
             for ro in wb.sheets[sheet].api.Range(r).Rows:
                 range_cell.append(list(ro.Value[0]))
 
-            if extends:
+            if eval(extends):
                 info = {"range": r.replace("$", ""), "data": range_cell}
                 cell_values.append(info)
             else:
-                cell_values = cell_values + range_cell if len(cell_values) > 0 else [range_cell]
-
-        print(cell_values, "\n\n")
-        exit()
-
-        for r in filtered_cells.Address.split(","):
-            value = wb.sheets[sheet].api.Range(r).Value
-            if extends:
-                if len(value) == 1:
-                    value = [list(v) for v in value][0]
-                elif type(value) is not str:
-                    value = [list(v) for v in value]
-
-                    info = {"range": r.replace("$", ""), "data": value}
-                    cell_values.append(info)
-            else:
-
-                if type(value) is not str:
-                    try:
-                        for v in value:
-                            cell_values.append(list(v))
-                    except TypeError:
-                        cell_values.append([value])
-                elif len(value) == 1:
-                    value = list(value[0])
-                    cell_values.append(value)
-                else:
-                    cell_values.append(value)
-
+                cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell
+        print(cell_values)
         if result:
             SetVar(result, cell_values)
 
@@ -1124,7 +1098,6 @@ if module == "add_chart":
                 pass
         else:
             active_chart.SetSourceData(Source=range_)
-
 
     except Exception as e:
         print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
