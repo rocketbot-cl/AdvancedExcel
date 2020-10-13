@@ -953,8 +953,11 @@ if module == "GetCells":
             range_cell = []
             for ro in wb.sheets[sheet].api.Range(r).Rows:
                 range_cell.append(list(ro.Value[0]))
-
-            if eval(extends):
+            try:
+                extends = eval(extends)
+            except TypeError:
+                pass
+            if extends:
                 info = {"range": r.replace("$", ""), "data": range_cell}
                 cell_values.append(info)
             else:
