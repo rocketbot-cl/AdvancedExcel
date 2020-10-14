@@ -470,12 +470,25 @@ if module == "csvToxlsx":
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
 
-    if not csv_path or not xlsx_path:
-        raise Exception("Falta una ruta")
-    f_ = open(csv_path, 'r', encoding='latin-1')
-    df = pd.read_csv(f_, sep=sep)
-    df.to_excel(xlsx_path, index=None, header=with_header)
-    f_.close()
+    try:
+        if not csv_path or not xlsx_path:
+            raise Exception("Falta una ruta")
+
+        with open(csv_path, 'r', encoding='latin-1') as f_:
+            csv = f_.read().replace(sep, ";")
+
+        with open("tmp.csv", 'w') as tmp:
+            tmp.write(csv)
+
+        with open("tmp.csv", 'r') as tmp:
+            sep = ";"
+            df = pd.read_csv(tmp, sep=sep)
+            df.to_excel(xlsx_path, index=None, header=with_header)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "xlsxToCsv":
     csv_path = GetParams("csv_path")
