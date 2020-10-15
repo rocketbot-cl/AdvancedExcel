@@ -965,7 +965,10 @@ if module == "GetCells":
         for r in filtered_cells.Address.split(","):
             range_cell = []
             for ro in wb.sheets[sheet].api.Range(r).Rows:
-                range_cell.append(list(ro.Value[0]))
+                if isinstance(ro.Value, list):
+                    range_cell.append(list(ro.Value[0]))
+                else:
+                    range_cell.append([ro.Value])
             try:
                 extends = eval(extends)
             except TypeError:
