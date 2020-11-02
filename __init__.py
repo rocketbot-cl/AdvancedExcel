@@ -69,7 +69,7 @@ if module == "Open":
         excel.file_[excel.actual_id]['path'] = file_path
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -156,7 +156,7 @@ if module == "SelectCells":
         if copy:
             wb.sheets[sheet].api.Range(cells).Copy()
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -277,7 +277,7 @@ if module == "createSheet":
 
         wb.sheets.add(name=hoja, after=last)
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -308,28 +308,34 @@ if module == "copy_other":
         wb = xls['workbook']
 
         wb1 = wb.app.books.open(excel1)
-        wb2 = wb.app.books.open(excel2)
-        if not hoja1 in [sh.name for sh in wb1.sheets]:
+        if hoja1 not in [sh.name for sh in wb1.sheets]:
             raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
-        if not hoja2 in [sh.name for sh in wb2.sheets]:
-            raise Exception(f"The name {hoja2} does not exist in the book  {excel1.split('/')[-1]}")
 
         origin_sheet = wb1.sheets[hoja1]
         my_values = origin_sheet.range(rango1).options(ndim=2).value
-        destiny_sheet = wb2.sheets[hoja2]
-        destiny_sheet.range(rango2).value = my_values
+        password = None
+        if platform_ == "Windows":
+            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
+                                        CorruptLoad=2)
+            if hoja2 not in [sh.name for sh in wb2.sheets]:
+                raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            destiny_sheet = wb2.Sheets(hoja2)
+            destiny_sheet.Range(rango2).value = my_values
 
-        if platform_ == 'Windows':
-            wb2.save(excel2)
-            wb2.close()
-            # wb1.close()
-
+            wb2.Save()
+            wb2.Close()
         else:
+            wb2 = wb.app.books.open(excel2)
+            if hoja2 not in [sh.name for sh in wb2.sheets]:
+                raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            destiny_sheet = wb2.sheets(hoja2)
+            destiny_sheet.range(rango2).value = my_values
+
             wb2.save()
             wb2.close()
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -486,7 +492,7 @@ if module == "csvToxlsx":
             df.to_excel(xlsx_path, index=None, header=with_header)
 
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -590,7 +596,7 @@ if module == "xlsToxlsx":
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -665,7 +671,7 @@ if module == "getFormula":
         formula = xw.Range(cell).formula
         SetVar(result, formula)
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -683,20 +689,20 @@ if module == "AutoFilter":
         wb.sheets[sheet].api.Range(columns).AutoFilter()
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
 if module == "Filter":
 
-    sheet = GetParams("sheet")
-    start = GetParams("start")
-    column = GetParams("column")
-    data = GetParams("filter")
-    result = GetParams("var_")
-    excel = GetGlobals("excel")
-
     try:
+        sheet = GetParams("sheet")
+        start = GetParams("start")
+        column = GetParams("column")
+        data = GetParams("filter")
+        result = GetParams("var_")
+        excel = GetGlobals("excel")
+
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         if not sheet in [sh.name for sh in wb.sheets]:
@@ -718,9 +724,8 @@ if module == "Filter":
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
 
-
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -738,7 +743,7 @@ if module == "rename_sheet":
         wb.sheets[sheet].name = name
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -770,7 +775,7 @@ if module == "style_cells":
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -791,7 +796,7 @@ if module == "Paste":
         wb.sheets[sheet].api.Range(cells).PasteSpecial(Paste=12 if values else 7)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -810,7 +815,7 @@ if module == "focus":
         control.SetFocus()
     except Exception as e:
         if e.text != 'Error no especificado':
-            print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+            print("\x1B[" + "31;40mError\x1B[" + "0m")
             PrintException()
             raise e
 
@@ -834,7 +839,7 @@ if module == "remove_duplicate":
             column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
         sheet_selected.api.Range(range_).RemoveDuplicates(Columns=column_choice, Header=int(bool(with_header)))
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -888,7 +893,7 @@ if module == "copyMove":
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -983,7 +988,7 @@ if module == "GetCells":
             SetVar(result, cell_values)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1000,7 +1005,7 @@ if module == "Replace":
         wb.sheets[sheet].range(range_).api.Replace(what, replacement)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1024,7 +1029,7 @@ if module == "Order":
         sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1060,7 +1065,7 @@ if module == "find":
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1083,7 +1088,7 @@ if module == "LockCells":
         result = sheet.api.Range(range_).Locked = locked
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1121,7 +1126,7 @@ if module == "add_chart":
             active_chart.SetSourceData(Source=range_)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
