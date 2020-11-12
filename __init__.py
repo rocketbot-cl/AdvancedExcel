@@ -78,28 +78,30 @@ if module == "CellColor":
 
     range_ = GetParams("range")
     color = GetParams("color")
-
-    if color == "red":
-        rgb = (255, 0, 0)
-        print("dos")
-    elif color == "blue":
-        rgb = (0, 0, 255)
-    elif color == "green":
-        rgb = (0, 255, 0)
-    elif color == "grey":
-        rgb = (130, 130, 130)
-    else:
-        rgb = (255, 255, 0)
+    custom = GetParams("custom")
 
     try:
-        print("En el try")
+        if color == "red":
+            rgb = (255, 0, 0)
+            print("dos")
+        elif color == "blue":
+            rgb = (0, 0, 255)
+        elif color == "green":
+            rgb = (0, 255, 0)
+        elif color == "grey":
+            rgb = (130, 130, 130)
+        elif color == "yell":
+            rgb = (255, 255, 0)
+        else:
+            rgb = eval(custom)
+
         xls = excel.file_[excel.actual_id]
 
         # wb = xls['workbook']
         #         # print(wb)
         xw.Range(range_).color = rgb
 
-        print("salimos")
+        # print("salimos")
         # xw.Range('A1:C1').column_width = 23
         # xw.Range('A1').row_height = 12
         # xw.Range('A2').formula = 2+2
@@ -752,6 +754,12 @@ if module == "style_cells":
     range_ = GetParams("cell_range")
     position = GetParams("position")
     line_style = GetParams("lineStyle")
+
+    font_size = GetParams("size")
+    bold = GetParams("bold")
+    underline = GetParams("underline")
+    italic = GetParams("italic")
+
     excel = GetGlobals("excel")
 
     try:
@@ -761,17 +769,28 @@ if module == "style_cells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         rng = wb.sheets[sheet].api.Range(range_)
-        line_style = int(line_style)
-        if position == "all":
-            for i in range(7, 13):
-                rng.Borders(i).LineStyle = line_style
-        elif position == "contour":
-            for i in range(7, 11):
-                rng.Borders(i).LineStyle = line_style
-        else:
-            position = int(position)
-            print(position)
-            rng.Borders(position).LineStyle = line_style
+        if line_style:
+            line_style = int(line_style)
+            if position == "all":
+                for i in range(7, 13):
+                    rng.Borders(i).LineStyle = line_style
+            elif position == "contour":
+                for i in range(7, 11):
+                    rng.Borders(i).LineStyle = line_style
+            else:
+                position = int(position)
+                print(position)
+                rng.Borders(position).LineStyle = line_style
+
+        if font_size and font_size.isnumeric:
+            rng.Font.Size = int(font_size)
+        if underline:
+            rng.Font.Underline = 2
+        if bold:
+            rng.Font.Bold = True
+        if italic:
+            rng.Font.Italic = True
+
 
 
     except Exception as e:

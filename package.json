@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "24.8",
+  "version": "24.9",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -263,6 +263,19 @@
             "css": "col-md-6"
           },
           {
+            "type": "input",
+            "placeholder": {
+              "es": "250,250,250",
+              "en": "250,250,250"
+            },
+            "title": {
+              "es": "Ingrese color en RGB: ",
+              "en": "RGB color cell: "
+            },
+            "id": "custom",
+            "css": "col-md-6"
+          },
+          {
             "type": "select",
             "placeholder": {
               "es": "",
@@ -274,23 +287,27 @@
             },
             "options": [
               {
-                "title": "Rojo",
+                "title": "---- Select color ----",
+                "value": ""
+              },
+              {
+                "title": "Red",
                 "value": "red"
               },
               {
-                "title": "Azul",
+                "title": "Blue",
                 "value": "blue"
               },
               {
-                "title": "Verde",
+                "title": "Green",
                 "value": "green"
               },
               {
-                "title": "Amarillo",
+                "title": "Yellow",
                 "value": "yell"
               },
               {
-                "title": "Gris",
+                "title": "Grey",
                 "value": "grey"
               }
             ],
@@ -1862,6 +1879,58 @@
             ],
             "id": "lineStyle",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20"
+            },
+            "title": {
+              "es": "Tamaño de fuente: ",
+              "en": "Font size: "
+            },
+            "id": "size",
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Negrita",
+              "en": "Blod"
+            },
+            "id": "bold",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Cursiva",
+              "en": "Italic"
+            },
+            "id": "italic",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Subrayar",
+              "en": "Underline"
+            },
+            "id": "underline",
+            "css": "col-md-4"
           }
         ]
       },
