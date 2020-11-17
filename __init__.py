@@ -1149,3 +1149,31 @@ if module == "add_chart":
         PrintException()
         raise e
 
+
+if module == 'removePass':
+
+    excel_file = GetParams('excel_file')
+    new_excel_file = GetParams('new_excel_file')
+    new_excel_file = new_excel_file.replace('/', '\\')
+    excel_file = excel_file.replace('/', '\\')
+    pass_excel = GetParams('pass_excel')
+
+    try:
+        import win32com.client
+
+        if not new_excel_file:
+            new_excel_file = excel_file
+
+        xcl = win32com.client.Dispatch("Excel.Application")
+        wb = xcl.Workbooks.Open(excel_file, False, False, None, pass_excel)
+        xcl.DisplayAlerts = False
+        wb.SaveAs(f'{new_excel_file}', None, '', '')
+
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        xw.books.active.close()
+    except Exception as e:
+        PrintException()
+        raise e
+
