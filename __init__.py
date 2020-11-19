@@ -1154,7 +1154,8 @@ if module == 'removePass':
 
     excel_file = GetParams('excel_file')
     new_excel_file = GetParams('new_excel_file')
-    new_excel_file = new_excel_file.replace('/', '\\')
+    if new_excel_file:
+        new_excel_file = new_excel_file.replace('/', '\\')
     excel_file = excel_file.replace('/', '\\')
     pass_excel = GetParams('pass_excel')
 
