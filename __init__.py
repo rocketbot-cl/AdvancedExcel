@@ -1080,7 +1080,8 @@ if module == "find":
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
         print(sheet.api.Range(range_).Find, result)
-        SetVar(var_, result.address)
+        if result:
+            SetVar(var_, result.address)
 
 
     except Exception as e:
