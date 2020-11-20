@@ -1153,14 +1153,14 @@ if module == "add_chart":
 
 if module == 'removePass':
 
-    excel_file = GetParams('excel_file')
-    new_excel_file = GetParams('new_excel_file')
-    if new_excel_file:
-        new_excel_file = new_excel_file.replace('/', '\\')
-    excel_file = excel_file.replace('/', '\\')
-    pass_excel = GetParams('pass_excel')
-
     try:
+        excel_file = GetParams('excel_file')
+        new_excel_file = GetParams('new_excel_file')
+        if new_excel_file:
+            new_excel_file = new_excel_file.replace('/', '\\')
+        excel_file = excel_file.replace('/', '\\')
+        pass_excel = GetParams('pass_excel')
+
         import win32com.client
 
         if not new_excel_file:
@@ -1172,10 +1172,17 @@ if module == 'removePass':
         wb.SaveAs(f'{new_excel_file}', None, '', '')
 
         excel = GetGlobals("excel")
+        excel.actual_id = excel.id_default
+
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = xw.Book(new_excel_file)
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = new_excel_file
+
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         xw.books.active.close()
     except Exception as e:
         PrintException()
         raise e
-
