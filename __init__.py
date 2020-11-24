@@ -48,12 +48,15 @@ if module == "Open":
     excel = GetGlobals("excel")
     id_ = GetParams("id")
     file_path = GetParams("path")
+    password = GetParams("password")
     try:
         app = xw.App(add_book=False)
-        app.display_alerts = False
+        app.api.DisplayAlerts = False
         file_path = file_path.replace("/", os.sep)
 
-        wb = app.books.api.Open(file_path, IgnoreReadOnlyRecommended=True, UpdateLinks=False, CorruptLoad=2)
+        wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
+                                    CorruptLoad=2)
+
         # wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
@@ -66,7 +69,7 @@ if module == "Open":
         excel.file_[excel.actual_id]['path'] = file_path
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -75,28 +78,30 @@ if module == "CellColor":
 
     range_ = GetParams("range")
     color = GetParams("color")
-
-    if color == "red":
-        rgb = (255, 0, 0)
-        print("dos")
-    elif color == "blue":
-        rgb = (0, 0, 255)
-    elif color == "green":
-        rgb = (0, 255, 0)
-    elif color == "grey":
-        rgb = (130, 130, 130)
-    else:
-        rgb = (255, 255, 0)
+    custom = GetParams("custom")
 
     try:
-        print("En el try")
+        if color == "red":
+            rgb = (255, 0, 0)
+            print("dos")
+        elif color == "blue":
+            rgb = (0, 0, 255)
+        elif color == "green":
+            rgb = (0, 255, 0)
+        elif color == "grey":
+            rgb = (130, 130, 130)
+        elif color == "yell":
+            rgb = (255, 255, 0)
+        else:
+            rgb = eval(custom)
+
         xls = excel.file_[excel.actual_id]
 
         # wb = xls['workbook']
         #         # print(wb)
         xw.Range(range_).color = rgb
 
-        print("salimos")
+        # print("salimos")
         # xw.Range('A1:C1').column_width = 23
         # xw.Range('A1').row_height = 12
         # xw.Range('A2').formula = 2+2
@@ -153,7 +158,7 @@ if module == "SelectCells":
         if copy:
             wb.sheets[sheet].api.Range(cells).Copy()
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -274,7 +279,7 @@ if module == "createSheet":
 
         wb.sheets.add(name=hoja, after=last)
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -305,28 +310,34 @@ if module == "copy_other":
         wb = xls['workbook']
 
         wb1 = wb.app.books.open(excel1)
-        wb2 = wb.app.books.open(excel2)
-        if not hoja1 in [sh.name for sh in wb1.sheets]:
+        if hoja1 not in [sh.name for sh in wb1.sheets]:
             raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
-        if not hoja2 in [sh.name for sh in wb2.sheets]:
-            raise Exception(f"The name {hoja2} does not exist in the book  {excel1.split('/')[-1]}")
 
         origin_sheet = wb1.sheets[hoja1]
         my_values = origin_sheet.range(rango1).options(ndim=2).value
-        destiny_sheet = wb2.sheets[hoja2]
-        destiny_sheet.range(rango2).value = my_values
+        password = None
+        if platform_ == "Windows":
+            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
+                                        CorruptLoad=2)
+            if hoja2 not in [sh.name for sh in wb2.sheets]:
+                raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            destiny_sheet = wb2.Sheets(hoja2)
+            destiny_sheet.Range(rango2).value = my_values
 
-        if platform_ == 'Windows':
-            wb2.save(excel2)
-            wb2.close()
-            # wb1.close()
-
+            wb2.Save()
+            wb2.Close()
         else:
+            wb2 = wb.app.books.open(excel2)
+            if hoja2 not in [sh.name for sh in wb2.sheets]:
+                raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            destiny_sheet = wb2.sheets(hoja2)
+            destiny_sheet.range(rango2).value = my_values
+
             wb2.save()
             wb2.close()
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -340,6 +351,11 @@ if module == "addRow":
         print(hoja)
         print(tipo)
         platform_ = platform.system()
+
+        # Get excel from global variables and get actual opened excel
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
 
         if not hoja in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
@@ -405,12 +421,10 @@ if module == "addRow":
                         xw.sheets[hoja].api.rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
-            if ":" in fila_:
-                xw.Range(fila_).api.delete()
-            else:
-                fila = str(fila_) + ':' + str(fila_)
+            if ":" not in fila_:
+                fila_ = str(fila_) + ':' + str(fila_)
                 # print(fila)
-                xw.Range(fila).api.delete()
+            wb.api.Range(fila_).delete()
 
     except:
         PrintException()
@@ -467,12 +481,25 @@ if module == "csvToxlsx":
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
 
-    if not csv_path or not xlsx_path:
-        raise Exception("Falta una ruta")
-    f_ = open(csv_path, 'r', encoding='latin-1')
-    df = pd.read_csv(f_, sep=sep)
-    df.to_excel(xlsx_path, index=None, header=with_header)
-    f_.close()
+    try:
+        if not csv_path or not xlsx_path:
+            raise Exception("Falta una ruta")
+
+        with open(csv_path, 'r', encoding='latin-1') as f_:
+            csv = f_.read().replace(sep, ";")
+
+        with open("tmp.csv", 'w') as tmp:
+            tmp.write(csv)
+
+        with open("tmp.csv", 'r') as tmp:
+            sep = ";"
+            df = pd.read_csv(tmp, sep=sep)
+            df.to_excel(xlsx_path, index=None, header=with_header)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "xlsxToCsv":
     csv_path = GetParams("csv_path")
@@ -495,9 +522,13 @@ if module == "countColumns":
     result = GetParams("var_")
 
     try:
-        excel_path = excel.file_["default"]["path"]
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        # excel_path = excel.file_["default"]["path"]
+        excel_path = wb.fullname
         print(excel_path)
-        df = pd.read_excel(excel_path, sheetname=sheet)
+
+        df = pd.read_excel(excel_path, sheet_name=sheet)
         print(df)
         col = df.shape[1]
 
@@ -549,6 +580,7 @@ if module == "xlsToxlsx":
             filename = xls_path
             # Opening the file using 'utf-16' encoding
             file1 = io.open(filename, "r", encoding="utf-16")
+            print(dir(file1), file1.read())
             data = file1.readlines()
 
             # Creating a workbook object
@@ -569,6 +601,7 @@ if module == "xlsToxlsx":
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
     except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -643,7 +676,7 @@ if module == "getFormula":
         formula = xw.Range(cell).formula
         SetVar(result, formula)
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -661,20 +694,20 @@ if module == "AutoFilter":
         wb.sheets[sheet].api.Range(columns).AutoFilter()
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
 if module == "Filter":
 
-    sheet = GetParams("sheet")
-    start = GetParams("start")
-    column = GetParams("column")
-    data = GetParams("filter")
-    result = GetParams("var_")
-    excel = GetGlobals("excel")
-
     try:
+        sheet = GetParams("sheet")
+        start = GetParams("start")
+        column = GetParams("column")
+        data = GetParams("filter")
+        result = GetParams("var_")
+        excel = GetGlobals("excel")
+
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         if not sheet in [sh.name for sh in wb.sheets]:
@@ -696,9 +729,8 @@ if module == "Filter":
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
 
-
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -716,7 +748,7 @@ if module == "rename_sheet":
         wb.sheets[sheet].name = name
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -725,6 +757,12 @@ if module == "style_cells":
     range_ = GetParams("cell_range")
     position = GetParams("position")
     line_style = GetParams("lineStyle")
+
+    font_size = GetParams("size")
+    bold = GetParams("bold")
+    underline = GetParams("underline")
+    italic = GetParams("italic")
+
     excel = GetGlobals("excel")
 
     try:
@@ -734,21 +772,32 @@ if module == "style_cells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         rng = wb.sheets[sheet].api.Range(range_)
-        line_style = int(line_style)
-        if position == "all":
-            for i in range(7, 13):
-                rng.Borders(i).LineStyle = line_style
-        elif position == "contour":
-            for i in range(7, 11):
-                rng.Borders(i).LineStyle = line_style
-        else:
-            position = int(position)
-            print(position)
-            rng.Borders(position).LineStyle = line_style
+        if line_style:
+            line_style = int(line_style)
+            if position == "all":
+                for i in range(7, 13):
+                    rng.Borders(i).LineStyle = line_style
+            elif position == "contour":
+                for i in range(7, 11):
+                    rng.Borders(i).LineStyle = line_style
+            else:
+                position = int(position)
+                print(position)
+                rng.Borders(position).LineStyle = line_style
+
+        if font_size and font_size.isnumeric:
+            rng.Font.Size = int(font_size)
+        if underline:
+            rng.Font.Underline = 2
+        if bold:
+            rng.Font.Bold = True
+        if italic:
+            rng.Font.Italic = True
+
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -769,7 +818,7 @@ if module == "Paste":
         wb.sheets[sheet].api.Range(cells).PasteSpecial(Paste=12 if values else 7)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -788,7 +837,7 @@ if module == "focus":
         control.SetFocus()
     except Exception as e:
         if e.text != 'Error no especificado':
-            print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+            print("\x1B[" + "31;40mError\x1B[" + "0m")
             PrintException()
             raise e
 
@@ -812,7 +861,7 @@ if module == "remove_duplicate":
             column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
         sheet_selected.api.Range(range_).RemoveDuplicates(Columns=column_choice, Header=int(bool(with_header)))
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -838,15 +887,14 @@ if module == "copyMove":
         if not sheet1 in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet1} does not exist in the book")
         sheet_selected = wb.sheets[sheet1]
-        sheet_selected.select()
+        # sheet_selected.select()
         if not sheet2:
             sheet2 = "tmp"
 
         if book:
-
             wb2 = wb.app.books.open(book)
-
-            wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
+            if sheet2 == "tmp":
+                wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
             destiny = wb2.api.Sheets(sheet2)
         else:
             destiny = wb.api.Sheets(sheet2)
@@ -860,12 +908,14 @@ if module == "copyMove":
         try:
             wb2.sheets["tmp"].select() if book else wb.sheets["tmp"].select()
             wb2.sheets["tmp"].delete() if book else wb.sheets["tmp"].delete()
+            wb2.save()
+            wb2.close()
         except:
             pass
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -934,39 +984,33 @@ if module == "GetCells":
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
+
         sheet_selected_api = wb.sheets[sheet].api
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         cell_values = []
 
         for r in filtered_cells.Address.split(","):
-            value = wb.sheets[sheet].api.Range(r).Value
-            if extends:
-                if len(value) == 1:
-                    value = [list(v) for v in value][0]
-                elif type(value) is not str:
-                    value = [list(v) for v in value]
-
-                    info = {"range": r.replace("$", ""), "data": value}
-                    cell_values.append(info)
-            else:
-
-                if type(value) is not str:
-                    try:
-                        for v in value:
-                            cell_values.append(list(v))
-                    except TypeError:
-                        cell_values.append([value])
-                elif len(value) == 1:
-                    value = list(value[0])
-                    cell_values.append(value)
+            range_cell = []
+            for ro in wb.sheets[sheet].api.Range(r).Rows:
+                if isinstance(ro.Value, list):
+                    range_cell.append(list(ro.Value[0]))
                 else:
-                    cell_values.append(value)
-
+                    range_cell.append([ro.Value])
+            try:
+                extends = eval(extends)
+            except TypeError:
+                pass
+            if extends:
+                info = {"range": r.replace("$", ""), "data": range_cell}
+                cell_values.append(info)
+            else:
+                cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell
+        print(cell_values)
         if result:
             SetVar(result, cell_values)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -983,7 +1027,7 @@ if module == "Replace":
         wb.sheets[sheet].range(range_).api.Replace(what, replacement)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1007,7 +1051,7 @@ if module == "Order":
         sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order)
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1038,36 +1082,120 @@ if module == "find":
             raise Exception(f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
-        SetVar(var_, result.address)
+        print(sheet.api.Range(range_).Find, result)
+        if result:
+            SetVar(var_, result.address)
 
 
     except Exception as e:
-        print("\x1B[" + "31;40mError\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
-if module == "lock":
+if module == "LockCells":
     sheet_name= GetParams("sheet")
     range_ = GetParams("range")
+    locked = GetParams("locked")
+
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        locked = eval(locked) if locked else False
+
+        sheet = wb.sheets[sheet_name]
+        result = sheet.api.Range(range_).Locked = locked
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "add_chart":
+
+    sheet_name= GetParams("sheet")
+    range_ = GetParams("range")
+    cell = GetParams("cell")
+    type_ = GetParams("type")
+
     excel = GetGlobals("excel")
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        if not type_ or not bool(type_):
+            raise Exception("The type of chart has not been selected")
+
+        type_ = int(type_)
         sheet = wb.sheets[sheet_name]
-        sheet.select()
-        sheet.api.Range(range_).Locked = True
+
+        cell = sheet.api.Range(cell)
+        range_ = sheet.api.Range(range_)
+
+
+        active_chart = sheet.api.Shapes.AddChart2(-1, type_, cell.Left, cell.Top).Chart
+        if type_ is 118:
+            try:
+                active_chart.SetSourceData(Source=range_)
+            except:
+                pass
+        else:
+            active_chart.SetSourceData(Source=range_)
+
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
+
+if module == 'removePass':
+
+    try:
+        excel_file = GetParams('excel_file')
+        new_excel_file = GetParams('new_excel_file')
+        if new_excel_file:
+            new_excel_file = new_excel_file.replace('/', '\\')
+        excel_file = excel_file.replace('/', '\\')
+        pass_excel = GetParams('pass_excel')
+
+        import win32com.client
+
+        if not new_excel_file:
+            new_excel_file = excel_file
+
+        xcl = win32com.client.Dispatch("Excel.Application")
+        wb = xcl.Workbooks.Open(excel_file, False, False, None, pass_excel)
+        xcl.DisplayAlerts = False
+        wb.SaveAs(f'{new_excel_file}', None, '', '')
+
+        excel = GetGlobals("excel")
+        excel.actual_id = excel.id_default
+
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = xw.Book(new_excel_file)
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = new_excel_file
+
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        xw.books.active.close()
+    except Exception as e:
+        PrintException()
+        raise e
+
+
 if module == "insertImage":
     excel = GetGlobals("excel")
-    sheet_name= GetParams("sheet")
-    image_path= GetParams("image_path")
-    image_path = image_path.replace("/", "\\")
+    sheet_name = GetParams("sheet")
+    image_path = GetParams("image_path")
+    image_path = image_path.replace("/", os.sep)
     cell_position = GetParams("cell_position")
     try:
         xls = excel.file_[excel.actual_id]

@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "22.0",
+  "version": "25.3",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -52,6 +52,19 @@
           {
             "type": "input",
             "placeholder": {
+              "es": "P@ssW0rd",
+              "en": "P@ssW0rd"
+            },
+            "title": {
+              "es": "Password (opcional):",
+              "en": "Password (optional): "
+            },
+            "id": "password",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
               "es": "id",
               "en": "id"
             },
@@ -60,7 +73,7 @@
               "en": "Id (optional): "
             },
             "id": "id",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -72,7 +85,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -133,7 +146,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -215,7 +228,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -250,6 +263,19 @@
             "css": "col-md-6"
           },
           {
+            "type": "input",
+            "placeholder": {
+              "es": "250,250,250",
+              "en": "250,250,250"
+            },
+            "title": {
+              "es": "Ingrese color en RGB: ",
+              "en": "RGB color cell: "
+            },
+            "id": "custom",
+            "css": "col-md-6"
+          },
+          {
             "type": "select",
             "placeholder": {
               "es": "",
@@ -261,23 +287,27 @@
             },
             "options": [
               {
-                "title": "Rojo",
+                "title": "---- Select color ----",
+                "value": ""
+              },
+              {
+                "title": "Red",
                 "value": "red"
               },
               {
-                "title": "Azul",
+                "title": "Blue",
                 "value": "blue"
               },
               {
-                "title": "Verde",
+                "title": "Green",
                 "value": "green"
               },
               {
-                "title": "Amarillo",
+                "title": "Yellow",
                 "value": "yell"
               },
               {
-                "title": "Gris",
+                "title": "Grey",
                 "value": "grey"
               }
             ],
@@ -294,7 +324,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -352,7 +382,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -396,7 +426,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -466,7 +496,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -549,7 +579,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -682,7 +712,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -743,7 +773,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -804,7 +834,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -913,7 +943,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1028,7 +1058,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1112,7 +1142,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1181,7 +1211,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1242,7 +1272,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1297,7 +1327,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1345,7 +1375,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1402,7 +1432,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1459,7 +1489,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1520,7 +1550,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1577,7 +1607,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1664,7 +1694,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1721,7 +1751,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1849,6 +1879,58 @@
             ],
             "id": "lineStyle",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20"
+            },
+            "title": {
+              "es": "Tamaño de fuente: ",
+              "en": "Font size: "
+            },
+            "id": "size",
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Negrita",
+              "en": "Blod"
+            },
+            "id": "bold",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Cursiva",
+              "en": "Italic"
+            },
+            "id": "italic",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "A1:C4",
+              "en": "A1:C4"
+            },
+            "title": {
+              "es": "Subrayar",
+              "en": "Underline"
+            },
+            "id": "underline",
+            "css": "col-md-4"
           }
         ]
       },
@@ -1860,7 +1942,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1930,7 +2012,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -1960,7 +2042,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2040,7 +2122,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2071,7 +2153,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2115,7 +2197,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2221,7 +2303,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2262,8 +2344,12 @@
               "en": "Sheet2"
             },
             "title": {
-              "es": "Hoja destino: ",
-              "en": "Destiny Sheet"
+              "es": "Mover/copiar antes de hoja: ",
+              "en": "Move/copy before sheet:"
+            },
+            "help": {
+              "es": "Dejar vacío si quieres moverlo al final",
+              "en": "Empty if you want move to final"
             },
             "id": "sheet_name2",
             "css": "col-md-6"
@@ -2308,7 +2394,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2352,7 +2438,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2443,7 +2529,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2526,7 +2612,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2623,7 +2709,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2654,7 +2740,7 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
@@ -2745,21 +2831,21 @@
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
     },
     {
       "en": {
-        "title": "Lock cells",
-        "description": "Lock a range of cells",
+        "title": "Lock Cells",
+        "description": "Lock or Unlock cells",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Bloquear celda",
-        "description": "Bloquea un rango de celdas",
+        "title": "Bloquear celdas",
+        "description": "Bloquea o desbloquea celdas",
         "title_options": null,
         "options": null
       },
@@ -2786,30 +2872,233 @@
               "en": "A1:B100 "
             },
             "title": {
-              "es": "Rango a bloquear: ",
+              "es": "Rango donde buscar: ",
               "en": "Range: "
-            },
-            "help": {
-              "es": "No usar cabeceras",
-              "en": "Not headers"
             },
             "id": "range",
             "css": "col-md-6"
-          }        
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "Lorem",
+              "en": "Lorem"
+            },
+            "title": {
+              "es": "Acción",
+              "en": "Action"
+            },
+            "options": [
+              {
+                "title": "Lock",
+                "value": "True"
+              },
+              {
+                "title": "Unlock",
+                "value": "False"
+              }
+            ],
+            "id": "locked",
+            "css": "col-md-6"
+          }
         ]
       },
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-      "module": "lock",
+      "module": "LockCells",
       "module_name": "AdvancedExcel",
       "visible": true,
       "options": false,
       "father": "module",
       "group": "scripts",
-      "linux": true,
+      "linux": false,
       "windows": true,
       "mac": true,
       "docker": true
+    },
+    {
+      "en": {
+        "title": "Add Chart",
+        "description": "Create a new chart in an excel sheet",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Agregar Gráfico",
+        "description": "Agrega un nuevo gráfico sobre una hoja en excel",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja 1",
+              "en": "Sheet1"
+            },
+            "title": {
+              "es": "Hoja: ",
+              "en": "Sheet: "
+            },
+            "id": "sheet",
+            "css": "col-md-6"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "Lorem",
+              "en": "Lorem"
+            },
+            "title": {
+              "es": "Tipo de Gráfico",
+              "en": "Type of Chart"
+            },
+            "options": [
+              {
+                "title": "Clustered Column",
+                "value": "51"
+              },
+              {
+                "title": "Line",
+                "value": "4"
+              },
+              {
+                "title": "Histogram",
+                "value": "118"
+              },
+              {
+                "title": "Pie",
+                "value": "5"
+              },
+              {
+                "title": "Scatter",
+                "value": "-4169"
+              },
+{
+                "title": "Scatter with Smoothed Lines",
+                "value": "72"
+              }
+            ],
+            "id": "type",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1",
+              "en": "A1"
+            },
+            "title": {
+              "es": "Celda donde insertar gráfico: ",
+              "en": "Cell position: "
+            },
+            "id": "cell",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1:B100 ",
+              "en": "A1:B100 "
+            },
+            "title": {
+              "es": "Rango de datos: ",
+              "en": "Data range: "
+            },
+            "id": "range",
+            "css": "col-md-6"
+          }
+
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "add_chart",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Remove Password",
+        "description": "Remove password and save the Excel",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Quitar Contraeña",
+        "description": "Quita la contraseña y guarda el Excel",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "file_select",
+            "placeholder": {
+              "es": "C:/Users/User/Desktop/test.xlsx",
+              "en": "C:/Users/User/Desktop/test.xlsx"
+            },
+            "title": {
+              "es": "Excel con Contraseña:",
+              "en": "Excel with password:"
+            },
+            "id": "excel_file",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "****",
+              "en": "****"
+            },
+            "title": {
+              "es": "Contraseña:",
+              "en": "Password:"
+            },
+            "id": "pass_excel",
+            "css": "col-md-12"
+          },
+          {
+            "type": "file_new",
+            "placeholder": {
+              "es": "C:/Users/User/Desktop/test2.xlsx",
+              "en": "C:/Users/User/Desktop/test2.xlsx"
+            },
+            "title": {
+              "es": "Excel sin Contraseña:",
+              "en": "Excel without password:"
+            },
+             "help": {
+              "es": "Vacío para guardar en el mismo Excel",
+              "en": "Empty for save in the same Excel"
+            },
+            "id": "new_excel_file",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "removePass",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": false,
+      "docker": false
     },
     {
       "en": {
@@ -2865,7 +3154,7 @@
             },
             "id": "image_path",
             "css": "col-md-12"
-          }        
+          }
         ]
       },
       "video_youtube": "",
