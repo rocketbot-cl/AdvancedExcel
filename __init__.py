@@ -352,6 +352,11 @@ if module == "addRow":
         print(tipo)
         platform_ = platform.system()
 
+        # Get excel from global variables and get actual opened excel
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
         if not hoja in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
         if opcion_ == "add_":
@@ -416,12 +421,10 @@ if module == "addRow":
                         xw.sheets[hoja].api.rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
-            if ":" in fila_:
-                xw.Range(fila_).api.delete()
-            else:
-                fila = str(fila_) + ':' + str(fila_)
+            if ":" not in fila_:
+                fila_ = str(fila_) + ':' + str(fila_)
                 # print(fila)
-                xw.Range(fila).api.delete()
+            wb.api.Range(fila_).delete()
 
     except:
         PrintException()
@@ -1184,5 +1187,25 @@ if module == 'removePass':
         wb = xls['workbook']
         xw.books.active.close()
     except Exception as e:
+        PrintException()
+        raise e
+
+
+if module == "insertImage":
+    excel = GetGlobals("excel")
+    sheet_name = GetParams("sheet")
+    image_path = GetParams("image_path")
+    image_path = image_path.replace("/", os.sep)
+    cell_position = GetParams("cell_position")
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        sheet = wb.sheets[sheet_name]
+        cell = sheet.range(cell_position)
+        sheet.pictures.add(image_path, top=cell.top, left=cell.left)
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
         PrintException()
         raise e
