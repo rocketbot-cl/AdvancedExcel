@@ -322,6 +322,11 @@ if module == "copy_other":
             if hoja2 not in [sh.name for sh in wb2.sheets]:
                 raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.Sheets(hoja2)
+            if ":" not in rango2:
+                len_row = len(my_values)
+                len_col = len(my_values[0])
+                rango2 = rango2 + ":" + destiny_sheet.Cells(len_row, len_col).Address
+
             destiny_sheet.Range(rango2).value = my_values
 
             wb2.Save()
@@ -1134,7 +1139,6 @@ if module == "add_chart":
 
         cell = sheet.api.Range(cell)
         range_ = sheet.api.Range(range_)
-
 
         active_chart = sheet.api.Shapes.AddChart2(-1, type_, cell.Left, cell.Top).Chart
         if type_ is 118:
