@@ -349,87 +349,92 @@ if module == "copy_other":
 if module == "addRow":
 
     try:
-        hoja = GetParams("sheet")
-        fila_ = GetParams("row_")
+        sheet_name = GetParams("sheet")
+        row = GetParams("row_")
         tipo = GetParams("type_")
         opcion_ = GetParams("option_")
-        print(hoja)
-        print(tipo)
+
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        sheet = wb.sheets[sheet_name]
         platform_ = platform.system()
 
-        if not hoja in [sh.name for sh in xw.sheets]:
-            raise Exception(f"The name {hoja} does not exist in the book")
         if opcion_ == "add_":
 
             if platform_ == 'Windows':
-                if ":" in fila_:
-
+                if ":" in row:
                     if tipo == "down_":
-                        fila = fila_.split(':')
+                        fila = row.split(':')
                         f1 = fila[0]
                         f1 = int(f1) + 1
                         f2 = fila[1]
                         f2 = int(f2) + 1
                         fila = str(f1) + ':' + str(f2)
                         print('FILA down', fila)
-                        # fila_ = int(fila_) + 1
-                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+                        # row = int(row) + 1
+                        sheet.range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
-                        print('FILA up', fila_)
-                        xw.sheets[hoja].range(fila_).api.Insert(InsertShiftDirection.xlShiftDown)
+                        print('FILA up', row)
+                        sheet.range(row).api.Insert(InsertShiftDirection.xlShiftDown)
 
                 else:
                     if tipo == "down_":
-                        fila_ = int(fila_) + 1
-                        # print(fila_)
-                        fila = str(fila_) + ':' + str(fila_)
+                        row = int(row) + 1
+                        # print(row)
+                        fila = str(row) + ':' + str(row)
                         print('FILA down', fila)
 
-                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+                        sheet.range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
-                        fila = str(fila_) + ':' + str(fila_)
+                        fila = str(row) + ':' + str(row)
                         print('FILA up', fila)
-                        xw.sheets[hoja].range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
+                        sheet.range(fila).api.Insert(InsertShiftDirection.xlShiftDown)
 
 
             else:
-                if ":" in fila_:
+                if ":" in row:
                     if tipo == "down_":
-                        fila = fila_.split(':')
+                        fila = row.split(':')
                         f1 = fila[0]
                         f1 = int(f1) + 1
                         f2 = fila[1]
                         f2 = int(f2) + 1
                         fila = str(f1) + ':' + str(f2)
-                        # fila_ = int(fila_) + 1
-                        xw.sheets[hoja].api.rows[fila].insert_into_range()
+                        # row = int(row) + 1
+                        sheet.api.rows[fila].insert_into_range()
                     if tipo == "up_":
-                        xw.sheets[hoja].api.rows[fila_].insert_into_range()
+                        sheet.api.rows[row].insert_into_range()
 
                 else:
                     if tipo == "down_":
-                        fila_ = int(fila_) + 1
-                        # print(fila_)
-                        fila = str(fila_) + ':' + str(fila_)
+                        row = int(row) + 1
+                        # print(row)
+                        fila = str(row) + ':' + str(row)
 
-                        xw.sheets[hoja].api.rows[fila].insert_into_range()
+                        sheet.api.rows[fila].insert_into_range()
 
                     if tipo == "up_":
-                        fila = str(fila_) + ':' + str(fila_)
-                        xw.sheets[hoja].api.rows[fila].insert_into_range()
+                        fila = str(row) + ':' + str(row)
+                        sheet.api.rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
-            if ":" in fila_:
-                xw.Range(fila_).api.delete()
-            else:
-                fila = str(fila_) + ':' + str(fila_)
-                # print(fila)
-                xw.Range(fila).api.delete()
+            if ":" not in row:
+                row = str(row) + ":" + str(row)
 
-    except:
+            sheet.range(row).api.Delete()
+
+
+    except Exception as e:
         PrintException()
+        raise e
+
 
 if module == "addCol":
     try:
