@@ -352,11 +352,6 @@ if module == "addRow":
         print(tipo)
         platform_ = platform.system()
 
-        # Get excel from global variables and get actual opened excel
-        excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
-
         if not hoja in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
         if opcion_ == "add_":
@@ -421,10 +416,12 @@ if module == "addRow":
                         xw.sheets[hoja].api.rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
-            if ":" not in fila_:
-                fila_ = str(fila_) + ':' + str(fila_)
+            if ":" in fila_:
+                xw.Range(fila_).api.delete()
+            else:
+                fila = str(fila_) + ':' + str(fila_)
                 # print(fila)
-            wb.api.Range(fila_).delete()
+                xw.Range(fila).api.delete()
 
     except:
         PrintException()
