@@ -1216,3 +1216,24 @@ if module == "insertImage":
         print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "ExportChart":
+    excel = GetGlobals("excel")
+    sheet_name = GetParams("sheet")
+    index = GetParams("index")
+    path = GetParams("path")
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        sheet = wb.sheets[sheet_name]
+        chart = sheet.api.ChartObjects(int(index))
+        chart = chart.Chart
+        chart.Export(Filename=path, FilterName="PNG")
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
