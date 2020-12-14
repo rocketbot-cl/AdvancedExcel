@@ -314,8 +314,26 @@ if module == "copy_other":
             raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
 
         origin_sheet = wb1.sheets[hoja1]
-        my_values = origin_sheet.range(rango1).options(ndim=2).value
+        my_values = origin_sheet.range(rango1).options(ndim=2, index=False,dates=False).api.Value
+        
+        test = []
+        from datetime import datetime, timezone
+
+        def utc_to_local(utc_dt):
+            return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
+
+        for row in my_values:
+            tmp = []
+            for cell in row:
+                # tmp.append(cell.__str__() if cell is not None else "")
+                if isinstance(cell, datetime):
+                    print(dir(cell), "\n", cell.Format())
+                    cell = datetime.strptime(datetime.strftime(cell, cell.Format()), cell.Format())
+                tmp.append(cell)
+                # if isinstance(cell, pywintypes)
+            test.append(tmp)
         password = None
+        # exit()
         if platform_ == "Windows":
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
@@ -327,9 +345,15 @@ if module == "copy_other":
                 len_row = len(my_values) + destiny_sheet.Range(rango2).Row - 1
                 len_col = len(my_values[0]) + destiny_sheet.Range(rango2).Column - 1
                 rango2 = rango2 + ":" + destiny_sheet.Cells(len_row, len_col).Address
-
-            destiny_sheet.Range(rango2).value = my_values
-
+            
+            destiny_sheet.Range(rango2).value = test
+            new_values = destiny_sheet.Range(rango2).value
+            # for row in my_values:
+            #     tmp = []
+            #     for cell in row:
+            #         tmp.append(cell.__str__() if cell is not None else "")
+            #     test.append(tmp)
+                
             wb2.Save()
             wb2.Close()
         else:
