@@ -296,9 +296,10 @@ if module == "deleteSheet":
 
     SetVar(var_, res)
 if module == "copy_other":
+    import datetime
     try:
-        excel1 = GetParams("excel1").replace("\\", os.sep)
-        excel2 = GetParams("excel2").replace("\\", os.sep)
+        excel1 = GetParams("excel1")
+        excel2 = GetParams("excel2")
         hoja1 = GetParams("sheet_name1")
         hoja2 = GetParams("sheet_name2")
         rango1 = GetParams("cell_range1")
@@ -314,26 +315,31 @@ if module == "copy_other":
             raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
 
         origin_sheet = wb1.sheets[hoja1]
-        my_values = origin_sheet.range(rango1).options(ndim=2, index=False,dates=False).api.Value
-        
-        test = []
-        from datetime import datetime, timezone
-
-        def utc_to_local(utc_dt):
-            return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
-
+        my_values = origin_sheet.range(rango1)
+        cells = {}
         for row in my_values:
-            tmp = []
-            for cell in row:
-                # tmp.append(cell.__str__() if cell is not None else "")
-                if isinstance(cell, datetime):
-                    print(dir(cell), "\n", cell.Format())
-                    cell = datetime.strptime(datetime.strftime(cell, cell.Format()), cell.Format())
-                tmp.append(cell)
-                # if isinstance(cell, pywintypes)
-            test.append(tmp)
+            if row.row not in cells:
+                cells[row.row] = []
+
+            cells[row.row].append(row)
+
+        values = []
+        for item in cells:
+            rows = cells[item]
+            row_values = []
+            # print([(cell.value, cell.number_format) for cell in rows])
+            for cell in rows:
+                if isinstance(cell.value, datetime.datetime):
+                    data = cell.value.__str__()
+                else:
+                    data = cell.value
+                row_values.append(data)
+            values.append(row_values)
+
+
         password = None
-        # exit()
+        # print(test)
+
         if platform_ == "Windows":
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
@@ -342,17 +348,11 @@ if module == "copy_other":
             destiny_sheet = wb2.Sheets(hoja2)
 
             if ":" not in rango2:
-                len_row = len(my_values) + destiny_sheet.Range(rango2).Row - 1
-                len_col = len(my_values[0]) + destiny_sheet.Range(rango2).Column - 1
+                len_row = len(values) + destiny_sheet.Range(rango2).Row - 1
+                len_col = len(values[0]) + destiny_sheet.Range(rango2).Column - 1
                 rango2 = rango2 + ":" + destiny_sheet.Cells(len_row, len_col).Address
             
-            destiny_sheet.Range(rango2).value = test
-            new_values = destiny_sheet.Range(rango2).value
-            # for row in my_values:
-            #     tmp = []
-            #     for cell in row:
-            #         tmp.append(cell.__str__() if cell is not None else "")
-            #     test.append(tmp)
+            destiny_sheet.Range(rango2).value = values
                 
             wb2.Save()
             wb2.Close()
@@ -526,7 +526,7 @@ if module == "csvToxlsx":
         with open("tmp.csv", 'r') as tmp:
             sep = ";"
             df = pd.read_csv(tmp, sep=sep)
-            df.to_excel(xlsx_path, index=None, header=with_header)
+            df.to_excel(xlsx_path, index_label="Nro", index=False, header=with_header)
 
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -541,7 +541,10 @@ if module == "xlsxToCsv":
     try:
         if not delimiter:
             delimiter = ","
-        Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter).convert(csv_path)
+
+        data_xls = pd.read_excel(xlsx_path, 'Sheet0', index_col=None)
+        data_xls.to_csv(csv_path, encoding='utf-8', index=False)
+        # Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter, floatformat=True).convert(csv_path)
     except Exception as e:
         PrintException()
         raise e
