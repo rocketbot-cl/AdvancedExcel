@@ -543,7 +543,7 @@ if module == "xlsxToCsv":
             delimiter = ","
 
         data_xls = pd.read_excel(xlsx_path, 'Sheet0', index_col=None)
-        data_xls.to_csv(csv_path, encoding='utf-8', index=False)
+        data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
         # Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter, floatformat=True).convert(csv_path)
     except Exception as e:
         PrintException()
