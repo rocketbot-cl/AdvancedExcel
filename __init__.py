@@ -1168,19 +1168,27 @@ if module == "add_chart":
             raise Exception("The type of chart has not been selected")
 
         type_ = int(type_)
+        # compatibilidad con versión anterior (antes usaba la api para windows)
+        types_charts = {
+            4: "line",
+            5: "pie",
+            51: "column_clustered",
+            72: "xy_scatter_smooth",
+            -4169: "xy_scatter"
+
+        }
+        if type_ in types_charts:
+            type_ = types_charts[type_]
+
+        print(type_)
         sheet = wb.sheets[sheet_name]
 
-        cell = sheet.api.Range(cell)
-        range_ = sheet.api.Range(range_)
+        cell = sheet.range(cell)
+        range_ = sheet.range(range_)
 
-        active_chart = sheet.api.Shapes.AddChart2(-1, type_, cell.Left, cell.Top).Chart
-        if type_ is 118:
-            try:
-                active_chart.SetSourceData(Source=range_)
-            except:
-                pass
-        else:
-            active_chart.SetSourceData(Source=range_)
+        active_chart = sheet.charts.add(cell.left, cell.top)
+        active_chart.set_source_data(range_)
+        active_chart.chart_type = type_
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
