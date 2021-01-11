@@ -70,7 +70,9 @@ if module == "Open":
         if id_:
             excel.actual_id = id_
         excel.file_[excel.actual_id] = {}
-        excel.file_[excel.actual_id]['workbook'] = wb
+        excel.file_[excel.actual_id]['workbook'] = app.books[0]
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = file_path
 
     except Exception as e:
