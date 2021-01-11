@@ -64,16 +64,13 @@ if module == "Open":
 
         wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                     CorruptLoad=2)
-
         # wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
         if id_:
             excel.actual_id = id_
         excel.file_[excel.actual_id] = {}
-        excel.file_[excel.actual_id]['workbook'] = xw.Book(file_path)
-        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
-        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['workbook'] = wb
         excel.file_[excel.actual_id]['path'] = file_path
 
     except Exception as e:
