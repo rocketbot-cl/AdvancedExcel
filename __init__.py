@@ -42,6 +42,14 @@ import io
 import decimal
 from xlsx2csv import Xlsx2csv
 
+
+def get_date_with_format(xl_date):
+    import xlrd
+    datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
+    date_object = datetime_date.date()
+    return date_object.isoformat()
+
+
 module = GetParams("module")
 
 if module == "Open":
@@ -316,31 +324,12 @@ if module == "copy_other":
 
         origin_sheet = wb1.sheets[hoja1]
         my_values = origin_sheet.range(rango1)
-        cells = {}
-        for row in my_values:
-            if row.row not in cells:
-                cells[row.row] = []
-
-            cells[row.row].append(row)
-
-        values = []
-        for item in cells:
-            rows = cells[item]
-            row_values = []
-            # print([(cell.value, cell.number_format) for cell in rows])
-            for cell in rows:
-                if isinstance(cell.value, datetime.datetime):
-                    data = cell.value.__str__()
-                else:
-                    data = cell.value
-                row_values.append(data)
-            values.append(row_values)
-
-
-        password = None
-        # print(test)
 
         if platform_ == "Windows":
+            values = my_values.api.Value2
+
+            password = None
+            # print(test)
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
             if hoja2 not in [sh.name for sh in wb2.sheets]:
@@ -353,15 +342,15 @@ if module == "copy_other":
                 rango2 = rango2 + ":" + destiny_sheet.Cells(len_row, len_col).Address
             
             destiny_sheet.Range(rango2).value = values
-                
             wb2.Save()
             wb2.Close()
         else:
+            values = my_values.value
             wb2 = wb.app.books.open(excel2)
             if hoja2 not in [sh.name for sh in wb2.sheets]:
                 raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.sheets(hoja2)
-            destiny_sheet.range(rango2).value = my_values
+            destiny_sheet.range(rango2).value = values
 
             wb2.save()
             wb2.close()
@@ -1007,6 +996,7 @@ if module == "ImportForm":
         PrintException()
         raise e
 
+
 if module == "GetCells":
     sheet = GetParams("sheet")
     range_ = GetParams("range")
@@ -1027,8 +1017,15 @@ if module == "GetCells":
         for r in filtered_cells.Address.split(","):
             range_cell = []
             for ro in wb.sheets[sheet].api.Range(r).Rows:
-                if isinstance(ro.Value, list):
-                    range_cell.append(list(ro.Value[0]))
+                if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
+                    cells = []
+                    for cell in ro.Cells:
+                        if isinstance(cell.Value, datetime.datetime):
+                            cells.append(get_date_with_format(cell.Value2))
+                        else:
+                            cells.append(cell.Value2)
+
+                    range_cell.append(cells)
                 else:
                     range_cell.append([ro.Value])
             try:
@@ -1040,7 +1037,7 @@ if module == "GetCells":
                 cell_values.append(info)
             else:
                 cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell
-        print(cell_values)
+
         if result:
             SetVar(result, cell_values)
 
