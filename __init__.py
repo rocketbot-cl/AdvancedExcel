@@ -894,6 +894,8 @@ if module == "save_mac":
     xls = excel.file_[excel.actual_id]
 
     wb = xls['workbook']
+    if not path_file:
+        path_file = xls["path"]
     wb.save(path_file)
 
 if module == "copyMove":
