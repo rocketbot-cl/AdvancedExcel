@@ -505,16 +505,17 @@ if module == "csvToxlsx":
         if not csv_path or not xlsx_path:
             raise Exception("Falta una ruta")
 
-        with open(csv_path, 'r', encoding='latin-1') as f_:
-            csv = f_.read().replace(sep, ";")
+        import csv
+        from openpyxl import Workbook, load_workbook
 
-        with open("tmp.csv", 'w') as tmp:
-            tmp.write(csv)
-
-        with open("tmp.csv", 'r') as tmp:
-            sep = ";"
-            df = pd.read_csv(tmp, sep=sep)
-            df.to_excel(xlsx_path, index_label="Nro", index=False, header=with_header)
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        with open(csv_path, "r", encoding="latin-1") as fobj:
+            csv_reader = csv.reader(fobj, delimiter=sep)
+            for row_index, row in enumerate(csv_reader):
+                for col_index, value in enumerate(row):
+                    worksheet.cell(row_index + 1, col_index + 1).value = value
+        workbook.save(xlsx_path)
 
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
