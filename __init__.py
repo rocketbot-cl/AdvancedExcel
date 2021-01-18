@@ -508,6 +508,12 @@ if module == "csvToxlsx":
         import csv
         from openpyxl import Workbook, load_workbook
 
+        platform_ = platform.system()
+        if platform_ == "Windows":
+            import ctypes as ct
+            csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
+            limit1 = csv.field_size_limit()
+
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
         with open(csv_path, "r", encoding="latin-1") as fobj:
