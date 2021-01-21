@@ -41,6 +41,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Remove password</li>
     <li>Insert Image</li>
     <li>Export Chart</li>
+    <li>Not visible mode</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -50,6 +51,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 21-Ene-2021
+- Not visible mode: Open background Excel
 ### 1-Dic-2020
 - Export chart: Export a chart from index.
 ### 24-Nov-2020

@@ -57,9 +57,13 @@ if module == "Open":
     id_ = GetParams("id")
     file_path = GetParams("path")
     password = GetParams("password")
+    visible = GetParams("visible")
     try:
+
         app = xw.App(add_book=False)
+
         app.api.DisplayAlerts = False
+
         file_path = file_path.replace("/", os.sep)
 
         wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
@@ -513,7 +517,8 @@ if module == "csvToxlsx":
             import ctypes as ct
             csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
             limit1 = csv.field_size_limit()
-
+        if sep.startswith("\\t"):
+            sep = "\t"
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
         with open(csv_path, "r", encoding="latin-1") as fobj:
@@ -1253,7 +1258,7 @@ if module == "insertImage":
         cell = sheet.range(cell_position)
         sheet.pictures.add(image_path, top=cell.top, left=cell.left)
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -1273,7 +1278,37 @@ if module == "ExportChart":
         chart.Export(Filename=path, FilterName="PNG")
 
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
+if module == "headless":
+    excel = GetGlobals("excel")
+    path = GetParams("path")
+    id_ = GetParams("id")
+
+    try:
+        app = xw.App(add_book=False, visible=False)
+
+        if path:
+           wb = app.books.open(path)
+        else:
+            wb = app.books.add()
+            path = ""
+        print(app.books)
+
+        excel.actual_id = excel.id_default
+
+        if id_:
+            excel.actual_id = id_
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = wb
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = path
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        raise e
+        
