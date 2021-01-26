@@ -42,6 +42,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Insert Image</li>
     <li>Export Chart</li>
     <li>Not visible mode</li>
+    <li>Write array objects</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -51,6 +52,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 25-Ene-2021
+- Write array objects: Writes information obtained from an array of objects to excel cells
 ### 21-Ene-2021
 - Not visible mode: Open background Excel
 ### 1-Dic-2020

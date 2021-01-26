@@ -1311,4 +1311,33 @@ if module == "headless":
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
-        
+
+if module == "write_cell":
+    excel = GetGlobals("excel")
+    sheet_name = GetParams("sheet")
+    range_ = GetParams("range")
+    data = GetParams("data")
+
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        data = eval(data)
+        length = len(data[0])
+        data_cells =[]
+        for row in data:
+            print(row)
+            if len(row) != length:
+                raise Exception("All elements of a 2d list or tuple must be of the same length")
+            row_list = [data[1] for data in row.items()]
+            data_cells.append(row_list)
+
+        sheet = wb.sheets[sheet_name]
+        print(data_cells)
+        sheet.range(range_).value = data_cells
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        raise e
