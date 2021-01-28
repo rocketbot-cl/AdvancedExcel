@@ -3307,7 +3307,7 @@
         "options": null
       },
       "form": {
-        "css": "modal-md",
+        "css": "modal-lg",
         "inputs": [
           {
             "type": "input",
@@ -3320,7 +3320,7 @@
               "en": "Sheet: "
             },
             "id": "sheet",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -3333,7 +3333,7 @@
               "en": "Cell o Cells Range: "
             },
             "id": "range",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
