@@ -60,6 +60,9 @@ if module == "Open":
     visible = GetParams("visible")
     try:
 
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+
         app = xw.App(add_book=False)
 
         app.api.DisplayAlerts = False
@@ -125,6 +128,7 @@ if module == "InsertFormula":
 
     cell = GetParams("cell")
     formula = GetParams("formula")
+    xls = excel.file_[excel.actual_id]
 
     xw.Range(cell).formula = formula
 
