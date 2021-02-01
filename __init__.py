@@ -707,12 +707,11 @@ if module == "CloseExcel":
 
 if module == "getFormula":
     excel = GetGlobals("excel")
-
     cell = GetParams("cell")
     result = GetParams("var_")
-
     try:
         formula = xw.Range(cell).formula
+        formula = [list(i) for i in formula]
         SetVar(result, formula)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
