@@ -1344,3 +1344,18 @@ if module == "write_cell":
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
+
+
+if module == "copyPasteFormat":
+    rango1 = GetParams("cell_range1")
+    rango2 = GetParams("cell_range2")
+    hoja1 = GetParams("sheet_name1")
+    hoja2 = GetParams("sheet_name2")
+    
+    if not hoja1 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja1} does not exist in the book")
+    if not hoja2 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja2} does not exist in the book")
+    my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
+    xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
+    xw.sheets[hoja2].range(rango2).value = my_old_value

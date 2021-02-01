@@ -43,6 +43,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Export Chart</li>
     <li>Not visible mode</li>
     <li>Write array objects</li>
+    <li>Copy-Paste Format</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -52,6 +53,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 1-Feb-2021
+- Add command Copy-Paste Format. You can copy format cell to another.
 ### 25-Ene-2021
 - Write array objects: Writes information obtained from an array of objects to excel cells
 ### 21-Ene-2021
