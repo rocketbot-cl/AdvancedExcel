@@ -61,10 +61,8 @@ if module == "Open":
     try:
 
         excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
 
         app = xw.App(add_book=False)
-
         app.api.DisplayAlerts = False
 
         file_path = file_path.replace("/", os.sep)
@@ -97,7 +95,7 @@ if module == "CellColor":
     try:
         if color == "red":
             rgb = (255, 0, 0)
-            print("dos")
+
         elif color == "blue":
             rgb = (0, 0, 255)
         elif color == "green":
@@ -210,14 +208,14 @@ if module == "formatCell":
             d = 0
             if type(numbers[0]) != list and len(numbers) == 1:
                 numbers = [numbers]
-            print(numbers)
+
             for i in range(len(numbers)):
                 element = numbers[i]
                 if type(element) == list:
                     for idx in range(len(element)):
-                        print(idx)
+
                         number = element[idx]
-                        print("number", number)
+
                         if type(element[idx]) is str:
                             number = number.split(",")
                             if "." in number[0]:
@@ -231,7 +229,6 @@ if module == "formatCell":
                     number = numbers[i]
                     if type(number) is str:
                         number = number.split(",")
-                        print("number > ", number)
                         if "." in number[0]:
                             number[0] = number[0].replace(".", "")
                         number = ".".join(number)
@@ -568,7 +565,7 @@ if module == "countColumns":
         print(excel_path)
 
         df = pd.read_excel(excel_path, sheet_name=sheet)
-        print(df)
+
         col = df.shape[1]
 
         if result:
@@ -680,13 +677,17 @@ if module == "refreshPivot":
     pivotTableName = GetParams("table")
     excel = GetGlobals("excel")
 
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-    if not sheet in [sh.name for sh in wb.sheets]:
-        raise Exception(f"The name {sheet} does not exist in the book")
-    wb.sheets[sheet].select()
-    print(dir(wb.api.ActiveSheet.PivotTables(pivotTableName)))
-    wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        wb.sheets[sheet].select()
+        wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "fitCells":
     sheet = GetParams("sheet")
@@ -806,7 +807,7 @@ if module == "style_cells":
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
-        print(range_)
+
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         rng = wb.sheets[sheet].api.Range(range_)
@@ -820,7 +821,7 @@ if module == "style_cells":
                     rng.Borders(i).LineStyle = line_style
             else:
                 position = int(position)
-                print(position)
+
                 rng.Borders(position).LineStyle = line_style
 
         if font_size and font_size.isnumeric:
@@ -1130,10 +1131,9 @@ if module == "find":
             raise Exception(f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
-        print(sheet.api.Range(range_).Find, result)
-        if result:
-            SetVar(var_, result.address)
-
+        result = result.address if result is not None else ""
+        if var_:
+            SetVar(var_, result)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1330,17 +1330,40 @@ if module == "write_cell":
         length = len(data[0])
         data_cells =[]
         for row in data:
-            print(row)
+
             if len(row) != length:
                 raise Exception("All elements of a 2d list or tuple must be of the same length")
             row_list = [data[1] for data in row.items()]
             data_cells.append(row_list)
 
         sheet = wb.sheets[sheet_name]
-        print(data_cells)
+
         sheet.range(range_).value = data_cells
 
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "Opened":
+    excel = GetGlobals("excel")
+    id_ = GetParams("id")
+    name = GetParams("name")
+
+    try:
+
+        wb = xw.Book(name)
+        excel.actual_id = excel.id_default
+
+        if id_:
+            excel.actual_id = id_
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = wb
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = wb.fullname
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e

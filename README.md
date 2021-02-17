@@ -43,6 +43,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Export Chart</li>
     <li>Not visible mode</li>
     <li>Write array objects</li>
+    <li>Find and Connect</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -52,6 +53,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 17-Feb-2021
+- Find and Connect: Find opened Excel file and connect it
 ### 25-Ene-2021
 - Write array objects: Writes information obtained from an array of objects to excel cells
 ### 21-Ene-2021

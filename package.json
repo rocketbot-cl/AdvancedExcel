@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "28.0",
+  "version": "29.0",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -3353,6 +3353,63 @@
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
       "module": "write_cell",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Find and Connect",
+        "description": "Search a Excel Book opened and connect it",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Buscar y conectar",
+        "description": "Busca un excel abrierto y se conecta a este.",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Archivo.XLSX",
+              "en": "file.XLSX"
+            },
+            "title": {
+              "es": "Nombre del archivo XLSX abierto:",
+              "en": "XLSX filename: "
+            },
+            "id": "name",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "id",
+              "en": "id"
+            },
+            "title": {
+              "es": "Identificador (opcional):",
+              "en": "Id (optional): "
+            },
+            "id": "id",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "Opened",
       "module_name": "AdvancedExcel",
       "visible": true,
       "options": false,
