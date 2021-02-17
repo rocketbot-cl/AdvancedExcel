@@ -1350,3 +1350,27 @@ if module == "copyPasteFormat":
     my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
     xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
     xw.sheets[hoja2].range(rango2).value = my_old_value
+                                
+if module == "Opened":
+    excel = GetGlobals("excel")
+    id_ = GetParams("id")
+    name = GetParams("name")
+
+    try:
+
+        wb = xw.Book(name)
+        excel.actual_id = excel.id_default
+
+        if id_:
+            excel.actual_id = id_
+        excel.file_[excel.actual_id] = {}
+        excel.file_[excel.actual_id]['workbook'] = wb
+        excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
+        excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
+        excel.file_[excel.actual_id]['path'] = wb.fullname
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+  
