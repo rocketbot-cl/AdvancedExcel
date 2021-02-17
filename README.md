@@ -43,6 +43,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Export Chart</li>
     <li>Not visible mode</li>
     <li>Write array objects</li>
+    <li>Copy-Paste Format</li>
     <li>Find and Connect</li>
 </ul>
 
@@ -55,6 +56,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ### 17-Feb-2021
 - Find and Connect: Find opened Excel file and connect it
+### 1-Feb-2021
+- Add command Copy-Paste Format. You can copy format cell to another.
 ### 25-Ene-2021
 - Write array objects: Writes information obtained from an array of objects to excel cells
 ### 21-Ene-2021

@@ -61,7 +61,7 @@ if module == "Open":
     try:
 
         excel = GetGlobals("excel")
-
+        #xls = excel.file_[excel.actual_id]
         app = xw.App(add_book=False)
         app.api.DisplayAlerts = False
 
@@ -330,22 +330,13 @@ if module == "copy_other":
         my_values = origin_sheet.range(rango1)
 
         if platform_ == "Windows":
-            values = my_values.api.Value2
-
             password = None
-            # print(test)
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
             if hoja2 not in [sh.name for sh in wb2.sheets]:
                 raise Exception(f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.Sheets(hoja2)
-
-            if ":" not in rango2:
-                len_row = len(values) + destiny_sheet.Range(rango2).Row - 1
-                len_col = len(values[0]) + destiny_sheet.Range(rango2).Column - 1
-                rango2 = rango2 + ":" + destiny_sheet.Cells(len_row, len_col).Address
-            
-            destiny_sheet.Range(rango2).value = values
+            origin_sheet.api.Range(rango1).Copy(destiny_sheet.Range(rango2))
             wb2.Save()
             wb2.Close()
         else:
@@ -1344,6 +1335,22 @@ if module == "write_cell":
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
+
+
+if module == "copyPasteFormat":
+    rango1 = GetParams("cell_range1")
+    rango2 = GetParams("cell_range2")
+    hoja1 = GetParams("sheet_name1")
+    hoja2 = GetParams("sheet_name2")
+    
+    if not hoja1 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja1} does not exist in the book")
+    if not hoja2 in [sh.name for sh in xw.sheets]:
+        raise Exception(f"The name {hoja2} does not exist in the book")
+    my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
+    xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
+    xw.sheets[hoja2].range(rango2).value = my_old_value
+                                
 
 if module == "Opened":
     excel = GetGlobals("excel")
