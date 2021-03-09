@@ -54,6 +54,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 09-Mar-2021
+- Update links: Changes a link from one document to another
 ### 17-Feb-2021
 - Find and Connect: Find opened Excel file and connect it
 ### 1-Feb-2021
