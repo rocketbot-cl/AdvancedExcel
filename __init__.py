@@ -32,6 +32,7 @@ base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
 print(cur_path)
+
 import pyexcel as p
 from xlwt import Workbook
 import platform
@@ -42,7 +43,6 @@ import io
 import decimal
 from xlsx2csv import Xlsx2csv
 
-
 def get_date_with_format(xl_date):
     import xlrd
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
@@ -51,6 +51,9 @@ def get_date_with_format(xl_date):
 
 
 module = GetParams("module")
+
+# Get excel from Rocketbot
+excel = GetGlobals("excel")
 
 if module == "Open":
     excel = GetGlobals("excel")
@@ -824,8 +827,6 @@ if module == "style_cells":
         if italic:
             rng.Font.Italic = True
 
-
-
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1369,6 +1370,20 @@ if module == "Opened":
         excel.file_[excel.actual_id]['app'] = excel.file_[excel.actual_id]['workbook'].app
         excel.file_[excel.actual_id]['sheet'] = excel.file_[excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = wb.fullname
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "updateLinks":
+    name = GetParams("name")
+    new_name = GetParams("new_name")
+
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        wb.api.ChangeLink(Name=name, NewName=new_name, Type=1)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
