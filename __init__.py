@@ -130,8 +130,9 @@ if module == "InsertFormula":
     cell = GetParams("cell")
     formula = GetParams("formula")
     xls = excel.file_[excel.actual_id]
-
-    xw.Range(cell).formula = formula
+    wb = xls['workbook']
+    sheet = xls['sheet']
+    sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
     macro = GetParams("macro_path")
@@ -198,16 +199,20 @@ if module == "formatCell":
     formato = GetParams("format_")
     custom = GetParams("custom")
 
+    excel = GetGlobals("excel")
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
+
     try:
-        if not hoja in [sh.name for sh in xw.sheets]:
+        if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
         if len(rango) == 1:
             rango = rango + ':' + rango
         if formato == "text":
-            xw.sheets[hoja].range(rango).number_format = '@'
+            wb.sheets[hoja].range(rango).number_format = '@'
 
         if formato == "number_":
-            numbers = xw.sheets[hoja].range(rango).value
+            numbers = wb.sheets[hoja].range(rango).value
             d = 0
             if type(numbers[0]) != list and len(numbers) == 1:
                 numbers = [numbers]
@@ -245,35 +250,35 @@ if module == "formatCell":
                 for i in range(len(numbers)):
                     numbers[i] = [numbers[i]]
 
-            xw.sheets[hoja].range(rango).value = numbers
-            print("format", xw.sheets[hoja].range(rango).number_format)
+            wb.sheets[hoja].range(rango).value = numbers
+            print("format", wb.sheets[hoja].range(rango).number_format)
             if d == 0:
-                xw.sheets[hoja].range(rango).number_format = '0'
+                wb.sheets[hoja].range(rango).number_format = '0'
             else:
-                xw.sheets[hoja].range(rango).number_format = '0,{}'.format('0' * d)
+                wb.sheets[hoja].range(rango).number_format = '0,{}'.format('0' * d)
 
         if formato == "coin_":
-            xw.sheets[hoja].range(rango).number_format = '$#.##0'
+            wb.sheets[hoja].range(rango).number_format = '$#.##0'
 
         if formato == "date1":
-            xw.sheets[hoja].range(rango).number_format = 'dd-mm-yyyy'
+            wb.sheets[hoja].range(rango).number_format = 'dd-mm-yyyy'
 
         if formato == "date2":
-            xw.sheets[hoja].range(rango).number_format = 'dd-mm-yy'
+            wb.sheets[hoja].range(rango).number_format = 'dd-mm-yy'
 
         if formato == "date3":
-            xw.sheets[hoja].range(rango).number_format = 'yyyy-mm-dd'
+            wb.sheets[hoja].range(rango).number_format = 'yyyy-mm-dd'
 
         if formato == "decimal1":
-            xw.sheets[hoja].range(rango).number_format = '0,0'
+            wb.sheets[hoja].range(rango).number_format = '0,0'
 
         if formato == "decimal2":
-            xw.sheets[hoja].range(rango).number_format = '#.##0,0'
+            wb.sheets[hoja].range(rango).number_format = '#.##0,0'
 
         if formato == "long_date":
-            xw.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+            wb.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
         if formato == 'custom':
-            xw.sheets[hoja].range(rango).number_format = custom
+            wb.sheets[hoja].range(rango).number_format = custom
 
     except Exception as e:
         PrintException()
@@ -455,7 +460,11 @@ if module == "addCol":
         opcion_ = GetParams("option_")
         platform_ = platform.system()
 
-        if not hoja in [sh.name for sh in xw.sheets]:
+        excel = GetGlobals("excel")
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
+        if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
 
         if opcion_ == "add_":
@@ -463,33 +472,33 @@ if module == "addCol":
             if platform_ == 'Windows':
 
                 if ":" in col_:
-                    xw.sheets[hoja].range(col_).api.Insert(InsertShiftDirection.xlShiftToRight)
+                    wb.sheets[hoja].range(col_).api.Insert(InsertShiftDirection.xlShiftToRight)
                 else:
                     col = str(col_) + ':' + str(col_)
-                    xw.sheets[hoja].range(col).api.Insert(InsertShiftDirection.xlShiftToRight)
+                    wb.sheets[hoja].range(col).api.Insert(InsertShiftDirection.xlShiftToRight)
 
 
             else:
                 if ":" in col_:
-                    xw.sheets[hoja].api.columns[col_].insert_into_range()
+                    wb.sheets[hoja].api.columns[col_].insert_into_range()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    xw.sheets[hoja].api.columns[col].insert_into_range()
+                    wb.sheets[hoja].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
             if platform_ == 'Windows':
                 if ":" in col_:
-                    xw.Range(col_).api.Delete()
+                    wb.range(col_).api.Delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    xw.Range(col).api.Delete()
+                    wb.range(col).api.Delete()
 
             else:
                 if ":" in col_:
-                    xw.Range(col_).api.delete()
+                    wb.range(col_).api.delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    xw.Range(col).api.delete()
+                    wb.range(col).api.delete()
 
     except:
         PrintException()
@@ -585,7 +594,7 @@ if module == "countRows":
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
-        total = wb.sheets[sheet].range(row_ + str(xw.sheets[sheet].cells.last_cell.row)).end('up').row
+        total = wb.sheets[sheet].range(row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
         # print(total)
 
         if result:
@@ -705,7 +714,11 @@ if module == "getFormula":
     cell = GetParams("cell")
     result = GetParams("var_")
     try:
-        formula = xw.Range(cell).formula
+
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        sheet = xls['sheet']
+        formula = sheet.range(cell).formula
         formula = [list(i) for i in formula]
         SetVar(result, formula)
     except Exception as e:
