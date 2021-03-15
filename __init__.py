@@ -1381,7 +1381,7 @@ if module == "copyPasteFormat":
                                 
 
 if module == "Opened":
-    excel = GetGlobals("excel")
+
     id_ = GetParams("id")
     name = GetParams("name")
 
@@ -1411,6 +1411,25 @@ if module == "updateLinks":
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
         wb.api.ChangeLink(Name=name, NewName=new_name, Type=1)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "filter_slider":
+
+    sheet_name = GetParams("sheet")
+    slider_name = GetParams("name")
+    start_date = GetParams("start")
+    end_date = GetParams("end")
+
+    try:
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+        sheet = wb.sheets[sheet_name]
+        sheet.select()
+        wb.api.SlicerCaches(slider_name).TimelineState.SetFilterDateRange(start_date, end_date)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
