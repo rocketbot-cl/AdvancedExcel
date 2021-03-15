@@ -30,7 +30,8 @@ import sys
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
-sys.path.append(cur_path)
+if cur_path not in sys.path:
+    sys.path.append(cur_path)
 print(cur_path)
 
 import pyexcel as p
@@ -488,17 +489,17 @@ if module == "addCol":
         if opcion_ == "delete_":
             if platform_ == 'Windows':
                 if ":" in col_:
-                    wb.range(col_).api.Delete()
+                    wb.sheets[hoja].range(col_).api.Delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.range(col).api.Delete()
+                    wb.sheets[hoja].range(col).api.Delete()
 
             else:
                 if ":" in col_:
-                    wb.range(col_).api.delete()
+                    wb.sheets[hoja].range(col_).api.delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.range(col).api.delete()
+                    wb.sheets[hoja].range(col).api.delete()
 
     except:
         PrintException()
@@ -541,13 +542,26 @@ if module == "xlsxToCsv":
     csv_path = GetParams("csv_path")
     xlsx_path = GetParams("xlsx_path")
     delimiter = GetParams("delimiter")
-
+    sheet_name = GetParams("sheet_name")
+    import csv
     try:
         if not delimiter:
             delimiter = ","
 
-        data_xls = pd.read_excel(xlsx_path, 'Sheet0', index_col=None, header=None)
-        data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
+        if not sheet_name:
+            sheet_name = "Sheet0"
+
+        data_xls = load_workbook(xlsx_path)[sheet_name]
+        data = [[str(data).replace("\xa0", "") for data in row ] for row in data_xls.iter_rows(values_only=True)]
+        # data_xls = pd.read_excel(xlsx_path, sheet_name, index_col=None, header=None)
+
+        with open(csv_path, mode='w', newline='') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for row in data:
+                print(row)
+                csv_writer.writerow(row)
+
+        # data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
         # Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter, floatformat=True).convert(csv_path)
     except Exception as e:
         PrintException()
