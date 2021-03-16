@@ -44,6 +44,7 @@ import io
 import decimal
 from xlsx2csv import Xlsx2csv
 
+
 def get_date_with_format(xl_date):
     import xlrd
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
@@ -65,7 +66,7 @@ if module == "Open":
     try:
 
         excel = GetGlobals("excel")
-        #xls = excel.file_[excel.actual_id]
+        # xls = excel.file_[excel.actual_id]
         app = xw.App(add_book=False)
         app.api.DisplayAlerts = False
 
@@ -318,6 +319,7 @@ if module == "deleteSheet":
     SetVar(var_, res)
 if module == "copy_other":
     import datetime
+
     try:
         excel1 = GetParams("excel1")
         excel2 = GetParams("excel2")
@@ -453,7 +455,6 @@ if module == "addRow":
         PrintException()
         raise e
 
-
 if module == "addCol":
     try:
         hoja = GetParams("sheet")
@@ -520,6 +521,7 @@ if module == "csvToxlsx":
         platform_ = platform.system()
         if platform_ == "Windows":
             import ctypes as ct
+
             csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
             limit1 = csv.field_size_limit()
         if sep.startswith("\\t"):
@@ -544,6 +546,7 @@ if module == "xlsxToCsv":
     delimiter = GetParams("delimiter")
     sheet_name = GetParams("sheet_name")
     import csv
+
     try:
         if not delimiter:
             delimiter = ","
@@ -552,7 +555,7 @@ if module == "xlsxToCsv":
             sheet_name = "Sheet0"
 
         data_xls = load_workbook(xlsx_path)[sheet_name]
-        data = [[str(data).replace("\xa0", "") for data in row ] for row in data_xls.iter_rows(values_only=True)]
+        data = [[str(data).replace("\xa0", "") for data in row] for row in data_xls.iter_rows(values_only=True)]
         # data_xls = pd.read_excel(xlsx_path, sheet_name, index_col=None, header=None)
 
         with open(csv_path, mode='w', newline='') as csv_file:
@@ -1032,7 +1035,6 @@ if module == "ImportForm":
         PrintException()
         raise e
 
-
 if module == "GetCells":
     sheet = GetParams("sheet")
     range_ = GetParams("range")
@@ -1100,7 +1102,7 @@ if module == "Replace":
         raise e
 
 if module == "Order":
-    sheet_name= GetParams("sheet")
+    sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     column = GetParams("column")
     order = GetParams("order")
@@ -1134,9 +1136,8 @@ if module == "refreshAll":
         PrintException()
         raise e
 
-
 if module == "find":
-    sheet_name= GetParams("sheet")
+    sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
     var_ = GetParams("var_")
@@ -1160,7 +1161,7 @@ if module == "find":
         raise e
 
 if module == "LockCells":
-    sheet_name= GetParams("sheet")
+    sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     locked = GetParams("locked")
 
@@ -1184,7 +1185,7 @@ if module == "LockCells":
 
 if module == "add_chart":
 
-    sheet_name= GetParams("sheet")
+    sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     cell = GetParams("cell")
     type_ = GetParams("type")
@@ -1227,7 +1228,6 @@ if module == "add_chart":
         PrintException()
         raise e
 
-
 if module == 'removePass':
 
     try:
@@ -1263,7 +1263,6 @@ if module == 'removePass':
     except Exception as e:
         PrintException()
         raise e
-
 
 if module == "insertImage":
     excel = GetGlobals("excel")
@@ -1313,7 +1312,7 @@ if module == "headless":
         app = xw.App(add_book=False, visible=False)
 
         if path:
-           wb = app.books.open(path)
+            wb = app.books.open(path)
         else:
             wb = app.books.add()
             path = ""
@@ -1347,7 +1346,7 @@ if module == "write_cell":
             raise Exception(f"The name {sheet_name} does not exist in the book")
         data = eval(data)
         length = len(data[0])
-        data_cells =[]
+        data_cells = []
         for row in data:
 
             if len(row) != length:
@@ -1364,13 +1363,12 @@ if module == "write_cell":
         PrintException()
         raise e
 
-
 if module == "copyPasteFormat":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
-    
+
     if not hoja1 in [sh.name for sh in xw.sheets]:
         raise Exception(f"The name {hoja1} does not exist in the book")
     if not hoja2 in [sh.name for sh in xw.sheets]:
@@ -1378,7 +1376,6 @@ if module == "copyPasteFormat":
     my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
     xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
     xw.sheets[hoja2].range(rango2).value = my_old_value
-                                
 
 if module == "Opened":
 
@@ -1417,20 +1414,13 @@ if module == "updateLinks":
         PrintException()
         raise e
 
-if module == "filter_slider":
-
+if module == "unlockSheet":
     sheet_name = GetParams("sheet")
-    slider_name = GetParams("name")
-    start_date = GetParams("start")
-    end_date = GetParams("end")
-
+    password = GetParams("password")
     try:
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
-        sheet = wb.sheets[sheet_name]
-        sheet.select()
-        wb.api.SlicerCaches(slider_name).TimelineState.SetFilterDateRange(start_date, end_date)
-
+        wb.sheets[sheet_name].api.Unprotect(password)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
