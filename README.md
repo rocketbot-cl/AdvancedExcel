@@ -45,6 +45,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Write array objects</li>
     <li>Copy-Paste Format</li>
     <li>Find and Connect</li>
+    <li>Unlock sheet</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -54,6 +55,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 ## Updates
 
+### 09-Mar-2021
+- Unlock sheet: Unlock a sheet by password.
 ### 09-Mar-2021
 - Update links: Changes a link from one document to another
 ### 17-Feb-2021
