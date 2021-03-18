@@ -46,6 +46,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Copy-Paste Format</li>
     <li>Find and Connect</li>
     <li>Unlock sheet</li>
+    <li>Convert to .txt</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -54,7 +55,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 
 ## Updates
-
+### 18-Mar-2021
+- Unlock sheet: Convert XLSX to TXT.
 ### 09-Mar-2021
 - Unlock sheet: Unlock a sheet by password.
 ### 09-Mar-2021

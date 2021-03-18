@@ -1425,3 +1425,15 @@ if module == "unlockSheet":
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "xlsxToTxt":
+    file_path_xlsx = GetParams("path_xlsx")
+    file_path_txt = GetParams("path_txt")
+    try:
+        import pandas as pd
+        with open(file_path_txt, 'w') as file:
+            pd.read_excel(file_path_xlsx).to_string(file, index=False)
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
