@@ -72,9 +72,11 @@ if module == "Open":
 
         file_path = file_path.replace("/", os.sep)
 
-        wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
+        try:
+            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                     CorruptLoad=2)
-        # wb = app.books.open(file_path, UpdateLinks=False)
+        except:
+            wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
         if id_:
@@ -876,7 +878,9 @@ if module == "Paste":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Range(cells).PasteSpecial(Paste=12 if values else 7)
+
+        wb.sheets[sheet].range(cells).select()
+        wb.sheets[sheet].api.PasteSpecial(Format="Texto Unicode", Link=False, DisplayAsIcon=False, NoHTMLFormatting=True)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
