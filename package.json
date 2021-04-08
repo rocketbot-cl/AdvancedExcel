@@ -568,19 +568,6 @@
             },
             "id": "cell_range2",
             "css": "col-md-4"
-          },
-          {
-            "type": "checkbox",
-            "placeholder": {
-              "es": "",
-              "en": ""
-            },
-            "title": {
-              "es": "Solo valores",
-              "en": "Only Values"
-            },
-            "id": "values",
-            "css": "col-md-2"
           }
         ]
       },
@@ -931,7 +918,7 @@
               "en": "Sheet name"
             },
             "id": "sheet_name2",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -944,7 +931,20 @@
               "en": "Range to paste"
             },
             "id": "cell_range2",
-            "css": "col-md-6"
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": ""
+            },
+            "title": {
+              "es": "Solo valores",
+              "en": "Only Values"
+            },
+            "id": "values",
+            "css": "col-md-4"
           }
         ]
       },
