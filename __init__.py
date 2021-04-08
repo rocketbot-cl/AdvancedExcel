@@ -329,6 +329,7 @@ if module == "copy_other":
         hoja2 = GetParams("sheet_name2")
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
+        only_values = GetParams("values")
         platform_ = platform.system()
         excel = GetGlobals("excel")
 
@@ -341,8 +342,10 @@ if module == "copy_other":
 
         origin_sheet = wb1.sheets[hoja1]
         my_values = origin_sheet.range(rango1)
+        if only_values is not None:
+            only_values = eval(only_values)
 
-        if platform_ == "Windows":
+        if platform_ == "Windows" and not only_values:
             password = None
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
