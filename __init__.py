@@ -319,6 +319,7 @@ if module == "deleteSheet":
             res = True
 
     SetVar(var_, res)
+
 if module == "copy_other":
     import datetime
 
@@ -886,8 +887,19 @@ if module == "Paste":
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
 
-        wb.sheets[sheet].range(cells).select()
-        wb.sheets[sheet].api.PasteSpecial(Format="Texto Unicode", Link=False, DisplayAsIcon=False, NoHTMLFormatting=True)
+        selected = wb.sheets[sheet].range(cells).select()
+        if values is not None:
+            values = eval(values)
+        try:
+            if values:
+                wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
+                                                         Transpose=False)
+            else:
+                wb.sheets[sheet].range(cells).paste()
+        except:
+            wb.sheets[sheet].api.PasteSpecial(Format="Texto Unicode", Link=False, DisplayAsIcon=False,
+                                              NoHTMLFormatting=True)
+
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -971,8 +983,10 @@ if module == "copyMove":
                 wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
             destiny = wb2.api.Sheets(sheet2)
         else:
+            print(sheet2, copy_, book)
+            if sheet2 == "tmp":
+                wb.sheets.add(name=sheet2, after=wb.sheets[-1])
             destiny = wb.api.Sheets(sheet2)
-            wb.sheets.add(name=sheet2, after=wb.sheets[-1])
 
         if copy_:
             sheet_selected.api.Copy(Before=destiny)
