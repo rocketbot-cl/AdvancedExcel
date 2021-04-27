@@ -25,7 +25,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 """
 # Changing the data types of all strings in the module at once
 from __future__ import unicode_literals
-from xlsx2csv import Xlsx2csv
+#from xlsx2csv import Xlsx2csv
 import decimal
 import io
 import pandas as pd
