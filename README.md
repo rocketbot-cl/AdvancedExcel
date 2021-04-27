@@ -47,6 +47,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Find and Connect</li>
     <li>Unlock sheet</li>
     <li>Convert to .txt</li>
+    <li>Texto to column</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
@@ -55,6 +56,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 
 ## Updates
+### 27-Apr-2021
+- : Texto to column: Parses a column of cells that contain text into several columns.
 ### 18-Mar-2021
 - Unlock sheet: Convert XLSX to TXT.
 ### 09-Mar-2021
@@ -65,11 +68,11 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 - Find and Connect: Find opened Excel file and connect it
 ### 1-Feb-2021
 - Add command Copy-Paste Format. You can copy format cell to another.
-### 25-Ene-2021
+### 25-Jan-2021
 - Write array objects: Writes information obtained from an array of objects to excel cells
-### 21-Ene-2021
+### 21-Jan-2021
 - Not visible mode: Open background Excel
-### 1-Dic-2020
+### 1-Dec-2020
 - Export chart: Export a chart from index.
 ### 24-Nov-2020
 - Insert image in a cell.
