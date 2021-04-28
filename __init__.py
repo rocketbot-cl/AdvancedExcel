@@ -32,17 +32,34 @@ import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
 import platform
-from xlwt import Workbook
-import pyexcel as p
 import os
 import sys
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + \
     'AdvancedExcel' + os.sep + 'libs' + os.sep
+
 if cur_path not in sys.path:
     sys.path.append(cur_path)
-print(cur_path)
+
+def import_lib(relative_path, name, class_name=None):
+    """
+    - relative_path: library path from the module's libs folder
+    - name: library name
+    - class_name: class name to be imported. As 'from name import class_name'
+    """
+   
+    import importlib.util
+
+    cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
+
+    spec = importlib.util.spec_from_file_location(name, cur_path + relative_path)
+    foo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(foo)
+    if class_name is not None:
+        return getattr(foo, class_name)
+    return foo
+    
 
 
 def get_date_with_format(xl_date):
@@ -655,14 +672,16 @@ if module == "xlsToxlsx":
 
     xls_path = GetParams('xls_path')
     xlsx_path = GetParams('xlsx_path')
-    print(xls_path, xlsx_path)
 
     try:
+        p = import_lib("pyexcel/__init__.py", "pyexcel") # import pyexcel as p
         try:
+            
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
         except:
-
+            
+            Workbook = import_lib("xlwt/__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             filename = xls_path
             # Opening the file using 'utf-16' encoding
             file1 = io.open(filename, "r", encoding="utf-16")
