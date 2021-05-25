@@ -71,19 +71,19 @@ def get_date_with_format(xl_date):
 
 module = GetParams("module")
 
-# Get excel from Rocketbot
+# Get excel variables from Rocketbot
 excel = GetGlobals("excel")
+xls = excel.file_[excel.actual_id]
+wb = xls['workbook']
 
 if module == "Open":
-    excel = GetGlobals("excel")
+    
     id_ = GetParams("id")
     file_path = GetParams("path")
     password = GetParams("password")
     visible = GetParams("visible")
     try:
 
-        excel = GetGlobals("excel")
-        # xls = excel.file_[excel.actual_id]
         app = xw.App(add_book=False)
         app.api.DisplayAlerts = False
 
@@ -112,7 +112,7 @@ if module == "Open":
         raise e
 
 if module == "CellColor":
-    excel = GetGlobals("excel")
+    
 
     range_ = GetParams("range")
     color = GetParams("color")
@@ -133,10 +133,7 @@ if module == "CellColor":
         else:
             rgb = eval(custom)
 
-        xls = excel.file_[excel.actual_id]
 
-        # wb = xls['workbook']
-        #         # print(wb)
         xw.Range(range_).color = rgb
 
         # print("salimos")
@@ -148,20 +145,16 @@ if module == "CellColor":
         PrintException()
         raise e
 if module == "InsertFormula":
-    excel = GetGlobals("excel")
 
     cell = GetParams("cell")
     formula = GetParams("formula")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    
     sheet = xls['sheet']
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
     macro = GetParams("macro_path")
 
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
     content_macro = None
     if macro and macro != "ERROR_NOT_VAR":
         if os.path.exists(macro):
@@ -178,8 +171,6 @@ if module == "InsertMacro":
 
 if module == "SelectCells":
 
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
     cells = GetParams("cells")
     copy = GetParams("copy")
     sheet = GetParams("sheet_name")
@@ -189,7 +180,6 @@ if module == "SelectCells":
 
     try:
 
-        wb = xls['workbook']
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -221,10 +211,6 @@ if module == "formatCell":
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
-
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
 
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
@@ -311,12 +297,10 @@ if module == "formatCell":
 if module == "createSheet":
     hoja = GetParams("sheet_name")
     last = GetParams("after")
-    excel = GetGlobals("excel")
+    
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
-
+        
         if not last:
             res = [a.name for a in wb.sheets]
             last = res[-1]
@@ -352,11 +336,7 @@ if module == "copy_other":
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
         platform_ = platform.system()
-        excel = GetGlobals("excel")
-
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
-
+        
         wb1 = wb.app.books.open(excel1)
         if hoja1 not in [sh.name for sh in wb1.sheets]:
             raise Exception(
@@ -407,10 +387,6 @@ if module == "addRow":
         row = GetParams("row_")
         tipo = GetParams("type_")
         opcion_ = GetParams("option_")
-
-        excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
 
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -498,10 +474,7 @@ if module == "addCol":
         col_ = GetParams("col_")
         opcion_ = GetParams("option_")
         platform_ = platform.system()
-
-        excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
 
         if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
@@ -614,15 +587,12 @@ if module == "xlsxToCsv":
 
 if module == "countColumns":
 
-    excel = GetGlobals("excel")
-
     sheet = GetParams("sheet")
     column_name = GetParams("column")
     result = GetParams("var_")
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         # excel_path = excel.file_["default"]["path"]
         excel_path = wb.fullname
         print(excel_path)
@@ -645,8 +615,6 @@ if module == "countColumns":
 
 if module == "countRows":
 
-    excel = GetGlobals("excel")
-
     sheet = GetParams("sheet")
     row_ = GetParams("row_")
     result = GetParams("var_")
@@ -657,8 +625,8 @@ if module == "countRows":
         row_ = 'A'
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
+        
         total = wb.sheets[sheet].range(
             row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
         # print(total)
@@ -713,11 +681,8 @@ if module == "xlsToxlsx":
         raise e
 
 if module == "getActiveCell":
-    excel = GetGlobals("excel")
+    
     result = GetParams("result")
-
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
 
     abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
            'w', 'x', 'y', 'z']
@@ -746,11 +711,9 @@ if module == "getActiveCell":
 if module == "refreshPivot":
     sheet = GetParams("sheet")
     pivotTableName = GetParams("table")
-    excel = GetGlobals("excel")
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -761,30 +724,44 @@ if module == "refreshPivot":
         raise e
 
 if module == "fitCells":
-    sheet = GetParams("sheet")
+    sheet_name = GetParams("sheet")
     range_cell = GetParams("cell_range")
-    excel = GetGlobals("excel")
+    fit = GetParams("fit")
+    row_group = GetParams("row")
+    col_group = GetParams("column")
+    
+    if not sheet_name in [sh.name for sh in wb.sheets]:
+        raise Exception(f"The name {sheet_name} does not exist in the book")
 
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-    if not sheet in [sh.name for sh in wb.sheets]:
-        raise Exception(f"The name {sheet} does not exist in the book")
-    sh = wb.sheets[sheet].autofit()
+    sheet = wb.sheets[sheet_name]
+
+    if fit is None:
+        fit = True
+    else:
+        fit = eval(fit)
+
+    if row_group is not None:
+        row_group = eval(row_group)
+    if col_group is not None:
+        col_group = eval(col_group)
+    
+    if fit:
+        sh = sheet.autofit()
+    if row_group:
+        sheet.range(range_cell).api.Rows.group
+    if col_group:
+        sheet.range(range_cell).api.Columns.group
 
 if module == "CloseExcel":
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    
     xw.books.active.close()
 
 if module == "getFormula":
-    excel = GetGlobals("excel")
+    
     cell = GetParams("cell")
     result = GetParams("var_")
     try:
-
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         sheet = xls['sheet']
         formula = sheet.range(cell).formula
         formula = [list(i) for i in formula]
@@ -797,11 +774,10 @@ if module == "getFormula":
 if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
-    excel = GetGlobals("excel")
+    
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -820,10 +796,7 @@ if module == "Filter":
         column = GetParams("column")
         data = GetParams("filter")
         result = GetParams("var_")
-        excel = GetGlobals("excel")
-
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -851,11 +824,10 @@ if module == "Filter":
 if module == "rename_sheet":
     sheet = GetParams("sheet")
     name = GetParams("name")
-    excel = GetGlobals("excel")
+    
 
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -877,12 +849,8 @@ if module == "style_cells":
     underline = GetParams("underline")
     italic = GetParams("italic")
 
-    excel = GetGlobals("excel")
-
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
-
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         rng = wb.sheets[sheet].api.Range(range_)
@@ -915,15 +883,12 @@ if module == "style_cells":
 
 if module == "Paste":
 
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
     sheet = GetParams("sheet_name")
     values = GetParams("values")
     cells = GetParams("cells")
 
     try:
 
-        wb = xls['workbook']
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         wb.sheets[sheet].select()
@@ -951,9 +916,6 @@ if module == "focus":
         from time import sleep
         from uiautomation import uiautomation as auto
 
-        excel = GetGlobals("excel")
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
         sleep(1)
         print(wb.app.impl.hwnd)
         name = f'\u202a{xls["path"].split(os.sep)[-1]}\u202c  -  Excel'
@@ -970,11 +932,9 @@ if module == "remove_duplicate":
     range_ = GetParams("range")
     column = GetParams("column")
     with_header = GetParams("header")
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-
+    
     try:
-        wb = xls['workbook']
+        
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected = wb.sheets[sheet]
@@ -991,25 +951,21 @@ if module == "remove_duplicate":
         raise e
 
 if module == "save_mac":
-    excel = GetGlobals("excel")
+    
     path_file = GetParams('path_file')
-    xls = excel.file_[excel.actual_id]
-
-    wb = xls['workbook']
+    
     if not path_file:
         path_file = xls["path"]
     wb.save(path_file)
 
 if module == "copyMove":
 
-    excel = GetGlobals("excel")
+    
     sheet1 = GetParams('sheet_name1')
     sheet2 = GetParams('sheet_name2')
     book = GetParams("book")
     copy_ = GetParams("copy")
-    xls = excel.file_[excel.actual_id]
-
-    wb = xls['workbook']
+    
     try:
         if not sheet1 in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet1} does not exist in the book")
@@ -1048,19 +1004,13 @@ if module == "copyMove":
         raise e
 
 if module == "exportPDF":
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-
+    
     path_file = GetParams('path_file')
     option = GetParams('option')
     check_zoom = GetParams('check_zoom')
     check_tall = GetParams('check_tall')
     check_wide = GetParams('check_wide')
 
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
     sh = xls['sheet']
 
     try:
@@ -1090,10 +1040,7 @@ if module == "exportPDF":
 
 if module == "ImportForm":
     form_path = GetParams('form_path')
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-
+    
     try:
         wb.api.VBProject.VBComponents.Import(form_path)
 
@@ -1106,10 +1053,7 @@ if module == "GetCells":
     range_ = GetParams("range")
     result = GetParams("var_")
     extends = GetParams("more_data")
-    excel = GetGlobals("excel")
-
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
@@ -1187,10 +1131,7 @@ if module == "GetCountCells":
     range_ = GetParams("range")
     result = GetParams("var_")
     extends = GetParams("more_data")
-    excel = GetGlobals("excel")
-
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
@@ -1237,10 +1178,7 @@ if module == "Replace":
     range_ = GetParams("range")
     what = GetParams("what")
     replacement = GetParams("replace")
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-
+    
     try:
         wb.sheets[sheet].range(range_).api.Replace(what, replacement)
 
@@ -1254,10 +1192,7 @@ if module == "Order":
     range_ = GetParams("range")
     column = GetParams("column")
     order = GetParams("order")
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
-
+    
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1276,9 +1211,6 @@ if module == "Order":
         raise e
 
 if module == "refreshAll":
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
 
     try:
         wb.api.RefreshAll()
@@ -1291,10 +1223,6 @@ if module == "find":
     range_ = GetParams("range")
     text = GetParams("text")
     var_ = GetParams("var_")
-
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
 
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
@@ -1315,10 +1243,6 @@ if module == "LockCells":
     sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     locked = GetParams("locked")
-
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
 
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
@@ -1342,9 +1266,6 @@ if module == "add_chart":
     cell = GetParams("cell")
     type_ = GetParams("type")
 
-    excel = GetGlobals("excel")
-    xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1401,7 +1322,7 @@ if module == 'removePass':
         xcl.DisplayAlerts = False
         wb.SaveAs(f'{new_excel_file}', None, '', '')
 
-        excel = GetGlobals("excel")
+        
         excel.actual_id = excel.id_default
 
         excel.file_[excel.actual_id] = {}
@@ -1412,22 +1333,19 @@ if module == 'removePass':
             excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = new_excel_file
 
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
         xw.books.active.close()
     except Exception as e:
         PrintException()
         raise e
 
 if module == "insertImage":
-    excel = GetGlobals("excel")
+    
     sheet_name = GetParams("sheet")
     image_path = GetParams("image_path")
     image_path = image_path.replace("/", os.sep)
     cell_position = GetParams("cell_position")
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
@@ -1440,13 +1358,12 @@ if module == "insertImage":
         raise e
 
 if module == "ExportChart":
-    excel = GetGlobals("excel")
+    
     sheet_name = GetParams("sheet")
     index = GetParams("index")
     path = GetParams("path")
     try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
@@ -1459,13 +1376,12 @@ if module == "ExportChart":
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
+try:
+    if module == "headless":
+        
+        path = GetParams("path")
+        id_ = GetParams("id")
 
-if module == "headless":
-    excel = GetGlobals("excel")
-    path = GetParams("path")
-    id_ = GetParams("id")
-
-    try:
         app = xw.App(add_book=False, visible=False)
 
         if path:
@@ -1487,20 +1403,13 @@ if module == "headless":
             excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = path
 
-    except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        PrintException()
-        raise e
 
-if module == "write_cell":
-    excel = GetGlobals("excel")
-    sheet_name = GetParams("sheet")
-    range_ = GetParams("range")
-    data = GetParams("data")
+    if module == "write_cell":
+        
+        sheet_name = GetParams("sheet")
+        range_ = GetParams("range")
+        data = GetParams("data")
 
-    try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
@@ -1519,31 +1428,24 @@ if module == "write_cell":
 
         sheet.range(range_).value = data_cells
 
-    except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        PrintException()
-        raise e
+    if module == "copyPasteFormat":
+        rango1 = GetParams("cell_range1")
+        rango2 = GetParams("cell_range2")
+        hoja1 = GetParams("sheet_name1")
+        hoja2 = GetParams("sheet_name2")
 
-if module == "copyPasteFormat":
-    rango1 = GetParams("cell_range1")
-    rango2 = GetParams("cell_range2")
-    hoja1 = GetParams("sheet_name1")
-    hoja2 = GetParams("sheet_name2")
+        if not hoja1 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja1} does not exist in the book")
+        if not hoja2 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja2} does not exist in the book")
+        my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
+        xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
+        xw.sheets[hoja2].range(rango2).value = my_old_value
 
-    if not hoja1 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja1} does not exist in the book")
-    if not hoja2 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja2} does not exist in the book")
-    my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
-    xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
-    xw.sheets[hoja2].range(rango2).value = my_old_value
+    if module == "Opened":
 
-if module == "Opened":
-
-    id_ = GetParams("id")
-    name = GetParams("name")
-
-    try:
+        id_ = GetParams("id")
+        name = GetParams("name")
 
         wb = xw.Book(name)
         excel.actual_id = excel.id_default
@@ -1558,38 +1460,20 @@ if module == "Opened":
             excel.actual_id]['workbook'].sheets[0]
         excel.file_[excel.actual_id]['path'] = wb.fullname
 
-    except Exception as e:
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
-        PrintException()
-        raise e
 
-if module == "updateLinks":
-    name = GetParams("name")
-    new_name = GetParams("new_name")
+    if module == "updateLinks":
+        name = GetParams("name")
+        new_name = GetParams("new_name")
 
-    try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
         wb.api.ChangeLink(Name=name, NewName=new_name, Type=1)
 
-    except Exception as e:
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
-        PrintException()
-        raise e
-
-if module == "unlockSheet":
-    sheet_name = GetParams("sheet")
-    password = GetParams("password")
-    try:
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
+    if module == "unlockSheet":
+        sheet_name = GetParams("sheet")
+        password = GetParams("password")
+   
         wb.sheets[sheet_name].api.Unprotect(password)
-    except Exception as e:
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
-        PrintException()
-        raise e
 
-try:
+
     if module == "xlsxToTxt":
         file_path_xlsx = GetParams("path_xlsx")
         file_path_txt = GetParams("path_txt")
@@ -1603,9 +1487,6 @@ try:
         column = GetParams("range")
         delimiter_options = GetParams("delimiter")
         other = GetParams("other")
-
-        xls = excel.file_[excel.actual_id]
-        wb = xls['workbook']
 
         sheet = wb.sheets[sheet_name]
         sheet.select()
