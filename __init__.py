@@ -729,6 +729,10 @@ if module == "fitCells":
     fit = GetParams("fit")
     row_group = GetParams("row")
     col_group = GetParams("column")
+    row_ungroup = GetParams("un_row")
+    col_ungroup = GetParams("un_column")
+    row_levels = GetParams("row_levels")
+    col_levels = GetParams("col_levels")
     
     if not sheet_name in [sh.name for sh in wb.sheets]:
         raise Exception(f"The name {sheet_name} does not exist in the book")
@@ -740,17 +744,21 @@ if module == "fitCells":
     else:
         fit = eval(fit)
 
-    if row_group is not None:
-        row_group = eval(row_group)
-    if col_group is not None:
-        col_group = eval(col_group)
+    if row_group is not None: row_group = eval(row_group)
+    if col_group is not None: col_group = eval(col_group)
+    if row_ungroup is not None: row_ungroup = eval(row_ungroup)
+    if col_ungroup is not None: col_ungroup = eval(col_ungroup)
     
     if fit:
         sh = sheet.autofit()
-    if row_group:
-        sheet.range(range_cell).api.Rows.group
-    if col_group:
-        sheet.range(range_cell).api.Columns.group
+    if row_group: sheet.range(range_cell).api.Rows.Group()
+    if col_group: sheet.range(range_cell).api.Columns.Group()
+
+    if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
+    if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
+
+    if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
+    if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
 
 if module == "CloseExcel":
     
