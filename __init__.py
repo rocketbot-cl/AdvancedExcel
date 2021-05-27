@@ -73,8 +73,9 @@ module = GetParams("module")
 
 # Get excel variables from Rocketbot
 excel = GetGlobals("excel")
-xls = excel.file_[excel.actual_id]
-wb = xls['workbook']
+if excel.actual_id in excel.file_:
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
 
 if module == "Open":
     
@@ -521,6 +522,7 @@ if module == "csvToxlsx":
     xlsx_path = GetParams("xlsx_path")
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
+    encoding = GetParams("encoding") or "latin-1"
 
     try:
         if not csv_path or not xlsx_path:
@@ -539,7 +541,7 @@ if module == "csvToxlsx":
             sep = "\t"
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
-        with open(csv_path, "r", encoding="latin-1") as fobj:
+        with open(csv_path, "r", encoding=encoding) as fobj:
             csv_reader = csv.reader(fobj, delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
