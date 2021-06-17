@@ -68,6 +68,38 @@ def get_date_with_format(xl_date):
     date_object = datetime_date.date()
     return date_object.isoformat()
 
+def set_password(excel_file_path, pw):
+
+    from pathlib import Path
+
+    excel_file_path = Path(excel_file_path)
+
+    vbs_script = \
+    f"""' Save with password required upon opening
+
+    Set excel_object = CreateObject("Excel.Application")
+    Set workbook = excel_object.Workbooks.Open("{excel_file_path}")
+
+    excel_object.DisplayAlerts = False
+    excel_object.Visible = False
+
+    workbook.SaveAs "{excel_file_path}",, "{pw}"
+
+    excel_object.Application.Quit
+    """
+
+    # write
+    vbs_script_path = excel_file_path.parent.joinpath("set_pw.vbs")
+    with open(vbs_script_path, "w") as file:
+        file.write(vbs_script)
+
+    #execute
+    subprocess.call(['cscript.exe', str(vbs_script_path)])
+
+    # remove
+    vbs_script_path.unlink()
+
+    return None
 
 module = GetParams("module")
 
@@ -967,6 +999,31 @@ if module == "save_mac":
     if not path_file:
         path_file = xls["path"]
     wb.save(path_file)
+
+if module == "save_mac_with_password":
+    
+    path_file = GetParams('path_file')
+    password = GetParams('password')
+    
+    if not path_file:
+        path_file = xls["path"]
+
+    # First, it saves it, closes it and set the password
+    # This is if we are trying to save a book that we're using it in the moment
+    # Then if we are not using it, and we only wants to protect other excel with password
+    # It will only set the password and saves it.
+    try:
+        wb.save(path_file)
+        wb.app.quit()
+        set_password(path_file, password)
+
+    except Exception as e:
+        try:
+            set_password(path_file, password)
+        except:
+            print("\x1B[" + "31;40mError\x1B[" + "0m")
+            PrintException()
+            raise e
 
 if module == "copyMove":
 
