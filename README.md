@@ -29,6 +29,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Remove Duplicates</li>
     <li>Close XLSX</li>
     <li>Save Excel</li>
+    <li>Save Excel with password</li>
     <li>Export to Advanced PDF</li>
     <li>Copy-Move Sheet</li>
     <li>Insert Form</li>
