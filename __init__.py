@@ -107,7 +107,8 @@ module = GetParams("module")
 excel = GetGlobals("excel")
 if excel.actual_id in excel.file_:
     xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    if "workbook" in xls: 
+        wb = xls['workbook']
 
 if module == "Open":
     
