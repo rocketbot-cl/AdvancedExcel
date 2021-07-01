@@ -57,8 +57,10 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 
 ## Updates
+### 01-Jul-2021
+- Read Filtered Cells: The command was fixed because it didn't getting all cell range
 ### 27-Apr-2021
-- : Texto to column: Parses a column of cells that contain text into several columns.
+- Texto to column: Parses a column of cells that contain text into several columns.
 ### 18-Mar-2021
 - Unlock sheet: Convert XLSX to TXT.
 ### 09-Mar-2021
