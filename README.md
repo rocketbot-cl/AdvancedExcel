@@ -57,6 +57,8 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
 
 
 ## Updates
+### 06-Jul-2021
+- Fix language
 ### 01-Jul-2021
 - Read Filtered Cells: The command was fixed because it didn't getting all cell range
 ### 27-Apr-2021
