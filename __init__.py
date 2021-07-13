@@ -225,6 +225,38 @@ if module == "SelectCells":
         PrintException()
         raise e
 
+if (module == "getCurrencyValue"):
+    
+    sheetWanted = GetParams("sheetWanted")
+    cellRange = GetParams("cellRange")
+    print("tamos adentro")
+    print(sheetWanted)
+    print(cellRange)
+    finalResult = []
+    valueGotten = xw.sheets[sheetWanted].range(cellRange).value
+    print(valueGotten)
+    print("lo obtuvo?")
+    cont = 0
+    try:
+        for each in valueGotten:
+            cont += 1
+    except:
+        cont = 1
+        print("except")
+    print("viene el cont")
+    print(cont)
+
+    if (cont > 1):
+        for each in valueGotten:
+            finalResult.append(float(each))
+    else:
+        finalResult.append(float(valueGotten))
+
+    
+    whereToStoreData = GetParams("whereToStoreData")
+    SetVar(whereToStoreData, finalResult)
+
+
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
