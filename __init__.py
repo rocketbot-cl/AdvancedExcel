@@ -107,7 +107,8 @@ module = GetParams("module")
 excel = GetGlobals("excel")
 if excel.actual_id in excel.file_:
     xls = excel.file_[excel.actual_id]
-    wb = xls['workbook']
+    if "workbook" in xls: 
+        wb = xls['workbook']
 
 if module == "Open":
     
@@ -1153,9 +1154,9 @@ if module == "GetCells":
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         cell_values = []
 
-        for r in filtered_cells.Address.split(","):
+        for r in filtered_cells.Areas:
             range_cell = []
-            for ro in wb.sheets[sheet].api.Range(r).Rows:
+            for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
                 if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
                     cells = []
                     for cell in ro.Cells:
