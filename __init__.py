@@ -229,22 +229,14 @@ if (module == "getCurrencyValue"):
     
     sheetWanted = GetParams("sheetWanted")
     cellRange = GetParams("cellRange")
-    print("tamos adentro")
-    print(sheetWanted)
-    print(cellRange)
     finalResult = []
     valueGotten = xw.sheets[sheetWanted].range(cellRange).value
-    print(valueGotten)
-    print("lo obtuvo?")
     cont = 0
     try:
         for each in valueGotten:
             cont += 1
     except:
         cont = 1
-        print("except")
-    print("viene el cont")
-    print(cont)
 
     if (cont > 1):
         for each in valueGotten:
