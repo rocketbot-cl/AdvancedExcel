@@ -3959,19 +3959,6 @@
         "css": "modal-lg",
         "inputs": [
           {
-            "type": "file_select",
-            "placeholder": {
-              "es": "Archivo.XLSX",
-              "en": "file.XLSX"
-            },
-            "title": {
-              "es": "Ruta archivo XLSX:",
-              "en": "Patho to XLSX file: "
-            },
-            "id": "path_xlsx",
-            "css": "col-md-12"
-          },
-          {
             "type": "file_new",
             "placeholder": {
               "es": "/Users/user/Desktop/prueba.txt",
@@ -3996,7 +3983,7 @@
       "group": "scripts",
       "linux": false,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
