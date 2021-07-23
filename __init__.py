@@ -127,6 +127,7 @@ if module == "Open":
             wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
         except:
+            PrintException()
             wb = app.books.open(file_path, UpdateLinks=False)
         excel.actual_id = excel.id_default
 
@@ -1600,6 +1601,23 @@ try:
        
         values = [data.split(delimiter_t2c) for data in range_.value]
         range_.value = values
+    
+    if (module == "convertDecimalTimeToHours"):
+        import math
+
+        decimalTime = float(GetParams("decimalTime"))
+        whereToStoreIn = GetParams("whereToStoreIn")
+
+        hours = int(decimalTime * 24)
+        minutes = int((decimalTime * 1440) %60)
+        if ((decimalTime*86400%60%2) < 0.5):
+            seconds = math.floor((decimalTime * 86400) %60)
+        else:
+            seconds = math.ceil((decimalTime * 86400) %60)
+
+        hoursInString = "%02d:%02d:%02d" % (hours, minutes, seconds)
+
+        SetVar(whereToStoreIn, hoursInString)
 
 
 except Exception as e:
