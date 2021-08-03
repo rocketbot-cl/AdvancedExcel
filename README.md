@@ -49,6 +49,7 @@ Module to insert a macro, copy from one excel to another, add or remove rows and
     <li>Unlock sheet</li>
     <li>Convert to .txt</li>
     <li>Texto to column</li>
+    <li>Convert Excel time to hours</li>
 </ul>
 
 **In the example robot you must change the URL for yours.
