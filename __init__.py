@@ -1568,12 +1568,10 @@ try:
 
 
     if module == "xlsxToTxt":
-        file_path_xlsx = GetParams("path_xlsx")
         file_path_txt = GetParams("path_txt")
 
-        import pandas as pd
-        with open(file_path_txt, 'w') as file:
-            pd.read_excel(file_path_xlsx).to_string(file, index=False)
+        file_path_txt = file_path_txt.replace("/", os.sep)
+        wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
         sheet_name = GetParams("sheet")
