@@ -1462,6 +1462,7 @@ if module == "ExportChart":
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         chart = sheet.api.ChartObjects(int(index))
+        chart.Activate()
         chart = chart.Chart
         chart.Export(Filename=path, FilterName="PNG")
 
