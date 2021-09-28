@@ -1174,7 +1174,7 @@ if module == "GetCells":
             except TypeError:
                 pass
             if extends:
-                info = {"range": r.replace("$", ""), "data": range_cell}
+                info = {"range": r.Address.replace("$", ""), "data": range_cell}
                 cell_values.append(info)
             else:
                 cell_values = cell_values + \
