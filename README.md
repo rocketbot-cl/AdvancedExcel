@@ -174,6 +174,8 @@ Parses a column of cells that contain text into several columns.
 54. Convert Excel time to hours  
 Convert Excel time to hours
 ### Updates
+#### 30-Sep-2021
+- Paste command: Update compatibilities
 #### 28-Sep-2021
 - Fix get filtered cells command. Now returns extended data
 #### 06-Jul-2021
