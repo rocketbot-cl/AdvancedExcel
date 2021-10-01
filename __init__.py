@@ -1625,6 +1625,19 @@ try:
 
         SetVar(whereToStoreIn, hoursInString)
 
+    if (module == "printSheet"):
+        sheet_name = GetParams("sheet")
+
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        sheet = wb.sheets[sheet_name].select()
+
+        printSheet = wb.api.ActiveSheet.PrintOut()
+
 
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
