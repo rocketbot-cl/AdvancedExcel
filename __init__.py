@@ -101,6 +101,8 @@ def set_password(excel_file_path, pw):
 
     return None
 
+
+platform_ = platform.system()
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -969,7 +971,10 @@ if module == "Paste":
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
-                wb.sheets[sheet].range(cells).paste()
+                if platform_ == "Windows":
+                    wb.sheets[sheet].api.Paste()
+                else:
+                    wb.sheets[sheet].range(cells).paste()
         except:
             wb.sheets[sheet].api.PasteSpecial(Format="Texto Unicode", Link=False, DisplayAsIcon=False,
                                               NoHTMLFormatting=True)
@@ -1174,7 +1179,7 @@ if module == "GetCells":
             except TypeError:
                 pass
             if extends:
-                info = {"range": r.replace("$", ""), "data": range_cell}
+                info = {"range": r.Address.replace("$", ""), "data": range_cell}
                 cell_values.append(info)
             else:
                 cell_values = cell_values + \
