@@ -101,6 +101,8 @@ def set_password(excel_file_path, pw):
 
     return None
 
+
+platform_ = platform.system()
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -997,7 +999,10 @@ if module == "Paste":
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
-                wb.sheets[sheet].range(cells).paste()
+                if platform_ == "Windows":
+                    wb.sheets[sheet].api.Paste()
+                else:
+                    wb.sheets[sheet].range(cells).paste()
         except:
             wb.sheets[sheet].api.PasteSpecial(Format="Texto Unicode", Link=False, DisplayAsIcon=False,
                                               NoHTMLFormatting=True)
@@ -1202,7 +1207,7 @@ if module == "GetCells":
             except TypeError:
                 pass
             if extends:
-                info = {"range": r.replace("$", ""), "data": range_cell}
+                info = {"range": r.Address.replace("$", ""), "data": range_cell}
                 cell_values.append(info)
             else:
                 cell_values = cell_values + \
@@ -1481,6 +1486,7 @@ if module == "ExportChart":
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         chart = sheet.api.ChartObjects(int(index))
+        chart.Activate()
         chart = chart.Chart
         chart.Export(Filename=path, FilterName="PNG")
 
@@ -1637,6 +1643,19 @@ try:
         hoursInString = "%02d:%02d:%02d" % (hours, minutes, seconds)
 
         SetVar(whereToStoreIn, hoursInString)
+
+    if (module == "printSheet"):
+        sheet_name = GetParams("sheet")
+
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        sheet = wb.sheets[sheet_name].select()
+
+        printSheet = wb.api.ActiveSheet.PrintOut()
 
 
 except Exception as e:
