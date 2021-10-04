@@ -251,6 +251,34 @@ if (module == "getCurrencyValue"):
     SetVar(whereToStoreData, finalResult)
 
 
+if (module == "getDateValue"):
+    
+    sheetWanted = GetParams("sheetWanted")
+    cellRange = GetParams("cellRange")
+    finalResult = []
+    valueGotten = xw.sheets[sheetWanted].range(cellRange).value
+    cont = 0
+    try:    
+        try:
+            for each in valueGotten:
+                cont += 1
+        except:
+            cont = 1
+
+        if (cont > 1):
+            for each in valueGotten:
+                value_date = each.strftime("%d/%m/%Y %H:%M:%S")
+                finalResult.append(value_date)
+        else:
+            valueGotten = valueGotten.strftime("%d/%m/%Y %H:%M:%S")
+            finalResult.append(valueGotten)
+        whereToStoreData = GetParams("whereToStoreData")
+        SetVar(whereToStoreData, finalResult)
+
+    except Exception as e:
+        PrintException()
+        raise e
+
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
@@ -1246,18 +1274,9 @@ if module == "GetCountCells":
                     range_cell.append(cells)
                 else:
                     range_cell.append([ro.Value])
-            try:
-                extends = eval(extends)
-            except TypeError:
-                pass
-            if extends:
-                info = {"range": r.replace("$", ""), "data": range_cell}
-                cell_values.append(info)
-            else:
-                cell_values = cell_values + \
-                    range_cell if len(cell_values) > 0 else range_cell
-
-
+            
+            cell_values = cell_values + \
+                range_cell if len(cell_values) > 0 else range_cell
         if result:
             SetVar(result, len(cell_values))
 
