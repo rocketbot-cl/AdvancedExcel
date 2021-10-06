@@ -253,6 +253,34 @@ if (module == "getCurrencyValue"):
     SetVar(whereToStoreData, finalResult)
 
 
+if (module == "getDateValue"):
+    
+    sheetWanted = GetParams("sheetWanted")
+    cellRange = GetParams("cellRange")
+    finalResult = []
+    valueGotten = xw.sheets[sheetWanted].range(cellRange).value
+    cont = 0
+    try:    
+        try:
+            for each in valueGotten:
+                cont += 1
+        except:
+            cont = 1
+
+        if (cont > 1):
+            for each in valueGotten:
+                value_date = each.strftime("%d/%m/%Y %H:%M:%S")
+                finalResult.append(value_date)
+        else:
+            valueGotten = valueGotten.strftime("%d/%m/%Y %H:%M:%S")
+            finalResult.append(valueGotten)
+        whereToStoreData = GetParams("whereToStoreData")
+        SetVar(whereToStoreData, finalResult)
+
+    except Exception as e:
+        PrintException()
+        raise e
+
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
@@ -1445,6 +1473,7 @@ if module == "ExportChart":
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         chart = sheet.api.ChartObjects(int(index))
+        chart.Activate()
         chart = chart.Chart
         chart.Export(Filename=path, FilterName="PNG")
 
@@ -1601,6 +1630,19 @@ try:
         hoursInString = "%02d:%02d:%02d" % (hours, minutes, seconds)
 
         SetVar(whereToStoreIn, hoursInString)
+
+    if (module == "printSheet"):
+        sheet_name = GetParams("sheet")
+
+        xls = excel.file_[excel.actual_id]
+        wb = xls['workbook']
+
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+
+        sheet = wb.sheets[sheet_name].select()
+
+        printSheet = wb.api.ActiveSheet.PrintOut()
 
 
 except Exception as e:
