@@ -116,6 +116,11 @@
               "es": "Hoja:",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -194,6 +199,11 @@
               "es": "Si se deja vacío por defecto será la primera hoja",
               "en": "If empty by default it will be the first sheet"
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -271,6 +281,11 @@
             "title": {
               "es": "Ingrese celdas: ",
               "en": "Cells: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-6"
@@ -515,79 +530,79 @@
       "docker": true
     },
     {
-        "en": {
-          "title": "Get Cell With Currency Format",
-          "description": "Get cells with currency format",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Obtener Celda Formato Moneda",
-          "description": "Obtiene celdas con formato moneda",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-          "css": "modal-lg",
-          "inputs": [
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "Hoja 1",
-                "en": "Hoja 1"
-              },
-              "title": {
-                "es": "Hoja",
-                "en": "Sheet "
-              },
-              "id": "sheetWanted",
-              "css": "col-md-6"
-            },
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "A1:B3",
-                "en": "A1:B3"
-              },
-              "title": {
-                "es": "Ingrese celdas a seleccionar",
-                "en": "Enter cells to select "
-              },
-              "id": "cellRange",
-              "css": "col-md-6"
-            },
-            {
-                "type": "input",
-                "placeholder": {
-                    "es": "variable",
-                    "en": "variable"
-                },
-                "title": {
-                    "es": "Asignar a variable",
-                    "en": "Assign to var"
-                },
-                "help": {
-                    "es": "La variable debe ir sin llaves {}",
-                    "en": "var without {}"
-                },
-                "id": "whereToStoreData",
-                "css": "col-md-6"
-            }
-          ]
-        },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "getCurrencyValue",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
+      "en": {
+        "title": "Get Cell With Currency Format",
+        "description": "Get cells with currency format",
+        "title_options": null,
+        "options": null
       },
+      "es": {
+        "title": "Obtener Celda Formato Moneda",
+        "description": "Obtiene celdas con formato moneda",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja 1",
+              "en": "Hoja 1"
+            },
+            "title": {
+              "es": "Hoja",
+              "en": "Sheet "
+            },
+            "id": "sheetWanted",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1:B3",
+              "en": "A1:B3"
+            },
+            "title": {
+              "es": "Ingrese celdas a seleccionar",
+              "en": "Enter cells to select "
+            },
+            "id": "cellRange",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "variable",
+              "en": "variable"
+            },
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Assign to var"
+            },
+            "help": {
+              "es": "La variable debe ir sin llaves {}",
+              "en": "var without {}"
+            },
+            "id": "whereToStoreData",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "getCurrencyValue",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
     {
       "en": {
         "title": "Copy-Paste",
@@ -1097,6 +1112,11 @@
               "es": "Nombre de Hoja:",
               "en": "Sheet Name"
             },
+            "description": {
+              "es": "Nombre de la hoja donde agregar la fila",
+              "en": "Name of the sheet where add the row",
+              "pr": "Nome da folha onde acrescentar a fila"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -1207,6 +1227,11 @@
             "placeholder": {
               "es": "Sheet",
               "en": "Sheet"
+            },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
             },
             "title": {
               "es": "Nombre de Hoja:",
@@ -1529,6 +1554,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentra la tabla",
+              "en": "Name of the sheet where the table is located",
+              "pr": "Nome da folha onde a tabela está localizada"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -1585,6 +1615,11 @@
             "title": {
               "es": "Hoja:",
               "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -1795,6 +1830,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -1851,6 +1891,11 @@
             "title": {
               "es": "Hoja: ",
               "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -1938,6 +1983,11 @@
             "title": {
               "es": "Hoja: ",
               "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja a renombrar",
+              "en": "Name of the sheet to be renamed",
+              "pr": "Nome da folha a ser renomeada"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -2270,6 +2320,11 @@
               "es": "Ingrese celdas donde filtrar",
               "en": "cells where filter "
             },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "range",
             "css": "col-md-6"
           },
@@ -2326,8 +2381,7 @@
       },
       "form": {
         "css": "modal-lg",
-        "inputs": [
-        ]
+        "inputs": []
       },
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
@@ -2387,62 +2441,62 @@
       "docker": true
     },
     {
-        "en": {
-          "title": "Save Excel with password",
-          "description": "Save a Excel file",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Guardar Excel con password",
-          "description": "Guarda un archivo Excel",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-          "css": "modal-lg",
-          "inputs": [
-            {
-              "type": "file_select",
-              "placeholder": {
-                "es": "/Users/user/Desktop/excel.xlsx",
-                "en": "/Users/user/Desktop/excel.xlsx"
-              },
-              "title": {
-                "es": "Guardar Excel en:",
-                "en": "Save Excel as:"
-              },
-              "id": "path_file",
-              "css": "col-md-12"
-            },
-            {
-                "type": "input",
-                "placeholder": {
-                  "es": "password",
-                  "en": "password"
-                },
-                "title": {
-                  "es": "Ingrese la password",
-                  "en": "Password to save with"
-                },
-                "id": "password",
-                "css": "col-md-6"
-            }
-          ]
-        },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "save_mac_with_password",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
+      "en": {
+        "title": "Save Excel with password",
+        "description": "Save a Excel file",
+        "title_options": null,
+        "options": null
       },
+      "es": {
+        "title": "Guardar Excel con password",
+        "description": "Guarda un archivo Excel",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "file_select",
+            "placeholder": {
+              "es": "/Users/user/Desktop/excel.xlsx",
+              "en": "/Users/user/Desktop/excel.xlsx"
+            },
+            "title": {
+              "es": "Guardar Excel en:",
+              "en": "Save Excel as:"
+            },
+            "id": "path_file",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "password",
+              "en": "password"
+            },
+            "title": {
+              "es": "Ingrese la password",
+              "en": "Password to save with"
+            },
+            "id": "password",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "save_mac_with_password",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
     {
       "en": {
         "title": "Export to advanced PDF",
@@ -2491,7 +2545,7 @@
                 "title": "No",
                 "value": "no"
               },
-               {
+              {
                 "title": "All",
                 "value": "all"
               },
@@ -2508,31 +2562,31 @@
             "css": "col-md-3"
           },
           {
-          "type": "checkbox",
-          "title": {
-            "es": "Zoom",
-            "en": "Zoom"
-          },
-             "id": "check_zoom",
-              "css": "col-md-3"
-          },
-          {
-          "type": "checkbox",
-          "title": {
-            "es": "Ajustar Alto",
-            "en": "FitToPagesTall"
-          },
-             "id": "check_tall",
-              "css": "col-md-3"
+            "type": "checkbox",
+            "title": {
+              "es": "Zoom",
+              "en": "Zoom"
+            },
+            "id": "check_zoom",
+            "css": "col-md-3"
           },
           {
-          "type": "checkbox",
-          "title": {
-            "es": "Ajustar ancho",
-            "en": "FitToPagesWide"
+            "type": "checkbox",
+            "title": {
+              "es": "Ajustar Alto",
+              "en": "FitToPagesTall"
+            },
+            "id": "check_tall",
+            "css": "col-md-3"
           },
-             "id": "check_wide",
-              "css": "col-md-3"
+          {
+            "type": "checkbox",
+            "title": {
+              "es": "Ajustar ancho",
+              "en": "FitToPagesWide"
+            },
+            "id": "check_wide",
+            "css": "col-md-3"
           }
         ]
       },
@@ -2706,6 +2760,11 @@
               "es": "Hoja 1",
               "en": "Sheet1"
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "title": {
               "es": "Hoja: ",
               "en": "Sheet: "
@@ -2722,6 +2781,11 @@
             "title": {
               "es": "Rango donde buscar: ",
               "en": "Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-3"
@@ -2772,7 +2836,7 @@
       "group": "scripts",
       "linux": false,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
@@ -2801,6 +2865,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -2814,8 +2883,13 @@
               "es": "Rango donde buscar: ",
               "en": "Range: "
             },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "range",
-            "css": "col-md-3"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -2833,23 +2907,6 @@
             },
             "id": "var_",
             "css": "col-md-6"
-          },
-          {
-            "type": "checkbox",
-            "placeholder": {
-              "es": "",
-              "en": ""
-            },
-            "title": {
-              "es": "Datos extra",
-              "en": "More data "
-            },
-            "help": {
-              "es": "Si se marca, devolverá las celdas con sus rangos",
-              "en": "If check, return cell information with range"
-            },
-            "id": "more_data",
-            "css": "col-md-6"
           }
         ]
       },
@@ -2863,7 +2920,7 @@
       "group": "scripts",
       "linux": false,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
@@ -2892,6 +2949,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -2904,6 +2966,11 @@
             "title": {
               "es": "Rango donde buscar: ",
               "en": "Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-3"
@@ -2975,6 +3042,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -2991,6 +3063,11 @@
             "help": {
               "es": "No usar cabeceras",
               "en": "Not headers"
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-3"
@@ -3061,8 +3138,7 @@
       },
       "form": {
         "css": "modal-lg",
-        "inputs": [
-        ]
+        "inputs": []
       },
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
@@ -3103,6 +3179,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -3119,6 +3200,11 @@
             "help": {
               "es": "No usar cabeceras",
               "en": "Not headers"
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-6"
@@ -3194,6 +3280,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -3206,6 +3297,11 @@
             "title": {
               "es": "Rango donde buscar: ",
               "en": "Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-6"
@@ -3274,6 +3370,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -3304,7 +3405,7 @@
                 "title": "Scatter",
                 "value": "-4169"
               },
-{
+              {
                 "title": "Scatter with Smoothed Lines",
                 "value": "72"
               }
@@ -3335,10 +3436,14 @@
               "es": "Rango de datos: ",
               "en": "Data range: "
             },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "range",
             "css": "col-md-6"
           }
-
         ]
       },
       "video_youtube": "",
@@ -3406,7 +3511,7 @@
               "es": "Excel sin Contraseña:",
               "en": "Excel without password:"
             },
-             "help": {
+            "help": {
               "es": "Vacío para guardar en el mismo Excel",
               "en": "Empty for save in the same Excel"
             },
@@ -3453,6 +3558,11 @@
             "title": {
               "es": "Hoja: ",
               "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -3523,6 +3633,11 @@
             "title": {
               "es": "Hoja: ",
               "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -3651,6 +3766,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -3663,6 +3783,11 @@
             "title": {
               "es": "Celda o Rango de celdas:",
               "en": "Cell o Cells Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-6"
@@ -3911,6 +4036,11 @@
               "es": "Hoja:",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere bloquear",
+              "en": "Name of the sheet to be locked",
+              "pr": "Nome da folha a ser bloqueada"
+            },
             "id": "sheet",
             "css": "col-md-12"
           },
@@ -4025,6 +4155,11 @@
               "es": "Hoja: ",
               "en": "Sheet: "
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet",
             "css": "col-md-6"
           },
@@ -4037,6 +4172,11 @@
             "title": {
               "es": "Rango donde buscar: ",
               "en": "Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-3"
@@ -4109,64 +4249,65 @@
       "docker": true
     },
     {
-        "en": {
-          "title": "Convert Excel time to hours",
-          "description": "Convert Excel time to hours",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Convertir tiempo de Excel a horas",
-          "description": "Convertir tiempo de Excel a horas",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-          "css": "modal-lg",
-          "inputs": [
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "0.296655812",
-                "en": "0.296655812"
-              },
-              "title": {
-                "es": "Ingrese el tiempo en formato decimal: ",
-                "en": "Decimal time: "
-              },
-              "id": "decimalTime",
-              "css": "col-md-6"
-            },{
-              "type": "input",
-              "placeholder": {
-                "es": "Variable",
-                "en": "Variable"
-              },
-              "title": {
-                "es": "Asignar resultado a variable",
-                "en": "Assign result to variable: "
-              },
-              "help": {
-                "es": "Nombre de variable sin llaves {}",
-                "en": "Variable name without {}"
-              },
-              "id": "whereToStoreIn",
-              "css": "col-md-6"
-            }
-          ]
-        },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "convertDecimalTimeToHours",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
-      }
+      "en": {
+        "title": "Convert Excel time to hours",
+        "description": "Convert Excel time to hours",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Convertir tiempo de Excel a horas",
+        "description": "Convertir tiempo de Excel a horas",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "0.296655812",
+              "en": "0.296655812"
+            },
+            "title": {
+              "es": "Ingrese el tiempo en formato decimal: ",
+              "en": "Decimal time: "
+            },
+            "id": "decimalTime",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Variable",
+              "en": "Variable"
+            },
+            "title": {
+              "es": "Asignar resultado a variable",
+              "en": "Assign result to variable: "
+            },
+            "help": {
+              "es": "Nombre de variable sin llaves {}",
+              "en": "Variable name without {}"
+            },
+            "id": "whereToStoreIn",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "convertDecimalTimeToHours",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    }
   ]
 }

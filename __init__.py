@@ -1228,43 +1228,21 @@ if module == "GetCountCells":
     sheet = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
-    extends = GetParams("more_data")
     
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected_api = wb.sheets[sheet].api
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-        cell_values = []
+        count = 0
 
         for r in filtered_cells.Address.split(","):
             range_cell = []
             for ro in wb.sheets[sheet].api.Range(r).Rows:
-                if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                    cells = []
-                    for cell in ro.Cells:
-                        if isinstance(cell.Value, datetime.datetime):
-                            cells.append(get_date_with_format(cell.Value2))
-                        else:
-                            cells.append(cell.Value2)
-
-                    range_cell.append(cells)
-                else:
-                    range_cell.append([ro.Value])
-            try:
-                extends = eval(extends)
-            except TypeError:
-                pass
-            if extends:
-                info = {"range": r.replace("$", ""), "data": range_cell}
-                cell_values.append(info)
-            else:
-                cell_values = cell_values + \
-                    range_cell if len(cell_values) > 0 else range_cell
-
+                count += 1
 
         if result:
-            SetVar(result, len(cell_values))
+            SetVar(result, count)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
