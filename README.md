@@ -9,6 +9,7 @@ __Download__ and __install__ the content in 'modules' folder in the Rocketbot pa
 ## How to use this module
   
 This module needs to be installed Microsoft Excel with active license. If you need work with xlsx files without Excel application, use the Rocketbot commands in the Files secction
+
 ## Overview
 
 
@@ -173,7 +174,12 @@ Parses a column of cells that contain text into several columns.
 
 54. Convert Excel time to hours  
 Convert Excel time to hours
+
+
 ### Updates
+
+#### 13-Oct-2021
+- Fix count cells filtered
 #### 30-Sep-2021
 - Paste command: Update compatibilities
 #### 28-Sep-2021

@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "33.10",
+  "version": "33.11",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -42,6 +42,10 @@
               "es": "Archivo.XLSX",
               "en": "file.XLSX"
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere abrir",
+              "en": "Path of the xlsx file to be opened"
+            },
             "title": {
               "es": "Ruta archivo XLSX:",
               "en": "Patho to XLSX file: "
@@ -59,6 +63,10 @@
               "es": "Password (opcional):",
               "en": "Password (optional): "
             },
+            "description": {
+              "es": "Contraseña del archivo xlsx",
+              "en": "Password of the xlsx file"
+            },
             "id": "password",
             "css": "col-md-6"
           },
@@ -71,6 +79,10 @@
             "title": {
               "es": "Identificador (opcional):",
               "en": "Id (optional): "
+            },
+            "description": {
+              "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
             },
             "id": "id",
             "css": "col-md-6"
@@ -93,13 +105,13 @@
     {
       "en": {
         "title": "Count columns",
-        "description": "Count columns",
+        "description": "Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Contar Columnas",
-        "description": "Contar Columnas",
+        "description": "Cuenta el número de columnas del excel abierto. Se requiere que el excel esté guardado para tomar los últimos cambios",
         "title_options": null,
         "options": null
       },
@@ -127,8 +139,12 @@
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "True",
+              "en": "False"
+            },
+            "description": {
+              "es": "Si se marca esta casilla, devolverá la letra de la última columna",
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
             },
             "title": {
               "es": "Obtener nombre de columna",
@@ -140,8 +156,8 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Variable",
-              "en": "Variable"
+              "es": "numero_columnas",
+              "en": "count_columns"
             },
             "title": {
               "es": "Asignar resultado a variable",
@@ -151,6 +167,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -221,14 +243,18 @@
               "es": "Si se deja vacío por defecto será la columna A",
               "en": "If empty by default it will be column A"
             },
+            "description": {
+              "es": "Columna donde se contará la cantidad de filas",
+              "en": "Column where the rows will be counted"
+            },
             "id": "row_",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "Variable",
-              "en": "Variable"
+              "es": "numero_filas",
+              "en": "length_rows"
             },
             "title": {
               "es": "Asignar resultado a variable",
@@ -238,6 +264,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -259,13 +291,13 @@
     {
       "en": {
         "title": "Cell color",
-        "description": "Change color of a cell or range of cells ",
+        "description": "Change color of a cell or range of cells. Can be a default color or custom ",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Color celda",
-        "description": "Cambia color de una celda o rango de celdas ",
+        "description": "Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado",
         "title_options": null,
         "options": null
       },
@@ -300,14 +332,19 @@
               "es": "Ingrese color en RGB: ",
               "en": "RGB color cell: "
             },
+            "description": {
+              "es": "Valores rgb del color que tendrá la celda o celdas",
+              "en": "RGB values of the color that will be the cell or cells"
+            },
+            "remove_vars": true,
             "id": "custom",
             "css": "col-md-6"
           },
           {
             "type": "select",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "red",
+              "en": "red"
             },
             "title": {
               "es": "Seleccione color: ",
@@ -339,6 +376,11 @@
                 "value": "grey"
               }
             ],
+            "description": {
+              "es": "Seleccione el color. Puede usar el campo anterior para personalizar",
+              "en": "Select the color. You can use the previous input to customize the color"
+            },
+            "remove_vars": true,
             "id": "color",
             "css": "col-md-12"
           }
@@ -383,6 +425,11 @@
               "es": "Ingrese celda: ",
               "en": "Cell: "
             },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell",
             "css": "col-md-6"
           },
@@ -396,7 +443,15 @@
               "es": "Escriba fórmula: ",
               "en": "Write formula: "
             },
-            "help": "Las fórmulas deben ser escritas en ingles",
+            "description": {
+              "es": "Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar parámetros",
+              "en": "Formula that will be inserted",
+              "pr": "Fórmula a ser inserida. Deve ser escrito em inglês. Lembre-se de usar *,* para separar parâmetros"
+            },
+            "help": {
+              "es": "Las fórmulas deben ser escritas en ingles",
+              "pr": "Deve ser escrito em inglês"
+            },
             "id": "formula",
             "css": "col-md-6"
           }
@@ -436,6 +491,10 @@
             "placeholder": {
               "es": "Macro.bas",
               "en": "Macro.bas"
+            },
+            "description": {
+              "es": "Ruta del archivo .bas que se quiere insertar",
+              "en": "Path of the bas file to be inserted"
             },
             "title": {
               "es": "Ruta de la Macro:",
@@ -485,6 +544,11 @@
               "es": "Hoja",
               "en": "Sheet "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -498,18 +562,28 @@
               "es": "Ingrese celdas a seleccionar",
               "en": "Enter cells to select "
             },
+            "description": {
+              "es": "Celda o Rango de celdas para seleccionar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cells",
             "css": "col-md-3"
           },
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "True",
+              "en": "False"
             },
             "title": {
               "es": "Copiar",
               "en": "Copy "
+            },
+            "description": {
+              "es": "Al marcar la casilla, se copiarán los valores en el portapapeles",
+              "en": "By checking the checkbox, the values will be copied to the clipboard.",
+              "pr": "Ao marcar a caixa, os valores serão copiados para a prancheta."
             },
             "id": "copy",
             "css": "col-md-3"
@@ -555,6 +629,11 @@
               "es": "Hoja",
               "en": "Sheet "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheetWanted",
             "css": "col-md-6"
           },
@@ -567,6 +646,11 @@
             "title": {
               "es": "Ingrese celdas a seleccionar",
               "en": "Enter cells to select "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "cellRange",
             "css": "col-md-6"
@@ -585,6 +669,12 @@
               "es": "La variable debe ir sin llaves {}",
               "en": "var without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "whereToStoreData",
             "css": "col-md-6"
           }
@@ -603,77 +693,92 @@
       "mac": true,
       "docker": true
     },
-      {
-        "en": {
-          "title": "Get Cell With Date Format",
-          "description": "Get cells with date format",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Obtener Celda Formato Fecha",
-          "description": "Obtiene celdas con formato fecha",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-          "css": "modal-lg",
-          "inputs": [
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "Hoja 1",
-                "en": "Hoja 1"
-              },
-              "title": {
-                "es": "Hoja",
-                "en": "Sheet "
-              },
-              "id": "sheetWanted",
-              "css": "col-md-6"
-            },
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "A1:B3",
-                "en": "A1:B3"
-              },
-              "title": {
-                "es": "Ingrese celdas a seleccionar",
-                "en": "Enter cells to select "
-              },
-              "id": "cellRange",
-              "css": "col-md-6"
-            },
-            {
-                "type": "input",
-                "placeholder": {
-                    "es": "variable",
-                    "en": "variable"
-                },
-                "title": {
-                    "es": "Asignar a variable",
-                    "en": "Assign to var"
-                },
-                "remove_vars": true,
-                "id": "whereToStoreData",
-                "css": "col-md-6"
-            }
-          ]
-        },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "getDateValue",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
+    {
+      "en": {
+        "title": "Get Cell With Date Format",
+        "description": "Get cells with date format",
+        "title_options": null,
+        "options": null
       },
+      "es": {
+        "title": "Obtener Celda Formato Fecha",
+        "description": "Obtiene celdas con formato fecha",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja 1",
+              "en": "Hoja 1"
+            },
+            "title": {
+              "es": "Hoja",
+              "en": "Sheet "
+            },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
+            "id": "sheetWanted",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1:B3",
+              "en": "A1:B3"
+            },
+            "title": {
+              "es": "Ingrese celdas a seleccionar",
+              "en": "Enter cells to select "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
+            "id": "cellRange",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "variable",
+              "en": "variable"
+            },
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Assign to var"
+            },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
+            "id": "whereToStoreData",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "getDateValue",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
     {
       "en": {
         "title": "Copy-Paste",
@@ -700,6 +805,11 @@
               "es": "Hoja origen ",
               "en": "Origin Sheet"
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name1",
             "css": "col-md-6"
           },
@@ -712,6 +822,11 @@
             "title": {
               "es": "Rango a copiar: ",
               "en": "Range to copy"
+            },
+            "description": {
+              "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells to copy. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células para copiar. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "cell_range1",
             "css": "col-md-6"
@@ -726,6 +841,11 @@
               "es": "Hoja destino: ",
               "en": "Destiny Sheet"
             },
+            "description": {
+              "es": "Nombre de la hoja de destino",
+              "en": "Name of the destinity sheet",
+              "pr": "Nome da folha de destino"
+            },
             "id": "sheet_name2",
             "css": "col-md-6"
           },
@@ -738,6 +858,11 @@
             "title": {
               "es": "Rango donde pegar",
               "en": "Range to paste"
+            },
+            "description": {
+              "es": "Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células para colar. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "cell_range2",
             "css": "col-md-4"
@@ -783,6 +908,11 @@
               "es": "Nombre de Hoja:",
               "en": "Sheet Name: "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -800,14 +930,19 @@
               "es": "Para una sola columna ej: A:A",
               "en": "For one column write A:A"
             },
+            "description": {
+              "es": "Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell_range",
             "css": "col-md-6"
           },
           {
             "type": "select",
             "placeholder": {
-              "es": "B:C",
-              "en": "B:C"
+              "es": "dd-mm-yy",
+              "en": "dd-mm-yy"
             },
             "title": {
               "es": "Formato",
@@ -819,15 +954,15 @@
                 "value": ""
               },
               {
-                "title": "Texto",
+                "title": "Text",
                 "value": "text"
               },
               {
-                "title": "Número",
+                "title": "Number",
                 "value": "number_"
               },
               {
-                "title": "Moneda",
+                "title": "Coin",
                 "value": "coin_"
               },
               {
@@ -859,6 +994,11 @@
                 "value": "custom"
               }
             ],
+            "description": {
+              "es": "Se debe seleccionar el tipo de formato para la celda. Seleccione custom para adicionar un formato personalizado",
+              "en": "You should select the formatting type for the cell. Select custom to add a customizable format",
+              "pr": "O tipo de formato para a célula deve ser selecionado. Selecione o formato personalizado para adicionar um formato personalizado"
+            },
             "id": "format_",
             "css": "col-md-6"
           },
@@ -871,6 +1011,11 @@
             "title": {
               "es": "Formato personalizado: ",
               "en": "Custom format: "
+            },
+            "description": {
+              "es": "Formato personalizado. Debe ser el mismo mostrado en la sección personalizado de Excel",
+              "en": "Custom format. Must be the same as the one shown in the Excel custom section",
+              "pr": "Formato personalizado. Deve ser o mesmo que mostrado na seção personalizada do Excel."
             },
             "id": "custom",
             "css": "col-md-6"
@@ -916,6 +1061,11 @@
               "es": "Nombre de la hoja",
               "en": "Sheet name"
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere crear",
+              "en": "Name of the sheet to create",
+              "pr": "Nome da folha a ser criada"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -928,6 +1078,11 @@
             "title": {
               "es": "Despues de",
               "en": "After"
+            },
+            "description": {
+              "es": "La hoja se creará al lado de la hoja indicada en este campo",
+              "en": "The sheet will be created next to the sheet indicated in this field.",
+              "pr": "A folha será criada ao lado da folha indicada neste campo."
             },
             "help": {
               "es": "Por defecto, se creará al final",
@@ -977,6 +1132,11 @@
               "es": "Nombre de la hoja",
               "en": "Sheet name"
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere borrar",
+              "en": "Name of the sheet to delete",
+              "pr": "Nome da folha a ser excluida"
+            },
             "id": "sheet_name",
             "css": "col-md-12"
           },
@@ -994,6 +1154,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -1038,6 +1204,11 @@
               "es": "Excel origen",
               "en": "Excel origin"
             },
+            "description": {
+              "es": "Ruta del archivo excel de origen",
+              "en": "Path of the source xlsx file",
+              "pr": "Caminho do arquivo xlsx de origen"
+            },
             "id": "excel1",
             "css": "col-md-12"
           },
@@ -1050,6 +1221,11 @@
             "title": {
               "es": "Hoja origen",
               "en": "Sheet name"
+            },
+            "description": {
+              "es": "Nombre de la hoja de origen",
+              "en": "Name of the source sheet",
+              "pr": "Nome da folha de origen"
             },
             "id": "sheet_name1",
             "css": "col-md-6"
@@ -1064,6 +1240,11 @@
               "es": "Rango a copiar",
               "en": "Range to copy"
             },
+            "description": {
+              "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell_range1",
             "css": "col-md-6"
           },
@@ -1076,6 +1257,11 @@
             "title": {
               "es": "Excel destino",
               "en": "Excel destination"
+            },
+            "description": {
+              "es": "Ruta del archivo excel de destino",
+              "en": "Path of the destination xlsx file",
+              "pr": "Caminho do arquivo xlsx de destino"
             },
             "id": "excel2",
             "css": "col-md-12"
@@ -1090,6 +1276,11 @@
               "es": "Hoja destino",
               "en": "Sheet name"
             },
+            "description": {
+              "es": "Nombre de la hoja donde se copiará",
+              "en": "Name of the sheet to be copied",
+              "pr": "Nome da folha onde vai ser colada"
+            },
             "id": "sheet_name2",
             "css": "col-md-4"
           },
@@ -1103,18 +1294,28 @@
               "es": "Rango donde pegar",
               "en": "Range to paste"
             },
+            "description": {
+              "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell_range2",
             "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "True",
+              "en": "True"
             },
             "title": {
               "es": "Solo valores",
               "en": "Only Values"
+            },
+            "description": {
+              "es": "Si esta casilla es seleccionada, copiará solo los valores",
+              "en": "If this checkbox is checked, only the value will be copied",
+              "pr": "Se esta caixa foi marcada, copiará apenas os valores"
             },
             "id": "values",
             "css": "col-md-4"
@@ -1156,6 +1357,10 @@
               "es": "Opción",
               "en": "Option"
             },
+            "placeholder": {
+              "es": "Add",
+              "en": "Add"
+            },
             "options": [
               {
                 "title": "--Seleccione--",
@@ -1170,6 +1375,11 @@
                 "value": "delete_"
               }
             ],
+            "description": {
+              "es": "Seleccione Add para agregar una fila o Delete para borrar",
+              "en": "Select Add or Delete a row",
+              "pr": "Selecione Add para adicionar uma linha ou Delete para excluir uma linha."
+            },
             "id": "option_",
             "css": "col-md-6"
           },
@@ -1205,6 +1415,11 @@
               "es": "Para rango ej: 2:4",
               "en": "For range ex: 2:4"
             },
+            "description": {
+              "es": "Indique la fila o filas que se quieren agregar o eliminar",
+              "en": "Indicate the row(s) to be added or deleted",
+              "pr": "Indicar a(s) linha(s) a ser(em) adicionada(s) ou deletada(s)"
+            },
             "id": "row_",
             "css": "col-md-6"
           },
@@ -1236,6 +1451,11 @@
                 "value": "down_"
               }
             ],
+            "description": {
+              "es": "Indique donde agregar o eliminar la fila",
+              "en": "Indicate where add or delete the row",
+              "pr": "Indicar onde adicionar o excluir a linha"
+            },
             "id": "type_",
             "css": "col-md-6"
           }
@@ -1290,6 +1510,11 @@
                 "value": "delete_"
               }
             ],
+            "description": {
+              "es": "Seleccione Add para agregar una columna o Delete para borrar",
+              "en": "Select Add or Delete a column",
+              "pr": "Selecione Add para adicionar uma coluna ou Delete para excluir uma coluna."
+            },
             "id": "option_",
             "css": "col-md-6"
           },
@@ -1324,6 +1549,11 @@
             "help": {
               "es": "Para rango ej: B:F",
               "en": "For range ex: B:F"
+            },
+            "description": {
+              "es": "Indique la columna o columnas que se quieren agregar o eliminar",
+              "en": "Indicate the column(s) to be added or deleted",
+              "pr": "Indicar a(s) coluna(s) a ser(em) adicionada(s) ou deletada(s)"
             },
             "id": "col_",
             "css": "col-md-6"
@@ -1365,6 +1595,10 @@
               "es": "Ruta archivo CSV:",
               "en": "CSV file path:"
             },
+            "description": {
+              "es": "Ruta del archivo csv que se quiere convertir",
+              "en": "Path of the csv file to be converted"
+            },
             "id": "csv_path",
             "css": "col-md-12"
           },
@@ -1374,15 +1608,25 @@
               "es": "Delimitador:",
               "en": "Delimiter:"
             },
+            "description": {
+              "es": "Separador del archivo csv",
+              "en": "Delimiter of the csv file",
+              "pr": "Delimitador da arquivo csv"
+            },
             "id": "separator",
             "css": "col-md-4"
           },
           {
             "type": "checkbox",
-            "placeholder": "",
+            "placeholder": "True",
             "title": {
               "es": "Tiene cabeceras?",
               "en": "Do it have headers?"
+            },
+            "description": {
+              "es": "Marcar esta casilla si el csv tiene cabeceras",
+              "en": "Check this checkbox if the csv has headers",
+              "pr": "marque esta caixa se o csv tiver cabeçalhos"
             },
             "id": "header",
             "css": "col-md-4"
@@ -1397,6 +1641,11 @@
               "es": "Codificación",
               "en": "Encoding"
             },
+            "description": {
+              "es": "Escriba el tipo de codificación del archivo. Por defecto es latin-1",
+              "en": "Type the encoding type of the file. Default is latin-1",
+              "pr": "Digite o tipo de codificação do arquivo. O padrão é latino-1"
+            },
             "id": "encoding",
             "css": "col-md-4"
           },
@@ -1406,6 +1655,10 @@
             "title": {
               "es": "Ruta archivo XLSX:",
               "en": "XLSX file path"
+            },
+            "description": {
+              "es": "Ruta del archivo xlsx donde guardar",
+              "en": "Path of the xlsx file where will be saved"
             },
             "id": "xlsx_path",
             "css": "col-md-12"
@@ -1448,6 +1701,10 @@
               "es": "Ruta archivo XLSX:",
               "en": "XLSX file path:"
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere convertir",
+              "en": "Path of the xlsx file to be converted"
+            },
             "id": "xlsx_path",
             "css": "col-md-12"
           },
@@ -1457,6 +1714,11 @@
             "title": {
               "es": "Delimitador:",
               "en": "Delimiter:"
+            },
+            "description": {
+              "es": "Separador del archivo csv",
+              "en": "Delimiter of the csv file",
+              "pr": "Delimitador da arquivo csv"
             },
             "id": "delimiter",
             "css": "col-md-6"
@@ -1468,6 +1730,11 @@
               "es": "Nombre de la hoja",
               "en": "Sheet name"
             },
+            "description": {
+              "es": "Nombre de la hoja donde se encuentran los datos",
+              "en": "Name of the sheet where the data are located",
+              "pr": "Nome da folha onde os dados estão localizados"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -1477,6 +1744,10 @@
             "title": {
               "es": "Ruta archivo CSV:",
               "en": "CSV file path"
+            },
+            "description": {
+              "es": "Ruta del archivo csv donde guardar la conversión",
+              "en": "Path of the xlsx file where will be saved"
             },
             "id": "csv_path",
             "css": "col-md-12"
@@ -1519,6 +1790,10 @@
               "es": "Ruta archivo XLS:",
               "en": "XLS file path:"
             },
+            "description": {
+              "es": "Ruta del archivo xls que se quiere convertir",
+              "en": "Path of the xls file to be converted"
+            },
             "id": "xls_path",
             "css": "col-md-12"
           },
@@ -1528,6 +1803,10 @@
             "title": {
               "es": "Ruta archivo XLSX:",
               "en": "XLSX file path"
+            },
+            "description": {
+              "es": "Ruta donde se guardará el archivo xlsx",
+              "en": "Path of the xlsx file where will be saved"
             },
             "help": {
               "es": "Ingresar el nombre del archivo con la extensión .xlsx",
@@ -1581,6 +1860,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "result",
             "css": "col-md-12"
           }
@@ -1643,6 +1928,11 @@
               "es": "Nombre de la tabla dinámica: ",
               "en": "Pivote table name: "
             },
+            "description": {
+              "es": "Nombre de la tabla dinámica que se actualizará",
+              "en": "Name of the pivot table to be updated",
+              "pr": "Nome da tabela dinámica que vai ser actualizada"
+            },
             "id": "table",
             "css": "col-md-6"
           }
@@ -1664,13 +1954,13 @@
     {
       "en": {
         "title": "Fit cells",
-        "description": "Fit cells range",
+        "description": "Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Ajustar celdas",
-        "description": "Ajusta un rango de celdas",
+        "description": "Ajusta, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas",
         "title_options": null,
         "options": null
       },
@@ -1705,6 +1995,11 @@
               "es": "Rango a ajustar",
               "en": "Range to fit"
             },
+            "description": {
+              "es": "Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells to fit. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell_range",
             "css": "col-md-6"
           },
@@ -1717,6 +2012,11 @@
             "title": {
               "es": "Autofit",
               "en": "Autofit"
+            },
+            "description": {
+              "es": "Ajusta automaticamente las celdas para que se visualicen los datos",
+              "en": "Automatically fit the cells to display the data",
+              "pr": "Ajusta automaticamente as células para exibir os dados"
             },
             "id": "fit",
             "css": "col-md-2"
@@ -1731,6 +2031,11 @@
               "es": "Agrupar filas",
               "en": "Group rows"
             },
+            "description": {
+              "es": "Al marcar este checkbox, se agruparán las filas en el rango seleccionado",
+              "en": "To mark this checkbox will group the rows in the selected range.",
+              "pr": "Ao marcar esta opção, as linhas serão agrupadas na faixa selecionada."
+            },
             "id": "row",
             "css": "col-md-2"
           },
@@ -1743,6 +2048,11 @@
             "title": {
               "es": "Agrupar columnas",
               "en": "Group columns"
+            },
+            "description": {
+              "es": "Al marcar este checkbox, se agruparán las columnas en el rango seleccionado",
+              "en": "To mark this checkbox will group the columns in the selected range.",
+              "pr": "Ao marcar esta opção, as colunas serão agrupadas na faixa selecionada."
             },
             "id": "column",
             "css": "col-md-2"
@@ -1757,6 +2067,11 @@
               "es": "Desagrupar filas",
               "en": "Ungroup rows"
             },
+            "description": {
+              "es": "Al marcar este checkbox, se desagruparán las filas en el rango seleccionado",
+              "en": "To mark this checkbox will upgroup the rows in the selected range.",
+              "pr": "Ao marcar esta opção, as linhas serão desagrupadas na faixa selecionada."
+            },
             "id": "un_row",
             "css": "col-md-2"
           },
@@ -1769,6 +2084,11 @@
             "title": {
               "es": "Desagrupar columnas",
               "en": "Ungroup columns"
+            },
+            "description": {
+              "es": "Al marcar este checkbox, se desagruparán las columnas en el rango seleccionado",
+              "en": "To mark this checkbox will upgroup the columns in the selected range.",
+              "pr": "Ao marcar esta opção, as colunas serão desagrupadas na faixa selecionada."
             },
             "id": "un_column",
             "css": "col-md-2"
@@ -1783,6 +2103,11 @@
               "es": "Nivel de fila",
               "en": "Row level"
             },
+            "description": {
+              "es": "Al marcar esta casilla se mostrará el número especificado de niveles de fila",
+              "en": "To mark this checkbox will displays the specified number of row levels of an outline",
+              "pr": "Ao marcar esta caixa, será exibido o número especificado de níveis de linha."
+            },
             "id": "row_levels",
             "css": "col-md-6"
           },
@@ -1795,6 +2120,11 @@
             "title": {
               "es": "Rango de columna",
               "en": "Column level"
+            },
+            "description": {
+              "es": "Al marcar esta casilla se mostrará el número especificado de niveles de columna",
+              "en": "To mark this checkbox will displays the specified number of column levels of an outline",
+              "pr": "Ao marcar esta caixa, será exibido o número especificado de níveis de coluna."
             },
             "id": "col_levels",
             "css": "col-md-6"
@@ -1817,7 +2147,7 @@
     {
       "en": {
         "title": "Get Formula",
-        "description": "Get formula into cell",
+        "description": "Get the formula into cell",
         "title_options": null,
         "options": null
       },
@@ -1840,6 +2170,11 @@
               "es": "Ingrese celda: ",
               "en": "Cell: "
             },
+            "description": {
+              "es": "Celda donde está la formula. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell where is the formula. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula onde fica a formula. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cell",
             "css": "col-md-6"
           },
@@ -1857,6 +2192,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -1918,6 +2259,11 @@
             "title": {
               "es": "Rango: ",
               "en": "Range: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "columns",
             "css": "col-md-6"
@@ -1981,6 +2327,11 @@
               "es": "Inicio de tabla: ",
               "en": "Table start: "
             },
+            "description": {
+              "es": "Columna donde comienza la tabla que se filtrará",
+              "en": "Column where the table to be filtered begins",
+              "pr": "Coluna onde começa a tabela a ser filtrada"
+            },
             "id": "start",
             "css": "col-md-3"
           },
@@ -1994,6 +2345,11 @@
               "es": "Columna: ",
               "en": "Column: "
             },
+            "description": {
+              "es": "Columna donde agregar el filtro",
+              "en": "Column where to add the filter",
+              "pr": "Coluna onde adicionar o filtro"
+            },
             "id": "column",
             "css": "col-md-3"
           },
@@ -2006,6 +2362,11 @@
             "title": {
               "es": "Filtro: ",
               "en": "Filter: "
+            },
+            "description": {
+              "es": "Filtro o lista de filtros a agregar. Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
+              "en": "Filter or list of filters to add. Use \"=\" to find blank fields, \"<>\" for non-empty cells and data negation.",
+              "pr": "Filtro ou lista de filtros a adicionar. Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
             },
             "help": {
               "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
@@ -2073,6 +2434,11 @@
               "es": "Nuevo nombre: ",
               "en": "New name: "
             },
+            "description": {
+              "es": "Nuevo Nombre de la hoja",
+              "en": "New name of the sheet",
+              "pr": "Novo nome da folha"
+            },
             "id": "name",
             "css": "col-md-6"
           }
@@ -2094,13 +2460,13 @@
     {
       "en": {
         "title": "Cell Style",
-        "description": "Format Cell",
+        "description": "This command modifies the formatting of the selected cell or range of cells. You can change the font and borders",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Estilo Celda",
-        "description": "Formatear Celda",
+        "description": "Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes",
         "title_options": null,
         "options": null
       },
@@ -2117,6 +2483,11 @@
               "es": "Nombre de Hoja:",
               "en": "Sheet Name: "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -2128,7 +2499,12 @@
             },
             "title": {
               "es": "Rango a formatear: ",
-              "en": "Cell: "
+              "en": "Cell to format: "
+            },
+            "description": {
+              "es": "Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells to format. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "cell_range",
             "css": "col-md-6"
@@ -2136,8 +2512,8 @@
           {
             "type": "select",
             "placeholder": {
-              "es": "--Seleccione--",
-              "en": "--Select--"
+              "es": "Contour",
+              "en": "Contour"
             },
             "title": {
               "es": "Borde",
@@ -2177,14 +2553,19 @@
                 "value": "contour"
               }
             ],
+            "description": {
+              "es": "Borde de la celda que se quiere formatear",
+              "en": "Border of the cell to be formatted",
+              "pr": "Borda da célula a ser formatada"
+            },
             "id": "position",
             "css": "col-md-6"
           },
           {
             "type": "select",
             "placeholder": {
-              "es": "--Seleccione--",
-              "en": "--Select--"
+              "es": "_ _ _ _ _ _ _ _ _ _ _",
+              "en": "_ _ _ _ _ _ _ _ _ _ _"
             },
             "title": {
               "es": "Estilo",
@@ -2212,6 +2593,11 @@
                 "value": "4"
               }
             ],
+            "description": {
+              "es": "Estilo del borde de la celda que se quiere formatear",
+              "en": "Border style of the cell to be formatted",
+              "pr": "Estilo da borda da célula a ser formatada"
+            },
             "id": "lineStyle",
             "css": "col-md-6"
           },
@@ -2225,18 +2611,28 @@
               "es": "Tamaño de fuente: ",
               "en": "Font size: "
             },
+            "description": {
+              "es": "Tamaño de la fuente de la celda",
+              "en": "Font size of the cell to be formatted",
+              "pr": "Tamanho da fonte da célula"
+            },
             "id": "size",
             "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "A1:C4",
-              "en": "A1:C4"
+              "es": "True",
+              "en": "True"
             },
             "title": {
               "es": "Negrita",
               "en": "Blod"
+            },
+            "description": {
+              "es": "Marcar esta casilla para cambiar la fuente a negrita",
+              "en": "Mark this checkbox to change the font to bold",
+              "pr": "Seleccione esta caixa para cambiar o texto em negrito"
             },
             "id": "bold",
             "css": "col-md-2"
@@ -2244,12 +2640,17 @@
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "A1:C4",
-              "en": "A1:C4"
+              "es": "True",
+              "en": "True"
             },
             "title": {
               "es": "Cursiva",
               "en": "Italic"
+            },
+            "description": {
+              "es": "Marcar esta casilla para cambiar la fuente a cursiva",
+              "en": "Mark this checkbox to change the font to italic",
+              "pr": "Seleccione esta caixa para colocar o texto em itálico"
             },
             "id": "italic",
             "css": "col-md-2"
@@ -2257,8 +2658,13 @@
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "A1:C4",
-              "en": "A1:C4"
+              "es": "True",
+              "en": "True"
+            },
+            "description": {
+              "es": "Marcar esta casilla para cambiar la fuente a subrayado",
+              "en": "Mark this checkbox to change the font to underline",
+              "pr": "Seleccione esta caixa para sublinhar o texto"
             },
             "title": {
               "es": "Subrayar",
@@ -2308,6 +2714,11 @@
               "es": "Hoja",
               "en": "Sheet "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name",
             "css": "col-md-4"
           },
@@ -2321,18 +2732,28 @@
               "es": "Ingrese celdas donde pegar",
               "en": "cells where paste "
             },
+            "description": {
+              "es": "Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células onde vai colar. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "cells",
             "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "True",
+              "en": "True"
             },
             "title": {
               "es": "Solo valores",
               "en": "Only values "
+            },
+            "description": {
+              "es": "Si esta casilla es seleccionada, se pegarán solo los valores",
+              "en": "If this checkbox is checked, only the value will be pasted",
+              "pr": "Se esta caixa foi marcada, vai colar apenas os valores"
             },
             "id": "values",
             "css": "col-md-3"
@@ -2378,6 +2799,11 @@
               "es": "Hoja",
               "en": "Sheet "
             },
+            "description": {
+              "es": "Nombre de la hoja que se quiere automatizar",
+              "en": "Name of the sheet to automate",
+              "pr": "Nome da folha a ser automatizada"
+            },
             "id": "sheet_name",
             "css": "col-md-6"
           },
@@ -2405,6 +2831,11 @@
               "es": "A ",
               "en": "A "
             },
+            "description": {
+              "es": "Indicar la columna donde se buscarán los duplicados",
+              "en": "Indicate the column where the duplicates are to be searched for",
+              "pr": "Indicar a coluna onde as duplicatas serão procuradas."
+            },
             "title": {
               "es": "Columna: ",
               "en": "Column: "
@@ -2414,10 +2845,15 @@
           },
           {
             "type": "checkbox",
-            "placeholder": "",
+            "placeholder": "True",
             "title": {
               "es": "Tiene cabeceras?",
               "en": "Do it have headers?"
+            },
+            "description": {
+              "es": "Marcar esta casilla si el excel tiene cabeceras",
+              "en": "Check this checkbox if the excel has headers",
+              "pr": "marque esta caixa se o excel tiver cabeçalhos"
             },
             "id": "header",
             "css": "col-md-6"
@@ -2470,13 +2906,13 @@
     {
       "en": {
         "title": "Save Excel",
-        "description": "Save a Excel file",
+        "description": "Save a Excel file in the indicated path",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Guardar Excel",
-        "description": "Guarda un archivo Excel",
+        "description": "Guarda un archivo Excel en la ruta indicada",
         "title_options": null,
         "options": null
       },
@@ -2492,6 +2928,11 @@
             "title": {
               "es": "Guardar Excel:",
               "en": "Save Excel:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .xlsx",
+              "en": "Path where to save the .xlsx file",
+              "pr": "Caminho onde salvar o arquivo .xlsx"
             },
             "id": "path_file",
             "css": "col-md-12"
@@ -2537,6 +2978,11 @@
               "es": "Guardar Excel en:",
               "en": "Save Excel as:"
             },
+            "description": {
+              "es": "Ruta donde guardar el archivo .xlsx",
+              "en": "Path where to save the .xlsx file",
+              "pr": "Caminho onde salvar o arquivo .xlsx"
+            },
             "id": "path_file",
             "css": "col-md-12"
           },
@@ -2545,6 +2991,10 @@
             "placeholder": {
               "es": "password",
               "en": "password"
+            },
+            "description": {
+              "es": "Contraseña del archivo xlsx",
+              "en": "Password of the xlsx file"
             },
             "title": {
               "es": "Ingrese la password",
@@ -2593,6 +3043,11 @@
             "title": {
               "es": "Guardar PDF:",
               "en": "Save PDF:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .pdf",
+              "en": "Path where to save the .pdf file",
+              "pr": "Caminho onde salvar o arquivo .pdf"
             },
             "id": "path_file",
             "css": "col-md-12"
@@ -2700,6 +3155,11 @@
               "es": "Hoja origen ",
               "en": "Origin Sheet"
             },
+            "description": {
+              "es": "Nombre de la hoja de origen",
+              "en": "Name of the source sheet",
+              "pr": "Nome da folha de origen"
+            },
             "id": "sheet_name1",
             "css": "col-md-6"
           },
@@ -2717,6 +3177,11 @@
               "es": "Dejar vacío si quieres moverlo al final",
               "en": "Empty if you want move to final"
             },
+            "description": {
+              "es": "Nombre de la hoja donde se moverá",
+              "en": "Name of the sheet to be moved",
+              "pr": "Nome da folha onde vai ser movida"
+            },
             "id": "sheet_name2",
             "css": "col-md-6"
           },
@@ -2729,6 +3194,11 @@
             "title": {
               "es": "Excel destino",
               "en": "Excel destination"
+            },
+            "description": {
+              "es": "Ruta del archivo .xlsx donde mover o copiar la hoja",
+              "en": "Path of the .xlsx file where move or copy the sheet",
+              "pr": "Caminho do arquivo .xlsx onde mover ou copiar a folha"
             },
             "help": {
               "es": "Completar solo para mover de un libro a otro ",
@@ -2746,6 +3216,11 @@
             "title": {
               "es": "Copiar",
               "en": "Copy "
+            },
+            "description": {
+              "es": "Al marcar la casilla, se creará una copia de la hoja",
+              "en": "By checking the checkbox, the sheet will be copied",
+              "pr": "Ao marcar a caixa, a folha vai ser copiada."
             },
             "id": "copy",
             "css": "col-md-3"
@@ -2790,6 +3265,10 @@
             "title": {
               "es": "Ruta del Formulario:",
               "en": "Macro path: "
+            },
+            "description": {
+              "es": "Ruta del archivo frm que se quiere insertar",
+              "en": "Path of the frm file to be inserted"
             },
             "id": "form_path",
             "css": "col-md-12"
@@ -2875,6 +3354,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           },
@@ -2976,6 +3461,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -3056,6 +3547,11 @@
               "es": "Palabra a reemplazar",
               "en": "Word to replace: "
             },
+            "description": {
+              "es": "Palabra que se buscará para ser reemplazada",
+              "en": "Word to be sought to be replaced",
+              "pr": "Palavra a ser procurada para ser substituída"
+            },
             "id": "what",
             "css": "col-md-6"
           },
@@ -3068,6 +3564,11 @@
             "title": {
               "es": "Nueva palabra",
               "en": "New word: "
+            },
+            "description": {
+              "es": "Palabra que va a reemplazar a la anterior indicada",
+              "en": "Word that will replace the previous word indicated",
+              "pr": "Palavra que substituirá a anterior indicada"
             },
             "id": "replace",
             "css": "col-md-6"
@@ -3153,14 +3654,19 @@
               "es": "Columna",
               "en": "Column"
             },
+            "description": {
+              "es": "Indicar la columna a ordenar",
+              "en": "Indicate the column to be sorted",
+              "pr": "Indicar a coluna que vai ser classificada"
+            },
             "id": "column",
             "css": "col-md-6"
           },
           {
             "type": "select",
             "placeholder": {
-              "es": "",
-              "en": ""
+              "es": "Ascending",
+              "en": "Ascending"
             },
             "title": {
               "es": "Tipo de orden: ",
@@ -3176,6 +3682,11 @@
                 "value": "2"
               }
             ],
+            "description": {
+              "es": "Indicar como se ordenará la columna",
+              "en": "Indicate how the column will be sorted",
+              "pr": "Indicar como a coluna vai ser classificada"
+            },
             "id": "order",
             "css": "col-md-6"
           }
@@ -3290,6 +3801,11 @@
               "es": "Texto a buscar",
               "en": "Text to find"
             },
+            "description": {
+              "es": "Texto que se quiere buscar en el excel",
+              "en": "Text to be searched in the excel",
+              "pr": "Texto a ser procurado no excel"
+            },
             "id": "text",
             "css": "col-md-6"
           },
@@ -3307,6 +3823,12 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -3380,8 +3902,8 @@
           {
             "type": "select",
             "placeholder": {
-              "es": "Lorem",
-              "en": "Lorem"
+              "es": "Lock",
+              "en": "Lock"
             },
             "title": {
               "es": "Acción",
@@ -3397,6 +3919,11 @@
                 "value": "False"
               }
             ],
+            "description": {
+              "es": "Seleccione si desea bloquear o desbloquear una celda ",
+              "en": "Select if you want to lock or unlock a cell",
+              "pr": "Selecione se você deseja travar ou destravar uma célula"
+            },
             "id": "locked",
             "css": "col-md-6"
           }
@@ -3452,8 +3979,8 @@
           {
             "type": "select",
             "placeholder": {
-              "es": "Lorem",
-              "en": "Lorem"
+              "es": "Line",
+              "en": "Line"
             },
             "title": {
               "es": "Tipo de Gráfico",
@@ -3481,6 +4008,11 @@
                 "value": "72"
               }
             ],
+            "description": {
+              "es": "Seleccione el tipo de gráfico que se insertará en el excel",
+              "en": "Select the type of chart to be inserted in excel",
+              "pr": "Selecione o tipo de gráfico a ser inserido no Excel"
+            },
             "id": "type",
             "css": "col-md-6"
           },
@@ -3493,6 +4025,11 @@
             "title": {
               "es": "Celda donde insertar gráfico: ",
               "en": "Cell position: "
+            },
+            "description": {
+              "es": "Celda donde insertar el gráfico. La sintaxis debe ser la misma de excel (A1) ",
+              "en": "Cell where will be inserted the chart. The syntax must be the same as excel (A1) ",
+              "pr": "Célula onda vai ser inserido o gráfico. A sintaxe deve ser a mesma do excel (A1) "
             },
             "id": "cell",
             "css": "col-md-6"
@@ -3556,6 +4093,10 @@
               "es": "Excel con Contraseña:",
               "en": "Excel with password:"
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere abrir",
+              "en": "Path of the xlsx file to be opened"
+            },
             "id": "excel_file",
             "css": "col-md-12"
           },
@@ -3569,6 +4110,10 @@
               "es": "Contraseña:",
               "en": "Password:"
             },
+            "description": {
+              "es": "Contraseña del archivo xlsx",
+              "en": "Password of the xlsx file"
+            },
             "id": "pass_excel",
             "css": "col-md-12"
           },
@@ -3581,6 +4126,11 @@
             "title": {
               "es": "Excel sin Contraseña:",
               "en": "Excel without password:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .xlsx. Vacío para guardar en el mismo Excel",
+              "en": "Path where to save the .xlsx file. Empty for save in the same Excel",
+              "pr": "Caminho onde salvar o arquivo .xlsx"
             },
             "help": {
               "es": "Vacío para guardar en el mismo Excel",
@@ -3646,7 +4196,13 @@
             },
             "title": {
               "es": "Celda: ",
-              "en": "Cell: "
+              "en": "Cell: ",
+              "pr": "Célula"
+            },
+            "description": {
+              "es": "Celda donde insertar la imagen. La sintaxis debe ser la misma de excel (A1) ",
+              "en": "Cell where will be inserted the image. The syntax must be the same as excel (A1) ",
+              "pr": "Célula onda vai ser inserido a imagem. A sintaxe deve ser a mesma do excel (A1) "
             },
             "id": "cell_position",
             "css": "col-md-6"
@@ -3660,6 +4216,10 @@
             "title": {
               "es": "Ruta imagen:",
               "en": "Image path: "
+            },
+            "description": {
+              "es": "Ruta de la imagen que se quiere insertar",
+              "en": "Path of the image file to be inserted"
             },
             "id": "image_path",
             "css": "col-md-12"
@@ -3723,6 +4283,11 @@
               "es": "Index: ",
               "en": "Index: "
             },
+            "description": {
+              "es": "Índice del gráfico a exportar",
+              "en": "Index of the chart to be exported",
+              "pr": "Índice do gráfico a ser exportado"
+            },
             "id": "index",
             "css": "col-md-6"
           },
@@ -3735,6 +4300,10 @@
             "title": {
               "es": "Ruta imagen:",
               "en": "Image path: "
+            },
+            "description": {
+              "es": "Ruta dnde se guardará la imagen",
+              "en": "Path where the image will be saved"
             },
             "id": "path",
             "css": "col-md-12"
@@ -3780,18 +4349,26 @@
               "es": "Ruta archivo XLSX:",
               "en": "Patho to XLSX file: "
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere abrir",
+              "en": "Path of the xlsx file to be opened"
+            },
             "id": "path",
             "css": "col-md-12"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "id",
-              "en": "id"
+              "es": "default",
+              "en": "default"
             },
             "title": {
               "es": "Identificador (opcional):",
               "en": "Id (optional): "
+            },
+            "description": {
+              "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
             },
             "id": "id",
             "css": "col-md-12"
@@ -3873,6 +4450,11 @@
               "es": "Datos a escribir",
               "en": "Data "
             },
+            "description": {
+              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+            },
             "id": "data",
             "css": "col-md-12"
           }
@@ -3917,6 +4499,11 @@
               "es": "Hoja origen ",
               "en": "Origin Sheet"
             },
+            "description": {
+              "es": "Nombre de la hoja de origen",
+              "en": "Name of the source sheet",
+              "pr": "Nome da folha de origem"
+            },
             "id": "sheet_name1",
             "css": "col-md-6"
           },
@@ -3942,6 +4529,11 @@
             "title": {
               "es": "Hoja destino: ",
               "en": "Destiny Sheet"
+            },
+            "description": {
+              "es": "Nombre de la hoja de destino",
+              "en": "Name of the destinity sheet",
+              "pr": "Nome da folha do destino"
             },
             "id": "sheet_name2",
             "css": "col-md-6"
@@ -4006,8 +4598,12 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "id",
-              "en": "id"
+              "es": "excel1",
+              "en": "excel1"
+            },
+            "description": {
+              "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
             },
             "title": {
               "es": "Identificador (opcional):",
@@ -4053,6 +4649,10 @@
               "es": "Ruta a cambiar:",
               "en": "Path to change:"
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere actualizar",
+              "en": "Path of the xlsx file to be updated"
+            },
             "id": "name",
             "css": "col-md-12"
           },
@@ -4062,6 +4662,10 @@
             "title": {
               "es": "Ruta actualizada",
               "en": "Updated path"
+            },
+            "description": {
+              "es": "Ruta del archivo xlsx que reemplazará el vinculo",
+              "en": "Path of the xlsx file that will replace the link"
             },
             "id": "new_name",
             "css": "col-md-12"
@@ -4121,6 +4725,10 @@
               "es": "Contraseña",
               "en": "Password"
             },
+            "description": {
+              "es": "Contraseña de la hoja bloqueada",
+              "en": "Password of the locked sheet"
+            },
             "title": {
               "es": "Contraseña",
               "en": "Password"
@@ -4169,6 +4777,10 @@
               "es": "Ruta archivo XLSX:",
               "en": "Patho to XLSX file: "
             },
+            "description": {
+              "es": "Ruta del archivo xlsx que se quiere convertir",
+              "en": "Path of the xlsx file to be converted"
+            },
             "id": "path_xlsx",
             "css": "col-md-12"
           },
@@ -4181,6 +4793,11 @@
             "title": {
               "es": "Guardar TXT:",
               "en": "Save TXT:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .txt",
+              "en": "Path where to save the .txt file",
+              "pr": "Caminho onde salvar o arquivo .txt"
             },
             "id": "path_txt",
             "css": "col-md-12"
@@ -4320,108 +4937,120 @@
       "docker": true
     },
     {
-        "en": {
-          "title": "Convert Excel time to hours",
-          "description": "Convert Excel time to hours",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Convertir tiempo de Excel a horas",
-          "description": "Convertir tiempo de Excel a horas",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-          "css": "modal-lg",
-          "inputs": [
-            {
-              "type": "input",
-              "placeholder": {
-                "es": "0.296655812",
-                "en": "0.296655812"
-              },
-              "title": {
-                "es": "Ingrese el tiempo en formato decimal: ",
-                "en": "Decimal time: "
-              },
-              "id": "decimalTime",
-              "css": "col-md-6"
-            },{
-              "type": "input",
-              "placeholder": {
-                "es": "Variable",
-                "en": "Variable"
-              },
-              "title": {
-                "es": "Asignar resultado a variable",
-                "en": "Assign result to variable: "
-              },
-              "help": {
-                "es": "Nombre de variable sin llaves {}",
-                "en": "Variable name without {}"
-              },
-              "id": "whereToStoreIn",
-              "css": "col-md-6"
-            }
-          ]
-        },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "convertDecimalTimeToHours",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
+      "en": {
+        "title": "Convert Excel time to hours",
+        "description": "Convert Excel time to hours. Returns the format as hh: mm: ss",
+        "title_options": null,
+        "options": null
       },
-      {
-        "en": {
-          "title": "Print sheet",
-          "description": "Prints a sheet",
-          "title_options": null,
-          "options": null
-        },
-        "es": {
-          "title": "Imprimir hoja",
-          "description": "Imprime una hoja",
-          "title_options": null,
-          "options": null
-        },
-        "form": {
-            "css": "modal-lg",
-            "inputs": [
-                {
-                    "type": "input",
-                    "placeholder": {
-                        "es": "Hoja 1",
-                        "en": "Sheet1"
-                    },
-                    "title": {
-                        "es": "Hoja: ",
-                        "en": "Sheet: "
-                    },
-                    "id": "sheet",
-                    "css": "col-md-6"
-                }
-            ]
+      "es": {
+        "title": "Convertir tiempo de Excel a horas",
+        "description": "Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "0.296655812",
+              "en": "0.296655812"
+            },
+            "title": {
+              "es": "Ingrese el tiempo en formato decimal: ",
+              "en": "Decimal time: "
+            },
+            "id": "decimalTime",
+            "css": "col-md-6"
           },
-        "video_youtube": "",
-        "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-        "module": "printSheet",
-        "module_name": "AdvancedExcel",
-        "visible": true,
-        "options": false,
-        "father": "module",
-        "group": "scripts",
-        "linux": false,
-        "windows": true,
-        "mac": true,
-        "docker": true
-      }
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Variable",
+              "en": "Variable"
+            },
+            "title": {
+              "es": "Asignar resultado a variable",
+              "en": "Assign result to variable: "
+            },
+            "help": {
+              "es": "Nombre de variable sin llaves {}",
+              "en": "Variable name without {}"
+            },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
+            "id": "whereToStoreIn",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "convertDecimalTimeToHours",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Print sheet",
+        "description": "Prints a sheet",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Imprimir hoja",
+        "description": "Imprime una hoja",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja 1",
+              "en": "Sheet1"
+            },
+            "title": {
+              "es": "Hoja: ",
+              "en": "Sheet: "
+            },
+            "description": {
+              "es": "Nombre de la hoja que se quiere imprimir",
+              "en": "Name of the sheet to be printed",
+              "pr": "Nome da folha a ser impresso"
+            },
+            "id": "sheet",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "printSheet",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    }
   ]
 }
