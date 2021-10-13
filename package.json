@@ -4814,7 +4814,7 @@
       "group": "scripts",
       "linux": false,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
