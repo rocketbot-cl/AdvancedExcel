@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "33.10",
+  "version": "33.11",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -151,6 +151,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -238,6 +239,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -585,6 +587,7 @@
               "es": "La variable debe ir sin llaves {}",
               "en": "var without {}"
             },
+            "remove_vars" : true,
             "id": "whereToStoreData",
             "css": "col-md-6"
           }
@@ -994,6 +997,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-12"
           }
@@ -1581,6 +1585,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "result",
             "css": "col-md-12"
           }
@@ -1857,6 +1862,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -2875,6 +2881,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-6"
           },
@@ -2976,6 +2983,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -3307,6 +3315,7 @@
               "es": "Nombre de variable sin llaves {}",
               "en": "Variable name without {}"
             },
+            "remove_vars" : true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -4361,6 +4370,7 @@
                 "es": "Nombre de variable sin llaves {}",
                 "en": "Variable name without {}"
               },
+              "remove_vars" : true,
               "id": "whereToStoreIn",
               "css": "col-md-6"
             }
