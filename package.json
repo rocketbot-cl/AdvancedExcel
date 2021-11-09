@@ -3130,6 +3130,23 @@
             "css": "col-md-6"
           },
           {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": ""
+            },
+            "title": {
+              "es": "Limpiar filtro",
+              "en": "Clean Filter"
+            },
+            "description": {
+              "es": "Limpia los filtros y el orden del rango indicado",
+              "en": "Clean the filters and the order of the indicated range"
+            },
+            "id": "clean",
+            "css": "col-md-6"
+          },
+          {
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",

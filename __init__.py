@@ -1296,7 +1296,7 @@ if module == "Order":
     range_ = GetParams("range")
     column = GetParams("column")
     order = GetParams("order")
-    
+    clean = GetParams("clean")
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1306,9 +1306,9 @@ if module == "Order":
             order = int(order)
         else:
             order = 1
-        sheet.api.Range(range_).Sort(
-            Key1=sheet.api.Range(column), Order1=order)
-
+        if clean:
+            sheet.Sort.SortFields().Clear()
+        sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order, Orientation=1)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
