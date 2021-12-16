@@ -1,14 +1,20 @@
 
+
+
+
 # Excel Advanced Options
   
-Module with advanced options to automate Microsoft Excel
+Módulo con opciones avanzadas para Excel  
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in the Rocketbot path
+__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+
+
 ## How to use this module
-  
-This module needs to be installed Microsoft Excel with active license. If you need work with xlsx files without Excel application, use the Rocketbot commands in the Files secction
+In order to use this module, you need to have Microsoft Excel.
+
+
 ## Overview
 
 
@@ -16,163 +22,175 @@ This module needs to be installed Microsoft Excel with active license. If you ne
 Open a file preventing MS Excel alerts.
 
 2. Count columns  
-Get the number of columns in a sheet
+Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
 
 3. Count Rows  
-Get the number of rows in a sheet
+Count Rows
 
 4. Cell color  
-Change color of a cell or range of cells 
+Change color of a cell or range of cells. Can be a default color or custom 
 
 5. Insert Formula  
-Insert formula into cell. Must be in English
+Insert formula into cell
 
 6. Insert Macro  
-Insert Macro in Excel from a file
+Insert Macro in Excel
 
 7. Select Cells  
-Select cells in Excel. Can copy the selected cells
+Select cells in Excel
 
 8. Get Cell With Currency Format  
 Get cells with currency format
 
-9. Copy-Paste  
+9. Get Cell With Date Format  
+Get cells with date format
+
+10. Copy-Paste  
 Copy range cell to another sheet
 
-10. Format Cell  
-Change the format of a cell or range of cells
+11. Format Cell  
+Format Cell
 
-11. Create Sheet  
-Create a new sheet in the last position
+12. Create Sheet  
+Create sheet in the end
 
-12. Delete Sheet  
-Delete a selected sheet
+13. Delete Sheet  
+Delete sheet
 
-13. Copy to another excel  
+14. Copy to another excel  
 Copy range to another Excel in the background
 
-14. Add/Delete Row  
+15. Add/Delete Row  
 Add or Delete a Row
 
-15. Add/Delete Column  
+16. Add/Delete Column  
 Add or Delete a Column
 
-16. Convert CSV to XLSX  
+17. Convert CSV to XLSX  
 Convert a csv document to xlsx
 
-17. Convert XLSX to CSV  
+18. Convert XLSX to CSV  
 Convert a xlsx document to csv
 
-18. Convert XLS to XLSX  
+19. Convert XLS to XLSX  
 Convert a xls document to xlsx
 
-19. Get active cell  
+20. Get active cell  
 Get row and column of active cell
 
-20. Refresh Pivot table  
+21. Refresh Pivot table  
 Refresh a pivot table. Deprecated! Use PivotTableExcel module
 
-21. Fit cells  
-Fit a cell or range of cells 
+22. Fit cells  
+Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
 
-22. Get Formula  
-Get formula into cell
+23. Get Formula  
+Get the formula into cell
 
-23. Add Auto Filter  
+24. Add Auto Filter  
 Add auto filter to excel table
 
-24. Filter  
+25. Filter  
 Add filter to excel table
 
-25. Rename sheet  
+26. Rename sheet  
 Change name to excel sheet
 
-26. Cell Style  
-Change the style of cell or range of cells
+27. Cell Style  
+This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-27. Paste in Cells  
+28. Paste in Cells  
 Paste data to cells in Excel
 
-28. Remove Duplicates  
+29. Remove Duplicates  
 Removes duplicate data in range
 
-29. Close XLSX  
+30. Close XLSX  
 Close the workbook opened by Rocketbot
 
-30. Save Excel  
-Save a opened Excel file
+31. Save Excel  
+Save a Excel file in the indicated path
 
-31. Save Excel with password  
-Save a opened Excel file with password
+32. Save Excel with password  
+Save a Excel file
 
-32. Export to advanced PDF  
-Export to PDF with more options that the native command
+33. Export to advanced PDF  
+Export to PDF with options
 
-33. Copy-Move Sheet  
+34. Copy-Move Sheet  
 Copy or move a sheet
 
-34. Insert Form  
+35. Insert Form  
 Insert Form in Excel
 
-35. Read Filtered Cells  
+36. Read Filtered Cells  
 Allow read only cells filters 
 
-36. Count Filtered Cells  
+37. Count Filtered Cells  
 Allow count only cells filters 
 
-37. Replace  
+38. Replace  
 Run replace action to excel 
 
-38. Order  
+39. Order  
 Run replace action to excel 
 
-39. Refresh All  
+40. Refresh All  
 Refresh all data in Excel
 
-40. Find  
+41. Find  
 Return de first found cell 
 
-41. Lock Cells  
+42. Lock Cells  
 Lock or Unlock cells
 
-42. Add Chart  
+43. Add Chart  
 Create a new chart in an excel sheet
 
-43. Remove Password  
+44. Remove Password  
 Remove password and save the Excel
 
-44. Insert image  
+45. Insert image  
 Insert an image
 
-45. Export Chart  
+46. Export Chart  
 Export a chart from index
 
-46. Not visible mode  
+47. Not visible mode  
 Open not visible excel.
 
-47. Write array objects  
+48. Write array objects  
 Write array object on Excel cells.
 
-48. Copy-Paste Format  
+49. Copy-Paste Format  
 Copy format range cell to another sheet
 
-49. Find and Connect  
+50. Find and Connect  
 Search a Excel Book opened and connect it
 
-50. Update links  
+51. Update links  
 Changes a link from one document to another
 
-51. Unlock sheet  
+52. Unlock sheet  
 Unlock sheet
 
-52. Convert to .txt  
-Convert a xlsx file to .txt
+53. Convert to .txt  
+Convert to .txt
 
-53. Text to columns  
+54. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-54. Convert Excel time to hours  
-Convert Excel time to hours
+55. Convert Excel time to hours  
+Convert Excel time to hours. Returns the format as hh: mm: ss
+
+56. Print sheet  
+Prints a sheet
+
+57. Print sheet  
+Prints a sheet  
+
+
+
 ### Updates
 #### 9-Nov-2021
 - Order command: Apply multiple orders and clean filters.
@@ -227,7 +245,6 @@ Convert Excel time to hours
 - Remove duplicates: Rocketbot can now remove duplicate data on range Excel
 #### 5-Jun-2020
 - Focus Excel: Rocketbot can now set Excel to the foreground window
-
 
 ----
 ### OS

@@ -708,6 +708,9 @@ if module == "countRows":
     sheet = GetParams("sheet")
     row_ = GetParams("row_")
     result = GetParams("var_")
+    countAll = GetParams("countAll")
+    if countAll is not None:
+            countAll = eval(countAll)
 
     if not sheet:
         sheet = 0
@@ -716,9 +719,12 @@ if module == "countRows":
 
     try:
         
-        
-        total = wb.sheets[sheet].range(
-            row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
+        if countAll == True:
+            total = wb.sheets[sheet].api.UsedRange.Rows.Count
+
+        else:
+            total = wb.sheets[sheet].range(
+                row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
         # print(total)
 
         if result:
