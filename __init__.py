@@ -687,7 +687,7 @@ if module == "countColumns":
         excel_path = wb.fullname
         print(excel_path)
 
-        df = pd.read_excel(excel_path, sheet_name=sheet)
+        df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
 
         col = df.shape[1]
        
