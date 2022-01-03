@@ -25,7 +25,7 @@ Open a file preventing MS Excel alerts.
 Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
 
 3. Count Rows  
-Count Rows
+Counts all the rows or from a range.
 
 4. Cell color  
 Change color of a cell or range of cells. Can be a default color or custom 

@@ -194,13 +194,13 @@
     {
       "en": {
         "title": "Count Rows",
-        "description": "Count Rows",
+        "description": "Counts all the rows or from a range.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Contar Filas",
-        "description": "Contar Filas",
+        "description": "Cuenta todas las filas o dentro de un rango.",
         "title_options": null,
         "options": null
       },
