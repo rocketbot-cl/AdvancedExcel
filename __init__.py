@@ -687,7 +687,7 @@ if module == "countColumns":
         excel_path = wb.fullname
         print(excel_path)
 
-        df = pd.read_excel(excel_path, sheet_name=sheet)
+        df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
 
         col = df.shape[1]
        
@@ -708,6 +708,9 @@ if module == "countRows":
     sheet = GetParams("sheet")
     row_ = GetParams("row_")
     result = GetParams("var_")
+    countAll = GetParams("countAll")
+    if countAll is not None:
+            countAll = eval(countAll)
 
     if not sheet:
         sheet = 0
@@ -716,9 +719,12 @@ if module == "countRows":
 
     try:
         
-        
-        total = wb.sheets[sheet].range(
-            row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
+        if countAll == True:
+            total = wb.sheets[sheet].api.UsedRange.Rows.Count
+
+        else:
+            total = wb.sheets[sheet].range(
+                row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
         # print(total)
 
         if result:
@@ -1296,7 +1302,7 @@ if module == "Order":
     range_ = GetParams("range")
     column = GetParams("column")
     order = GetParams("order")
-    
+    clean = GetParams("clean")
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1306,9 +1312,9 @@ if module == "Order":
             order = int(order)
         else:
             order = 1
-        sheet.api.Range(range_).Sort(
-            Key1=sheet.api.Range(column), Order1=order)
-
+        if clean:
+            sheet.Sort.SortFields().Clear()
+        sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order, Orientation=1)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
