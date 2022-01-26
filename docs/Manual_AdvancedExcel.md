@@ -526,10 +526,3 @@ Imprime una hoja
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
-
-### Imprimir hoja
-  
-Imprime una hoja
-|Parámetros|Descripción|ejemplo|
-| --- | --- | --- |
-|Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|

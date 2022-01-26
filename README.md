@@ -12,8 +12,8 @@ __Download__ and __install__ the content in 'modules' folder in Rocketbot path
 
 
 ## How to use this module
-In order to use this module, you need to have Microsoft Excel.
-
+  
+This module needs to be installed Microsoft Excel with active license. If you need work with xlsx files without Excel application, use the Rocketbot commands in the Files secction
 
 ## Overview
 
@@ -25,7 +25,7 @@ Open a file preventing MS Excel alerts.
 Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
 
 3. Count Rows  
-Count Rows
+Counts all the rows or from a range.
 
 4. Cell color  
 Change color of a cell or range of cells. Can be a default color or custom 
@@ -186,14 +186,15 @@ Convert Excel time to hours. Returns the format as hh: mm: ss
 56. Print sheet  
 Prints a sheet
 
-57. Print sheet  
-Prints a sheet  
-
 
 
 ### Updates
+#### 28-Dec-2021
+- Count Rows: command fixed to count all rows.
 #### 9-Nov-2021
 - Order command: Apply multiple orders and clean filters.
+#### 13-Oct-2021
+- Fix count cells filtered
 #### 30-Sep-2021
 - Paste command: Update compatibilities
 #### 28-Sep-2021
