@@ -186,9 +186,6 @@ Convert Excel time to hours. Returns the format as hh: mm: ss
 56. Print sheet  
 Prints a sheet
 
-57. Print sheet  
-Prints a sheet  
-
 
 
 ### Updates
