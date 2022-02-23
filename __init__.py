@@ -1267,13 +1267,12 @@ if module == "GetCountCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected_api = wb.sheets[sheet].api
+        
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         count = 0
-
-        for r in filtered_cells.Address.split(","):
-            range_cell = []
-            for ro in wb.sheets[sheet].api.Range(r).Rows:
-                count += 1
+        
+        for area in filtered_cells.Areas:
+            count += area.Count
 
         if result:
             SetVar(result, count)
