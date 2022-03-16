@@ -68,7 +68,7 @@
               "en": "Password of the xlsx file"
             },
             "id": "password",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -85,7 +85,29 @@
               "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
             },
             "id": "id",
-            "css": "col-md-6"
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "id",
+              "en": "id"
+            },
+            "title": {
+              "es": "Asignar resultado a variable",
+              "en": "Assign result to variable: "
+            },
+            "help": {
+              "es": "La variable debe ir sin llaves {}",
+              "en": "var without {}"
+            },
+            "description": {
+              "es": "Variable donde se almacenara el resultado",
+              "en": "Variable where the result will be stored"
+            },
+            "remove_vars": true,
+            "id": "var_",
+            "css": "col-md-4"
           }
         ]
       },
@@ -1973,7 +1995,7 @@
       },
       "es": {
         "title": "Ajustar celdas",
-        "description": "Ajusta, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas",
+        "description": "Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas",
         "title_options": null,
         "options": null
       },
@@ -2032,7 +2054,7 @@
               "pr": "Ajusta automaticamente as células para exibir os dados"
             },
             "id": "fit",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
@@ -2050,7 +2072,7 @@
               "pr": "Ao marcar esta opção, as linhas serão agrupadas na faixa selecionada."
             },
             "id": "row",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
@@ -2068,7 +2090,7 @@
               "pr": "Ao marcar esta opção, as colunas serão agrupadas na faixa selecionada."
             },
             "id": "column",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
@@ -2086,7 +2108,7 @@
               "pr": "Ao marcar esta opção, as linhas serão desagrupadas na faixa selecionada."
             },
             "id": "un_row",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
@@ -2104,7 +2126,26 @@
               "pr": "Ao marcar esta opção, as colunas serão desagrupadas na faixa selecionada."
             },
             "id": "un_column",
-            "css": "col-md-2"
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": ""
+            },
+            "title": {
+              "es": "Unir celdas",
+              "en": "Merge cells",
+              "pr": "Mesclar células"
+            },
+            "description": {
+              "es": "Al marcar este checkbox, se uniran las celdas en el rango seleccionado",
+              "en": "Checking this checkbox will merge the cells in the selected range",
+              "pr": "Marcar esta caixa de seleção mesclará as células no intervalo selecionado"
+            },
+            "id": "mergeCell",
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -2140,6 +2181,44 @@
               "pr": "Ao marcar esta caixa, será exibido o número especificado de níveis de coluna."
             },
             "id": "col_levels",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20"
+            },
+            "title": {
+              "es": "Ancho de columna",
+              "en": "Column width",
+              "pr": "Largura da coluna"
+            },
+            "description": {
+              "es": "Ancho al que se ajustara la columna",
+              "en": "Width to which the column will fit",
+              "pr": "Largura na qual a coluna se ajustará"
+            },
+            "id": "columnWidth",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20"
+            },
+            "title": {
+              "es": "Altura de Fila",
+              "en": "Row Height",
+              "pr": "Altura da linha"
+            },
+            "description": {
+              "es": "Altura a la que se ajustara la fila",
+              "en": "Height to which the row will adjust",
+              "pr": "Altura à qual a linha se ajustará"
+            },
+            "id": "rowHeight",
             "css": "col-md-6"
           }
         ]
@@ -2684,7 +2763,25 @@
               "en": "Underline"
             },
             "id": "underline",
-            "css": "col-md-4"
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True"
+            },
+            "description": {
+              "es": "Marcar esta casilla para ajustar el texto en el rango especificado",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Ajustar Texto",
+              "en": ""
+            },
+            "id": "adjustText",
+            "css": "col-md-2"
           }
         ]
       },
