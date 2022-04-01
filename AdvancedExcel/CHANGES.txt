@@ -1,0 +1,14 @@
+Wed Oct 13 09:45:34 2021  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Wed Oct 6 11:03:07 2021  [hidden] Conflict between versions. The printer command, Get Cell With Currency Format and Get Cell With Date Format may have been affected - ID-170
+Thu Aug 19 13:12:18 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel
+Tue Jul 13 17:29:52 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel
+Wed Nov 25 09:19:10 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Tue Nov 24 11:03:49 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Tue Nov 24 10:39:15 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Wed Sep 2 11:35:18 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Tue Aug 18 12:48:36 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Wed Jul 29 18:52:47 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Tue Jun 30 19:10:05 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Wed May 27 17:30:28 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Mon Feb 3 14:59:42 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
+Thu Jan 23 11:05:28 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel

@@ -1,0 +1,7 @@
+..\..\..\bin\xlsx2csv
+..\__pycache__\xlsx2csv.cpython-36.pyc
+..\xlsx2csv.py
+PKG-INFO
+SOURCES.txt
+dependency_links.txt
+top_level.txt

@@ -1690,8 +1690,6 @@ try:
         sheet = wb.sheets[sheet_name].select()
 
         printSheet = wb.api.ActiveSheet.PrintOut()
-
-
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
