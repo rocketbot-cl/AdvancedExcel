@@ -363,7 +363,7 @@ Cuenta solo las celdas filtradas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Rango donde buscar |Rango de columna filtrada (A1A100)|A1:A100 |
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Reemplazar

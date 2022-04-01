@@ -103,7 +103,7 @@ This command modifies the formatting of the selected cell or range of cells. You
 Paste data to cells in Excel
 
 29. Remove Duplicates  
-Removes duplicate data in range
+Execute the remove duplicates command of Excel
 
 30. Close XLSX  
 Close the workbook opened by Rocketbot
