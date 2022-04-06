@@ -28,6 +28,7 @@ Abre un archivo sin mostrar carteles de alerta.
 |Ruta archivo XLSX|Ruta del archivo xlsx que se quiere abrir|Archivo.XLSX|
 |Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|id|
+|Asignar resultado a variable|Variable donde se almacenara el resultado|id|
 
 ### Contar Columnas
   
@@ -40,7 +41,7 @@ Cuenta el número de columnas del excel abierto. Se requiere que el excel esté 
 
 ### Contar Filas
   
-Contar Filas
+Cuenta todas las filas o dentro de un rango.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
@@ -213,18 +214,21 @@ Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
 
 ### Ajustar celdas
   
-Ajusta, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
+Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango a ajustar|Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
+|Rango a ajustar|Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1:B1) |A1:D7|
 |Autofit|Ajusta automaticamente las celdas para que se visualicen los datos||
 |Agrupar filas|Al marcar este checkbox, se agruparán las filas en el rango seleccionado||
 |Agrupar columnas|Al marcar este checkbox, se agruparán las columnas en el rango seleccionado||
 |Desagrupar filas|Al marcar este checkbox, se desagruparán las filas en el rango seleccionado||
 |Desagrupar columnas|Al marcar este checkbox, se desagruparán las columnas en el rango seleccionado||
+|Unir celdas|Al marcar este checkbox, se uniran las celdas en el rango seleccionado||
 |Nivel de fila|Al marcar esta casilla se mostrará el número especificado de niveles de fila|2|
 |Rango de columna|Al marcar esta casilla se mostrará el número especificado de niveles de columna|2|
+|Ancho de columna|Ancho al que se ajustara la columna|20|
+|Altura de Fila|Altura a la que se ajustara la fila|20|
 
 ### Obtener Formula
   
@@ -273,6 +277,7 @@ Este comando modifica el formato de la celda o rango de celdas seleccionado. Pue
 |Negrita|Marcar esta casilla para cambiar la fuente a negrita|True|
 |Cursiva|Marcar esta casilla para cambiar la fuente a cursiva|True|
 |Subrayar|Marcar esta casilla para cambiar la fuente a subrayado|True|
+|Ajustar Texto|Marcar esta casilla para ajustar el texto en el rango especificado|True|
 
 ### Pegar en Celdas
   
@@ -358,7 +363,7 @@ Cuenta solo las celdas filtradas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Rango donde buscar |Rango de columna filtrada (A1A100)|A1:A100 |
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Reemplazar
@@ -518,9 +523,16 @@ Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ingrese el tiempo en formato decimal ||0.296655812|
-|Asignar resultado a variable||Variable|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Imprimir hoja
+  
+Imprime una hoja
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
+
+### Updates
   
 Imprime una hoja
 |Parámetros|Descripción|ejemplo|
