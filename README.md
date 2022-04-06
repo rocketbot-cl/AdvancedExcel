@@ -12,7 +12,7 @@ __Download__ and __install__ the content in 'modules' folder in Rocketbot path
 
 
 ## How to use this module
-  
+
 This module needs to be installed Microsoft Excel with active license. If you need work with xlsx files without Excel application, use the Rocketbot commands in the Files secction
 
 ## Overview
@@ -103,7 +103,7 @@ This command modifies the formatting of the selected cell or range of cells. You
 Paste data to cells in Excel
 
 29. Remove Duplicates  
-Removes duplicate data in range
+Execute the remove duplicates command of Excel
 
 30. Close XLSX  
 Close the workbook opened by Rocketbot
@@ -184,11 +184,13 @@ Parses a column of cells that contain text into several columns.
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
 56. Print sheet  
-Prints a sheet
+Prints a sheet  
 
 
 
 ### Updates
+#### 06-Apr-2022
+- Fit Cells: Added merge cells, adjust rows, adjust columns functions
 #### 28-Dec-2021
 - Count Rows: command fixed to count all rows.
 #### 9-Nov-2021
