@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "33.12.2",
+  "version": "33.13.3",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -33,6 +33,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Abrir sem alertas",
+        "description": "Abre um arquivo sem mostrar alertas do MS Excel.",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -40,15 +46,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "Archivo.XLSX",
-              "en": "file.XLSX"
+              "en": "file.XLSX",
+              "pr": "arquivo.XLSX"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere abrir",
-              "en": "Path of the xlsx file to be opened"
+              "en": "Path of the xlsx file to be opened",
+              "pr": "Direcação do arquivo xlsx que se deseja abrir"
             },
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "Patho to XLSX file: "
+              "en": "Patho to XLSX file: ",
+              "pr": "Direcção do arquivo XLSX:"
             },
             "id": "path",
             "css": "col-md-12"
@@ -57,35 +66,67 @@
             "type": "input",
             "placeholder": {
               "es": "P@ssW0rd",
-              "en": "P@ssW0rd"
+              "en": "P@ssW0rd",
+              "pr": "P@ssW0rd"
             },
             "title": {
               "es": "Password (opcional):",
-              "en": "Password (optional): "
+              "en": "Password (optional): ",
+              "pr": "Password (opcional):"
             },
             "description": {
               "es": "Contraseña del archivo xlsx",
-              "en": "Password of the xlsx file"
+              "en": "Password of the xlsx file",
+              "pr": "Password do arquivo xlsx"
             },
             "id": "password",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
             "placeholder": {
               "es": "id",
-              "en": "id"
+              "en": "id",
+              "pr": "id"
             },
             "title": {
               "es": "Identificador (opcional):",
-              "en": "Id (optional): "
+              "en": "Id (optional): ",
+              "pr": "Identificador (opcional):"
             },
             "description": {
               "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
-              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.",
+              "pr": "Nome ou identificador para o arquivo que se abrirá. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*."
             },
             "id": "id",
-            "css": "col-md-6"
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "id",
+              "en": "id",
+              "pr": "id"
+            },
+            "title": {
+              "es": "Asignar resultado a variable",
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável:"
+            },
+            "help": {
+              "es": "La variable debe ir sin llaves {}",
+              "en": "var without {}",
+              "pr": "A variável deve ir sem chaves {}"
+            },
+            "description": {
+              "es": "Variable donde se almacenara el resultado",
+              "en": "Variable where the result will be stored",
+              "pr": "Variável onde o resultado será armazenado"
+            },
+            "remove_vars": true,
+            "id": "var_",
+            "css": "col-md-4"
           }
         ]
       },
@@ -115,6 +156,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Contar Colunas",
+        "description": "Conta o número de colunas do excel aberto. É necessário que o excel esteja salvo para tomar os últimos cambios",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -122,11 +169,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja:",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -140,15 +189,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "False"
+              "en": "True",
+              "pr": "True"
             },
             "description": {
               "es": "Si se marca esta casilla, devolverá la letra de la última columna",
-              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
+              "en": "If this box is checked, it will return the letter of the last column",
+              "pr": "Se marcar esta caixa, devolverá a letra da última coluna"
             },
             "title": {
               "es": "Obtener nombre de columna",
-              "en": "Get address "
+              "en": "Get address ",
+              "pr": "Obter nome da coluna"
             },
             "id": "column",
             "css": "col-md-6"
@@ -157,15 +209,18 @@
             "type": "input",
             "placeholder": {
               "es": "numero_columnas",
-              "en": "count_columns"
+              "en": "count_columns",
+              "pr": "numero_colunas"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -204,6 +259,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Contar Linhas",
+        "description": "Conta todas as linhas ou dentro de um intervalo.",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -211,15 +272,18 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja:",
-              "en": "Sheet: "
+              "en": "Sheet:",
+              "pr": "Folha:"
             },
             "help": {
               "es": "Si se deja vacío por defecto será la primera hoja",
-              "en": "If empty by default it will be the first sheet"
+              "en": "If empty by default it will be the first sheet",
+              "pr": "Se deixar vazio por padrão será a primeira folha"
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -233,11 +297,13 @@
             "type": "checkbox",
             "title": {
               "es": "Contar todas las filas",
-              "en": "Count all rows"
+              "en": "Count all rows",
+              "pr": "Contar todas as linhas"
             },
             "description": {
                 "es": "Opción para contar todas las filas.",
-                "en": "Option to count all rows."
+                "en": "Option to count all rows.",
+                "pr": "Opção para contar todas as linhas."
             },
             "id": "countAll",
             "css": "col-md-6"
@@ -246,19 +312,23 @@
             "type": "input",
             "placeholder": {
               "es": "C",
-              "en": "C"
+              "en": "C",
+              "pr": "C"
             },
             "title": {
               "es": "Columna:",
-              "en": "Column: "
+              "en": "Column: ",
+              "pr": "Coluna:"
             },
             "help": {
               "es": "Si se deja vacío por defecto será la columna A",
-              "en": "If empty by default it will be column A"
+              "en": "If empty by default it will be column A",
+              "pr": "Se deixar vazio por padrão será a coluna A"
             },
             "description": {
               "es": "Columna donde se contará la cantidad de filas",
-              "en": "Column where the rows will be counted"
+              "en": "Column where the rows will be counted",
+              "pr": "Coluna onde as linhas serão contadas"
             },
             "id": "row_",
             "css": "col-md-6"
@@ -267,15 +337,18 @@
             "type": "input",
             "placeholder": {
               "es": "numero_filas",
-              "en": "length_rows"
+              "en": "length_rows",
+              "pr": "numero_linhas"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável:"
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -314,6 +387,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Cor da célula",
+        "description": "Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -321,11 +400,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B5",
-              "en": "A1:B5"
+              "en": "A1:B5",
+              "pr": "A1:B5"
             },
             "title": {
               "es": "Ingrese celdas: ",
-              "en": "Cells: "
+              "en": "Cells: ",
+              "pr": "Células: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -339,15 +420,18 @@
             "type": "input",
             "placeholder": {
               "es": "250,250,250",
-              "en": "250,250,250"
+              "en": "250,250,250",
+              "pr": "250,250,250"
             },
             "title": {
               "es": "Ingrese color en RGB: ",
-              "en": "RGB color cell: "
+              "en": "RGB color cell: ",
+              "pr": "Cor da célula em RGB: "
             },
             "description": {
               "es": "Valores rgb del color que tendrá la celda o celdas",
-              "en": "RGB values of the color that will be the cell or cells"
+              "en": "RGB values of the color that will be the cell or cells",
+              "pr": "Valores rgb da cor que terá a célula ou células"
             },
             "remove_vars": true,
             "id": "custom",
@@ -357,11 +441,13 @@
             "type": "select",
             "placeholder": {
               "es": "red",
-              "en": "red"
+              "en": "red",
+              "pr": "red"
             },
             "title": {
               "es": "Seleccione color: ",
-              "en": "Select color: "
+              "en": "Select color: ",
+              "pr": "Seleccione cor: "
             },
             "options": [
               {
@@ -391,7 +477,8 @@
             ],
             "description": {
               "es": "Seleccione el color. Puede usar el campo anterior para personalizar",
-              "en": "Select the color. You can use the previous input to customize the color"
+              "en": "Select the color. You can use the previous input to customize the color",
+              "pr": "Seleccione a cor. Pode usar o campo anterior para personalizar a cor"
             },
             "remove_vars": true,
             "id": "color",
@@ -425,6 +512,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Insertar Formula",
+        "description": "Inserta formula sobre una celda ",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -432,11 +525,13 @@
             "type": "input",
             "placeholder": {
               "es": "A5",
-              "en": "A5"
+              "en": "A5",
+              "pr": "A5"
             },
             "title": {
               "es": "Ingrese celda: ",
-              "en": "Cell: "
+              "en": "Cell: ",
+              "pr": "Celda: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -450,11 +545,13 @@
             "type": "input",
             "placeholder": {
               "es": "=SUM(A1:A4)",
-              "en": "=SUM(A1:A4)"
+              "en": "=SUM(A1:A4)",
+              "pr": "=SUM(A1:A4)"
             },
             "title": {
               "es": "Escriba fórmula: ",
-              "en": "Write formula: "
+              "en": "Write formula: ",
+              "pr": "Escreva fórmula: "
             },
             "description": {
               "es": "Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar parámetros",
@@ -496,6 +593,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Inserir Macro a Excel",
+        "description": "Insere uma Macro a Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -503,15 +606,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "Macro.bas",
-              "en": "Macro.bas"
+              "en": "Macro.bas",
+              "pr": "Macro.bas"
             },
             "description": {
               "es": "Ruta del archivo .bas que se quiere insertar",
-              "en": "Path of the bas file to be inserted"
+              "en": "Path of the bas file to be inserted",
+              "pr": "Caminho do arquivo .bas que se quer inserir"
             },
             "title": {
               "es": "Ruta de la Macro:",
-              "en": "Macro path: "
+              "en": "Macro path: ",
+              "pr": "Caminho da Macro:"
             },
             "id": "macro_path",
             "css": "col-md-12"
@@ -544,6 +650,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Selecionar Células",
+        "description": "Seleciona células em Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -551,11 +663,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Hoja 1"
+              "en": "Hoja 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja",
-              "en": "Sheet "
+              "en": "Sheet ",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -569,11 +683,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B3",
-              "en": "A1:B3"
+              "en": "A1:B3",
+              "pr": "A1:B3"
             },
             "title": {
               "es": "Ingrese celdas a seleccionar",
-              "en": "Enter cells to select "
+              "en": "Enter cells to select ",
+              "pr": "Digite células a selecionar"
             },
             "description": {
               "es": "Celda o Rango de celdas para seleccionar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -587,11 +703,13 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "False"
+              "en": "True",
+              "pr": "True"
             },
             "title": {
               "es": "Copiar",
-              "en": "Copy "
+              "en": "Copy ",
+              "pr": "Copiar"
             },
             "description": {
               "es": "Al marcar la casilla, se copiarán los valores en el portapapeles",
@@ -629,6 +747,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Obter Célula Formato Moeda",
+        "description": "Obtém células com formato moeda",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -636,11 +760,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Hoja 1"
+              "en": "Hoja 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja",
-              "en": "Sheet "
+              "en": "Sheet ",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -654,11 +780,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B3",
-              "en": "A1:B3"
+              "en": "A1:B3",
+              "pr": "A1:B3"
             },
             "title": {
               "es": "Ingrese celdas a seleccionar",
-              "en": "Enter cells to select "
+              "en": "Enter cells to select ",
+              "pr": "Insira células a selecionar"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -672,15 +800,18 @@
             "type": "input",
             "placeholder": {
               "es": "variable",
-              "en": "variable"
+              "en": "variable",
+              "pr": "variável"
             },
             "title": {
               "es": "Asignar a variable",
-              "en": "Assign to var"
+              "en": "Assign to var",
+              "pr": "Atribuir a variável"
             },
             "help": {
               "es": "La variable debe ir sin llaves {}",
-              "en": "var without {}"
+              "en": "var without {}",
+              "pr": "A variável deve ir sem chaves {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -719,6 +850,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Obter Célula Formato Data",
+        "description": "Obtém células com formato de data",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -726,11 +863,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Hoja 1"
+              "en": "Hoja 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja",
-              "en": "Sheet "
+              "en": "Sheet ",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -744,11 +883,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B3",
-              "en": "A1:B3"
+              "en": "A1:B3",
+              "pr": "A1:B3"
             },
             "title": {
               "es": "Ingrese celdas a seleccionar",
-              "en": "Enter cells to select "
+              "en": "Enter cells to select ",
+              "pr": "Entre as celulas a selecionar"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -762,11 +903,13 @@
             "type": "input",
             "placeholder": {
               "es": "variable",
-              "en": "variable"
+              "en": "variable",
+              "pr": "variável"
             },
             "title": {
               "es": "Asignar a variable",
-              "en": "Assign to var"
+              "en": "Assign to var",
+              "pr": "Atribuir a variável"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -805,6 +948,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Copiar-Colar",
+        "description": "Copia um intervalo de células de uma folha para outra",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -812,11 +961,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Hoja origen ",
-              "en": "Origin Sheet"
+              "en": "Origin Sheet",
+              "pr": "Folha de origem"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -830,11 +981,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango a copiar: ",
-              "en": "Range to copy"
+              "en": "Range to copy",
+              "pr": "Intervalo a copiar"
             },
             "description": {
               "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -848,11 +1001,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet2",
-              "en": "Sheet2"
+              "en": "Sheet2",
+              "pr": "Folha2"
             },
             "title": {
               "es": "Hoja destino: ",
-              "en": "Destiny Sheet"
+              "en": "Destiny Sheet",
+              "pr": "Folha de destino"
             },
             "description": {
               "es": "Nombre de la hoja de destino",
@@ -866,11 +1021,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango donde pegar",
-              "en": "Range to paste"
+              "en": "Range to paste",
+              "pr": "Intervalo para colar"
             },
             "description": {
               "es": "Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -908,6 +1065,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Formatar Célula",
+        "description": "Formatar Célula",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -915,11 +1078,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Nombre de Hoja:",
-              "en": "Sheet Name: "
+              "en": "Sheet Name: ",
+              "pr": "Nome da Folha:"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -933,15 +1098,18 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango a formatear: ",
-              "en": "Cell: "
+              "en": "Cell: ",
+              "pr": "Célula a formatar:"
             },
             "help": {
               "es": "Para una sola columna ej: A:A",
-              "en": "For one column write A:A"
+              "en": "For one column write A:A",
+              "pr": "Para uma coluna escreva A:A"
             },
             "description": {
               "es": "Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -955,11 +1123,13 @@
             "type": "select",
             "placeholder": {
               "es": "dd-mm-yy",
-              "en": "dd-mm-yy"
+              "en": "dd-mm-yy",
+              "pr": "dd-mm-yy"
             },
             "title": {
               "es": "Formato",
-              "en": "Format"
+              "en": "Format",
+              "pr": "Formato"
             },
             "options": [
               {
@@ -1019,11 +1189,13 @@
             "type": "input",
             "placeholder": {
               "es": "00000",
-              "en": "00000"
+              "en": "00000",
+              "pr": "00000"
             },
             "title": {
               "es": "Formato personalizado: ",
-              "en": "Custom format: "
+              "en": "Custom format: ",
+              "pr": "Formato personalizado:"
             },
             "description": {
               "es": "Formato personalizado. Debe ser el mismo mostrado en la sección personalizado de Excel",
@@ -1061,6 +1233,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Criar Folha",
+        "description": "Adiciona uma folha no final",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1068,11 +1246,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet2",
-              "en": "Sheet2"
+              "en": "Sheet2",
+              "pr": "Folha2"
             },
             "title": {
               "es": "Nombre de la hoja",
-              "en": "Sheet name"
+              "en": "Sheet name",
+              "pr": "Nome da folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere crear",
@@ -1086,11 +1266,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja1",
-              "en": "Hoja1"
+              "en": "Hoja1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Despues de",
-              "en": "After"
+              "en": "After",
+              "pr": "Depois de"
             },
             "description": {
               "es": "La hoja se creará al lado de la hoja indicada en este campo",
@@ -1099,7 +1281,8 @@
             },
             "help": {
               "es": "Por defecto, se creará al final",
-              "en": "By default, sheet will be created at the end "
+              "en": "By default, sheet will be created at the end ",
+              "pr": "Por padrão, a folha será criada no final"
             },
             "id": "after",
             "css": "col-md-6"
@@ -1132,6 +1315,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Eliminar Folha",
+        "description": "Elmina uma folha",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1139,11 +1328,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet2",
-              "en": "Sheet2"
+              "en": "Sheet2",
+              "pr": "Folha2"
             },
             "title": {
               "es": "Nombre de la hoja",
-              "en": "Sheet name"
+              "en": "Sheet name",
+              "pr": "Nome da folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere borrar",
@@ -1157,15 +1348,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Assign result to variable:"
+              "en": "Assign result to variable:",
+              "pr": "Atribuir resultado a variável:"
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -1204,6 +1398,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Copiar de um Excel para outro",
+        "description": "Copia um intervalo de um Excel para outro, o excel de destino não deve estar aberto",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1211,11 +1411,13 @@
             "type": "file_select",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Excel origen",
-              "en": "Excel origin"
+              "en": "Excel origin",
+              "pr": "Excel de origem"
             },
             "description": {
               "es": "Ruta del archivo excel de origen",
@@ -1229,11 +1431,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Hoja origen",
-              "en": "Sheet name"
+              "en": "Sheet name",
+              "pr": "Folha de origem"
             },
             "description": {
               "es": "Nombre de la hoja de origen",
@@ -1247,11 +1451,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:D7",
-              "en": "A1:D7"
+              "en": "A1:D7",
+              "pr": "A1:D7"
             },
             "title": {
               "es": "Rango a copiar",
-              "en": "Range to copy"
+              "en": "Range to copy",
+              "pr": "Intervalo a copiar"
             },
             "description": {
               "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -1265,11 +1471,13 @@
             "type": "file_select",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Excel destino",
-              "en": "Excel destination"
+              "en": "Excel destination",
+              "pr": "Excel de destino"
             },
             "description": {
               "es": "Ruta del archivo excel de destino",
@@ -1283,11 +1491,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Hoja destino",
-              "en": "Sheet name"
+              "en": "Sheet name",
+              "pr": "Folha de destino"
             },
             "description": {
               "es": "Nombre de la hoja donde se copiará",
@@ -1301,11 +1511,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:D7",
-              "en": "A1:D7"
+              "en": "A1:D7",
+              "pr": "A1:D7"
             },
             "title": {
               "es": "Rango donde pegar",
-              "en": "Range to paste"
+              "en": "Range to paste",
+              "pr": "Intervalo onde colar"
             },
             "description": {
               "es": "Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -1319,11 +1531,13 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "True"
+              "en": "True",
+              "pr": "True"
             },
             "title": {
               "es": "Solo valores",
-              "en": "Only Values"
+              "en": "Only Values",
+              "pr": "Sólo valores"
             },
             "description": {
               "es": "Si esta casilla es seleccionada, copiará solo los valores",
@@ -1361,6 +1575,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Adicionar/Eliminar Linha",
+        "description": "Adiciona ou elimina uma linha",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1368,11 +1588,13 @@
             "type": "select",
             "title": {
               "es": "Opción",
-              "en": "Option"
+              "en": "Option",
+              "pr": "Opção"
             },
             "placeholder": {
               "es": "Add",
-              "en": "Add"
+              "en": "Add",
+              "pr": "Adicionar"
             },
             "options": [
               {
@@ -1400,11 +1622,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet",
-              "en": "Sheet"
+              "en": "Sheet",
+              "pr": "Planilha"
             },
             "title": {
               "es": "Nombre de Hoja:",
-              "en": "Sheet Name"
+              "en": "Sheet Name",
+              "pr": "Nome da Planilha:"
             },
             "description": {
               "es": "Nombre de la hoja donde agregar la fila",
@@ -1418,15 +1642,18 @@
             "type": "input",
             "placeholder": {
               "es": "2",
-              "en": "2"
+              "en": "2",
+              "pr": "2"
             },
             "title": {
               "es": "Número Fila:",
-              "en": "Row Number"
+              "en": "Row Number",
+              "pr": "Número da Linha:"
             },
             "help": {
               "es": "Para rango ej: 2:4",
-              "en": "For range ex: 2:4"
+              "en": "For range ex: 2:4",
+              "pr": "Para rango ex: 2:4"
             },
             "description": {
               "es": "Indique la fila o filas que se quieren agregar o eliminar",
@@ -1440,15 +1667,18 @@
             "type": "select",
             "placeholder": {
               "es": "A1:D7",
-              "en": "A1:D7"
+              "en": "A1:D7",
+              "pr": "A1:D7"
             },
             "title": {
               "es": "Dónde Insertar:",
-              "en": "Up or Down"
+              "en": "Where to Insert:",
+              "pr": "Onde Inserir:"
             },
             "help": {
               "es": "Opción solo para crear una fila",
-              "en": "Option just for add a row"
+              "en": "Option just for add a row",
+              "pr": "Opção apenas para adicionar uma linha"
             },
             "options": [
               {
@@ -1500,6 +1730,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Adicionar/Excluir Coluna",
+        "description": "Adiciona o exclui uma coluna",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1507,7 +1743,8 @@
             "type": "select",
             "title": {
               "es": "Opción",
-              "en": "Option"
+              "en": "Option",
+              "pr": "Opção"
             },
             "options": [
               {
@@ -1535,7 +1772,8 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet",
-              "en": "Sheet"
+              "en": "Sheet",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -1544,7 +1782,8 @@
             },
             "title": {
               "es": "Nombre de Hoja:",
-              "en": "Sheet Name"
+              "en": "Sheet Name",
+              "pr": "Nome da Folha:"
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -1553,15 +1792,18 @@
             "type": "input",
             "placeholder": {
               "es": "B",
-              "en": "B"
+              "en": "B",
+              "pr": "B"
             },
             "title": {
               "es": "Columna:",
-              "en": "Column"
+              "en": "Column",
+              "pr": "Coluna:"
             },
             "help": {
               "es": "Para rango ej: B:F",
-              "en": "For range ex: B:F"
+              "en": "For range ex: B:F",
+              "pr": "Para rango ex: B:F"
             },
             "description": {
               "es": "Indique la columna o columnas que se quieren agregar o eliminar",
@@ -1599,6 +1841,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Converter CSV para XLSX",
+        "description": "Converte um documento CSV para XLSX",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1606,11 +1854,13 @@
             "type": "file_select",
             "title": {
               "es": "Ruta archivo CSV:",
-              "en": "CSV file path:"
+              "en": "CSV file path:",
+              "pr": "Caminho do arquivo CSV:"
             },
             "description": {
               "es": "Ruta del archivo csv que se quiere convertir",
-              "en": "Path of the csv file to be converted"
+              "en": "Path of the csv file to be converted",
+              "pr": "Direcação do arquivo csv que se quer converter"
             },
             "id": "csv_path",
             "css": "col-md-12"
@@ -1619,7 +1869,8 @@
             "type": "input",
             "title": {
               "es": "Delimitador:",
-              "en": "Delimiter:"
+              "en": "Delimiter:",
+              "pr": "Delimitador:"
             },
             "description": {
               "es": "Separador del archivo csv",
@@ -1634,7 +1885,8 @@
             "placeholder": "True",
             "title": {
               "es": "Tiene cabeceras?",
-              "en": "Do it have headers?"
+              "en": "Do it have headers?",
+              "pr": "Tem cabeçeras?"
             },
             "description": {
               "es": "Marcar esta casilla si el csv tiene cabeceras",
@@ -1648,11 +1900,13 @@
             "type": "input",
             "placeholder": {
               "en": "utf-8",
-              "es": "latin-1"
+              "es": "latin-1",
+              "pr": "utf-8"
             },
             "title": {
               "es": "Codificación",
-              "en": "Encoding"
+              "en": "Encoding",
+              "pr": "Codificação"
             },
             "description": {
               "es": "Escriba el tipo de codificación del archivo. Por defecto es latin-1",
@@ -1667,11 +1921,13 @@
             "placeholder": "file.xlsx",
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "XLSX file path"
+              "en": "XLSX file path",
+              "pr": "Caminho do arquivo XLSX:"
             },
             "description": {
               "es": "Ruta del archivo xlsx donde guardar",
-              "en": "Path of the xlsx file where will be saved"
+              "en": "Path of the xlsx file where will be saved",
+              "pr": "Direcação do arquivo xlsx onde será salvo"
             },
             "id": "xlsx_path",
             "css": "col-md-12"
@@ -1704,6 +1960,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Converter XLSX para CSV",
+        "description": "Converte um documento XLSX para CSV",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1712,11 +1974,13 @@
             "placeholder": "C:/Users/User/Desktop/file.xlsx",
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "XLSX file path:"
+              "en": "XLSX file path:",
+              "pr": "Caminho do arquivo XLSX:"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere convertir",
-              "en": "Path of the xlsx file to be converted"
+              "en": "Path of the xlsx file to be converted",
+              "pr": "Caminho do arquivo xlsx que se quer converter"
             },
             "id": "xlsx_path",
             "css": "col-md-12"
@@ -1726,7 +1990,8 @@
             "placeholder": ",",
             "title": {
               "es": "Delimitador:",
-              "en": "Delimiter:"
+              "en": "Delimiter:",
+              "pr": "Delimitador:"
             },
             "description": {
               "es": "Separador del archivo csv",
@@ -1741,7 +2006,8 @@
             "placeholder": "Sheet0",
             "title": {
               "es": "Nombre de la hoja",
-              "en": "Sheet name"
+              "en": "Sheet name",
+              "pr": "Nome da folha"
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -1756,11 +2022,13 @@
             "placeholder": "C:/Users/User/Desktop/file.csv",
             "title": {
               "es": "Ruta archivo CSV:",
-              "en": "CSV file path"
+              "en": "CSV file path",
+              "pr": "Direcação do arquivo CSV:"
             },
             "description": {
               "es": "Ruta del archivo csv donde guardar la conversión",
-              "en": "Path of the xlsx file where will be saved"
+              "en": "Path of the xlsx file where will be saved",
+              "pr": "Direção do arquivo csv onde será salvo"
             },
             "id": "csv_path",
             "css": "col-md-12"
@@ -1793,6 +2061,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Converter XLS para XLSX",
+        "description": "Converte um documento XLS para XLSX",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1801,11 +2075,13 @@
             "placeholder": "C:\\Users\\User\\Desktop\\file.xls",
             "title": {
               "es": "Ruta archivo XLS:",
-              "en": "XLS file path:"
+              "en": "XLS file path:",
+              "pr": "Direcão do arquivo XLS:"
             },
             "description": {
               "es": "Ruta del archivo xls que se quiere convertir",
-              "en": "Path of the xls file to be converted"
+              "en": "Path of the xls file to be converted",
+              "pr": "Direção do arquivo xls que se quer converter"
             },
             "id": "xls_path",
             "css": "col-md-12"
@@ -1815,15 +2091,18 @@
             "placeholder": "C:\\Users\\User\\Desktop\\new_file.xlsx",
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "XLSX file path"
+              "en": "XLSX file path",
+              "pr": "Direção do arquivo XLSX:"
             },
             "description": {
               "es": "Ruta donde se guardará el archivo xlsx",
-              "en": "Path of the xlsx file where will be saved"
+              "en": "Path of the xlsx file where will be saved",
+              "pr": "Direção onde se guardará o arquivo xlsx"
             },
             "help": {
               "es": "Ingresar el nombre del archivo con la extensión .xlsx",
-              "en": "Write the file name with .xlsx extension"
+              "en": "Write the file name with .xlsx extension",
+              "pr": "Escreva o nome do arquivo com a extensão .xlsx"
             },
             "id": "xlsx_path",
             "css": "col-md-12"
@@ -1856,6 +2135,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Obter celula activa",
+        "description": "Obter linha e coluna de uma celula activa",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1863,15 +2148,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -1910,6 +2198,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Atualizar tabela dinâmica",
+        "description": "Atualiza uma tabela dinâmica. Descontinuado! Use o módulo PivotTableExcel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -1917,11 +2211,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Planilha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Planilha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentra la tabla",
@@ -1935,11 +2231,13 @@
             "type": "input",
             "placeholder": {
               "es": "Name: ",
-              "en": "Name: "
+              "en": "Name: ",
+              "pr": "Nome: "
             },
             "title": {
               "es": "Nombre de la tabla dinámica: ",
-              "en": "Pivote table name: "
+              "en": "Pivote table name: ",
+              "pr": "Nome da tabela dinâmica: "
             },
             "description": {
               "es": "Nombre de la tabla dinámica que se actualizará",
@@ -1973,7 +2271,13 @@
       },
       "es": {
         "title": "Ajustar celdas",
-        "description": "Ajusta, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas",
+        "description": "Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Ajustar células",
+        "description": "Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/desagrupar por linhas ou colunas",
         "title_options": null,
         "options": null
       },
@@ -1984,11 +2288,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja:",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -2002,11 +2308,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:D7",
-              "en": "A1:D7"
+              "en": "A1:D7",
+              "pr": "A1:D7"
             },
             "title": {
               "es": "Rango a ajustar",
-              "en": "Range to fit"
+              "en": "Range to fit",
+              "pr": "Intervalo a ajustar"
             },
             "description": {
               "es": "Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2024,7 +2332,8 @@
             },
             "title": {
               "es": "Autofit",
-              "en": "Autofit"
+              "en": "Autofit",
+              "pr": "Autofit"
             },
             "description": {
               "es": "Ajusta automaticamente las celdas para que se visualicen los datos",
@@ -2032,17 +2341,19 @@
               "pr": "Ajusta automaticamente as células para exibir os dados"
             },
             "id": "fit",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Agrupar filas",
-              "en": "Group rows"
+              "en": "Group rows",
+              "pr": "Agrupar linhas"
             },
             "description": {
               "es": "Al marcar este checkbox, se agruparán las filas en el rango seleccionado",
@@ -2050,17 +2361,19 @@
               "pr": "Ao marcar esta opção, as linhas serão agrupadas na faixa selecionada."
             },
             "id": "row",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Agrupar columnas",
-              "en": "Group columns"
+              "en": "Group columns",
+              "pr": "Agrupar colunas"
             },
             "description": {
               "es": "Al marcar este checkbox, se agruparán las columnas en el rango seleccionado",
@@ -2068,17 +2381,19 @@
               "pr": "Ao marcar esta opção, as colunas serão agrupadas na faixa selecionada."
             },
             "id": "column",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Desagrupar filas",
-              "en": "Ungroup rows"
+              "en": "Ungroup rows",
+              "pr": "Desagrupar linhas"
             },
             "description": {
               "es": "Al marcar este checkbox, se desagruparán las filas en el rango seleccionado",
@@ -2086,17 +2401,19 @@
               "pr": "Ao marcar esta opção, as linhas serão desagrupadas na faixa selecionada."
             },
             "id": "un_row",
-            "css": "col-md-2"
+            "css": "col-md-4"
           },
           {
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Desagrupar columnas",
-              "en": "Ungroup columns"
+              "en": "Ungroup columns",
+              "pr": "Desagrupar colunas"
             },
             "description": {
               "es": "Al marcar este checkbox, se desagruparán las columnas en el rango seleccionado",
@@ -2104,17 +2421,39 @@
               "pr": "Ao marcar esta opção, as colunas serão desagrupadas na faixa selecionada."
             },
             "id": "un_column",
-            "css": "col-md-2"
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Unir celdas",
+              "en": "Merge cells",
+              "pr": "Mesclar células"
+            },
+            "description": {
+              "es": "Al marcar este checkbox, se uniran las celdas en el rango seleccionado",
+              "en": "Checking this checkbox will merge the cells in the selected range",
+              "pr": "Marcar esta caixa de seleção mesclará as células no intervalo selecionado"
+            },
+            "id": "mergeCell",
+            "css": "col-md-4"
           },
           {
             "type": "input",
             "placeholder": {
               "es": "2",
-              "en": "2"
+              "en": "2",
+              "pr": "2"
             },
             "title": {
               "es": "Nivel de fila",
-              "en": "Row level"
+              "en": "Row level",
+              "pr": "Nível de linha"
             },
             "description": {
               "es": "Al marcar esta casilla se mostrará el número especificado de niveles de fila",
@@ -2128,11 +2467,13 @@
             "type": "input",
             "placeholder": {
               "es": "2",
-              "en": "2"
+              "en": "2",
+              "pr": "2"
             },
             "title": {
               "es": "Rango de columna",
-              "en": "Column level"
+              "en": "Column level",
+              "pr": "Faixa de coluna"
             },
             "description": {
               "es": "Al marcar esta casilla se mostrará el número especificado de niveles de columna",
@@ -2140,6 +2481,46 @@
               "pr": "Ao marcar esta caixa, será exibido o número especificado de níveis de coluna."
             },
             "id": "col_levels",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20",
+              "pr": "20"
+            },
+            "title": {
+              "es": "Ancho de columna",
+              "en": "Column width",
+              "pr": "Largura da coluna"
+            },
+            "description": {
+              "es": "Ancho al que se ajustara la columna",
+              "en": "Width to which the column will fit",
+              "pr": "Largura na qual a coluna se ajustará"
+            },
+            "id": "columnWidth",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "20",
+              "en": "20",
+              "pr": "20"
+            },
+            "title": {
+              "es": "Altura de Fila",
+              "en": "Row Height",
+              "pr": "Altura da linha"
+            },
+            "description": {
+              "es": "Altura a la que se ajustara la fila",
+              "en": "Height to which the row will adjust",
+              "pr": "Altura à qual a linha se ajustará"
+            },
+            "id": "rowHeight",
             "css": "col-md-6"
           }
         ]
@@ -2170,6 +2551,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Obter Formula",
+        "description": "Obtém a fórmula numa célula",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2177,11 +2564,13 @@
             "type": "input",
             "placeholder": {
               "es": "A5",
-              "en": "A5"
+              "en": "A5",
+              "pr": "A5"
             },
             "title": {
               "es": "Ingrese celda: ",
-              "en": "Cell: "
+              "en": "Cell: ",
+              "pr": "Célula: "
             },
             "description": {
               "es": "Celda donde está la formula. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2195,15 +2584,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -2242,6 +2634,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Adicionar Filtro Automático",
+        "description": "Adiciona filtro automático a uma tabela excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2249,11 +2647,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -2267,11 +2667,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:E6 ",
-              "en": "A1:E6 "
+              "en": "A1:E6 ",
+              "pr": "A1:E6 "
             },
             "title": {
               "es": "Rango: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2309,6 +2711,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Filtrar",
+        "description": "Filtra a uma tabela excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2316,11 +2724,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -2334,11 +2744,13 @@
             "type": "input",
             "placeholder": {
               "es": "A ",
-              "en": "A "
+              "en": "A ",
+              "pr": "A "
             },
             "title": {
               "es": "Inicio de tabla: ",
-              "en": "Table start: "
+              "en": "Table start: ",
+              "pr": "Início da tabela: "
             },
             "description": {
               "es": "Columna donde comienza la tabla que se filtrará",
@@ -2352,11 +2764,13 @@
             "type": "input",
             "placeholder": {
               "es": "A ",
-              "en": "A "
+              "en": "A ",
+              "pr": "A "
             },
             "title": {
               "es": "Columna: ",
-              "en": "Column: "
+              "en": "Column: ",
+              "pr": "Coluna: "
             },
             "description": {
               "es": "Columna donde agregar el filtro",
@@ -2370,11 +2784,13 @@
             "type": "input",
             "placeholder": {
               "es": "['filtro1','filtro2', 'filtro3']",
-              "en": "['filter1','filter2', 'filter3'] "
+              "en": "['filter1','filter2', 'filter3'] ",
+              "pr": "['filtro1','filtro2', 'filtro3']"
             },
             "title": {
               "es": "Filtro: ",
-              "en": "Filter: "
+              "en": "Filter: ",
+              "pr": "Filtro: "
             },
             "description": {
               "es": "Filtro o lista de filtros a agregar. Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
@@ -2383,7 +2799,8 @@
             },
             "help": {
               "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
-              "en": "Use \"=\" to find blank fields, \"<>\" to find non-blank fields, and to select (No Data) fields in data types."
+              "en": "Use \"=\" to find blank fields, \"<>\" to find non-blank fields, and to select (No Data) fields in data types.",
+              "pr": "Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados"
             },
             "id": "filter",
             "css": "col-md-12"
@@ -2416,6 +2833,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Renomear folha",
+        "description": "Muda o nome de uma folha de excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2423,11 +2846,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja a renombrar",
@@ -2441,11 +2866,13 @@
             "type": "input",
             "placeholder": {
               "es": "nuevo_nombre",
-              "en": "new_name"
+              "en": "new_name",
+              "pr": "novo_nome"
             },
             "title": {
               "es": "Nuevo nombre: ",
-              "en": "New name: "
+              "en": "New name: ",
+              "pr": "Novo nome: "
             },
             "description": {
               "es": "Nuevo Nombre de la hoja",
@@ -2483,6 +2910,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Estilo de Célula",
+        "description": "Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2490,11 +2923,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Planilha1"
             },
             "title": {
               "es": "Nombre de Hoja:",
-              "en": "Sheet Name: "
+              "en": "Sheet Name: ",
+              "pr": "Nome da Planilha:"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -2508,11 +2943,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango a formatear: ",
-              "en": "Cell to format: "
+              "en": "Cell to format: ",
+              "pr": "Intervalo a formatar:"
             },
             "description": {
               "es": "Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2526,11 +2963,13 @@
             "type": "select",
             "placeholder": {
               "es": "Contour",
-              "en": "Contour"
+              "en": "Contour",
+              "pr": "Contour"
             },
             "title": {
               "es": "Borde",
-              "en": "Border"
+              "en": "Border",
+              "pr": "Borda"
             },
             "options": [
               {
@@ -2578,11 +3017,13 @@
             "type": "select",
             "placeholder": {
               "es": "_ _ _ _ _ _ _ _ _ _ _",
-              "en": "_ _ _ _ _ _ _ _ _ _ _"
+              "en": "_ _ _ _ _ _ _ _ _ _ _",
+              "pr": "_ _ _ _ _ _ _ _ _ _ _"
             },
             "title": {
               "es": "Estilo",
-              "en": "Style"
+              "en": "Style",
+              "pr": "Estilo"
             },
             "options": [
               {
@@ -2618,11 +3059,13 @@
             "type": "input",
             "placeholder": {
               "es": "20",
-              "en": "20"
+              "en": "20",
+              "pr": "20"
             },
             "title": {
               "es": "Tamaño de fuente: ",
-              "en": "Font size: "
+              "en": "Font size: ",
+              "pr": "Tamanho da fonte:"
             },
             "description": {
               "es": "Tamaño de la fuente de la celda",
@@ -2636,11 +3079,13 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "True"
+              "en": "True",
+              "pr": "True"
             },
             "title": {
               "es": "Negrita",
-              "en": "Blod"
+              "en": "Blod",
+              "pr": "Negrita"
             },
             "description": {
               "es": "Marcar esta casilla para cambiar la fuente a negrita",
@@ -2654,11 +3099,13 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "True"
+              "en": "True",
+              "pr": "True"
             },
             "title": {
               "es": "Cursiva",
-              "en": "Italic"
+              "en": "Italic",
+              "pr": "Cursiva"
             },
             "description": {
               "es": "Marcar esta casilla para cambiar la fuente a cursiva",
@@ -2672,7 +3119,8 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "True"
+              "en": "True",
+              "pr": "True"
             },
             "description": {
               "es": "Marcar esta casilla para cambiar la fuente a subrayado",
@@ -2681,10 +3129,31 @@
             },
             "title": {
               "es": "Subrayar",
-              "en": "Underline"
+              "en": "Underline",
+              "pr": "Sublinhar"
             },
             "id": "underline",
-            "css": "col-md-4"
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True",
+              "pr": "True"
+            },
+            "description": {
+              "es": "Marcar esta casilla para ajustar el texto en el rango especificado",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Ajustar Texto",
+              "en": "Adjust Text",
+              "pr": "Ajustar Texto"
+            },
+            "id": "adjustText",
+            "css": "col-md-2"
           }
         ]
       },
@@ -2714,6 +3183,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Colar em Células",
+        "description": "Colar dados em células em Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2721,11 +3196,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Hoja 1"
+              "en": "Hoja 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja",
-              "en": "Sheet "
+              "en": "Sheet ",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -2739,11 +3216,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B3",
-              "en": "A1:B3"
+              "en": "A1:B3",
+              "pr": "A1:B3"
             },
             "title": {
               "es": "Ingrese celdas donde pegar",
-              "en": "cells where paste "
+              "en": "cells where paste ",
+              "pr": "Ingrese células onde colar"
             },
             "description": {
               "es": "Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2757,11 +3236,13 @@
             "type": "checkbox",
             "placeholder": {
               "es": "True",
-              "en": "True"
+              "en": "True",
+              "pr": "True"
             },
             "title": {
               "es": "Solo valores",
-              "en": "Only values "
+              "en": "Only values ",
+              "pr": "Só valores"
             },
             "description": {
               "es": "Si esta casilla es seleccionada, se pegarán solo los valores",
@@ -2787,15 +3268,21 @@
       "docker": true
     },
     {
-      "en": {
-        "title": "Remove Duplicates",
-        "description": "Removes duplicate data in range",
-        "title_options": null,
-        "options": null
-      },
       "es": {
         "title": "Eliminar duplicados",
         "description": "Ejecuta el comando eliminar duplicados de Excel",
+        "title_options": null,
+        "options": null
+      },
+      "en": {
+        "title": "Remove Duplicates",
+        "description": "Execute the remove duplicates command of Excel",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Remover duplicatas",
+        "description": "Executa o comando remover duplicatas de Excel",
         "title_options": null,
         "options": null
       },
@@ -2806,11 +3293,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Hoja 1"
+              "en": "Hoja 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja",
-              "en": "Sheet "
+              "en": "Sheet",
+              "pr": "Folha"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere automatizar",
@@ -2824,11 +3313,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B3",
-              "en": "A1:B3"
+              "en": "A1:B3",
+              "pr": "A1:B3"
             },
             "title": {
               "es": "Ingrese celdas donde filtrar",
-              "en": "cells where filter "
+              "en": "cells where filter ",
+              "pr": "Ingrese células onde filtrar"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -2842,7 +3333,8 @@
             "type": "input",
             "placeholder": {
               "es": "A ",
-              "en": "A "
+              "en": "A ",
+              "pr": "A "
             },
             "description": {
               "es": "Indicar la columna donde se buscarán los duplicados",
@@ -2851,7 +3343,8 @@
             },
             "title": {
               "es": "Columna: ",
-              "en": "Column: "
+              "en": "Column: ",
+              "pr": "Coluna: "
             },
             "id": "column",
             "css": "col-md-6"
@@ -2861,7 +3354,8 @@
             "placeholder": "True",
             "title": {
               "es": "Tiene cabeceras?",
-              "en": "Do it have headers?"
+              "en": "Do it have headers?",
+              "pr": "Tem cabeçeras?"
             },
             "description": {
               "es": "Marcar esta casilla si el excel tiene cabeceras",
@@ -2899,6 +3393,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Fechar XLSX",
+        "description": "Fecha o arquivo aberto por Rocketbot",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": []
@@ -2929,6 +3429,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Salvar Excel",
+        "description": "Salva um arquivo Excel na ruta indicada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2936,11 +3442,13 @@
             "type": "file_new",
             "placeholder": {
               "es": "/Users/user/Desktop/excel.xlsx",
-              "en": "/Users/user/Desktop/excel.xlsx"
+              "en": "/Users/user/Desktop/excel.xlsx",
+              "pr": "/Users/user/Desktop/excel.xlsx"
             },
             "title": {
               "es": "Guardar Excel:",
-              "en": "Save Excel:"
+              "en": "Save Excel:",
+              "pr": "Salvar Excel:"
             },
             "description": {
               "es": "Ruta donde guardar el archivo .xlsx",
@@ -2978,6 +3486,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Salvar Excel com senha",
+        "description": "Salva um arquivo Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -2985,11 +3499,13 @@
             "type": "file_select",
             "placeholder": {
               "es": "/Users/user/Desktop/excel.xlsx",
-              "en": "/Users/user/Desktop/excel.xlsx"
+              "en": "/Users/user/Desktop/excel.xlsx",
+              "pr": "/Users/user/Desktop/excel.xlsx"
             },
             "title": {
               "es": "Guardar Excel en:",
-              "en": "Save Excel as:"
+              "en": "Save Excel as:",
+              "pr": "Salvar Excel como:"
             },
             "description": {
               "es": "Ruta donde guardar el archivo .xlsx",
@@ -3003,15 +3519,18 @@
             "type": "input",
             "placeholder": {
               "es": "password",
-              "en": "password"
+              "en": "password",
+              "pr": "password"
             },
             "description": {
               "es": "Contraseña del archivo xlsx",
-              "en": "Password of the xlsx file"
+              "en": "Password of the xlsx file",
+              "pr": "Senha do arquivo xlsx"
             },
             "title": {
               "es": "Ingrese la password",
-              "en": "Password to save with"
+              "en": "Password to save with",
+              "pr": "Digite a senha"
             },
             "id": "password",
             "css": "col-md-6"
@@ -3044,6 +3563,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Exportar para PDF avançado",
+        "description": "Exporta Excel para PDF com opções",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3051,11 +3576,13 @@
             "type": "file_new",
             "placeholder": {
               "es": "/Users/user/Desktop/excel.pdf",
-              "en": "/Users/user/Desktop/excel.pdf"
+              "en": "/Users/user/Desktop/excel.pdf",
+              "pr": "/Users/user/Desktop/excel.pdf"
             },
             "title": {
               "es": "Guardar PDF:",
-              "en": "Save PDF:"
+              "en": "Save PDF:",
+              "pr": "Salvar PDF:"
             },
             "description": {
               "es": "Ruta donde guardar el archivo .pdf",
@@ -3069,11 +3596,13 @@
             "type": "select",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Ajuste Automatico",
-              "en": "Autofit"
+              "en": "Autofit",
+              "pr": "Ajuste Automático"
             },
             "options": [
               {
@@ -3104,7 +3633,8 @@
             "type": "checkbox",
             "title": {
               "es": "Zoom",
-              "en": "Zoom"
+              "en": "Zoom",
+              "pr": "Zoom"
             },
             "id": "check_zoom",
             "css": "col-md-3"
@@ -3113,7 +3643,8 @@
             "type": "checkbox",
             "title": {
               "es": "Ajustar Alto",
-              "en": "FitToPagesTall"
+              "en": "FitToPagesTall",
+              "pr": "Ajustar Altura"
             },
             "id": "check_tall",
             "css": "col-md-3"
@@ -3122,7 +3653,8 @@
             "type": "checkbox",
             "title": {
               "es": "Ajustar ancho",
-              "en": "FitToPagesWide"
+              "en": "FitToPagesWide",
+              "pr": "Ajustar Largura"
             },
             "id": "check_wide",
             "css": "col-md-3"
@@ -3162,11 +3694,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Sheet1"
             },
             "title": {
               "es": "Hoja origen ",
-              "en": "Origin Sheet"
+              "en": "Origin Sheet",
+              "pr": "Folha origem"
             },
             "description": {
               "es": "Nombre de la hoja de origen",
@@ -3180,15 +3714,18 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet2",
-              "en": "Sheet2"
+              "en": "Sheet2",
+              "pr": "Sheet2"
             },
             "title": {
               "es": "Mover/copiar antes de hoja: ",
-              "en": "Move/copy before sheet:"
+              "en": "Move/copy before sheet:",
+              "pr": "Mover/copiar antes da folha:"
             },
             "help": {
               "es": "Dejar vacío si quieres moverlo al final",
-              "en": "Empty if you want move to final"
+              "en": "Empty if you want move to final",
+              "pr": "Deixar vazio se quiser mover para o final"
             },
             "description": {
               "es": "Nombre de la hoja donde se moverá",
@@ -3202,11 +3739,13 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:/ruta/al/excel.xlsx",
-              "en": "C:/path/to/excel.xlsx"
+              "en": "C:/path/to/excel.xlsx",
+              "pr": "C:/ruta/para/excel.xlsx"
             },
             "title": {
               "es": "Excel destino",
-              "en": "Excel destination"
+              "en": "Excel destination",
+              "pr": "Excel destino"
             },
             "description": {
               "es": "Ruta del archivo .xlsx donde mover o copiar la hoja",
@@ -3215,7 +3754,8 @@
             },
             "help": {
               "es": "Completar solo para mover de un libro a otro ",
-              "en": "Fill only if you want move to another workbook"
+              "en": "Fill only if you want move to another workbook",
+              "pr": "Preencher apenas se quiser mover para outro livro"
             },
             "id": "book",
             "css": "col-md-9"
@@ -3224,7 +3764,8 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Copiar",
@@ -3266,6 +3807,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Inserir Formulário",
+        "description": "Insere um Formulário no Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3273,15 +3820,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "Form.frm",
-              "en": "Form.frm"
+              "en": "Form.frm",
+              "pr": "Form.frm"
             },
             "title": {
               "es": "Ruta del Formulario:",
-              "en": "Macro path: "
+              "en": "Macro path: ",
+              "pr": "Caminho do Formulário: "
             },
             "description": {
               "es": "Ruta del archivo frm que se quiere insertar",
-              "en": "Path of the frm file to be inserted"
+              "en": "Path of the frm file to be inserted",
+              "pr": "Direcação do arquivo frm que se deseja inserir"
             },
             "id": "form_path",
             "css": "col-md-12"
@@ -3314,6 +3864,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Ler células filtradas",
+        "description": "Ler somente as células filtradas",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3330,7 +3886,8 @@
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "id": "sheet",
             "css": "col-md-6"
@@ -3339,11 +3896,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -3357,15 +3916,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -3380,15 +3942,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Datos extra",
-              "en": "More data "
+              "en": "More data ",
+              "pr": "Mais dados "
             },
             "help": {
               "es": "Si se marca, devolverá las celdas con sus rangos",
-              "en": "If check, return cell information with range"
+              "en": "If check, return cell information with range",
+              "pr": "Se marcado, retornará as células com seus intervalos"
             },
             "id": "more_data",
             "css": "col-md-6"
@@ -3421,6 +3986,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Contar celulas filtradas",
+        "description": "Conta somente as celulas filtradas",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3428,11 +3999,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -3445,17 +4018,24 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "es": "A1:A100 ",
+              "en": "A1:A100 ",
+              "pr": "A1:A100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo onde buscar: "
             },
             "description": {
-              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
-              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
-              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+              "es": "Rango de columna filtrada (A1:A100)",
+              "en": "Range of column filtered (A1:A100)",
+              "pr": "Intervalo de coluna filtrada (A1:A100)"
+            },
+            "help": {
+              "es": "Colocar el rango de la columna filtrada",
+              "en": "Put the range of the filtered column",
+              "pr": "Colocar o intervalo da coluna filtrada"
             },
             "id": "range",
             "css": "col-md-6"
@@ -3464,15 +4044,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -3511,6 +4094,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Replace",
+        "description": "Run replace action to excel ",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3518,11 +4107,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -3536,11 +4127,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo onde buscar: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -3554,11 +4147,13 @@
             "type": "input",
             "placeholder": {
               "es": "10/10/2020",
-              "en": "10/10/2020"
+              "en": "10/10/2020",
+              "pr": "10/10/2020"
             },
             "title": {
               "es": "Palabra a reemplazar",
-              "en": "Word to replace: "
+              "en": "Word to replace: ",
+              "pr": "Palavra a substituir: "
             },
             "description": {
               "es": "Palabra que se buscará para ser reemplazada",
@@ -3572,11 +4167,13 @@
             "type": "input",
             "placeholder": {
               "es": "10-10-2020",
-              "en": "10-10-2020"
+              "en": "10-10-2020",
+              "pr": "10-10-2020"
             },
             "title": {
               "es": "Nueva palabra",
-              "en": "New word: "
+              "en": "New word: ",
+              "pr": "Nova palavra: "
             },
             "description": {
               "es": "Palabra que va a reemplazar a la anterior indicada",
@@ -3614,6 +4211,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Ordenar",
+        "description": "Executa a ação de substituir de excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3621,11 +4224,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet 1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -3639,15 +4244,18 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo onde buscar: "
             },
             "help": {
               "es": "No usar cabeceras",
-              "en": "Not headers"
+              "en": "Not headers",
+              "pr": "Não usar cabeçeras"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -3661,11 +4269,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:A22",
-              "en": "A1:A22"
+              "en": "A1:A22",
+              "pr": "A1:A22"
             },
             "title": {
               "es": "Columna",
-              "en": "Column"
+              "en": "Column",
+              "pr": "Coluna"
             },
             "description": {
               "es": "Indicar la columna a ordenar",
@@ -3679,11 +4289,13 @@
             "type": "select",
             "placeholder": {
               "es": "Ascending",
-              "en": "Ascending"
+              "en": "Ascending",
+              "pr": "Ascendente"
             },
             "title": {
               "es": "Tipo de orden: ",
-              "en": "Order type: "
+              "en": "Order type: ",
+              "pr": "Tipo de ordem: "
             },
             "options": [
               {
@@ -3731,6 +4343,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Atualizar Tudo",
+        "description": "Atualiza todas as fontes do livro",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": []
@@ -3761,6 +4379,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Buscar",
+        "description": "Devuelve a primeira celula encontrada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3768,11 +4392,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1 "
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -3786,15 +4412,18 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo onde buscar: "
             },
             "help": {
               "es": "No usar cabeceras",
-              "en": "Not headers"
+              "en": "Not headers",
+              "pr": "Não usar cabeçeras"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -3808,11 +4437,13 @@
             "type": "input",
             "placeholder": {
               "es": "Lorem",
-              "en": "Lorem"
+              "en": "Lorem",
+              "pr": "Lorem"
             },
             "title": {
               "es": "Texto a buscar",
-              "en": "Text to find"
+              "en": "Text to find",
+              "pr": "Texto a buscar"
             },
             "description": {
               "es": "Texto que se quiere buscar en el excel",
@@ -3826,15 +4457,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -3873,6 +4507,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Bloquear celulas",
+        "description": "Bloquea ou desbloqueia celulas",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3898,11 +4538,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo onde buscar: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -3916,11 +4558,13 @@
             "type": "select",
             "placeholder": {
               "es": "Lock",
-              "en": "Lock"
+              "en": "Lock",
+              "pr": "Lock"
             },
             "title": {
               "es": "Acción",
-              "en": "Action"
+              "en": "Action",
+              "pr": "Action"
             },
             "options": [
               {
@@ -3968,6 +4612,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Adicionar Gráfico",
+        "description": "Adiciona um novo gráfico sobre uma folha de excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -3975,11 +4625,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -3993,11 +4645,13 @@
             "type": "select",
             "placeholder": {
               "es": "Line",
-              "en": "Line"
+              "en": "Line",
+              "pr": "Linha"
             },
             "title": {
               "es": "Tipo de Gráfico",
-              "en": "Type of Chart"
+              "en": "Type of Chart",
+              "pr": "Tipo de Gráfico"
             },
             "options": [
               {
@@ -4033,11 +4687,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1",
-              "en": "A1"
+              "en": "A1",
+              "pr": "A1"
             },
             "title": {
               "es": "Celda donde insertar gráfico: ",
-              "en": "Cell position: "
+              "en": "Cell position: ",
+              "pr": "Célula onde inserir gráfico: "
             },
             "description": {
               "es": "Celda donde insertar el gráfico. La sintaxis debe ser la misma de excel (A1) ",
@@ -4051,11 +4707,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango de datos: ",
-              "en": "Data range: "
+              "en": "Data range: ",
+              "pr": "Intervalo de dados: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -4093,6 +4751,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Remover Senha",
+        "description": "Remove a senha e salva o Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4100,15 +4764,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:/Users/User/Desktop/test.xlsx",
-              "en": "C:/Users/User/Desktop/test.xlsx"
+              "en": "C:/Users/User/Desktop/test.xlsx",
+              "pr": "C:/Users/User/Desktop/test.xlsx"
             },
             "title": {
               "es": "Excel con Contraseña:",
-              "en": "Excel with password:"
+              "en": "Excel with password:",
+              "pr": "Excel com senha:"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere abrir",
-              "en": "Path of the xlsx file to be opened"
+              "en": "Path of the xlsx file to be opened",
+              "pr": "Caminho do arquivo xlsx que se deseja abrir"
             },
             "id": "excel_file",
             "css": "col-md-12"
@@ -4117,15 +4784,18 @@
             "type": "input",
             "placeholder": {
               "es": "****",
-              "en": "****"
+              "en": "****",
+              "pr": "****"
             },
             "title": {
               "es": "Contraseña:",
-              "en": "Password:"
+              "en": "Password:",
+              "pr": "Senha:"
             },
             "description": {
               "es": "Contraseña del archivo xlsx",
-              "en": "Password of the xlsx file"
+              "en": "Password of the xlsx file",
+              "pr": "Senha do arquivo xlsx"
             },
             "id": "pass_excel",
             "css": "col-md-12"
@@ -4134,11 +4804,13 @@
             "type": "file_new",
             "placeholder": {
               "es": "C:/Users/User/Desktop/test2.xlsx",
-              "en": "C:/Users/User/Desktop/test2.xlsx"
+              "en": "C:/Users/User/Desktop/test2.xlsx",
+              "pr": "C:/Users/User/Desktop/test2.xlsx"
             },
             "title": {
               "es": "Excel sin Contraseña:",
-              "en": "Excel without password:"
+              "en": "Excel without password:",
+              "pr": "Excel sem senha:"
             },
             "description": {
               "es": "Ruta donde guardar el archivo .xlsx. Vacío para guardar en el mismo Excel",
@@ -4147,7 +4819,8 @@
             },
             "help": {
               "es": "Vacío para guardar en el mismo Excel",
-              "en": "Empty for save in the same Excel"
+              "en": "Empty for save in the same Excel",
+              "pr": "Vazio para salvar no mesmo Excel"
             },
             "id": "new_excel_file",
             "css": "col-md-12"
@@ -4180,6 +4853,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Inserir imagem",
+        "description": "Inserir uma imagem",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4187,11 +4866,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -4205,7 +4886,8 @@
             "type": "input",
             "placeholder": {
               "es": "B5",
-              "en": "B5"
+              "en": "B5",
+              "pr": "B5"
             },
             "title": {
               "es": "Celda: ",
@@ -4224,15 +4906,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "imagen.png",
-              "en": "image.png"
+              "en": "image.png",
+              "pr": "imagem.png"
             },
             "title": {
               "es": "Ruta imagen:",
-              "en": "Image path: "
+              "en": "Image path: ",
+              "pr": "Direcação da imagem: "
             },
             "description": {
               "es": "Ruta de la imagen que se quiere insertar",
-              "en": "Path of the image file to be inserted"
+              "en": "Path of the image file to be inserted",
+              "pr": "Direção do arquivo de imagem que se quer inserir"
             },
             "id": "image_path",
             "css": "col-md-12"
@@ -4265,6 +4950,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Exportar gráfico",
+        "description": "Exporta um gráfico por índice",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4272,11 +4963,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -4290,11 +4983,13 @@
             "type": "input",
             "placeholder": {
               "es": "1",
-              "en": "1"
+              "en": "1",
+              "pr": "1"
             },
             "title": {
               "es": "Index: ",
-              "en": "Index: "
+              "en": "Index: ",
+              "pr": "Index: "
             },
             "description": {
               "es": "Índice del gráfico a exportar",
@@ -4308,15 +5003,18 @@
             "type": "file_new",
             "placeholder": {
               "es": "/ruta/a/imagen.png",
-              "en": "/path/to/image.png"
+              "en": "/path/to/image.png",
+              "pr": "/direção/para/imagem.png"
             },
             "title": {
               "es": "Ruta imagen:",
-              "en": "Image path: "
+              "en": "Image path: ",
+              "pr": "Direcação da imagem: "
             },
             "description": {
               "es": "Ruta dnde se guardará la imagen",
-              "en": "Path where the image will be saved"
+              "en": "Path where the image will be saved",
+              "pr": "Direção onde a imagem será salva"
             },
             "id": "path",
             "css": "col-md-12"
@@ -4349,6 +5047,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Modo não visível",
+        "description": "Abre excel em modo não visível",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4356,15 +5060,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "Archivo.XLSX",
-              "en": "file.XLSX"
+              "en": "File.XLSX",
+              "pr": "Arquivo.XLSX"
             },
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "Patho to XLSX file: "
+              "en": "Patho to XLSX file: ",
+              "pr": "Direcação do arquivo XLSX:"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere abrir",
-              "en": "Path of the xlsx file to be opened"
+              "en": "Path of the xlsx file to be opened",
+              "pr": "Direção do arquivo xlsx que se deseja abrir"
             },
             "id": "path",
             "css": "col-md-12"
@@ -4373,15 +5080,18 @@
             "type": "input",
             "placeholder": {
               "es": "default",
-              "en": "default"
+              "en": "default",
+              "pr": "default"
             },
             "title": {
               "es": "Identificador (opcional):",
-              "en": "Id (optional): "
+              "en": "Id (optional): ",
+              "pr": "Identificador (opcional):"
             },
             "description": {
               "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
-              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.",
+              "pr": "Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*."
             },
             "id": "id",
             "css": "col-md-12"
@@ -4414,6 +5124,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Escrever array de objetos",
+        "description": "Escrever um array de objetos em células de Excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4421,11 +5137,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -4439,11 +5157,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1",
-              "en": "A1"
+              "en": "A1",
+              "pr": "A1"
             },
             "title": {
               "es": "Celda o Rango de celdas:",
-              "en": "Cell o Cells Range: "
+              "en": "Cell o Cells Range: ",
+              "pr": "Célula o Rango de Células: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -4457,11 +5177,13 @@
             "type": "input",
             "placeholder": {
               "es": "[{ 'id',: 1, 'text': 'hola' },{ 'id',: 2, 'text': 'mundo' }]",
-              "en": "[{ 'id',: 1, 'text': 'hello' },{ 'id',: 2, 'text': 'world' }]"
+              "en": "[{ 'id',: 1, 'text': 'hello' },{ 'id',: 2, 'text': 'world' }]",
+              "pr": "[{ 'id',: 1, 'text': 'olá' },{ 'id',: 2, 'text': 'mundo' }]"
             },
             "title": {
               "es": "Datos a escribir",
-              "en": "Data "
+              "en": "Data ",
+              "pr": "Dados a escrever"
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -4499,6 +5221,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Copiar-Colar Formato",
+        "description": "Copia formato de um intervalo de células de uma folha para outra",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4506,11 +5234,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha1"
             },
             "title": {
               "es": "Hoja origen ",
-              "en": "Origin Sheet"
+              "en": "Origin Sheet",
+              "pr": "Folha de origem"
             },
             "description": {
               "es": "Nombre de la hoja de origen",
@@ -4524,11 +5254,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango a copiar: ",
-              "en": "Range to copy"
+              "en": "Range to copy",
+              "pr": "Intervalo a copiar"
             },
             "id": "cell_range1",
             "css": "col-md-6"
@@ -4537,11 +5269,13 @@
             "type": "input",
             "placeholder": {
               "es": "Sheet2",
-              "en": "Sheet2"
+              "en": "Sheet2",
+              "pr": "Folha2"
             },
             "title": {
               "es": "Hoja destino: ",
-              "en": "Destiny Sheet"
+              "en": "Destiny Sheet",
+              "pr": "Folha de destino"
             },
             "description": {
               "es": "Nombre de la hoja de destino",
@@ -4555,11 +5289,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:C4",
-              "en": "A1:C4"
+              "en": "A1:C4",
+              "pr": "A1:C4"
             },
             "title": {
               "es": "Rango donde pegar",
-              "en": "Range to paste"
+              "en": "Range to paste",
+              "pr": "Intervalo onde colar"
             },
             "id": "cell_range2",
             "css": "col-md-6"
@@ -4592,6 +5328,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Buscar e conectar",
+        "description": "Busca um excel aberto e conecta-se a este.",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4599,11 +5341,13 @@
             "type": "input",
             "placeholder": {
               "es": "Archivo.XLSX",
-              "en": "file.XLSX"
+              "en": "File.XLSX",
+              "pr": "Arquivo.XLSX"
             },
             "title": {
               "es": "Nombre del archivo XLSX abierto:",
-              "en": "XLSX filename: "
+              "en": "XLSX filename: ",
+              "pr": "Nome do arquivo XLSX aberto:"
             },
             "id": "name",
             "css": "col-md-12"
@@ -4612,15 +5356,18 @@
             "type": "input",
             "placeholder": {
               "es": "excel1",
-              "en": "excel1"
+              "en": "excel1",
+              "pr": "excel1"
             },
             "description": {
               "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
-              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*."
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.",
+              "pr": "Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*."
             },
             "title": {
               "es": "Identificador (opcional):",
-              "en": "Id (optional): "
+              "en": "Id (optional): ",
+              "pr": "Identificador (opcional):"
             },
             "id": "id",
             "css": "col-md-12"
@@ -4653,6 +5400,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Atualizar vínculos",
+        "description": "Muda um vínculo de um documento para outro",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4660,11 +5413,13 @@
             "type": "file_select",
             "title": {
               "es": "Ruta a cambiar:",
-              "en": "Path to change:"
+              "en": "Path to change:",
+              "pr": "Direcação"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere actualizar",
-              "en": "Path of the xlsx file to be updated"
+              "en": "Path of the xlsx file to be updated",
+              "pr": "Direcação do arquivo xlsx que se quere atualizar"
             },
             "id": "name",
             "css": "col-md-12"
@@ -4674,11 +5429,13 @@
             "placeholder": "file.xlsx",
             "title": {
               "es": "Ruta actualizada",
-              "en": "Updated path"
+              "en": "Updated path",
+              "pr": "Direcação atualizada"
             },
             "description": {
               "es": "Ruta del archivo xlsx que reemplazará el vinculo",
-              "en": "Path of the xlsx file that will replace the link"
+              "en": "Path of the xlsx file that will replace the link",
+              "pr": "Direcação do arquivo xlsx que substituirá o vínculo"
             },
             "id": "new_name",
             "css": "col-md-12"
@@ -4711,6 +5468,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Desbloquear folha",
+        "description": "Desbloquea uma folha com senha",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4718,11 +5481,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja:",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha:"
             },
             "description": {
               "es": "Nombre de la hoja que se quiere bloquear",
@@ -4736,15 +5501,18 @@
             "type": "input",
             "placeholder": {
               "es": "Contraseña",
-              "en": "Password"
+              "en": "Password",
+              "pr": "Senha"
             },
             "description": {
               "es": "Contraseña de la hoja bloqueada",
-              "en": "Password of the locked sheet"
+              "en": "Password of the locked sheet",
+              "pr": "Senha da folha bloqueada"
             },
             "title": {
               "es": "Contraseña",
-              "en": "Password"
+              "en": "Password",
+              "pr": "Senha"
             },
             "id": "password",
             "css": "col-md-12"
@@ -4777,6 +5545,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Converter para .txt",
+        "description": "Converte para .txt",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4784,15 +5558,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "Archivo.XLSX",
-              "en": "file.XLSX"
+              "en": "file.XLSX",
+              "pr": "Arquivo.XLSX"
             },
             "title": {
               "es": "Ruta archivo XLSX:",
-              "en": "Patho to XLSX file: "
+              "en": "Patho to XLSX file: ",
+              "pr": "Direcação do arquivo XLSX:"
             },
             "description": {
               "es": "Ruta del archivo xlsx que se quiere convertir",
-              "en": "Path of the xlsx file to be converted"
+              "en": "Path of the xlsx file to be converted",
+              "pr": "Direcção do arquivo xlsx que se quer converter"
             },
             "id": "path_xlsx",
             "css": "col-md-12"
@@ -4801,11 +5578,13 @@
             "type": "file_new",
             "placeholder": {
               "es": "/Users/user/Desktop/prueba.txt",
-              "en": "/Users/user/Desktop/test.txt"
+              "en": "/Users/user/Desktop/test.txt",
+              "pr": "/Users/user/Desktop/test.txt"
             },
             "title": {
               "es": "Guardar TXT:",
-              "en": "Save TXT:"
+              "en": "Save TXT:",
+              "pr": "Salvar TXT:"
             },
             "description": {
               "es": "Ruta donde guardar el archivo .txt",
@@ -4843,6 +5622,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Texto em coluna",
+        "description": "Executa a opção texto em coluna de excel",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4850,11 +5635,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja donde se encuentran los datos",
@@ -4868,11 +5655,13 @@
             "type": "input",
             "placeholder": {
               "es": "A1:B100 ",
-              "en": "A1:B100 "
+              "en": "A1:B100 ",
+              "pr": "A1:B100 "
             },
             "title": {
               "es": "Rango donde buscar: ",
-              "en": "Range: "
+              "en": "Range: ",
+              "pr": "Intervalo: "
             },
             "description": {
               "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
@@ -4886,11 +5675,13 @@
             "type": "select",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Seleccione color: ",
-              "en": "Select color: "
+              "en": "Select color: ",
+              "pr": "Selecione cor: "
             },
             "options": [
               {
@@ -4925,11 +5716,13 @@
             "type": "input",
             "placeholder": {
               "es": ",",
-              "en": ","
+              "en": ",",
+              "pr": ","
             },
             "title": {
               "es": "Otro delimitador",
-              "en": "Other delimiter: "
+              "en": "Other delimiter: ",
+              "pr": "Outro delimitador: "
             },
             "id": "other",
             "css": "col-md-6"
@@ -4962,6 +5755,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Converter tempo de Excel para horas",
+        "description": "Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -4969,11 +5768,13 @@
             "type": "input",
             "placeholder": {
               "es": "0.296655812",
-              "en": "0.296655812"
+              "en": "0.296655812",
+              "pr": "0.296655812"
             },
             "title": {
               "es": "Ingrese el tiempo en formato decimal: ",
-              "en": "Decimal time: "
+              "en": "Decimal time: ",
+              "pr": "Insere o tempo no formato decimal: "
             },
             "id": "decimalTime",
             "css": "col-md-6"
@@ -4982,15 +5783,18 @@
             "type": "input",
             "placeholder": {
               "es": "Variable",
-              "en": "Variable"
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
               "es": "Asignar resultado a variable",
-              "en": "Assign result to variable: "
+              "en": "Assign result to variable: ",
+              "pr": "Atribuir resultado a variável: "
             },
             "help": {
               "es": "Nombre de variable sin llaves {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "description": {
               "es": "Nombre de la variable donde guardar el resultado",
@@ -5029,6 +5833,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Imprimir folha",
+        "description": "Imprime uma folha",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -5036,11 +5846,13 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja 1",
-              "en": "Sheet1"
+              "en": "Sheet1",
+              "pr": "Folha 1"
             },
             "title": {
               "es": "Hoja: ",
-              "en": "Sheet: "
+              "en": "Sheet: ",
+              "pr": "Folha: "
             },
             "description": {
               "es": "Nombre de la hoja que se quiere imprimir",

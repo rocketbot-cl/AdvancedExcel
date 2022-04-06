@@ -25,7 +25,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 """
 # Changing the data types of all strings in the module at once
 from __future__ import unicode_literals
-#from xlsx2csv import Xlsx2csv
+# from xlsx2csv import Xlsx2csv
 import decimal
 import io
 import pandas as pd
@@ -48,18 +48,19 @@ def import_lib(relative_path, name, class_name=None):
     - name: library name
     - class_name: class name to be imported. As 'from name import class_name'
     """
-   
+
     import importlib.util
 
-    cur_path = base_path + 'modules' + os.sep + 'AdvancedExcel' + os.sep + 'libs' + os.sep
+    cur_path = base_path + 'modules' + os.sep + \
+        'AdvancedExcel' + os.sep + 'libs' + os.sep
 
-    spec = importlib.util.spec_from_file_location(name, cur_path + relative_path)
+    spec = importlib.util.spec_from_file_location(
+        name, cur_path + relative_path)
     foo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(foo)
     if class_name is not None:
         return getattr(foo, class_name)
     return foo
-    
 
 
 def get_date_with_format(xl_date):
@@ -67,6 +68,7 @@ def get_date_with_format(xl_date):
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
     date_object = datetime_date.date()
     return date_object.isoformat()
+
 
 def set_password(excel_file_path, pw):
 
@@ -93,7 +95,7 @@ def set_password(excel_file_path, pw):
     with open(vbs_script_path, "w") as file:
         file.write(vbs_script)
 
-    #execute
+    # execute
     subprocess.call(['cscript.exe', str(vbs_script_path)])
 
     # remove
@@ -109,15 +111,16 @@ module = GetParams("module")
 excel = GetGlobals("excel")
 if excel.actual_id in excel.file_:
     xls = excel.file_[excel.actual_id]
-    if "workbook" in xls: 
+    if "workbook" in xls:
         wb = xls['workbook']
 
 if module == "Open":
-    
+
     id_ = GetParams("id")
     file_path = GetParams("path")
     password = GetParams("password")
     visible = GetParams("visible")
+    var_ = GetParams("var_")
     try:
 
         app = xw.App(add_book=False)
@@ -128,9 +131,11 @@ if module == "Open":
         try:
             wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
                                         CorruptLoad=2)
+            SetVar(var_, True)
         except:
             PrintException()
             wb = app.books.open(file_path, UpdateLinks=False)
+            SetVar(var_, False)
         excel.actual_id = excel.id_default
 
         if id_:
@@ -146,10 +151,10 @@ if module == "Open":
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
+        SetVar(var_, False)
         raise e
 
 if module == "CellColor":
-    
 
     range_ = GetParams("range")
     color = GetParams("color")
@@ -170,7 +175,6 @@ if module == "CellColor":
         else:
             rgb = eval(custom)
 
-
         xw.Range(range_).color = rgb
 
         # print("salimos")
@@ -185,7 +189,7 @@ if module == "InsertFormula":
 
     cell = GetParams("cell")
     formula = GetParams("formula")
-    
+
     sheet = xls['sheet']
     sheet.range(cell).formula = formula
 
@@ -230,7 +234,7 @@ if module == "SelectCells":
         raise e
 
 if (module == "getCurrencyValue"):
-    
+
     sheetWanted = GetParams("sheetWanted")
     cellRange = GetParams("cellRange")
     finalResult = []
@@ -248,19 +252,18 @@ if (module == "getCurrencyValue"):
     else:
         finalResult.append(float(valueGotten))
 
-    
     whereToStoreData = GetParams("whereToStoreData")
     SetVar(whereToStoreData, finalResult)
 
 
 if (module == "getDateValue"):
-    
+
     sheetWanted = GetParams("sheetWanted")
     cellRange = GetParams("cellRange")
     finalResult = []
     valueGotten = xw.sheets[sheetWanted].range(cellRange).value
     cont = 0
-    try:    
+    try:
         try:
             for each in valueGotten:
                 cont += 1
@@ -386,10 +389,9 @@ if module == "formatCell":
 if module == "createSheet":
     hoja = GetParams("sheet_name")
     last = GetParams("after")
-    
 
     try:
-        
+
         if not last:
             res = [a.name for a in wb.sheets]
             last = res[-1]
@@ -425,7 +427,7 @@ if module == "copy_other":
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
         platform_ = platform.system()
-        
+
         wb1 = wb.app.books.open(excel1)
         if hoja1 not in [sh.name for sh in wb1.sheets]:
             raise Exception(
@@ -820,45 +822,65 @@ if module == "refreshPivot":
         raise e
 
 if module == "fitCells":
-    sheet_name = GetParams("sheet")
-    range_cell = GetParams("cell_range")
-    fit = GetParams("fit")
-    row_group = GetParams("row")
-    col_group = GetParams("column")
-    row_ungroup = GetParams("un_row")
-    col_ungroup = GetParams("un_column")
-    row_levels = GetParams("row_levels")
-    col_levels = GetParams("col_levels")
-    
-    if not sheet_name in [sh.name for sh in wb.sheets]:
-        raise Exception(f"The name {sheet_name} does not exist in the book")
+    try:
+        sheet_name = GetParams("sheet")
+        range_cell = GetParams("cell_range")
+        fit = GetParams("fit")
+        row_group = GetParams("row")
+        col_group = GetParams("column")
+        row_ungroup = GetParams("un_row")
+        col_ungroup = GetParams("un_column")
+        row_levels = GetParams("row_levels")
+        col_levels = GetParams("col_levels")
+        row_check = GetParams("row_check")
+        column_check = GetParams("column_check")
+        columnWidth = GetParams("columnWidth")
+        rowHeight = GetParams("rowHeight")
+        mergeCell = GetParams("mergeCell")
+        
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
 
-    sheet = wb.sheets[sheet_name]
+        sheet = wb.sheets[sheet_name]
 
-    if fit is None:
-        fit = True
-    else:
-        fit = eval(fit)
+        if fit is None and not columnWidth and not rowHeight:
+            fit = True
+        elif fit is None:
+            fit = False  
+        else:
+            fit = eval(fit)
+        if mergeCell is not None: mergeCell = eval(mergeCell)
+        if row_group is not None: row_group = eval(row_group)
+        if col_group is not None: col_group = eval(col_group)
+        if row_ungroup is not None: row_ungroup = eval(row_ungroup)
+        if col_ungroup is not None: col_ungroup = eval(col_ungroup)
 
-    if row_group is not None: row_group = eval(row_group)
-    if col_group is not None: col_group = eval(col_group)
-    if row_ungroup is not None: row_ungroup = eval(row_ungroup)
-    if col_ungroup is not None: col_ungroup = eval(col_ungroup)
-    
-    if fit:
-        sh = sheet.autofit()
-    if row_group: sheet.range(range_cell).api.Rows.Group()
-    if col_group: sheet.range(range_cell).api.Columns.Group()
+        if fit:
+            sh = sheet.autofit()
+        if row_group: sheet.range(range_cell).api.Rows.Group()
+        if col_group: sheet.range(range_cell).api.Columns.Group()
 
-    if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
-    if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
+        if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
+        if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
+        if mergeCell: sheet.range(range_cell).api.Merge(True)
+        if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
+        if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
 
-    if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
-    if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
+        if columnWidth: sheet.range(range_cell).api.ColumnWidth = columnWidth
+        if rowHeight: sheet.range(range_cell).api.RowHeight = rowHeight
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
 
+        #sheet.api.Rows("8:8").RowHeight = 74.25
+        #sheet.api.Colums("A:D").ColumnWidth = 32.71
+        
 if module == "CloseExcel":
     
     xw.books.active.close()
+    #xw.books.active.quit()
 
 if module == "getFormula":
     
@@ -915,11 +937,14 @@ if module == "Filter":
         n_end = wb.sheets[sheet].range(column + str(1)).column
 
         filter_column = n_end - n_start + 1
+        print(filter_column)
+        print(n_start)
+        print(n_end)
         if data.startswith("["):
             data = eval(data)
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
-
+        print(data)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -952,6 +977,7 @@ if module == "style_cells":
     bold = GetParams("bold")
     underline = GetParams("underline")
     italic = GetParams("italic")
+    adjustText = GetParams("adjustText")
 
     try:
         
@@ -973,13 +999,22 @@ if module == "style_cells":
 
         if font_size and font_size.isnumeric:
             rng.Font.Size = int(font_size)
+            
         if underline:
             rng.Font.Underline = 2
+            
+        if bold is not None: bold = eval(bold)
         if bold:
             rng.Font.Bold = True
+            
         if italic:
             rng.Font.Italic = True
-
+            
+        if adjustText is not None: adjustText = eval(adjustText)
+        if adjustText:
+            wb.sheets[sheet].range(range_).api.WrapText = True
+            print("El check box esta activo")
+            
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1060,10 +1095,19 @@ if module == "remove_duplicate":
 if module == "save_mac":
     
     path_file = GetParams('path_file')
-    
+    args = {}
     if not path_file:
         path_file = xls["path"]
-    wb.save(path_file)
+    if path_file.endswith(".xlsx"):
+        args = {"FileFormat": 51}
+    
+    try:
+        if path_file == xls["path"]:
+            wb.api.Save()
+        else:
+            wb.api.SaveAs(path_file.replace("/", os.sep), CreateBackup=False, **args)
+    except:
+        wb.save(path_file)
 
 if module == "save_mac_with_password":
     
@@ -1267,13 +1311,12 @@ if module == "GetCountCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected_api = wb.sheets[sheet].api
+        
         filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
         count = 0
-
-        for r in filtered_cells.Address.split(","):
-            range_cell = []
-            for ro in wb.sheets[sheet].api.Range(r).Rows:
-                count += 1
+        
+        for area in filtered_cells.Areas:
+            count += area.Count
 
         if result:
             SetVar(result, count)
@@ -1647,8 +1690,6 @@ try:
         sheet = wb.sheets[sheet_name].select()
 
         printSheet = wb.api.ActiveSheet.PrintOut()
-
-
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
