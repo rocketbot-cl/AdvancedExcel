@@ -28,12 +28,14 @@ from __future__ import unicode_literals
 # from xlsx2csv import Xlsx2csv
 import decimal
 import io
+from pickle import TRUE
 import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
 import platform
 import os
 import sys
+import win32com.client as win32
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + \
@@ -1636,30 +1638,38 @@ try:
 
     if module == "text2column":
         sheet_name = GetParams("sheet")
-        column = GetParams("range")
+        range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
         other = GetParams("other")
-
-        sheet = wb.sheets[sheet_name]
-        sheet.select()
-        range_ = sheet.range(column)
+        delimiter_type = GetParams("delimiter_type")
 
         options = {
-            "Tab": "\t",
-            "Semicolon":";",
-            "Comma": ",",
-            "Space": " "
+            "Tab": False,
+            "Semicolon": False,
+            "Comma": False,
+            "Space": False,
+            "TextQualifier" : 1,
+            "ConsecutiveDelimiter":True
         }
+        options[delimiter_options] = True
+        options["TextQualifier"] = int(delimiter_type)
+        print(options)
 
         global delimiter_t2c
         if delimiter_options:
             delimiter_t2c = options[delimiter_options]
+        xlWorkbook = win32.GetObject(wb.fullname)
+        xlWorksheet = xlWorkbook.Sheets[sheet_name]
+        xlWorksheet.Range(range_).TextToColumns(xlWorksheet.Range(range_), TextQualifier=2,ConsecutiveDelimiter=True, FieldInfo=None, TrailingMinusNumbers=True, **options)
+
         
-        if other:
-            delimiter_t2c = other
+        
+        
+        # if other:
+        #     delimiter_t2c = other
        
-        values = [data.split(delimiter_t2c) for data in range_.value]
-        range_.value = values
+        # values = [data.split(delimiter_t2c) for data in range_.value]
+        # range_.value = values
     
     if (module == "convertDecimalTimeToHours"):
         import math
