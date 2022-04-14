@@ -5649,7 +5649,7 @@
               "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -5669,7 +5669,7 @@
               "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
-            "css": "col-md-3"
+            "css": "col-md-4"
           },
           {
             "type": "select",
@@ -5679,9 +5679,34 @@
               "pr": ""
             },
             "title": {
-              "es": "Seleccione color: ",
-              "en": "Select color: ",
-              "pr": "Selecione cor: "
+              "es": "Seleccione separador: ",
+              "en": "Select separator: ",
+              "pr": "Seleciona separador: "
+            },
+            "options": [
+              {
+                "title": "Delimiter",
+                "value": "1"
+              },
+              {
+                "title": "Fixed Width",
+                "value": "2"
+              }
+            ],
+            "id": "data_type",
+            "css": "col-md-4"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Seleccione tipo de delimitador: ",
+              "en": "Select delimiter type: ",
+              "pr": "Selecione o tipo de separador: "
             },
             "options": [
               {
@@ -5715,14 +5740,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": ",",
-              "en": ",",
-              "pr": ","
+              "es": "| o 20,35,22,10",
+              "en": "| or 20,35,22,10",
+              "pr": "| ou 20,35,22,10"
             },
             "title": {
-              "es": "Otro delimitador",
-              "en": "Other delimiter: ",
-              "pr": "Outro delimitador: "
+              "es": "Otro delimitador o ancho",
+              "en": "Other delimiter or widths: ",
+              "pr": "Outro delimitador ou largura: "
+            },
+            "help": {
+              "es": "Para delimiar el ancho, debes escribir el ancho fijo o las medidas separadas por coma",
+              "en": "To delimit the width, you must write the fixed width or the measurements separated by comma",
+              "pr": "Para delimitar a largura, você deve escrever o tamanho fixo ou as medidas separadas por vírgula"
             },
             "id": "other",
             "css": "col-md-6"

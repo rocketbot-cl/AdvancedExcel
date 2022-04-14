@@ -1,30 +1,27 @@
 # coding: utf-8
-"""
-Base para desarrollo de modulos externos.
-Para obtener el modulo/Funcion que se esta llamando:
-     GetParams("module")
 
-Para obtener las variables enviadas desde formulario/comando Rocketbot:
-    var = GetParams(variable)
-    Las "variable" se define en forms del archivo package.json
-
-Para modificar la variable de Rocketbot:
-    SetVar(Variable_Rocketbot, "dato")
-
-Para obtener una variable de Rocketbot:
-    var = GetVar(Variable_Rocketbot)
-
-Para obtener la Opcion seleccionada:
-    opcion = GetParams("option")
-
-
-Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
-
-    pip install <package> -t .
+__author__ = "Rocketbot"
+__version__ = "33.13.3"
 
 """
+Module to work with excel opened or created with rocketbot.
+
+Rocketbot Functions:
+    - GetParams("module"): Get the command name running. Module params in the package.json
+    - GetParams("id"): Get the information sent by the user. Id params in the package.json
+        var = GetParams(variable)
+    - SetVar("variable_name", "dato"): Set a value to a variable.
+    - GetVar("variable_name"): Get the value of a variable.
+        var = GetVar("variable_name")
+
+To install libraries use in the module path:
+    pip install <package> -t ./libs 
+"""
+
+# Import globals or rocketbot libs
+# -----------------------------------
 # Changing the data types of all strings in the module at once
-from __future__ import unicode_literals
+# from __future__ import unicode_literals
 # from xlsx2csv import Xlsx2csv
 import decimal
 import io
@@ -36,13 +33,24 @@ import platform
 import os
 import sys
 import win32com.client as win32
+import subprocess
 
+# This lines is to linter
+# -----------------------------------
+GetParams = GetParams #type:ignore
+tmp_global_obj = tmp_global_obj #type:ignore
+PrintException = PrintException #type:ignore
+SetVar = SetVar #type:ignore
+GetGlobals = GetGlobals #type:ignore
+
+# Add modules libraries to Rocektbot
+# -----------------------------------
 base_path = tmp_global_obj["basepath"]
-cur_path = base_path + 'modules' + os.sep + \
-    'AdvancedExcel' + os.sep + 'libs' + os.sep
-
+cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 if cur_path not in sys.path:
     sys.path.append(cur_path)
+
+
 
 def import_lib(relative_path, name, class_name=None):
     """
@@ -66,7 +74,7 @@ def import_lib(relative_path, name, class_name=None):
 
 
 def get_date_with_format(xl_date):
-    import xlrd
+    import xlrd #type:ignore #ignore linter warnings
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
     date_object = datetime_date.date()
     return date_object.isoformat()
@@ -111,13 +119,10 @@ module = GetParams("module")
 
 # Get excel variables from Rocketbot
 excel = GetGlobals("excel")
-if excel.actual_id in excel.file_:
-    xls = excel.file_[excel.actual_id]
-    if "workbook" in xls:
-        wb = xls['workbook']
+xls = excel.file_[excel.actual_id]
+wb = xls['workbook']
 
 if module == "Open":
-
     id_ = GetParams("id")
     file_path = GetParams("path")
     password = GetParams("password")
@@ -631,7 +636,7 @@ if module == "csvToxlsx":
             limit1 = csv.field_size_limit()
         if sep.startswith("\\t"):
             sep = "\t"
-        workbook = openpyxl.Workbook()
+        workbook = Workbook()
         worksheet = workbook.active
         with open(csv_path, "r", encoding=encoding) as fobj:
             csv_reader = csv.reader(fobj, delimiter=sep)
@@ -1641,35 +1646,44 @@ try:
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
         other = GetParams("other")
-        delimiter_type = GetParams("delimiter_type")
+        data_type = GetParams("data_type")
 
         options = {
             "Tab": False,
             "Semicolon": False,
             "Comma": False,
             "Space": False,
+            "Other": False,
             "TextQualifier" : 1,
-            "ConsecutiveDelimiter":True
+            "ConsecutiveDelimiter":True,
+            "TextQualifier":2,
+            "FieldInfo": None
         }
-        options[delimiter_options] = True
-        options["TextQualifier"] = int(delimiter_type)
-        print(options)
 
-        global delimiter_t2c
+        if options["Other"]:
+            options["OtherChar"] = other
+
         if delimiter_options:
-            delimiter_t2c = options[delimiter_options]
+            options[delimiter_options] = True
+        
+        if data_type == "2":
+            if "," not in other:
+                separator = []
+                for i in range(1, 100):
+                    separator.append(str(i*int(other)))
+                other = ",".join(separator)
+            options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
+            
+
         xlWorkbook = win32.GetObject(wb.fullname)
         xlWorksheet = xlWorkbook.Sheets[sheet_name]
-        xlWorksheet.Range(range_).TextToColumns(xlWorksheet.Range(range_), TextQualifier=2,ConsecutiveDelimiter=True, FieldInfo=None, TrailingMinusNumbers=True, **options)
+        xlWorksheet.Range(range_).TextToColumns(
+            xlWorksheet.Range(range_),
+            DataType = int(data_type),            
+            TrailingMinusNumbers=True, 
+            **options
+        )
 
-        
-        
-        
-        # if other:
-        #     delimiter_t2c = other
-       
-        # values = [data.split(delimiter_t2c) for data in range_.value]
-        # range_.value = values
     
     if (module == "convertDecimalTimeToHours"):
         import math
