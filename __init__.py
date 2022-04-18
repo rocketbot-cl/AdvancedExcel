@@ -119,8 +119,9 @@ module = GetParams("module")
 
 # Get excel variables from Rocketbot
 excel = GetGlobals("excel")
-xls = excel.file_[excel.actual_id]
-wb = xls['workbook']
+if excel.actual_id in excel.file_:
+    xls = excel.file_[excel.actual_id]
+    wb = xls['workbook']
 
 if module == "Open":
     id_ = GetParams("id")

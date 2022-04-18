@@ -12,12 +12,6 @@ Módulo con opciones avanzadas para Excel
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
 
 
-
-
-## Como usar este módulo
-Para usar este módulo, tienes que tener Microsoft Excel.
-
-
 ## Descripción de los comandos
 
 ### Abrir sin alertas
@@ -29,6 +23,14 @@ Abre un archivo sin mostrar carteles de alerta.
 |Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|id|
 |Asignar resultado a variable|Variable donde se almacenara el resultado|id|
+
+### Buscar y conectar
+  
+Busca un excel abrierto y se conecta a este.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Nombre del archivo XLSX abierto||Archivo.XLSX|
+|Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
 
 ### Contar Columnas
   
@@ -218,7 +220,7 @@ Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar po
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango a ajustar|Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1:B1) |A1:D7|
+|Rango a ajustar|Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
 |Autofit|Ajusta automaticamente las celdas para que se visualicen los datos||
 |Agrupar filas|Al marcar este checkbox, se agruparán las filas en el rango seleccionado||
 |Agrupar columnas|Al marcar este checkbox, se agruparán las columnas en el rango seleccionado||
@@ -298,26 +300,12 @@ Ejecuta el comando eliminar duplicados de Excel
 |Columna |Indicar la columna donde se buscarán los duplicados|A |
 |Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
-### Cerrar XLSX
-  
-Cierra el libro abierto por Rocketbot
-|Parámetros|Descripción|ejemplo|
-| --- | --- | --- |
-
 ### Guardar Excel
   
 Guarda un archivo Excel en la ruta indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
-
-### Guardar Excel con password
-  
-Guarda un archivo Excel
-|Parámetros|Descripción|ejemplo|
-| --- | --- | --- |
-|Guardar Excel en|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
-|Ingrese la password|Contraseña del archivo xlsx|password|
 
 ### Exportar a PDF avanzado
   
@@ -475,14 +463,6 @@ Copia formato de un rango de celdas desde una hoja a otra
 |Hoja destino |Nombre de la hoja de destino|Sheet2|
 |Rango donde pegar||A1:C4|
 
-### Buscar y conectar
-  
-Busca un excel abrierto y se conecta a este.
-|Parámetros|Descripción|ejemplo|
-| --- | --- | --- |
-|Nombre del archivo XLSX abierto||Archivo.XLSX|
-|Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
-
 ### Actualizar vínculos
   
 Cambia un vínculo desde un documento a otro
@@ -514,8 +494,9 @@ Ejecuta la opción texto en columna de excel
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
-|Seleccione color |||
-|Otro delimitador||,|
+|Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
+|Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   
@@ -532,9 +513,23 @@ Imprime una hoja
 | --- | --- | --- |
 |Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
 
-### Updates
+### Guardar Excel con password
   
-Imprime una hoja
+Guarda un archivo Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
+|Guardar Excel en|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
+|Ingrese la password|Contraseña del archivo xlsx|password|
+
+### Guardar Excel
+  
+Guarda un archivo Excel en la ruta indicada
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
+
+### Cerrar XLSX
+  
+Cierra el libro abierto por Rocketbot
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
