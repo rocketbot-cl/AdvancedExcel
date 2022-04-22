@@ -5631,6 +5631,11 @@
                 "value": "Other"
               }
             ],
+            "help": {
+              "es": "Solo usar si se selecciono previamente la opcion Delimiter",
+              "en": "Use only if you selected previously the option Delimiter",
+              "pr": "Sólo usar se selecionou previamente a opção Delimiter"
+            },
             "id": "delimiter",
             "css": "col-md-6"
           },

@@ -1661,7 +1661,7 @@ try:
             "FieldInfo": None
         }
 
-        if options["Other"]:
+        if other:
             options["OtherChar"] = other
 
         if delimiter_options:
@@ -1674,7 +1674,6 @@ try:
                     separator.append(str(i*int(other)))
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
-            
 
         xlWorkbook = win32.GetObject(wb.fullname)
         xlWorksheet = xlWorkbook.Sheets[sheet_name]
