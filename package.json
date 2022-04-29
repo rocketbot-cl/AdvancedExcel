@@ -145,6 +145,78 @@
     },
     {
       "en": {
+        "title": "Find and Connect",
+        "description": "Search a Excel Book opened and connect it",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Buscar y conectar",
+        "description": "Busca un excel abrierto y se conecta a este.",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Buscar e conectar",
+        "description": "Busca um excel aberto e conecta-se a este.",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Archivo.XLSX",
+              "en": "File.XLSX",
+              "pr": "Arquivo.XLSX"
+            },
+            "title": {
+              "es": "Nombre del archivo XLSX abierto:",
+              "en": "XLSX filename: ",
+              "pr": "Nome do arquivo XLSX aberto:"
+            },
+            "id": "name",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "excel1",
+              "en": "excel1",
+              "pr": "excel1"
+            },
+            "description": {
+              "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
+              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.",
+              "pr": "Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*."
+            },
+            "title": {
+              "es": "Identificador (opcional):",
+              "en": "Id (optional): ",
+              "pr": "Identificador (opcional):"
+            },
+            "id": "id",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "Opened",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
         "title": "Count columns",
         "description": "Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes",
         "title_options": null,
@@ -3382,42 +3454,6 @@
     },
     {
       "en": {
-        "title": "Close XLSX",
-        "description": "Close the workbook opened by Rocketbot",
-        "title_options": null,
-        "options": null
-      },
-      "es": {
-        "title": "Cerrar XLSX",
-        "description": "Cierra el libro abierto por Rocketbot",
-        "title_options": null,
-        "options": null
-      },
-      "pr": {
-        "title": "Fechar XLSX",
-        "description": "Fecha o arquivo aberto por Rocketbot",
-        "title_options": null,
-        "options": null
-      },
-      "form": {
-        "css": "modal-lg",
-        "inputs": []
-      },
-      "video_youtube": "",
-      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-      "module": "CloseExcel",
-      "module_name": "AdvancedExcel",
-      "visible": true,
-      "options": false,
-      "father": "module",
-      "group": "scripts",
-      "linux": false,
-      "windows": true,
-      "mac": true,
-      "docker": true
-    },
-    {
-      "en": {
         "title": "Save Excel",
         "description": "Save a Excel file in the indicated path",
         "title_options": null,
@@ -3463,83 +3499,6 @@
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
       "module": "save_mac",
-      "module_name": "AdvancedExcel",
-      "visible": true,
-      "options": false,
-      "father": "module",
-      "group": "scripts",
-      "linux": false,
-      "windows": true,
-      "mac": true,
-      "docker": true
-    },
-    {
-      "en": {
-        "title": "Save Excel with password",
-        "description": "Save a Excel file",
-        "title_options": null,
-        "options": null
-      },
-      "es": {
-        "title": "Guardar Excel con password",
-        "description": "Guarda un archivo Excel",
-        "title_options": null,
-        "options": null
-      },
-      "pr": {
-        "title": "Salvar Excel com senha",
-        "description": "Salva um arquivo Excel",
-        "title_options": null,
-        "options": null
-      },
-      "form": {
-        "css": "modal-lg",
-        "inputs": [
-          {
-            "type": "file_select",
-            "placeholder": {
-              "es": "/Users/user/Desktop/excel.xlsx",
-              "en": "/Users/user/Desktop/excel.xlsx",
-              "pr": "/Users/user/Desktop/excel.xlsx"
-            },
-            "title": {
-              "es": "Guardar Excel en:",
-              "en": "Save Excel as:",
-              "pr": "Salvar Excel como:"
-            },
-            "description": {
-              "es": "Ruta donde guardar el archivo .xlsx",
-              "en": "Path where to save the .xlsx file",
-              "pr": "Caminho onde salvar o arquivo .xlsx"
-            },
-            "id": "path_file",
-            "css": "col-md-12"
-          },
-          {
-            "type": "input",
-            "placeholder": {
-              "es": "password",
-              "en": "password",
-              "pr": "password"
-            },
-            "description": {
-              "es": "Contraseña del archivo xlsx",
-              "en": "Password of the xlsx file",
-              "pr": "Senha do arquivo xlsx"
-            },
-            "title": {
-              "es": "Ingrese la password",
-              "en": "Password to save with",
-              "pr": "Digite a senha"
-            },
-            "id": "password",
-            "css": "col-md-6"
-          }
-        ]
-      },
-      "video_youtube": "",
-      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-      "module": "save_mac_with_password",
       "module_name": "AdvancedExcel",
       "visible": true,
       "options": false,
@@ -5317,78 +5276,6 @@
     },
     {
       "en": {
-        "title": "Find and Connect",
-        "description": "Search a Excel Book opened and connect it",
-        "title_options": null,
-        "options": null
-      },
-      "es": {
-        "title": "Buscar y conectar",
-        "description": "Busca un excel abrierto y se conecta a este.",
-        "title_options": null,
-        "options": null
-      },
-      "pr": {
-        "title": "Buscar e conectar",
-        "description": "Busca um excel aberto e conecta-se a este.",
-        "title_options": null,
-        "options": null
-      },
-      "form": {
-        "css": "modal-lg",
-        "inputs": [
-          {
-            "type": "input",
-            "placeholder": {
-              "es": "Archivo.XLSX",
-              "en": "File.XLSX",
-              "pr": "Arquivo.XLSX"
-            },
-            "title": {
-              "es": "Nombre del archivo XLSX abierto:",
-              "en": "XLSX filename: ",
-              "pr": "Nome do arquivo XLSX aberto:"
-            },
-            "id": "name",
-            "css": "col-md-12"
-          },
-          {
-            "type": "input",
-            "placeholder": {
-              "es": "excel1",
-              "en": "excel1",
-              "pr": "excel1"
-            },
-            "description": {
-              "es": "Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*",
-              "en": "Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.",
-              "pr": "Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*."
-            },
-            "title": {
-              "es": "Identificador (opcional):",
-              "en": "Id (optional): ",
-              "pr": "Identificador (opcional):"
-            },
-            "id": "id",
-            "css": "col-md-12"
-          }
-        ]
-      },
-      "video_youtube": "",
-      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
-      "module": "Opened",
-      "module_name": "AdvancedExcel",
-      "visible": true,
-      "options": false,
-      "father": "module",
-      "group": "scripts",
-      "linux": false,
-      "windows": true,
-      "mac": true,
-      "docker": true
-    },
-    {
-      "en": {
         "title": "Update links",
         "description": "Changes a link from one document to another",
         "title_options": null,
@@ -5649,7 +5536,7 @@
               "pr": "Nome da folha onde os dados estão localizados"
             },
             "id": "sheet",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -5669,7 +5556,7 @@
               "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
-            "css": "col-md-3"
+            "css": "col-md-4"
           },
           {
             "type": "select",
@@ -5679,9 +5566,44 @@
               "pr": ""
             },
             "title": {
-              "es": "Seleccione color: ",
-              "en": "Select color: ",
-              "pr": "Selecione cor: "
+              "es": "Seleccione separador: ",
+              "en": "Select separator: ",
+              "pr": "Seleciona separador: "
+            },
+            "options": [
+              {
+                "title": "Delimiter",
+                "value": "1"
+              },
+              {
+                "title": "Fixed Width",
+                "value": "2"
+              }
+            ],
+            "description": {
+              "es": "Seleccione el separador de celdas, puede ser ancho fijo o delimitado",
+              "en": "Select the cell separator, it can be fixed width or delimited",
+              "pr": "Seleciona o separador de células, pode ser largura fixa ou delimitado"
+            },
+            "id": "data_type",
+            "css": "col-md-4"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Seleccione tipo de delimitador: ",
+              "en": "Select delimiter type: ",
+              "pr": "Selecione o tipo de separador: "
+            },
+            "description": {
+              "es": "Seleccione el tipo de delimitador",
+              "en": "Select the delimiter type",
+              "pr": "Seleciona o tipo de separador"
             },
             "options": [
               {
@@ -5709,20 +5631,35 @@
                 "value": "Other"
               }
             ],
+            "help": {
+              "es": "Solo usar si se selecciono previamente la opcion Delimiter",
+              "en": "Use only if you selected previously the option Delimiter",
+              "pr": "Sólo usar se selecionou previamente a opção Delimiter"
+            },
             "id": "delimiter",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": ",",
-              "en": ",",
-              "pr": ","
+              "es": "| o 20,35,22,10",
+              "en": "| or 20,35,22,10",
+              "pr": "| ou 20,35,22,10"
             },
             "title": {
-              "es": "Otro delimitador",
-              "en": "Other delimiter: ",
-              "pr": "Outro delimitador: "
+              "es": "Otro delimitador o ancho",
+              "en": "Other delimiter or widths: ",
+              "pr": "Outro delimitador ou largura: "
+            },
+            "description": {
+              "es": "Escriba el delimitador o ancho fijo",
+              "en": "Write the delimiter or fixed width",
+              "pr": "Escreva o delimitador ou largura fixa"
+            },
+            "help": {
+              "es": "Para delimiar el ancho, debes escribir el ancho fijo o las medidas separadas por coma",
+              "en": "To delimit the width, you must write the fixed width or the measurements separated by comma",
+              "pr": "Para delimitar a largura, você deve escrever o tamanho fixo ou as medidas separadas por vírgula"
             },
             "id": "other",
             "css": "col-md-6"
@@ -5867,6 +5804,177 @@
       "video_youtube": "",
       "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
       "module": "convertDecimalTimeToHours",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Save Excel with password",
+        "description": "Save a Excel file",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Guardar Excel con password",
+        "description": "Guarda un archivo Excel",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Salvar Excel com senha",
+        "description": "Salva um arquivo Excel",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "file_select",
+            "placeholder": {
+              "es": "/Users/user/Desktop/excel.xlsx",
+              "en": "/Users/user/Desktop/excel.xlsx",
+              "pr": "/Users/user/Desktop/excel.xlsx"
+            },
+            "title": {
+              "es": "Guardar Excel en:",
+              "en": "Save Excel as:",
+              "pr": "Salvar Excel como:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .xlsx",
+              "en": "Path where to save the .xlsx file",
+              "pr": "Caminho onde salvar o arquivo .xlsx"
+            },
+            "id": "path_file",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "password",
+              "en": "password",
+              "pr": "password"
+            },
+            "description": {
+              "es": "Contraseña del archivo xlsx",
+              "en": "Password of the xlsx file",
+              "pr": "Senha do arquivo xlsx"
+            },
+            "title": {
+              "es": "Ingrese la password",
+              "en": "Password to save with",
+              "pr": "Digite a senha"
+            },
+            "id": "password",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "save_mac_with_password",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Save Excel",
+        "description": "Save a Excel file in the indicated path",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Guardar Excel",
+        "description": "Guarda un archivo Excel en la ruta indicada",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Salvar Excel",
+        "description": "Salva um arquivo Excel na ruta indicada",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "file_new",
+            "placeholder": {
+              "es": "/Users/user/Desktop/excel.xlsx",
+              "en": "/Users/user/Desktop/excel.xlsx",
+              "pr": "/Users/user/Desktop/excel.xlsx"
+            },
+            "title": {
+              "es": "Guardar Excel:",
+              "en": "Save Excel:",
+              "pr": "Salvar Excel:"
+            },
+            "description": {
+              "es": "Ruta donde guardar el archivo .xlsx",
+              "en": "Path where to save the .xlsx file",
+              "pr": "Caminho onde salvar o arquivo .xlsx"
+            },
+            "id": "path_file",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "save_mac",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Close XLSX",
+        "description": "Close the workbook opened by Rocketbot",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Cerrar XLSX",
+        "description": "Cierra el libro abierto por Rocketbot",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Fechar XLSX",
+        "description": "Fecha o arquivo aberto por Rocketbot",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": []
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "CloseExcel",
       "module_name": "AdvancedExcel",
       "visible": true,
       "options": false,
