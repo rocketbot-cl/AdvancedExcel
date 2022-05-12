@@ -448,9 +448,8 @@ if module == "copy_other":
 
         if platform_ == "Windows":
             password = None
-            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
-                                        CorruptLoad=2)
-            if hoja2 not in [sh.name for sh in wb2.sheets]:
+            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=2)
+            if hoja2 not in [sh.Name for sh in wb2.Sheets]:
                 raise Exception(
                     f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.Sheets(hoja2)
@@ -459,7 +458,7 @@ if module == "copy_other":
                     destiny_sheet.Range(rango2))
             else:
                 destiny_sheet.Range(rango2).Value = my_values.api.Value
-            wb2.Save()
+            wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
 
         else:
