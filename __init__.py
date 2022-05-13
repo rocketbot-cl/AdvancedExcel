@@ -469,7 +469,7 @@ if module == "copy_other":
                     f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.sheets(hoja2)
             destiny_sheet.range(rango2).value = values
-
+            wb2.DisplayAlerts = False
             wb2.save()
             wb2.close()
 
