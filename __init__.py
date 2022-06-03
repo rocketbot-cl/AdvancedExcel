@@ -26,6 +26,7 @@ To install libraries use in the module path:
 import decimal
 import io
 from pickle import TRUE
+from numpy import ones_like
 import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
