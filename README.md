@@ -198,6 +198,8 @@ Save a Excel file in the indicated path
 Close the workbook opened by Rocketbot  
 
 ### Updates
+#### 12-May-2022
+- Copy to another excel: fixed command to copy from one excel to another
 #### 18-Apr-2022
 - Text to Column: command fixed to separate text in columns
 #### 06-Apr-2022
