@@ -266,6 +266,16 @@ Cambia el nombre a una hoja de excel
 |Hoja |Nombre de la hoja a renombrar|Hoja 1|
 |Nuevo nombre |Nuevo Nombre de la hoja|nuevo_nombre|
 
+### Formato de texto
+  
+
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda o Rango de celdas|Rango que contiene los datos a alinear|A1:D7|
+|Alineacion Horizontal|Selector que contiene las opciones de alineacion horizontal||
+|Alineacion Vertical|Selector que contiene las opciones de alineacion vertical||
+
 ### Estilo Celda
   
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
