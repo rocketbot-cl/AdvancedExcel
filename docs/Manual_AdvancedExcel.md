@@ -268,7 +268,7 @@ Cambia el nombre a una hoja de excel
 
 ### Formato de texto
   
-
+Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|

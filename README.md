@@ -108,7 +108,7 @@ Add filter to excel table
 Change name to excel sheet
 
 28. Text Format  
-
+Change the Horizontal or Vertical alignment of values in a range of cells
 
 29. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders

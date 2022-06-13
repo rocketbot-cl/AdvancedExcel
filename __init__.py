@@ -248,18 +248,24 @@ if (module == "getCurrencyValue"):
     cellRange = GetParams("cellRange")
     finalResult = []
     valueGotten = xw.sheets[sheetWanted].range(cellRange).value
-    cont = 0
+    cont = 1
     try:
-        for each in valueGotten:
-            cont += 1
+        if isinstance(valueGotten, list):
+            cont = len(valueGotten)
     except:
         cont = 1
 
     if (cont > 1):
         for each in valueGotten:
-            finalResult.append(float(each))
+            try:
+                finalResult.append(float(each))
+            except:
+                finalResult.append(each)
     else:
-        finalResult.append(float(valueGotten))
+        try:
+            finalResult.append(float(valueGotten))
+        except:
+            finalResult.append(valueGotten)
 
     whereToStoreData = GetParams("whereToStoreData")
     SetVar(whereToStoreData, finalResult)

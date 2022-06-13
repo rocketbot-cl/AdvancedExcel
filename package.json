@@ -2970,21 +2970,21 @@
       "docker": true
     },
     {
-      "en": {
-        "title": "Text Format",
-        "description": "",
+      "es": {
+        "title": "Formato de texto",
+        "description": "Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas",
         "title_options": null,
         "options": null
       },
-      "es": {
-        "title": "Formato de texto",
-        "description": "",
+      "en": {
+        "title": "Text Format",
+        "description": "Change the Horizontal or Vertical alignment of values in a range of cells",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Formato de texto",
-        "description": "",
+        "description": "Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células",
         "title_options": null,
         "options": null
       },
@@ -3035,8 +3035,8 @@
             "type": "select",
             "title": {
               "es": "Alineacion Horizontal",
-              "en": "Option",
-              "pr": "Opção"
+              "en": "Horizontal Alignment",
+              "pr": "Alinhamento horizontal"
             },
             "options": [
               {
@@ -3072,8 +3072,8 @@
             "type": "select",
             "title": {
               "es": "Alineacion Vertical",
-              "en": "Option",
-              "pr": "Opção"
+              "en": "Vertical Alignment",
+              "pr": "Alinhamento Vertical"
             },
             "options": [
               {
