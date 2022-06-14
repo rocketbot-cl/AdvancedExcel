@@ -107,97 +107,102 @@ Add filter to excel table
 27. Rename sheet  
 Change name to excel sheet
 
-28. Cell Style  
+28. Text Format  
+Change the Horizontal or Vertical alignment of values in a range of cells
+
+29. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-29. Paste in Cells  
+30. Paste in Cells  
 Paste data to cells in Excel
 
-30. Remove Duplicates  
+31. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-31. Save Excel  
+32. Save Excel  
 Save a Excel file in the indicated path
 
-32. Export to advanced PDF  
+33. Export to advanced PDF  
 Export to PDF with options
 
-33. Copy-Move Sheet  
+34. Copy-Move Sheet  
 Copy or move a sheet
 
-34. Insert Form  
+35. Insert Form  
 Insert Form in Excel
 
-35. Read Filtered Cells  
+36. Read Filtered Cells  
 Allow read only cells filters 
 
-36. Count Filtered Cells  
+37. Count Filtered Cells  
 Allow count only cells filters 
 
-37. Replace  
+38. Replace  
 Run replace action to excel 
 
-38. Order  
+39. Order  
 Run replace action to excel 
 
-39. Refresh All  
+40. Refresh All  
 Refresh all data in Excel
 
-40. Find  
+41. Find  
 Return de first found cell 
 
-41. Lock Cells  
+42. Lock Cells  
 Lock or Unlock cells
 
-42. Add Chart  
+43. Add Chart  
 Create a new chart in an excel sheet
 
-43. Remove Password  
+44. Remove Password  
 Remove password and save the Excel
 
-44. Insert image  
+45. Insert image  
 Insert an image
 
-45. Export Chart  
+46. Export Chart  
 Export a chart from index
 
-46. Not visible mode  
+47. Not visible mode  
 Open not visible excel.
 
-47. Write array objects  
+48. Write array objects  
 Write array object on Excel cells.
 
-48. Copy-Paste Format  
+49. Copy-Paste Format  
 Copy format range cell to another sheet
 
-49. Update links  
+50. Update links  
 Changes a link from one document to another
 
-50. Unlock sheet  
+51. Unlock sheet  
 Unlock sheet
 
-51. Convert to .txt  
+52. Convert to .txt  
 Convert to .txt
 
-52. Text to columns  
+53. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-53. Convert Excel time to hours  
+54. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-54. Print sheet  
+55. Print sheet  
 Prints a sheet
 
-55. Save Excel with password  
+56. Save Excel with password  
 Save a Excel file
 
-56. Save Excel  
+57. Save Excel  
 Save a Excel file in the indicated path
 
-57. Close XLSX  
+58. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 ### Updates
+#### 13-Jun-2022
+- Format text: Added command to change text alignment
 #### 12-May-2022
 - Copy to another excel: fixed command to copy from one excel to another
 #### 18-Apr-2022
