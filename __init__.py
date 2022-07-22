@@ -249,18 +249,24 @@ if (module == "getCurrencyValue"):
     cellRange = GetParams("cellRange")
     finalResult = []
     valueGotten = xw.sheets[sheetWanted].range(cellRange).value
-    cont = 0
+    cont = 1
     try:
-        for each in valueGotten:
-            cont += 1
+        if isinstance(valueGotten, list):
+            cont = len(valueGotten)
     except:
         cont = 1
 
     if (cont > 1):
         for each in valueGotten:
-            finalResult.append(float(each))
+            try:
+                finalResult.append(float(each))
+            except:
+                finalResult.append(each)
     else:
-        finalResult.append(float(valueGotten))
+        try:
+            finalResult.append(float(valueGotten))
+        except:
+            finalResult.append(valueGotten)
 
     whereToStoreData = GetParams("whereToStoreData")
     SetVar(whereToStoreData, finalResult)
@@ -1739,6 +1745,36 @@ try:
         sheet = wb.sheets[sheet_name].select()
 
         printSheet = wb.api.ActiveSheet.PrintOut()
+    #VerticalAlignment
+    if module == "formatText":
+        sheet_name = GetParams("sheet")
+        range_ = GetParams("cell_range")
+        option_horizontal = GetParams("option_horizontal")
+        option_vertical = GetParams("option_vertical")
+        
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        
+        sheet = wb.sheets[sheet_name]
+
+        alignment_horizontal = {
+            'align_to_data_type' : 1,
+            'left' : -4131,
+            'right' : -4152,
+            'center' : -4108,}
+
+        alignment_vertical = {
+            'bottom' : -4107,
+            'center' : -4108,
+            'justify' : -4130,
+            'top' : -4160,}
+        
+        if option_horizontal in alignment_horizontal:
+            sheet.range(range_).api.HorizontalAlignment = int(alignment_horizontal[option_horizontal])
+        
+        if option_vertical in alignment_vertical:
+            sheet.range(range_).api.VerticalAlignment = int(alignment_vertical[option_vertical])
+
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
