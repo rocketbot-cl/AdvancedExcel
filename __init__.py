@@ -200,6 +200,7 @@ if module == "InsertFormula":
     formula = GetParams("formula")
 
     sheet = xls['sheet']
+    print(wb.sheets('sheets2'))
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -312,7 +313,8 @@ if module == "formatCell":
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
-
+    texttoval = GetParams("texttoval")
+    print(texttoval)
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
@@ -321,6 +323,29 @@ if module == "formatCell":
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
+        if texttoval == True:
+            new_range = []
+            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
+                for row in wb.sheets[hoja].range(rango).value:
+                    new_row = []
+                    for cell in row:
+                        try:
+                            if cell.isnumeric():
+                                cell = float(cell)
+                        except:
+                            new_row.append(cell)    
+                    new_range.append(new_row)
+                print(new_range) 
+            else:
+                for cell in wb.sheets[hoja].range(rango).value:
+                    try:
+                        if cell.isnumeric():
+                            cell = float(cell)
+                    except:    
+                        new_range.append(cell)   
+            
+            wb.sheets[hoja].range(rango).value = new_range
+        
         if formato == "number_":
             numbers = wb.sheets[hoja].range(rango).value
             d = 0
@@ -367,7 +392,7 @@ if module == "formatCell":
             else:
                 wb.sheets[hoja].range(
                     rango).number_format = '0,{}'.format('0' * d)
-
+        
         if formato == "coin_":
             wb.sheets[hoja].range(rango).number_format = '$#.##0'
 
@@ -388,9 +413,10 @@ if module == "formatCell":
 
         if formato == "long_date":
             wb.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+        
         if formato == 'custom':
-            wb.sheets[hoja].range(rango).number_format = custom
-
+            wb.sheets[hoja].range(rango).number_format = custom        
+            
     except Exception as e:
         PrintException()
         raise e
@@ -459,6 +485,8 @@ if module == "copy_other":
                     destiny_sheet.Range(rango2))
             else:
                 destiny_sheet.Range(rango2).Value = my_values.api.Value
+                
+            wb2.Application.DisplayAlerts = False
             wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
 
@@ -945,14 +973,11 @@ if module == "Filter":
         n_end = wb.sheets[sheet].range(column + str(1)).column
 
         filter_column = n_end - n_start + 1
-        print(filter_column)
-        print(n_start)
-        print(n_end)
         if data.startswith("["):
             data = eval(data)
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
-        print(data)
+
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1656,7 +1681,7 @@ try:
             "Space": False,
             "Other": False,
             "TextQualifier" : 1,
-            "ConsecutiveDelimiter":True,
+            "ConsecutiveDelimiter":False,
             "TextQualifier":2,
             "FieldInfo": None
         }

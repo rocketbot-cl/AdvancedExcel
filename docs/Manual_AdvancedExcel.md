@@ -121,6 +121,7 @@ Formatear Celda
 |Rango a formatear |Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
 |Formato|Se debe seleccionar el tipo de formato para la celda. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
 |Formato personalizado |Formato personalizado. Debe ser el mismo mostrado en la sección personalizado de Excel|00000|
+|Texto a Vaor|Si se marca, cambiara los datos guardados como texto a valor|True|
 
 ### Crear Hoja
   

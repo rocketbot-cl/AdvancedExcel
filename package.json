@@ -1276,6 +1276,26 @@
             },
             "id": "custom",
             "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Texto a Valor",
+              "en": "Text to Value",
+              "pr": "Texto para valor"
+            },
+            "help": {
+              "es": "Si se marca, cambiara los datos guardados como texto a valor",
+              "en": "If checked, will convert data stored as text to value",
+              "pr": "Se marcado, irá alterar os dados guardados como texto para valor"
+            },
+            "id": "texttoval",
+            "css": "col-md-6"
           }
         ]
       },
