@@ -194,13 +194,33 @@ if module == "CellColor":
     except Exception as e:
         PrintException()
         raise e
-if module == "InsertFormula":
 
+if module == "GetColor":
+    
+    sheet = GetParams("sheet")
+    cell = GetParams("cell")
+    res = GetParams("res")
+    
+    color = []
+    try:
+        background = xw.sheets[sheet].range(cell).color
+        font = xw.sheets[sheet].range(cell).api.Font.Color
+        color.append(background)
+        color.append(font)
+        SetVar(res, color)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
+
+if module == "InsertFormula":
+    
+    hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
-
-    sheet = xls['sheet']
-    print(wb.sheets('sheets2'))
+    
+    sheet = wb.sheets(hoja)
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -305,22 +325,46 @@ if module == "copyPaste":
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
+    opcion = GetParams("option")
+    ope = GetParams("operation")
+    saltar = GetParams("skip_blanks")
+    trans = GetParams("transpose")
 
-    if not hoja1 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja1} does not exist in the book")
-    if not hoja2 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja2} does not exist in the book")
-    my_values = xw.sheets[hoja1].range(rango1).options(ndim=2).value
-
-    xw.sheets[hoja2].range(rango2).value = my_values
-
+    try:
+        args = {}
+        
+        if opcion:
+            args['paste'] = opcion
+        
+        if ope:
+            args['operation'] = ope
+        
+        if saltar == 'true':
+            args['skip_blanks'] = saltar
+            
+        if trans == 'true':
+            args['transpose'] = trans
+        
+        if not hoja1 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja1} does not exist in the book")
+        if not hoja2 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja2} does not exist in the book")
+        
+        print(ope)
+        xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
+        xw.sheets[hoja2].range(rango2).paste(**args)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
 if module == "formatCell":
     hoja = GetParams("sheet_name")
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
     texttoval = GetParams("texttoval")
-    print(texttoval)
+
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
@@ -942,7 +986,6 @@ if module == "getFormula":
 if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
-    
 
     try:
         
