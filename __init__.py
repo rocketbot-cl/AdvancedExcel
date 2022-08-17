@@ -194,12 +194,33 @@ if module == "CellColor":
     except Exception as e:
         PrintException()
         raise e
-if module == "InsertFormula":
 
+if module == "GetColor":
+    
+    sheet = GetParams("sheet")
+    cell = GetParams("cell")
+    res = GetParams("res")
+    
+    color = []
+    try:
+        background = xw.sheets[sheet].range(cell).color
+        font = xw.sheets[sheet].range(cell).api.Font.Color
+        color.append(background)
+        color.append(font)
+        SetVar(res, color)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
+
+if module == "InsertFormula":
+    
+    hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
-
-    sheet = xls['sheet']
+    
+    sheet = wb.sheets(hoja)
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -248,18 +269,24 @@ if (module == "getCurrencyValue"):
     cellRange = GetParams("cellRange")
     finalResult = []
     valueGotten = xw.sheets[sheetWanted].range(cellRange).value
-    cont = 0
+    cont = 1
     try:
-        for each in valueGotten:
-            cont += 1
+        if isinstance(valueGotten, list):
+            cont = len(valueGotten)
     except:
         cont = 1
 
     if (cont > 1):
         for each in valueGotten:
-            finalResult.append(float(each))
+            try:
+                finalResult.append(float(each))
+            except:
+                finalResult.append(each)
     else:
-        finalResult.append(float(valueGotten))
+        try:
+            finalResult.append(float(valueGotten))
+        except:
+            finalResult.append(valueGotten)
 
     whereToStoreData = GetParams("whereToStoreData")
     SetVar(whereToStoreData, finalResult)
@@ -298,20 +325,45 @@ if module == "copyPaste":
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
+    opcion = GetParams("option")
+    ope = GetParams("operation")
+    saltar = GetParams("skip_blanks")
+    trans = GetParams("transpose")
 
-    if not hoja1 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja1} does not exist in the book")
-    if not hoja2 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja2} does not exist in the book")
-    my_values = xw.sheets[hoja1].range(rango1).options(ndim=2).value
-
-    xw.sheets[hoja2].range(rango2).value = my_values
-
+    try:
+        args = {}
+        
+        if opcion:
+            args['paste'] = opcion
+        
+        if ope:
+            args['operation'] = ope
+        
+        if saltar == 'true':
+            args['skip_blanks'] = saltar
+            
+        if trans == 'true':
+            args['transpose'] = trans
+        
+        if not hoja1 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja1} does not exist in the book")
+        if not hoja2 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja2} does not exist in the book")
+        
+        print(ope)
+        xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
+        xw.sheets[hoja2].range(rango2).paste(**args)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
 if module == "formatCell":
     hoja = GetParams("sheet_name")
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
+    texttoval = GetParams("texttoval")
 
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
@@ -321,6 +373,29 @@ if module == "formatCell":
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
+        if texttoval == True:
+            new_range = []
+            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
+                for row in wb.sheets[hoja].range(rango).value:
+                    new_row = []
+                    for cell in row:
+                        try:
+                            if cell.isnumeric():
+                                cell = float(cell)
+                        except:
+                            new_row.append(cell)    
+                    new_range.append(new_row)
+                print(new_range) 
+            else:
+                for cell in wb.sheets[hoja].range(rango).value:
+                    try:
+                        if cell.isnumeric():
+                            cell = float(cell)
+                    except:    
+                        new_range.append(cell)   
+            
+            wb.sheets[hoja].range(rango).value = new_range
+        
         if formato == "number_":
             numbers = wb.sheets[hoja].range(rango).value
             d = 0
@@ -367,7 +442,7 @@ if module == "formatCell":
             else:
                 wb.sheets[hoja].range(
                     rango).number_format = '0,{}'.format('0' * d)
-
+        
         if formato == "coin_":
             wb.sheets[hoja].range(rango).number_format = '$#.##0'
 
@@ -388,9 +463,10 @@ if module == "formatCell":
 
         if formato == "long_date":
             wb.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+        
         if formato == 'custom':
-            wb.sheets[hoja].range(rango).number_format = custom
-
+            wb.sheets[hoja].range(rango).number_format = custom        
+            
     except Exception as e:
         PrintException()
         raise e
@@ -459,6 +535,8 @@ if module == "copy_other":
                     destiny_sheet.Range(rango2))
             else:
                 destiny_sheet.Range(rango2).Value = my_values.api.Value
+                
+            wb2.Application.DisplayAlerts = False
             wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
 
@@ -908,7 +986,6 @@ if module == "getFormula":
 if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
-    
 
     try:
         
@@ -945,14 +1022,11 @@ if module == "Filter":
         n_end = wb.sheets[sheet].range(column + str(1)).column
 
         filter_column = n_end - n_start + 1
-        print(filter_column)
-        print(n_start)
-        print(n_end)
         if data.startswith("["):
             data = eval(data)
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
-        print(data)
+
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1656,7 +1730,7 @@ try:
             "Space": False,
             "Other": False,
             "TextQualifier" : 1,
-            "ConsecutiveDelimiter":True,
+            "ConsecutiveDelimiter":False,
             "TextQualifier":2,
             "FieldInfo": None
         }
@@ -1714,6 +1788,36 @@ try:
         sheet = wb.sheets[sheet_name].select()
 
         printSheet = wb.api.ActiveSheet.PrintOut()
+    #VerticalAlignment
+    if module == "formatText":
+        sheet_name = GetParams("sheet")
+        range_ = GetParams("cell_range")
+        option_horizontal = GetParams("option_horizontal")
+        option_vertical = GetParams("option_vertical")
+        
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet_name} does not exist in the book")
+        
+        sheet = wb.sheets[sheet_name]
+
+        alignment_horizontal = {
+            'align_to_data_type' : 1,
+            'left' : -4131,
+            'right' : -4152,
+            'center' : -4108,}
+
+        alignment_vertical = {
+            'bottom' : -4107,
+            'center' : -4108,
+            'justify' : -4130,
+            'top' : -4160,}
+        
+        if option_horizontal in alignment_horizontal:
+            sheet.range(range_).api.HorizontalAlignment = int(alignment_horizontal[option_horizontal])
+        
+        if option_vertical in alignment_vertical:
+            sheet.range(range_).api.VerticalAlignment = int(alignment_vertical[option_vertical])
+
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
