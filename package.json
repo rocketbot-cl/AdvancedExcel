@@ -16,7 +16,8 @@
   "name": "AdvancedExcel",
   "title": {
     "en": "Excel Advanced Options",
-    "es": "Opciones avanzadas para Excel"
+    "es": "Opciones avanzadas para Excel",
+    "pr": "Opções avançadas para Excel"
   },
   "icon": " data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
   "children": [
@@ -573,6 +574,109 @@
     },
     {
       "en": {
+        "title": "Get Cell Colors",
+        "description": "Get the colors of a cell.",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Obtener Color de celda",
+        "description": "Obtener el colors de una celda.",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Cores da célula",
+        "description": "Obter a cores de uma célula.",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja1",
+              "en": "Sheet1",
+              "pr": "Folha1"
+            },
+            "title": {
+              "es": "Ingrese hoja: ",
+              "en": "Sheet: ",
+              "pr": "Folha: "
+            },
+            "description": {
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Folha"
+            },
+            "id": "sheet",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1",
+              "en": "A1",
+              "pr": "A1"
+            },
+            "title": {
+              "es": "Ingrese celda: ",
+              "en": "Cells: ",
+              "pr": "Células: "
+            },
+            "description": {
+              "es": "Celda. La sintaxis debe ser la misma de excel (A1)",
+              "en": "Cell. The syntax must be the same as excel (A1)",
+              "pr": "Célula. A sintaxe deve ser a mesma do excel (A1)"
+            },
+            "id": "cell",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "[Color de Celda, Color de Fuente]",
+              "en": "[Background Color, Font Color]",
+              "pr": "[Cor da célula, Cor da Fonte]"
+            },
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Assign to var",
+              "pr": "Atribuir a variável"
+            },
+            "help": {
+              "es": "La variable debe ir sin llaves {}",
+              "en": "var without {}",
+              "pr": "A variável deve ir sem chaves {}"
+            },
+            "description": {
+              "es": "Nombre de la variable donde guardar el resultado.",
+              "en": "Name of the variable where the result will be stored",
+              "pr": "Nome da variável para armazenar o resultado"
+            },
+            "remove_vars": true,
+            "id": "res",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNzYuMzg5bW0iIGhlaWdodD0iMTc2LjM4OW1tIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uOyB0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IGltYWdlLXJlbmRlcmluZzpvcHRpbWl6ZVF1YWxpdHk7IGZpbGwtcnVsZTpldmVub2RkOyBjbGlwLXJ1bGU6ZXZlbm9kZCIgdmlld0JveD0iMCAwIDE3NjM5IDE3NjM5Ij4NCiA8ZGVmcz4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgIDwhW0NEQVRBWw0KICAgIC5maWwwIHtmaWxsOiMxRTcxNDV9DQogICBdXT4NCiAgPC9zdHlsZT4NCiA8L2RlZnM+DQogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPg0KICANCiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik05NTk2IDM2MzRsMCAxMDI2NSAtNjEwMyAtMTA1OCAwIC04MTQ5IDYxMDMgLTEwNTh6bTI5MCAxMTg1bDQwNTMgMGMyMjQsMCAyNjcsNDQgMjY3LDI2N2wwIDczNjBjMCwyMjMgLTQzLDI2NyAtMjY3LDI2N2wtNDA1MyAwIDAgLTY5NCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NiAtMTU0NyAwIDAgLTMyMCAxNTQ3IDAgMCAtMTA2NyAtMTU0NyAwIDAgLTU4N3ptLTc4MDMgMTA3NzRsMTM0NzQgMCAyIC0xMzQ3NiAtMTM0NzggMCAyIDEzNDc2eiIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjcxMjksNjg2MSA2NTczLDgxMzMgNjE0MSw2OTM4IDU0NDYsNjk2OSA2MTM2LDg3MTAgNTM1OSwxMDQxMyA2MDQyLDEwNDY0IDY1OTAsOTIzOSA3MTAwLDEwNTM1IDc4ODYsMTA1NzggNzAzNCw4NzAzIDc4NDksNjgwOSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMjAxOSAxMzUxMywxMjAxOSAxMzUxMywxMDk1MyAxMTc1MywxMDk1MyAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1MywxMDYzMyAxMzUxMywxMDYzMyAxMzUxMyw5NTY2IDExNzUzLDk1NjYgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiAgPHBvbHlnb24gY2xhc3M9ImZpbDAiIHBvaW50cz0iMTE3NTMsOTI0NiAxMzUxMyw5MjQ2IDEzNTEzLDgxNzkgMTE3NTMsODE3OSAiIHN0eWxlPSJmaWxsOiAjMUU3MTQ1OyIvPg0KICA8cG9seWdvbiBjbGFzcz0iZmlsMCIgcG9pbnRzPSIxMTc1Myw2NDczIDEzNTEzLDY0NzMgMTM1MTMsNTQwNiAxMTc1Myw1NDA2ICIgc3R5bGU9ImZpbGw6ICMxRTcxNDU7Ii8+DQogIDxwb2x5Z29uIGNsYXNzPSJmaWwwIiBwb2ludHM9IjExNzUzLDc4NTkgMTM1MTMsNzg1OSAxMzUxMyw2NzkzIDExNzUzLDY3OTMgIiBzdHlsZT0iZmlsbDogIzFFNzE0NTsiLz4NCiA8L2c+DQoNCgk8bWV0YWRhdGE+DQoJCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6cmRmcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYtc2NoZW1hIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4NCgkJCTxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9Im1pY3Jvc29mdF9vZmZpY2VfZXhjZWwiIGRjOmRlc2NyaXB0aW9uPSJtaWNyb3NvZnRfb2ZmaWNlX2V4Y2VsIiBkYzpwdWJsaXNoZXI9Ikljb25zY291dCIgZGM6ZGF0ZT0iMjAxNy0wNC0yMSIgZGM6Zm9ybWF0PSJpbWFnZS9zdmcreG1sIiBkYzpsYW5ndWFnZT0iZW4iPg0KCQkJCTxkYzpjcmVhdG9yPg0KCQkJCQk8cmRmOkJhZz4NCgkJCQkJCTxyZGY6bGk+QWxleGFuZGVyIFBhbmFzb3Zza3k8L3JkZjpsaT4NCgkJCQkJPC9yZGY6QmFnPg0KCQkJCTwvZGM6Y3JlYXRvcj4NCgkJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCQk8L3JkZjpSREY+DQogICAgPC9tZXRhZGF0YT48L3N2Zz4=",
+      "module": "GetColor",
+      "module_name": "AdvancedExcel",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": false,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
         "title": "Insert Formula",
         "description": "Insert formula into cell",
         "title_options": null,
@@ -593,6 +697,26 @@
       "form": {
         "css": "modal-lg",
         "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja1",
+              "en": "Sheet5",
+              "pr": "Folha5"
+            },
+            "title": {
+              "es": "Ingrese hoja: ",
+              "en": "Sheet: ",
+              "pr": "Folha: "
+            },
+            "description": {
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Folha"
+            },
+            "id": "sheet",
+            "css": "col-md-6"
+          },
           {
             "type": "input",
             "placeholder": {
@@ -1106,8 +1230,161 @@
               "en": "Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1:B1) ",
               "pr": "Célula ou intervalo de células para colar. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
+            "help": {
+              "es": "Para arrastrar una formula el rango de pegado debe comenzar en las celda/as copiada/as.",
+              "en": "To drag a formula the paste range must start at the copied cell(s).",
+              "pr": "Para arrastar uma fórmula, o intervalo de colagem deve começar na(s) célula(s) copiada(s)."
+            },
             "id": "cell_range2",
             "css": "col-md-4"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "Opcion",
+              "en": "Option",
+              "pr": "Opção"
+            },
+            "title": {
+              "es": "Opción de Pegado",
+              "en": "Paste Option",
+              "pr": "Opção de Colar"
+            },
+            "options": [
+              {
+                "title": "--Seleccione--",
+                "value": ""
+              },
+              {
+                "title": "All",
+                "value": "all"
+              },
+              {
+                "title": "Formulas",
+                "value": "formulas"
+              },
+              {
+                "title": "Values",
+                "value": "values"
+              },
+              {
+                "title": "Formats",
+                "value": "formats"
+              },
+              {
+                "title": "Comments",
+                "value": "comments"
+              },
+              {
+                "title": "All Using Source Theme",
+                "value": "all_using_source_theme"
+              },
+              {
+                "title": "All Except Borders",
+                "value": "all_except_borders"
+              },
+              {
+                "title": "Column Widths",
+                "value": "column_widths"
+              },
+              {
+                "title": "Formulas and Number Formats",
+                "value": "formulas_and_number_formats"
+              },
+              {
+                "title": "Values and Number Formats",
+                "value": "values_and_number_formats"
+              }
+            ],
+            "description": {
+              "es": "Seleccionar tipo de pegado para la celda o rango de celdas.",
+              "en": "Select paste type for the cell or cells range.",
+              "pr": "Selecionar tipo de colagem para a célula ou intervalo de células."
+            },
+            "id": "option",
+            "css": "col-md-6"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "Operación",
+              "en": "Operation",
+              "pr": "Operação"
+            },
+            "title": {
+              "es": "Operación de Pegado",
+              "en": "Paste Operation",
+              "pr": "Operação de Colar"
+            },
+            "options": [
+              {
+                "title": "--Seleccione--",
+                "value": ""
+              },
+              {
+                "title": "Add",
+                "value": "add"
+              },
+              {
+                "title": "Substract",
+                "value": "subtract"
+              },
+              {
+                "title": "Multiply",
+                "value": "multiply"
+              },
+              {
+                "title": "Divide",
+                "value": "divide"
+              }
+            ],
+            "description": {
+              "es": "Seleccionar operación de pegado para la celda o rango de celdas.",
+              "en": "Select paste operation for the cell or cells range.",
+              "pr": "Selecione a operação de colagem para a célula ou intervalo de células."
+            },
+            "id": "operation",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Saltar Blancos",
+              "en": "Skip Blanks",
+              "pr": "Pular espaços em branco"
+            },
+            "help": {
+              "es": "Si se marca, evita reemplazar valores en el área de pegado cuando existen celdas en blanco en el área de copia.",
+              "en": "If checked, prevents replacing values ​​in the paste area when there are blank cells in the copy area.",
+              "pr": "Se marcada, impede a substituição de valores na área de colagem quando houver células em branco na área de cópia."
+            },
+            "id": "skip_blanks",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Transponer",
+              "en": "Transpose",
+              "pr": "Transpor"
+            },
+            "help": {
+              "es": "Si se marca, cambia las columnas de datos copiados a filas y viceversa al activar esta casilla.",
+              "en": "If checked, changes the copied data columns to rows and vice versa by checking this box.",
+              "pr": "Se marcada, altera as colunas de dados copiadas para linhas e vice-versa marcando esta caixa."
+            },
+            "id": "transpose",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1275,6 +1552,26 @@
               "pr": "Formato personalizado. Deve ser o mesmo que mostrado na seção personalizada do Excel."
             },
             "id": "custom",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Texto a Valor",
+              "en": "Text to Value",
+              "pr": "Texto para valor"
+            },
+            "help": {
+              "es": "Si se marca, cambiara los datos guardados como texto a valor",
+              "en": "If checked, will convert data stored as text to value",
+              "pr": "Se marcado, irá alterar os dados guardados como texto para valor"
+            },
+            "id": "texttoval",
             "css": "col-md-6"
           }
         ]

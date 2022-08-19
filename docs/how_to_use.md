@@ -103,6 +103,7 @@ Format Cell
 |Range to format |Cell or Range of cells to format. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Format|The format type for the cell must be selected. Select custom to add a custom format|dd-mm-yy|
 |Custom format |Custom format. It should be the same as shown in the custom section of Excel|00000|
+|Text to Value|Checking the box will convert data stored as text to value|True|
 
 ### Create Sheet
   

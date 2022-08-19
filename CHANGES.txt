@@ -1,3 +1,5 @@
+Fri Jul 22 18:37:12 2022  (HEAD -> devJ, origin/devJ) [HIDDEN] Actualizació Manual
+Wed Apr 6 16:35:16 2022  Merge from qa: v33.12.2
 Wed Oct 13 09:45:34 2021  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
 Wed Oct 6 11:03:07 2021  [hidden] Conflict between versions. The printer command, Get Cell With Currency Format and Get Cell With Date Format may have been affected - ID-170
 Thu Aug 19 13:12:18 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel

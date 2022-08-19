@@ -33,7 +33,6 @@ import xlwings as xw
 import platform
 import os
 import sys
-import win32com.client as win32
 import subprocess
 
 # This lines is to linter
@@ -194,12 +193,33 @@ if module == "CellColor":
     except Exception as e:
         PrintException()
         raise e
-if module == "InsertFormula":
 
+if module == "GetColor":
+    
+    sheet = GetParams("sheet")
+    cell = GetParams("cell")
+    res = GetParams("res")
+    
+    color = []
+    try:
+        background = xw.sheets[sheet].range(cell).color
+        font = xw.sheets[sheet].range(cell).api.Font.Color
+        color.append(background)
+        color.append(font)
+        SetVar(res, color)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
+
+if module == "InsertFormula":
+    
+    hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
-
-    sheet = xls['sheet']
+    
+    sheet = wb.sheets(hoja)
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -304,20 +324,45 @@ if module == "copyPaste":
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
+    opcion = GetParams("option")
+    ope = GetParams("operation")
+    saltar = GetParams("skip_blanks")
+    trans = GetParams("transpose")
 
-    if not hoja1 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja1} does not exist in the book")
-    if not hoja2 in [sh.name for sh in xw.sheets]:
-        raise Exception(f"The name {hoja2} does not exist in the book")
-    my_values = xw.sheets[hoja1].range(rango1).options(ndim=2).value
-
-    xw.sheets[hoja2].range(rango2).value = my_values
-
+    try:
+        args = {}
+        
+        if opcion:
+            args['paste'] = opcion
+        
+        if ope:
+            args['operation'] = ope
+        
+        if saltar == 'true':
+            args['skip_blanks'] = saltar
+            
+        if trans == 'true':
+            args['transpose'] = trans
+        
+        if not hoja1 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja1} does not exist in the book")
+        if not hoja2 in [sh.name for sh in xw.sheets]:
+            raise Exception(f"The name {hoja2} does not exist in the book")
+        
+        print(ope)
+        xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
+        xw.sheets[hoja2].range(rango2).paste(**args)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+    
 if module == "formatCell":
     hoja = GetParams("sheet_name")
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
+    texttoval = GetParams("texttoval")
 
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
@@ -327,6 +372,29 @@ if module == "formatCell":
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
+        if texttoval == True:
+            new_range = []
+            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
+                for row in wb.sheets[hoja].range(rango).value:
+                    new_row = []
+                    for cell in row:
+                        try:
+                            if cell.isnumeric():
+                                cell = float(cell)
+                        except:
+                            new_row.append(cell)    
+                    new_range.append(new_row)
+                print(new_range) 
+            else:
+                for cell in wb.sheets[hoja].range(rango).value:
+                    try:
+                        if cell.isnumeric():
+                            cell = float(cell)
+                    except:    
+                        new_range.append(cell)   
+            
+            wb.sheets[hoja].range(rango).value = new_range
+        
         if formato == "number_":
             numbers = wb.sheets[hoja].range(rango).value
             d = 0
@@ -373,7 +441,7 @@ if module == "formatCell":
             else:
                 wb.sheets[hoja].range(
                     rango).number_format = '0,{}'.format('0' * d)
-
+        
         if formato == "coin_":
             wb.sheets[hoja].range(rango).number_format = '$#.##0'
 
@@ -394,9 +462,10 @@ if module == "formatCell":
 
         if formato == "long_date":
             wb.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+        
         if formato == 'custom':
-            wb.sheets[hoja].range(rango).number_format = custom
-
+            wb.sheets[hoja].range(rango).number_format = custom        
+            
     except Exception as e:
         PrintException()
         raise e
@@ -465,6 +534,8 @@ if module == "copy_other":
                     destiny_sheet.Range(rango2))
             else:
                 destiny_sheet.Range(rango2).Value = my_values.api.Value
+                
+            wb2.Application.DisplayAlerts = False
             wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
 
@@ -914,7 +985,6 @@ if module == "getFormula":
 if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
-    
 
     try:
         
@@ -951,14 +1021,11 @@ if module == "Filter":
         n_end = wb.sheets[sheet].range(column + str(1)).column
 
         filter_column = n_end - n_start + 1
-        print(filter_column)
-        print(n_start)
-        print(n_end)
         if data.startswith("["):
             data = eval(data)
 
         wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
-        print(data)
+
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1649,6 +1716,9 @@ try:
         wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
+        
+        import win32com.client
+        
         sheet_name = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
@@ -1662,7 +1732,7 @@ try:
             "Space": False,
             "Other": False,
             "TextQualifier" : 1,
-            "ConsecutiveDelimiter":True,
+            "ConsecutiveDelimiter":False,
             "TextQualifier":2,
             "FieldInfo": None
         }
@@ -1681,7 +1751,7 @@ try:
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
 
-        xlWorkbook = win32.GetObject(wb.fullname)
+        xlWorkbook = win32com.client.GetObject(wb.fullname)
         xlWorksheet = xlWorkbook.Sheets[sheet_name]
         xlWorksheet.Range(range_).TextToColumns(
             xlWorksheet.Range(range_),

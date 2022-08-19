@@ -4,7 +4,7 @@
 
 # Excel Advanced Options
   
-Módulo con opciones avanzadas para Excel  
+Module with advanced options for Excel  
 
 ## How to install this module
   
@@ -12,19 +12,9 @@ __Download__ and __install__ the content in 'modules' folder in Rocketbot path
 
 
 ## How to use
-To use this module, you must have Microsoft Excel.
+To use this module you must have Microsoft Excel.
 
-
-## Descripción de los comandos
-
-### Abrir sin alertas
-
-  
-Open a file without displaying alert banners.
-|Parameters|Description|example|
-| 
 ## Overview
-
 
 1. Open Without Alerts  
 Open a file preventing MS Excel alerts.
@@ -41,166 +31,175 @@ Counts all the rows or from a range.
 5. Cell color  
 Change color of a cell or range of cells. Can be a default color or custom 
 
-6. Insert Formula  
+6. Get Cell colors  
+Get the colors of a cell.
+
+7. Insert Formula  
 Insert formula into cell
 
-7. Insert Macro  
+8. Insert Macro  
 Insert Macro in Excel
 
-8. Select Cells  
+9. Select Cells  
 Select cells in Excel
 
-9. Get Cell With Currency Format  
+10. Get Cell With Currency Format  
 Get cells with currency format
 
-10. Get Cell With Date Format  
+11. Get Cell With Date Format  
 Get cells with date format
 
-11. Copy-Paste  
+12. Copy-Paste  
 Copy range cell to another sheet
 
-12. Format Cell  
+13. Format Cell  
 Format Cell
 
-13. Create Sheet  
+14. Create Sheet  
 Create sheet in the end
 
-14. Delete Sheet  
+15. Delete Sheet  
 Delete sheet
 
-15. Copy to another excel  
+16. Copy to another excel  
 Copy range to another Excel in the background
 
-16. Add/Delete Row  
+17. Add/Delete Row  
 Add or Delete a Row
 
-17. Add/Delete Column  
+18. Add/Delete Column  
 Add or Delete a Column
 
-18. Convert CSV to XLSX  
+19. Convert CSV to XLSX  
 Convert a csv document to xlsx
 
-19. Convert XLSX to CSV  
+20. Convert XLSX to CSV  
 Convert a xlsx document to csv
 
-20. Convert XLS to XLSX  
+21. Convert XLS to XLSX  
 Convert a xls document to xlsx
 
-21. Get active cell  
+22. Get active cell  
 Get row and column of active cell
 
-22. Refresh Pivot table  
+23. Refresh Pivot table  
 Refresh a pivot table. Deprecated! Use PivotTableExcel module
 
-23. Fit cells  
+24. Fit cells  
 Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
 
-24. Get Formula  
+25. Get Formula  
 Get the formula into cell
 
-25. Add Auto Filter  
+26. Add Auto Filter  
 Add auto filter to excel table
 
-26. Filter  
+27. Filter  
 Add filter to excel table
 
-27. Rename sheet  
+28. Rename sheet  
 Change name to excel sheet
 
-28. Text Format  
+29. Text Format  
 Change the Horizontal or Vertical alignment of values in a range of cells
 
-29. Cell Style  
+30. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-30. Paste in Cells  
+31. Paste in Cells  
 Paste data to cells in Excel
 
-31. Remove Duplicates  
+32. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-32. Save Excel  
+33. Save Excel  
 Save a Excel file in the indicated path
 
-33. Export to advanced PDF  
+34. Export to advanced PDF  
 Export to PDF with options
 
-34. Copy-Move Sheet  
+35. Copy-Move Sheet  
 Copy or move a sheet
 
-35. Insert Form  
+36. Insert Form  
 Insert Form in Excel
 
-36. Read Filtered Cells  
+37. Read Filtered Cells  
 Allow read only cells filters 
 
-37. Count Filtered Cells  
+38. Count Filtered Cells  
 Allow count only cells filters 
 
-38. Replace  
+39. Replace  
 Run replace action to excel 
 
-39. Order  
+40. Order  
 Run replace action to excel 
 
-40. Refresh All  
+41. Refresh All  
 Refresh all data in Excel
 
-41. Find  
+42. Find  
 Return de first found cell 
 
-42. Lock Cells  
+43. Lock Cells  
 Lock or Unlock cells
 
-43. Add Chart  
+44. Add Chart  
 Create a new chart in an excel sheet
 
-44. Remove Password  
+45. Remove Password  
 Remove password and save the Excel
 
-45. Insert image  
+46. Insert image  
 Insert an image
 
-46. Export Chart  
+47. Export Chart  
 Export a chart from index
 
-47. Not visible mode  
+48. Not visible mode  
 Open not visible excel.
 
-48. Write array objects  
+49. Write array objects  
 Write array object on Excel cells.
 
-49. Copy-Paste Format  
+50. Copy-Paste Format  
 Copy format range cell to another sheet
 
-50. Update links  
+51. Update links  
 Changes a link from one document to another
 
-51. Unlock sheet  
+52. Unlock sheet  
 Unlock sheet
 
-52. Convert to .txt  
+53. Convert to .txt  
 Convert to .txt
 
-53. Text to columns  
+54. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-54. Convert Excel time to hours  
+55. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-55. Print sheet  
+56. Print sheet  
 Prints a sheet
 
-56. Save Excel with password  
+57. Save Excel with password  
 Save a Excel file
 
-57. Save Excel  
+58. Save Excel  
 Save a Excel file in the indicated path
 
-58. Close XLSX  
+59. Close XLSX  
 Close the workbook opened by Rocketbot  
 
-### Updates
+
+
+### Updates}
+#### 09-Aug-2022
+- Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
+#### 22-Jul-2022
+- Fix Copy to another excel and Copy-Paste Format
 #### 13-Jun-2022
 - Format text: Added command to change text alignment
 #### 12-May-2022
