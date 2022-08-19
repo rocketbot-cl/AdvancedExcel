@@ -33,7 +33,6 @@ import xlwings as xw
 import platform
 import os
 import sys
-import win32com.client as win32
 import subprocess
 
 # This lines is to linter
@@ -1717,6 +1716,9 @@ try:
         wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
+        
+        import win32com.client
+        
         sheet_name = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
@@ -1749,7 +1751,7 @@ try:
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
 
-        xlWorkbook = win32.GetObject(wb.fullname)
+        xlWorkbook = win32com.client.GetObject(wb.fullname)
         xlWorksheet = xlWorkbook.Sheets[sheet_name]
         xlWorksheet.Range(range_).TextToColumns(
             xlWorksheet.Range(range_),

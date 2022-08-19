@@ -6,7 +6,7 @@
   
 Módulo con opciones avanzadas para Excel  
   
-![banner](C:\Users\jmsir\Desktop\RB\Rocketbot\modules\AdvancedExcel\docs\imgs\Banner_AdvancedExcel.png)
+![banner](/docs/imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
