@@ -574,13 +574,13 @@
     },
     {
       "en": {
-        "title": "Get Cell colors",
+        "title": "Get Cell Colors",
         "description": "Get the colors of a cell.",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Obtener Colors de celda",
+        "title": "Obtener Color de celda",
         "description": "Obtener el colors de una celda.",
         "title_options": null,
         "options": null

@@ -6,7 +6,7 @@
   
 Module with advanced options for Excel  
   
-![banner](/docs/imgs/Banner_AdvancedExcel.png)
+![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
@@ -59,7 +59,7 @@ Change color of a cell or range of cells. Can be a default color or custom
 |RGB color cell |RGB values of the color that will be the cell or cells|250,250,250|
 |Select color |Select the color. You can use the previous input to customize the color|red|
 
-### Get Cell colors
+### Get Cell Colors
   
 Get the colors of a cell.
 |Parameters|Description|example|
