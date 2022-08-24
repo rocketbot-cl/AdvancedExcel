@@ -112,90 +112,87 @@ Paste data to cells in Excel
 32. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-33. Save Excel  
-Save a Excel file in the indicated path
-
-34. Export to advanced PDF  
+33.  Export to advanced PDF  
 Export to PDF with options
 
-35. Copy-Move Sheet  
+34. Copy-Move Sheet  
 Copy or move a sheet
 
-36. Insert Form  
+35. Insert Form  
 Insert Form in Excel
 
-37. Read Filtered Cells  
+36. Read Filtered Cells  
 Allow read only cells filters 
 
-38. Count Filtered Cells  
+37. Count Filtered Cells  
 Allow count only cells filters 
 
-39. Replace  
+38. Replace  
 Run replace action to excel 
 
-40. Order  
+39. Order  
 Run replace action to excel 
 
-41. Refresh All  
+40. Refresh All  
 Refresh all data in Excel
 
-42. Find  
+41. Find  
 Return de first found cell 
 
-43. Lock Cells  
+42. Lock Cells  
 Lock or Unlock cells
 
-44. Add Chart  
+43. Add Chart  
 Create a new chart in an excel sheet
 
-45. Remove Password  
+44. Remove Password  
 Remove password and save the Excel
 
-46. Insert image  
+45. Insert image  
 Insert an image
 
-47. Export Chart  
+46. Export Chart  
 Export a chart from index
 
-48. Not visible mode  
+47. Not visible mode  
 Open not visible excel.
 
-49. Write array objects  
+48. Write array objects  
 Write array object on Excel cells.
 
-50. Copy-Paste Format  
+49. Copy-Paste Format  
 Copy format range cell to another sheet
 
-51. Update links  
+50. Update links  
 Changes a link from one document to another
 
-52. Unlock sheet  
+51. Unlock sheet  
 Unlock sheet
 
-53. Convert to .txt  
+52. Convert to .txt  
 Convert to .txt
 
-54. Text to columns  
+53. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-55. Convert Excel time to hours  
+54. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-56. Print sheet  
+55. Print sheet  
 Prints a sheet
 
-57. Save Excel with password  
+56. Save Excel with password  
 Save a Excel file
 
-58. Save Excel  
+57. Save Excel  
 Save a Excel file in the indicated path
 
-59. Close XLSX  
+58. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 
 
-### Updates}
+### Updates
 #### 09-Aug-2022
 - Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
 #### 22-Jul-2022

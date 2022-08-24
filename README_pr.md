@@ -111,120 +111,83 @@ Colar dados em células em Excel
 32. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-33. Salvar Excel  
-Salva um arquivo Excel na ruta indicada
-
-34. Exportar para PDF avançado  
+33.  Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-35.   
+34. Copiar-Mover Planilha
+Copiar ou mover uma planilha
 
-
-36. Inserir Formulário  
+35. Inserir Formulário  
 Insere um Formulário no Excel
 
-37. Ler células filtradas  
+36. Ler células filtradas  
 Ler somente as células filtradas
 
-38. Contar celulas filtradas  
+37. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-39. Replace  
+38. Replace  
 Run replace action to excel 
 
-40. Ordenar  
+39. Ordenar  
 Executa a ação de substituir de excel
 
-41. Atualizar Tudo  
+40. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-42. Buscar  
+41. Buscar  
 Devuelve a primeira celula encontrada
 
-43. Bloquear celulas  
+42. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-44. Adicionar Gráfico  
+43. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-45. Remover Senha  
+44. Remover Senha  
 Remove a senha e salva o Excel
 
-46. Inserir imagem  
+45. Inserir imagem  
 Inserir uma imagem
 
-47. Exportar gráfico  
+46. Exportar gráfico  
 Exporta um gráfico por índice
 
-48. Modo não visível  
+47. Modo não visível  
 Abre excel em modo não visível
 
-49. Escrever array de objetos  
+48. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-50. Copiar-Colar Formato  
+49. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-51. Atualizar vínculos  
+50. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-52. Desbloquear planilha  
+51. Desbloquear planilha  
 Desbloquea uma planilha com senha
 
-53. Converter para .txt  
+52. Converter para .txt  
 Converte para .txt
 
-54. Texto em coluna  
+53. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-55. Converter tempo de Excel para horas  
+54. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-56. Imprimir planilha  
+55. Imprimir planilha  
 Imprime uma planilha
 
-57. Salvar Excel com senha  
+56. Salvar Excel com senha  
 Salva um arquivo Excel
 
-58. Salvar Excel  
+57. Salvar Excel  
 Salva um arquivo Excel na ruta indicada
 
-59. Fechar XLSX  
+58. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
-
-
-
-### Changes
-Fri Jul 22 18:37:12 2022  (HEAD -> devJ, origin/devJ) [HIDDEN] Actualizació Manual
-Wed Apr 6 16:35:16 2022  Merge from 
-qa: v33.12.2
-Wed Oct 13 09:45:34 2021  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Wed Oct 6 
-11:03:07 2021  [hidden] Conflict between versions. The printer command, Get Cell With Currency Format and Get Cell With 
-Date Format may have been affected - ID-170
-Thu Aug 19 13:12:18 2021  Merge branch master of github.com:rocketbot-
-cl/AdvancedExcel
-Tue Jul 13 17:29:52 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel
-Wed Nov 25 
-09:19:10 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 11:03:49 2020  Merge 
-branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 10:39:15 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Sep 2 11:35:18 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Aug 18 12:48:36 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Jul 29 18:52:47 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Jun 30 19:10:05 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed May 27 17:30:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Mon Feb 3 14:59:42 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Thu Jan 23 11:05:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
 
 ----
 ### OS

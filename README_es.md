@@ -111,120 +111,83 @@ Pega datos en celdas en Excel
 32. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-33. Guardar Excel  
-Guarda un archivo Excel en la ruta indicada
-
-34. Exportar a PDF avanzado  
+34.  Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-35. Copiar-Mover Hoja  
+34. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-36. Insertar Formulario  
+35. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-37. Leer celdas filtradas  
+36. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-38. Contar celdas filtradas  
+37. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-39. Reemplazar  
+38. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-40. Ordenar  
+39. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-41. Actualizar Todo  
+40. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-42. Buscar  
+41. Buscar  
 Devuelve la primera celda encontrada
 
-43. Bloquear celdas  
+42. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-44. Agregar Gráfico  
+43. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-45. Quitar Contraseña  
+44. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-46. Insertar imagen  
+45. Insertar imagen  
 Inserta una imagen
 
-47. Exportar gráfico  
+46. Exportar gráfico  
 Exporta un gráfico por índice
 
-48. Modo no visible  
+47. Modo no visible  
 Abre excel en modo no visible
 
-49. Escribir array de objetos  
+48. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-50. Copiar-Pegar Formato  
+49. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-51. Actualizar vínculos  
+50. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-52. Desbloquear hoja  
+51. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-53. Convertir a .txt  
+52. Convertir a .txt  
 Convierte a .txt
 
-54. Texto en columna  
+53. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-55. Convertir tiempo de Excel a horas  
+54. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-56. Imprimir hoja  
+55. Imprimir hoja  
 Imprime una hoja
 
-57. Guardar Excel con password  
+56. Guardar Excel con password  
 Guarda un archivo Excel
 
-58. Guardar Excel  
+57. Guardar Excel  
 Guarda un archivo Excel en la ruta indicada
 
-59. Cerrar XLSX  
+58. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
-
-
-
-### Changes
-Fri Jul 22 18:37:12 2022  (HEAD -> devJ, origin/devJ) [HIDDEN] Actualizació Manual
-Wed Apr 6 16:35:16 2022  Merge from 
-qa: v33.12.2
-Wed Oct 13 09:45:34 2021  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Wed Oct 6 
-11:03:07 2021  [hidden] Conflict between versions. The printer command, Get Cell With Currency Format and Get Cell With 
-Date Format may have been affected - ID-170
-Thu Aug 19 13:12:18 2021  Merge branch master of github.com:rocketbot-
-cl/AdvancedExcel
-Tue Jul 13 17:29:52 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel
-Wed Nov 25 
-09:19:10 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 11:03:49 2020  Merge 
-branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 10:39:15 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Sep 2 11:35:18 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Aug 18 12:48:36 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Jul 29 18:52:47 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Jun 30 19:10:05 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed May 27 17:30:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Mon Feb 3 14:59:42 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Thu Jan 23 11:05:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
 
 ----
 ### OS

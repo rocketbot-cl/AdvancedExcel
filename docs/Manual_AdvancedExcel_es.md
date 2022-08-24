@@ -324,13 +324,6 @@ Ejecuta el comando eliminar duplicados de Excel
 |Columna |Indicar la columna donde se buscarán los duplicados|A |
 |Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
-### Guardar Excel
-  
-Guarda un archivo Excel en la ruta indicada
-|Parámetros|Descripción|ejemplo|
-| --- | --- | --- |
-|Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
-
 ### Exportar a PDF avanzado
   
 Exporta Excel a PDF con opciones

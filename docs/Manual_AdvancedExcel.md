@@ -324,13 +324,6 @@ Execute the remove duplicates command of Excel
 |Column |Indicate the column where the duplicates are to be searched for|A |
 |Do it have headers?|Check this checkbox if the excel has headers|True|
 
-### Save Excel
-  
-Save a Excel file in the indicated path
-|Parameters|Description|example|
-| --- | --- | --- |
-|Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
-
 ### Export to advanced PDF
   
 Export to PDF with options

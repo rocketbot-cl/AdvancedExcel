@@ -6,7 +6,7 @@
   
 Módulo com opções avançadas para Excel
 
-![banner](/docs/imgs/Banner_AdvancedExcel.png)
+![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
@@ -324,13 +324,6 @@ Executa o comando remover duplicatas de Excel
 |Coluna |Indicar a coluna onde as duplicatas serão procuradas.|A |
 |Tem cabeçeras?|marque esta caixa se o excel tiver cabeçalhos|True|
 
-### Salvar Excel
-  
-Salva um arquivo Excel na ruta indicada
-|Parâmetros|Descrição|exemplo|
-| --- | --- | --- |
-|Salvar Excel|Caminho onde salvar o arquivo .xlsx|/Users/user/Desktop/excel.xlsx|
-
 ### Exportar para PDF avançado
   
 Exporta Excel para PDF com opções
@@ -342,9 +335,9 @@ Exporta Excel para PDF com opções
 |Ajustar Altura|||
 |Ajustar Largura|||
 
-### 
+### Copiar-Mover Planilha
   
-
+Copiar ou mover uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha origem|Nome da planilha de origen|Sheet1|
