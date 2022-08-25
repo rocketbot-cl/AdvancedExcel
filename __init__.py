@@ -324,7 +324,7 @@ if module == "copyPaste":
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
-    opcion = GetParams("option")
+    option = GetParams("option")
     ope = GetParams("operation")
     saltar = GetParams("skip_blanks")
     trans = GetParams("transpose")
@@ -332,17 +332,17 @@ if module == "copyPaste":
     try:
         args = {}
         
-        if opcion:
-            args['paste'] = opcion
+        if option:
+            args['paste'] = option
         
         if ope:
             args['operation'] = ope
         
-        if saltar == 'true':
-            args['skip_blanks'] = saltar
+        if saltar:
+            args['skip_blanks'] = True
             
-        if trans == 'true':
-            args['transpose'] = trans
+        if trans:
+            args['transpose'] = True
         
         if not hoja1 in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja1} does not exist in the book")

@@ -6,7 +6,7 @@
   
 Módulo con opciones avanzadas para Excel  
   
-![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
@@ -122,8 +122,8 @@ Copia un rango de celdas desde una hoja a otra
 |Rango donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
 |Opción de Pegado|Seleccionar tipo de pegado para la celda o rango de celdas.|Opcion|
 |Operación de Pegado|Seleccionar operación de pegado para la celda o rango de celdas.|Operación|
-|Saltar Blancos|||
-|Transponer|||
+|Saltar Blancos||Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.|
+|Transponer||Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.|
 
 ### Formatear Celda
   

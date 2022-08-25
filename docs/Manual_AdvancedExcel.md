@@ -6,7 +6,7 @@
   
 Module with advanced options for Excel  
   
-![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
@@ -122,8 +122,8 @@ Copy range cell to another sheet
 |Range to paste|Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Paste Option|Select paste type for the cell or cells range.|Option|
 |Paste Operation|Select paste operation for the cell or cells range.|Operation|
-|Skip Blanks|||
-|Transpose|||
+|Skip Blanks||Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.|
+|Transpose||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
 
 ### Format Cell
   

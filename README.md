@@ -192,7 +192,7 @@ Close the workbook opened by Rocketbot
 
 
 
-### Updates
+### Changes
 #### 09-Aug-2022
 - Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
 #### 22-Jul-2022

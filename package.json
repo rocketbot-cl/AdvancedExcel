@@ -450,7 +450,7 @@
     {
       "en": {
         "title": "Cell color",
-        "description": "Change color of a cell or range of cells. Can be a default color or custom ",
+        "description": "Change color of a cell or range of cells. Can be a default color or custom",
         "title_options": null,
         "options": null
       },
@@ -574,20 +574,20 @@
     },
     {
       "en": {
-        "title": "Get Cell Colors",
-        "description": "Get the colors of a cell.",
+        "title": "Get Cell Color",
+        "description": "Get the color of a cell. The funtion will return a list with Background Color and Font Color in RGB.",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Obtener Color de celda",
-        "description": "Obtener el colors de una celda.",
+        "title": "Obtener color de celda",
+        "description": "Obtener el color de una celda. La función devolverá una lista con Color de fondo y Color de fuente en RGB.",
         "title_options": null,
         "options": null
       },
       "pr": {
-        "title": "Cores da célula",
-        "description": "Obter a cores de uma célula.",
+        "title": "Obter cor da célula",
+        "description": "Obter a cor de uma célula. A função retornará uma lista com Background Color e Font Color em RGB.",
         "title_options": null,
         "options": null
       },
@@ -623,8 +623,8 @@
             },
             "title": {
               "es": "Ingrese celda: ",
-              "en": "Cells: ",
-              "pr": "Células: "
+              "en": "Cell: ",
+              "pr": "Célula: "
             },
             "description": {
               "es": "Celda. La sintaxis debe ser la misma de excel (A1)",
@@ -637,9 +637,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "[Color de Celda, Color de Fuente]",
-              "en": "[Background Color, Font Color]",
-              "pr": "[Cor da célula, Cor da Fonte]"
+              "es": "color",
+              "en": "color",
+              "pr": "cor"
             },
             "title": {
               "es": "Asignar a variable",
@@ -1358,9 +1358,14 @@
               "en": "Skip Blanks",
               "pr": "Pular espaços em branco"
             },
+            "description": {
+              "es": "Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.",
+              "en": "Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.",
+              "pr": "Impede a substituição de valores na área de colagem quando células em branco são produzidas na área de cópia quando esta caixa é selecionada."
+            },
             "help": {
               "es": "Si se marca, evita reemplazar valores en el área de pegado cuando existen celdas en blanco en el área de copia.",
-              "en": "If checked, prevents replacing values ​​in the paste area when there are blank cells in the copy area.",
+              "en": "If checked, prevents replacing values in the paste area when there are blank cells in the copy area.",
               "pr": "Se marcada, impede a substituição de valores na área de colagem quando houver células em branco na área de cópia."
             },
             "id": "skip_blanks",
@@ -1377,6 +1382,11 @@
               "es": "Transponer",
               "en": "Transpose",
               "pr": "Transpor"
+            },
+            "description": {
+              "es": "Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.",
+              "en": "Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.",
+              "pr": "Gire o conteúdo das células copiadas ao colar. Os dados nas linhas serão colados nas colunas e vice-versa."
             },
             "help": {
               "es": "Si se marca, cambia las columnas de datos copiados a filas y viceversa al activar esta casilla.",

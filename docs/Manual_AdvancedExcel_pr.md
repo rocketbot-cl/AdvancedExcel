@@ -6,7 +6,7 @@
   
 Módulo com opções avançadas para Excel
 
-![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
@@ -122,8 +122,8 @@ Copia um intervalo de células de uma planilha para outra
 |Intervalo para colar|Célula ou intervalo de células para colar. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:C4|
 |Opção de Colar|Selecionar tipo de colagem para a célula ou intervalo de células.|Opção|
 |Operação de Colar|Selecione a operação de colagem para a célula ou intervalo de células.|Operação|
-|Pular espaços em branco|||
-|Transpor|||
+|Pular espaços em branco||Impede a substituição de valores na área de colagem quando células em branco são produzidas na área de cópia quando esta caixa é selecionada.|
+|Transpor||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
 
 ### Formatar Célula
   
