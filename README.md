@@ -11,7 +11,7 @@ Module with advanced options for Excel
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
-## How to use
+## How to use thi module
 To use this module you must have Microsoft Excel.
 
 ## Overview
@@ -32,7 +32,7 @@ Counts all the rows or from a range.
 Change color of a cell or range of cells. Can be a default color or custom 
 
 6. Get Cell colors  
-Get the colors of a cell.
+Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB.
 
 7. Insert Formula  
 Insert formula into cell

@@ -59,14 +59,14 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 |Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
-### Obtener Colors de celda
+### Obtener Color de celda
   
-Obtener el colors de una celda.
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ingrese hoja |Hoja|Hoja1|
 |Ingrese celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
-|Asignar a variable|Nombre de la variable donde guardar el resultado.|[Color de Celda, Color de Fuente]|
+|Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
 ### Insertar Formula
   

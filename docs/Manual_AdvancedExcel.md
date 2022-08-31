@@ -61,12 +61,12 @@ Change color of a cell or range of cells. Can be a default color or custom
 
 ### Get Cell Colors
   
-Get the colors of a cell.
+Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Sheet|Sheet1|
-|Cells |Cell. The syntax must be the same as excel (A1)|A1|
-|Assign to var|Name of the variable where the result will be stored|[Background Color, Font Color]|
+|Cell |Cell. The syntax must be the same as excel (A1)|A1|
+|Assign to var|Name of the variable where the result will be stored|color|
 
 ### Insert Formula
   

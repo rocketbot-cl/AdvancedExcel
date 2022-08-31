@@ -200,18 +200,21 @@ if module == "GetColor":
     cell = GetParams("cell")
     res = GetParams("res")
     
-    color = []
+    colors = []
     try:
         background = xw.sheets[sheet].range(cell).color
+        # Range object in xlwings has no font property, so I use the API (py32win) wich returns an int
         font = xw.sheets[sheet].range(cell).api.Font.Color
-        color.append(background)
-        color.append(font)
-        SetVar(res, color)
+        # Int to RGB
+        font_ = xw.utils.int_to_rgb(font)
+        colors.append(background)
+        colors.append(font_)
+        SetVar(res, colors)
     
     except Exception as e:
         PrintException()
         raise e
-    
+
 
 if module == "InsertFormula":
     
@@ -326,8 +329,8 @@ if module == "copyPaste":
     hoja2 = GetParams("sheet_name2")
     option = GetParams("option")
     ope = GetParams("operation")
-    saltar = GetParams("skip_blanks")
-    trans = GetParams("transpose")
+    saltar = eval(GetParams("skip_blanks"))
+    trans = eval(GetParams("transpose"))
 
     try:
         args = {}
@@ -340,7 +343,7 @@ if module == "copyPaste":
         
         if saltar:
             args['skip_blanks'] = True
-            
+        
         if trans:
             args['transpose'] = True
         

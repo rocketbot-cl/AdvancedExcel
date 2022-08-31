@@ -575,19 +575,19 @@
     {
       "en": {
         "title": "Get Cell Color",
-        "description": "Get the color of a cell. The funtion will return a list with Background Color and Font Color in RGB.",
+        "description": "Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Obtener color de celda",
-        "description": "Obtener el color de una celda. La función devolverá una lista con Color de fondo y Color de fuente en RGB.",
+        "description": "Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Obter cor da célula",
-        "description": "Obter a cor de uma célula. A função retornará uma lista com Background Color e Font Color em RGB.",
+        "description": "Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.",
         "title_options": null,
         "options": null
       },
@@ -602,7 +602,7 @@
               "pr": "Folha1"
             },
             "title": {
-              "es": "Ingrese hoja: ",
+              "es": "Hoja: ",
               "en": "Sheet: ",
               "pr": "Folha: "
             },
@@ -622,7 +622,7 @@
               "pr": "A1"
             },
             "title": {
-              "es": "Ingrese celda: ",
+              "es": "Celda: ",
               "en": "Cell: ",
               "pr": "Célula: "
             },

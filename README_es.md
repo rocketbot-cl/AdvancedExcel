@@ -10,7 +10,7 @@ Módulo con opciones avanzadas para Excel
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
-## Como usar
+## Como usar este modulo
 Para usar este modulo debe tener Microsoft Excel.
 
 ## Overview
@@ -30,8 +30,8 @@ Cuenta todas las filas o dentro de un rango.
 5. Color celda  
 Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
 
-6. Obtener Colors de celda  
-Obtener el colors de una celda.
+6. Obtener Color de celda  
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 

@@ -59,14 +59,14 @@ Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito
 |Cor da célula em RGB |Valores rgb da cor que terá a célula ou células|250,250,250|
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
-### Cores da célula
+### Obter cor da célula
   
-Obter a cores de uma célula.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Folha |Folha|Folha1|
-|Células |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
-|Atribuir a variável|Nome da variável para armazenar o resultado|[Cor da célula, Cor da Fonte]|
+|Célula |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
+|Atribuir a variável|Nome da variável para armazenar o resultado|cor|
 
 ### Insertar Formula
   

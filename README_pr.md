@@ -10,7 +10,7 @@ Módulo com opções avançadas para Excel
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
 
-## How to use
+## Como usar este módulo
 Para usar este módulo você deve ter o Microsoft Excel.
 
 ## Overview
@@ -30,8 +30,8 @@ Conta todas as linhas ou dentro de um intervalo.
 5. Cor da célula  
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 
-6. Cores da célula  
-Obter a cores de uma célula.
+6. Obter cor da célula  
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 
