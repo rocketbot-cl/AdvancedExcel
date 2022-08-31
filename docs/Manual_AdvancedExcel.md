@@ -6,7 +6,7 @@
   
 Module with advanced options for Excel  
   
-![banner](/AdvancedExcel/docs/imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
@@ -61,12 +61,12 @@ Change color of a cell or range of cells. Can be a default color or custom
 
 ### Get Cell Colors
   
-Get the colors of a cell.
+Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Sheet|Sheet1|
-|Cells |Cell. The syntax must be the same as excel (A1)|A1|
-|Assign to var|Name of the variable where the result will be stored|[Background Color, Font Color]|
+|Cell |Cell. The syntax must be the same as excel (A1)|A1|
+|Assign to var|Name of the variable where the result will be stored|color|
 
 ### Insert Formula
   
@@ -122,8 +122,8 @@ Copy range cell to another sheet
 |Range to paste|Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Paste Option|Select paste type for the cell or cells range.|Option|
 |Paste Operation|Select paste operation for the cell or cells range.|Operation|
-|Skip Blanks|||
-|Transpose|||
+|Skip Blanks||Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.|
+|Transpose||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
 
 ### Format Cell
   
@@ -323,13 +323,6 @@ Execute the remove duplicates command of Excel
 |cells where filter |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
 |Column |Indicate the column where the duplicates are to be searched for|A |
 |Do it have headers?|Check this checkbox if the excel has headers|True|
-
-### Save Excel
-  
-Save a Excel file in the indicated path
-|Parameters|Description|example|
-| --- | --- | --- |
-|Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
 
 ### Export to advanced PDF
   
