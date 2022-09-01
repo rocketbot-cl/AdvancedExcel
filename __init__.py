@@ -329,9 +329,12 @@ if module == "copyPaste":
     hoja2 = GetParams("sheet_name2")
     option = GetParams("option")
     ope = GetParams("operation")
-    saltar = eval(GetParams("skip_blanks"))
-    trans = eval(GetParams("transpose"))
+    saltar = GetParams("skip_blanks")
+    trans = GetParams("transpose")
 
+    print(saltar)
+    print(trans)
+    
     try:
         args = {}
         
@@ -341,10 +344,10 @@ if module == "copyPaste":
         if ope:
             args['operation'] = ope
         
-        if saltar:
+        if saltar and saltar != "False":
             args['skip_blanks'] = True
         
-        if trans:
+        if trans and trans != "False":
             args['transpose'] = True
         
         if not hoja1 in [sh.name for sh in xw.sheets]:
