@@ -11,7 +11,7 @@ Module with advanced options for Excel
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
-## How to use
+## How to use this module
 To use this module you must have Microsoft Excel.
 
 ## Overview
@@ -32,7 +32,7 @@ Counts all the rows or from a range.
 Change color of a cell or range of cells. Can be a default color or custom 
 
 6. Get Cell colors  
-Get the colors of a cell.
+Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB.
 
 7. Insert Formula  
 Insert formula into cell
@@ -112,120 +112,157 @@ Paste data to cells in Excel
 32. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-33. Save Excel  
-Save a Excel file in the indicated path
-
-34. Export to advanced PDF  
+33.  Export to advanced PDF  
 Export to PDF with options
 
-35. Copy-Move Sheet  
+34. Copy-Move Sheet  
 Copy or move a sheet
 
-36. Insert Form  
+35. Insert Form  
 Insert Form in Excel
 
-37. Read Filtered Cells  
+36. Read Filtered Cells  
 Allow read only cells filters 
 
-38. Count Filtered Cells  
+37. Count Filtered Cells  
 Allow count only cells filters 
 
-39. Replace  
+38. Replace  
 Run replace action to excel 
 
-40. Order  
+39. Order  
 Run replace action to excel 
 
-41. Refresh All  
+40. Refresh All  
 Refresh all data in Excel
 
-42. Find  
+41. Find  
 Return de first found cell 
 
-43. Lock Cells  
+42. Lock Cells  
 Lock or Unlock cells
 
-44. Add Chart  
+43. Add Chart  
 Create a new chart in an excel sheet
 
-45. Remove Password  
+44. Remove Password  
 Remove password and save the Excel
 
-46. Insert image  
+45. Insert image  
 Insert an image
 
-47. Export Chart  
+46. Export Chart  
 Export a chart from index
 
-48. Not visible mode  
+47. Not visible mode  
 Open not visible excel.
 
-49. Write array objects  
+48. Write array objects  
 Write array object on Excel cells.
 
-50. Copy-Paste Format  
+49. Copy-Paste Format  
 Copy format range cell to another sheet
 
-51. Update links  
+50. Update links  
 Changes a link from one document to another
 
-52. Unlock sheet  
+51. Unlock sheet  
 Unlock sheet
 
-53. Convert to .txt  
+52. Convert to .txt  
 Convert to .txt
 
-54. Text to columns  
+53. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-55. Convert Excel time to hours  
+54. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-56. Print sheet  
+55. Print sheet  
 Prints a sheet
 
-57. Save Excel with password  
+56. Save Excel with password  
 Save a Excel file
 
-58. Save Excel  
+57. Save Excel  
 Save a Excel file in the indicated path
 
-59. Close XLSX  
+58. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 
 
-### Changes
-Fri Jul 22 18:37:12 2022  (HEAD -> devJ, origin/devJ) [HIDDEN] Actualizació Manual
-Wed Apr 6 16:35:16 2022  Merge from 
-qa: v33.12.2
-Wed Oct 13 09:45:34 2021  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Wed Oct 6 
-11:03:07 2021  [hidden] Conflict between versions. The printer command, Get Cell With Currency Format and Get Cell With 
-Date Format may have been affected - ID-170
-Thu Aug 19 13:12:18 2021  Merge branch master of github.com:rocketbot-
-cl/AdvancedExcel
-Tue Jul 13 17:29:52 2021  Merge branch master of github.com:rocketbot-cl/AdvancedExcel
-Wed Nov 25 
-09:19:10 2020  Merge branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 11:03:49 2020  Merge 
-branch master of https://github.com/rocketbot-cl/AdvancedExcel
-Tue Nov 24 10:39:15 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Sep 2 11:35:18 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Aug 18 12:48:36 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed Jul 29 18:52:47 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Tue Jun 30 19:10:05 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Wed May 27 17:30:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Mon Feb 3 14:59:42 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
-Thu Jan 23 11:05:28 2020  Merge branch master of 
-https://github.com/rocketbot-cl/AdvancedExcel
+### Updates
+
+#### 09-Aug-2022
+- Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
+#### 22-Jul-2022
+- Fix Copy to another excel and Copy-Paste Format
+#### 13-Jun-2022
+- Format text: Added command to change text alignment
+#### 12-May-2022
+- Copy to another excel: fixed command to copy from one excel to another
+#### 18-Apr-2022
+- Text to Column: command fixed to separate text in columns
+#### 06-Apr-2022
+- Fit Cells: Added merge cells, adjust rows, adjust columns functions
+#### 28-Dec-2021
+- Count Rows: command fixed to count all rows.
+#### 9-Nov-2021
+- Order command: Apply multiple orders and clean filters.
+#### 13-Oct-2021
+- Fix count cells filtered
+#### 30-Sep-2021
+- Paste command: Update compatibilities
+#### 28-Sep-2021
+- Fix get filtered cells command. Now returns extended data
+#### 06-Jul-2021
+- Fix language
+#### 01-Jul-2021
+- Read Filtered Cells: The command was fixed because it didn't getting all cell range
+#### 27-Apr-2021
+- Texto to column: Parses a column of cells that contain text into several columns.
+#### 18-Mar-2021
+- Unlock sheet: Convert XLSX to TXT.
+#### 09-Mar-2021
+- Unlock sheet: Unlock a sheet by password.
+#### 09-Mar-2021
+- Update links: Changes a link from one document to another
+#### 17-Feb-2021
+- Find and Connect: Find opened Excel file and connect it
+#### 1-Feb-2021
+- Add command Copy-Paste Format. You can copy format cell to another.
+#### 25-Jan-2021
+- Write array objects: Writes information obtained from an array of objects to excel cells
+#### 21-Jan-2021
+- Not visible mode: Open background Excel
+#### 1-Dec-2020
+- Export chart: Export a chart from index.
+#### 24-Nov-2020
+- Insert image in a cell.
+#### 24-Sep-2020
+- Open without alerts: Add field 'Password'
+#### 16-Sep-2020
+- Add chart: Create a new chart on excel sheet 
+#### 15-Sep-2020
+- Lock Cells: Lock or unlock cells 
+#### 2-Sep-2020
+- Find: Replicate Excel Find command 
+#### 31-Jul-2020
+- Order: Replicate Excel Order command 
+#### 15-Jul-2020
+- Read Filtered Cells: Read cell after execute Filter command
+- Replace: Replicate Excel Replace command 
+#### 2-Jul-2020
+- Insert Form: Rocketbot can insert VBA Form to Excel
+#### 30-Jun-2020
+- Csv to xlsx: Checkbox header was added to decide if the csv has a header
+- Export to Advanced PDF: Rocketbot export to PDF command enhancement
+- Copy-Move Sheet: Replicate move/copy sheet command of Excel
+#### 17-Jun-2020
+- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
+#### 5-Jun-2020
+- Focus Excel: Rocketbot can now set Excel to the foreground window
 
 ----
 ### OS

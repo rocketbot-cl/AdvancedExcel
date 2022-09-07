@@ -33,7 +33,6 @@ import xlwings as xw
 import platform
 import os
 import sys
-import win32com.client as win32
 import subprocess
 
 # This lines is to linter
@@ -201,18 +200,21 @@ if module == "GetColor":
     cell = GetParams("cell")
     res = GetParams("res")
     
-    color = []
+    colors = []
     try:
         background = xw.sheets[sheet].range(cell).color
+        # Range object in xlwings has no font property, so I use the API (py32win) wich returns an int
         font = xw.sheets[sheet].range(cell).api.Font.Color
-        color.append(background)
-        color.append(font)
-        SetVar(res, color)
+        # Int to RGB
+        font_ = xw.utils.int_to_rgb(font)
+        colors.append(background)
+        colors.append(font_)
+        SetVar(res, colors)
     
     except Exception as e:
         PrintException()
         raise e
-    
+
 
 if module == "InsertFormula":
     
@@ -325,25 +327,28 @@ if module == "copyPaste":
     rango2 = GetParams("cell_range2")
     hoja1 = GetParams("sheet_name1")
     hoja2 = GetParams("sheet_name2")
-    opcion = GetParams("option")
+    option = GetParams("option")
     ope = GetParams("operation")
     saltar = GetParams("skip_blanks")
     trans = GetParams("transpose")
 
+    print(saltar)
+    print(trans)
+    
     try:
         args = {}
         
-        if opcion:
-            args['paste'] = opcion
+        if option:
+            args['paste'] = option
         
         if ope:
             args['operation'] = ope
         
-        if saltar == 'true':
-            args['skip_blanks'] = saltar
-            
-        if trans == 'true':
-            args['transpose'] = trans
+        if saltar and saltar != "False":
+            args['skip_blanks'] = True
+        
+        if trans and trans != "False":
+            args['transpose'] = True
         
         if not hoja1 in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja1} does not exist in the book")
@@ -1717,6 +1722,9 @@ try:
         wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
+        
+        import win32com.client
+        
         sheet_name = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
@@ -1749,7 +1757,7 @@ try:
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
 
-        xlWorkbook = win32.GetObject(wb.fullname)
+        xlWorkbook = win32com.client.GetObject(wb.fullname)
         xlWorksheet = xlWorkbook.Sheets[sheet_name]
         xlWorksheet.Range(range_).TextToColumns(
             xlWorksheet.Range(range_),

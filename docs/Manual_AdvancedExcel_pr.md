@@ -6,7 +6,7 @@
   
 Módulo com opções avançadas para Excel
 
-![banner](C:\Users\jmsir\Desktop\RB\Rocketbot\modules\AdvancedExcel\docs\imgs\Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
@@ -59,14 +59,14 @@ Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito
 |Cor da célula em RGB |Valores rgb da cor que terá a célula ou células|250,250,250|
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
-### Cores da célula
+### Obter cor da célula
   
-Obter a cores de uma célula.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Folha |Folha|Folha1|
-|Células |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
-|Atribuir a variável|Nome da variável para armazenar o resultado|[Cor da célula, Cor da Fonte]|
+|Célula |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
+|Atribuir a variável|Nome da variável para armazenar o resultado|cor|
 
 ### Insertar Formula
   
@@ -122,8 +122,8 @@ Copia um intervalo de células de uma planilha para outra
 |Intervalo para colar|Célula ou intervalo de células para colar. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:C4|
 |Opção de Colar|Selecionar tipo de colagem para a célula ou intervalo de células.|Opção|
 |Operação de Colar|Selecione a operação de colagem para a célula ou intervalo de células.|Operação|
-|Pular espaços em branco|||
-|Transpor|||
+|Pular espaços em branco||Impede a substituição de valores na área de colagem quando células em branco são produzidas na área de cópia quando esta caixa é selecionada.|
+|Transpor||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
 
 ### Formatar Célula
   
@@ -324,13 +324,6 @@ Executa o comando remover duplicatas de Excel
 |Coluna |Indicar a coluna onde as duplicatas serão procuradas.|A |
 |Tem cabeçeras?|marque esta caixa se o excel tiver cabeçalhos|True|
 
-### Salvar Excel
-  
-Salva um arquivo Excel na ruta indicada
-|Parâmetros|Descrição|exemplo|
-| --- | --- | --- |
-|Salvar Excel|Caminho onde salvar o arquivo .xlsx|/Users/user/Desktop/excel.xlsx|
-
 ### Exportar para PDF avançado
   
 Exporta Excel para PDF com opções
@@ -342,9 +335,9 @@ Exporta Excel para PDF com opções
 |Ajustar Altura|||
 |Ajustar Largura|||
 
-### 
+### Copiar-Mover Planilha
   
-
+Copiar ou mover uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha origem|Nome da planilha de origen|Sheet1|
