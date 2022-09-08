@@ -164,7 +164,11 @@ if module == "Open":
 
 if module == "CellColor":
 
+    import traceback
+    
     range_ = GetParams("range")
+    sheet_ = GetParams("sheet")
+    all_ = GetParams("all")
     color = GetParams("color")
     custom = GetParams("custom")
 
@@ -182,15 +186,22 @@ if module == "CellColor":
             rgb = (255, 255, 0)
         else:
             rgb = eval(custom)
+        
+        if all_ and eval(all_) == True:
+            if sheet_ == "" or sheet_ == None:
+                raise Exception('Must select a sheet.')
+            else:
+                xw.sheets[sheet_].api.Cells.Interior.Color = xw.utils.rgb_to_int(rgb)
+        else:            
+            if sheet_:
+                xw.sheets[sheet_].range(range_).color = rgb
+            elif range_:
+                xw.Range(range_).color = rgb
+            else:
+                raise Exception('Must select sheet or range.')
 
-        xw.Range(range_).color = rgb
-
-        # print("salimos")
-        # xw.Range('A1:C1').column_width = 23
-        # xw.Range('A1').row_height = 12
-        # xw.Range('A2').formula = 2+2
-        # print(xw.Range('A1'))
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -969,9 +980,15 @@ if module == "fitCells":
         #sheet.api.Colums("A:D").ColumnWidth = 32.71
         
 if module == "CloseExcel":
+    kill_app = GetParams("kill_app")
     
-    xw.books.active.close()
-    #xw.books.active.quit()
+    if kill_app:
+        if eval(kill_app) == True:
+            xw.books.active.app.kill()
+    try:
+        xw.books.active.close()
+    except:
+        pass
 
 if module == "getFormula":
     
