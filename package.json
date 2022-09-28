@@ -3892,14 +3892,14 @@
               "pr": "A1:B3"
             },
             "title": {
-              "es": "Ingrese celdas donde filtrar",
-              "en": "cells where filter ",
-              "pr": "Ingrese células onde filtrar"
+              "es": "Rango",
+              "en": "Range",
+              "pr": "Intervalo"
             },
             "description": {
-              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
-              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
-              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+              "es": "Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
+              "en": "Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
+              "pr": "Intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
             },
             "id": "range",
             "css": "col-md-6"
@@ -3907,9 +3907,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A ",
-              "en": "A ",
-              "pr": "A "
+              "es": "A / ['A', 'B']",
+              "en": "A / ['A', 'B'] ",
+              "pr": "A / ['A', 'B'] "
             },
             "description": {
               "es": "Indicar la columna donde se buscarán los duplicados",
