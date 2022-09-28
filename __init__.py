@@ -164,10 +164,14 @@ if module == "Open":
 
 if module == "CellColor":
 
+    import traceback
+    
     range_ = GetParams("range")
+    sheet_ = GetParams("sheet")
+    all_ = GetParams("all")
     color = GetParams("color")
     custom = GetParams("custom")
-
+    
     try:
         if color == "red":
             rgb = (255, 0, 0)
@@ -182,15 +186,22 @@ if module == "CellColor":
             rgb = (255, 255, 0)
         else:
             rgb = eval(custom)
+        
+        if all_ and eval(all_) == True:
+            if sheet_ == "" or sheet_ == None:
+                raise Exception('Must select a sheet.')
+            else:
+                xw.sheets[sheet_].api.Cells.Interior.Color = xw.utils.rgb_to_int(rgb)
+        else:            
+            if sheet_:
+                xw.sheets[sheet_].range(range_).color = rgb
+            elif range_:
+                xw.Range(range_).color = rgb
+            else:
+                raise Exception('Must select sheet or range.')
 
-        xw.Range(range_).color = rgb
-
-        # print("salimos")
-        # xw.Range('A1:C1').column_width = 23
-        # xw.Range('A1').row_height = 12
-        # xw.Range('A2').formula = 2+2
-        # print(xw.Range('A1'))
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -215,14 +226,16 @@ if module == "GetColor":
         PrintException()
         raise e
 
-
 if module == "InsertFormula":
     
     hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
     
-    sheet = wb.sheets(hoja)
+    if not hoja:
+        sheet = wb.sheets.active
+    else:
+        sheet = wb.sheets(hoja)
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -969,9 +982,15 @@ if module == "fitCells":
         #sheet.api.Colums("A:D").ColumnWidth = 32.71
         
 if module == "CloseExcel":
+    kill_app = GetParams("kill_app")
     
-    xw.books.active.close()
-    #xw.books.active.quit()
+    if kill_app:
+        if eval(kill_app) == True:
+            xw.books.active.app.kill()
+    try:
+        xw.books.active.close()
+    except:
+        pass
 
 if module == "getFormula":
     
@@ -1162,18 +1181,32 @@ if module == "remove_duplicate":
     column = GetParams("column")
     with_header = GetParams("header")
     
+    from openpyxl.utils.cell import get_column_interval
+    
     try:
         
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected = wb.sheets[sheet]
         sheet_selected.select()
+        # Parses into list
         column = eval(column) if column.startswith("[") else [column]
-        column_choice = []
+        
+        # Obtain the beggining and ending cells of the range 
+        cells = range_.split(":")
+        # From these cells it gets just the columns
+        list_col = [cell[0] for cell in cells]
+        # Using the columns as parameters it creates a list of the whole interval
+        col_interval = get_column_interval(list_col[0], list_col[-1])
+        
+        columns_ = []
+        # It checks the relative position of the selected columns into the interval
         for col in column:
-            column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
+            columns_.append(col_interval.index(col)+1)
+        
         sheet_selected.api.Range(range_).RemoveDuplicates(
-            Columns=column_choice, Header=int(bool(with_header)))
+            Columns=columns_, Header=int(bool(with_header)))
+    
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1469,7 +1502,9 @@ if module == "find":
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
+        print(text)
         result = sheet.api.Range(range_).Find(text)
+        print(result)
         result = result.address if result is not None else ""
         if var_:
             SetVar(var_, result)
