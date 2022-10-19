@@ -344,9 +344,6 @@ if module == "copyPaste":
     ope = GetParams("operation")
     saltar = GetParams("skip_blanks")
     trans = GetParams("transpose")
-
-    print(saltar)
-    print(trans)
     
     try:
         args = {}
@@ -368,7 +365,6 @@ if module == "copyPaste":
         if not hoja2 in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja2} does not exist in the book")
         
-        print(ope)
         xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
         xw.sheets[hoja2].range(rango2).paste(**args)
     
@@ -402,8 +398,7 @@ if module == "formatCell":
                                 cell = float(cell)
                         except:
                             new_row.append(cell)    
-                    new_range.append(new_row)
-                print(new_range) 
+                    new_range.append(new_row) 
             else:
                 for cell in wb.sheets[hoja].range(rango).value:
                     try:
@@ -791,7 +786,6 @@ if module == "countColumns":
         
         # excel_path = excel.file_["default"]["path"]
         excel_path = wb.fullname
-        print(excel_path)
 
         df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
 
@@ -831,7 +825,6 @@ if module == "countRows":
         else:
             total = wb.sheets[sheet].range(
                 row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
-        # print(total)
 
         if result:
             SetVar(result, total)
@@ -987,10 +980,13 @@ if module == "CloseExcel":
     if kill_app:
         if eval(kill_app) == True:
             xw.books.active.app.kill()
-    try:
-        xw.books.active.close()
-    except:
-        pass
+    else:
+        try:
+            xw.books.active.close()
+        except Exception as e:
+            print("\x1B[" + "31;40mError\x1B[" + "0m")
+            PrintException()
+            raise e
 
 if module == "getFormula":
     
@@ -1012,12 +1008,16 @@ if module == "AutoFilter":
     columns = GetParams("columns")
 
     try:
+        # Mac
+        if platform_ == 'darwin':
+            rng = wb.sheets[sheet].api.cells[columns]
+            r = wb.sheets[sheet].api.autofilter_range(rng)
+        else:
+            if not sheet in [sh.name for sh in wb.sheets]:
+                raise Exception(f"The name {sheet} does not exist in the book")
+            wb.sheets[sheet].select()
+            wb.sheets[sheet].api.Range(columns).AutoFilter()
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Range(columns).AutoFilter()
-
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1030,27 +1030,32 @@ if module == "Filter":
         start = GetParams("start")
         column = GetParams("column")
         data = GetParams("filter")
-        result = GetParams("var_")
         
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
-        wb.sheets[sheet].select()
-        if ":" in start:
-            range_ = start
-            start = start.split(":")[0]
+        
+        # Mac
+        if platform_ == 'darwin':
+            rng = wb.sheets[sheet].api.cells[range_]
+            r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
         else:
-            start = start + str(1)
-            range_ = column + str(1)
+            wb.sheets[sheet].select()
+            if ":" in start:
+                range_ = start
+                start = start.split(":")[0]
+            else:
+                start = start + str(1)
+                range_ = column + str(1)
 
-        n_start = wb.sheets[sheet].range(start).column
-        n_end = wb.sheets[sheet].range(column + str(1)).column
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
 
-        filter_column = n_end - n_start + 1
-        if data.startswith("["):
-            data = eval(data)
+            filter_column = n_end - n_start + 1
+            if data.startswith("["):
+                data = eval(data)
 
-        wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
-
+            wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
+        
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1058,8 +1063,7 @@ if module == "Filter":
 
 if module == "rename_sheet":
     sheet = GetParams("sheet")
-    name = GetParams("name")
-    
+    name = GetParams("name")  
 
     try:
         
@@ -1351,37 +1355,48 @@ if module == "GetCells":
     extends = GetParams("more_data")
     
     try:
+        extends = eval(extends)
+    except TypeError:
+        pass
+    
+    try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
 
-        sheet_selected_api = wb.sheets[sheet].api
-        filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-        cell_values = []
+        # Mac
+        if platform_ == 'darwin':
+            sh = wb.sheets[sheet]
+            sh_range = sh.api.cells[range_]
+            ra = sh.api.special_cells(sh_range, type = 12)
+            cell_values = []
+            for area in ra.areas():
+                for row in area.rows():
+                    cell_values += row.value()
+        else:
+            sheet_selected_api = wb.sheets[sheet].api
+            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            cell_values = []
+            for r in filtered_cells.Areas:
+                range_cell = []
+                for ro in r:
+                    if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
+                        cells = []
+                        for cell in ro.Cells:
+                            if isinstance(cell.Value, datetime.datetime):
+                                cells.append(get_date_with_format(cell.Value2))
+                            else:
+                                cells.append(cell.Value2)
 
-        for r in filtered_cells.Areas:
-            range_cell = []
-            for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
-                if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                    cells = []
-                    for cell in ro.Cells:
-                        if isinstance(cell.Value, datetime.datetime):
-                            cells.append(get_date_with_format(cell.Value2))
-                        else:
-                            cells.append(cell.Value2)
-
-                    range_cell.append(cells)
+                        range_cell.append(cells)
+                    else:
+                        range_cell.append(ro.Value)
+                
+                if extends:
+                    info = {"range": r.Address.replace("$", ""), "data": range_cell}
+                    cell_values.append(info)
                 else:
-                    range_cell.append([ro.Value])
-            try:
-                extends = eval(extends)
-            except TypeError:
-                pass
-            if extends:
-                info = {"range": r.Address.replace("$", ""), "data": range_cell}
-                cell_values.append(info)
-            else:
-                cell_values = cell_values + \
-                    range_cell if len(cell_values) > 0 else range_cell
+                    cell_values.append(range_cell)
+                    # cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell                       
 
         if result:
             SetVar(result, cell_values)
@@ -1430,13 +1445,24 @@ if module == "GetCountCells":
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
-        sheet_selected_api = wb.sheets[sheet].api
         
-        filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-        count = 0
-        
-        for area in filtered_cells.Areas:
-            count += area.Count
+        if platform_ == 'darwin':
+            sh = wb.sheets[sheet]
+            sh_range = sh.api.cells[range_]
+            ra = sh.api.special_cells(sh_range, type = 12)
+            cell_values = []
+            for area in ra.areas():
+                for row in area.rows():
+                    cell_values += row.value()
+            count = len(cell_values)
+                
+        else:
+            sheet_selected_api = wb.sheets[sheet].api
+            
+            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            count = 0
+            for area in filtered_cells.Areas:
+                count += area.Count
 
         if result:
             SetVar(result, count)
@@ -1492,6 +1518,9 @@ if module == "refreshAll":
         raise e
 
 if module == "find":
+    # We tried to used the find funtion of the api at its full, but no feature worked
+    # Find(What=text, LookAt = 1, LookIn = -4123, SearchDirection = 1, MatchCase = True)
+      
     sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
@@ -1502,14 +1531,12 @@ if module == "find":
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
-        print(text)
         result = sheet.api.Range(range_).Find(text)
-        print(result)
         result = result.address if result is not None else ""
         if var_:
             SetVar(var_, result)
-
     except Exception as e:
+        SetVar(var_, False)
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
