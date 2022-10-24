@@ -4,8 +4,8 @@
 
 # Opções avançadas para Excel
   
-Módulo con opciones avanzadas para Excel  
-  
+Módulo com opções avançadas para Excel
+ 
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   

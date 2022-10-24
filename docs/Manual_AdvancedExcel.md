@@ -4,7 +4,7 @@
 
 # Excel Advanced Options
   
-Módulo con opciones avanzadas para Excel  
+Module with advanced options for Excel
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
