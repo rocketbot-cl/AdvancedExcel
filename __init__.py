@@ -1791,8 +1791,6 @@ try:
 
     if module == "text2column":
         
-        import win32com.client
-        
         sheet_name = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
@@ -1824,28 +1822,16 @@ try:
                     separator.append(str(i*int(other)))
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
-
+           
         ws_ = wb.api.Sheets(sheet_name).Range(range_)
         
-        wb.sheets[sheet_name].api.Range(range_).TextToColumns(
+        wb.api.Sheets(sheet_name).Range(range_).TextToColumns(
             ws_,
             DataType = int(data_type),            
             TrailingMinusNumbers=True, 
             **options
         )
 
-
-        # print(type(wb.fullname))
-        # xlWorkbook = win32com.client.GetObject(wb.fullname)
-        # xlWorksheet = xlWorkbook.Sheets[sheet_name]
-        # xlWorksheet.Range(range_).TextToColumns(
-        #     xlWorksheet.Range(range_),
-        #     DataType = int(data_type),            
-        #     TrailingMinusNumbers=True, 
-        #     **options
-        # )
-
-    
     if (module == "convertDecimalTimeToHours"):
         import math
 

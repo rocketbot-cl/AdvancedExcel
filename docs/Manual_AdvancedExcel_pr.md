@@ -4,12 +4,15 @@
 
 # Opções avançadas para Excel
   
-Módulo com opções avançadas para Excel
-
+Módulo con opciones avanzadas para Excel  
+  
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
+
+## Como usar este módulo
+Para usar este módulo você deve ter o Microsoft Excel.
 
 ## Descrição do comando
 
@@ -56,12 +59,15 @@ Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Células |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B5|
+|Folha |Planilha da pasta de trabalho|Folha1|
+|Folha inteira|Se marcar esta caixa, a cor será aplicada a toda a folha.||
 |Cor da célula em RGB |Valores rgb da cor que terá a célula ou células|250,250,250|
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
 ### Obter cor da célula
   
-Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato 
+RGB.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Folha |Folha|Folha1|
@@ -122,8 +128,8 @@ Copia um intervalo de células de uma planilha para outra
 |Intervalo para colar|Célula ou intervalo de células para colar. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:C4|
 |Opção de Colar|Selecionar tipo de colagem para a célula ou intervalo de células.|Opção|
 |Operação de Colar|Selecione a operação de colagem para a célula ou intervalo de células.|Operação|
-|Pular espaços em branco||Impede a substituição de valores na área de colagem quando células em branco são produzidas na área de cópia quando esta caixa é selecionada.|
-|Transpor||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
+|Pular espaços em branco|Impede a substituição de valores na área de colagem quando células em branco são produzidas na área de cópia quando esta caixa é selecionada.||
+|Transpor|Gire o conteúdo das células copiadas ao colar. Os dados nas linhas serão colados nas colunas e vice-versa.||
 
 ### Formatar Célula
   
@@ -267,10 +273,11 @@ Adiciona filtro automático a uma tabela excel
 Filtra a uma tabela excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
 |Início da tabela |Coluna onde começa a tabela a ser filtrada|A |
 |Coluna |Coluna onde adicionar o filtro|A |
-|Filtro |Filtro ou lista de filtros a adicionar. Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['filtro1','filtro2', 'filtro3']|
+|Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
+|Select filter |Type of filter to apply.|Tipo de filtro|
 
 ### Renomear planilha
   
@@ -320,8 +327,8 @@ Executa o comando remover duplicatas de Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha|Nome da planilha a ser automatizada|Planilha 1|
-|Ingrese células onde filtrar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B3|
-|Coluna |Indicar a coluna onde as duplicatas serão procuradas.|A |
+|Intervalo|Intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B3|
+|Coluna |Indicar a coluna onde as duplicatas serão procuradas.|A / ['A', 'B'] |
 |Tem cabeçeras?|marque esta caixa se o excel tiver cabeçalhos|True|
 
 ### Exportar para PDF avançado
@@ -550,3 +557,4 @@ Salva um arquivo Excel na ruta indicada
 Fecha o arquivo aberto por Rocketbot
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
+|Matar processo|Si se marca esta casilla, cerrará por completo o processo.||

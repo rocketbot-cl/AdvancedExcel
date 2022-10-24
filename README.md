@@ -4,15 +4,14 @@
 
 # Excel Advanced Options
   
-Module with advanced options for Excel  
+Módulo con opciones avanzadas para Excel  
 
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-
-## How to use thi module
-To use this module you must have Microsoft Excel.
+## How to use this module
+To use this module, you must have Microsoft Excel.
 
 ## Overview
 
@@ -29,10 +28,10 @@ Count the columns or return the last column name. It's necessary that the excel 
 Counts all the rows or from a range.
 
 5. Cell color  
-Change color of a cell or range of cells. Can be a default color or custom 
+Change color of a cell or range of cells. Can be a default color or custom
 
-6. Get Cell colors  
-Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB.
+6. Get Cell Color  
+Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 
 7. Insert Formula  
 Insert formula into cell
@@ -112,7 +111,7 @@ Paste data to cells in Excel
 32. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-33.  Export to advanced PDF  
+33. Export to advanced PDF  
 Export to PDF with options
 
 34. Copy-Move Sheet  
@@ -193,7 +192,12 @@ Close the workbook opened by Rocketbot
 
 
 ### Updates
-
+#### 24-Oct-2022
+- Add new features Filter command and update Text2Column to rely only on xlwings
+#### 19-Oct-2022
+- Add Filter, AutoFilter, GetCells and CountCells for MacOS
+#### 28-Sep-2022
+- Fix Remove Duplicates
 #### 09-Aug-2022
 - Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
 #### 22-Jul-2022
