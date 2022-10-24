@@ -1030,6 +1030,7 @@ if module == "Filter":
         start = GetParams("start")
         column = GetParams("column")
         data = GetParams("filter")
+        filter_type = GetParams("filter_type")
         
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
@@ -1037,7 +1038,7 @@ if module == "Filter":
         # Mac
         if platform_ == 'darwin':
             rng = wb.sheets[sheet].api.cells[range_]
-            r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
+            r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
         else:
             wb.sheets[sheet].select()
             if ":" in start:
@@ -1054,7 +1055,12 @@ if module == "Filter":
             if data.startswith("["):
                 data = eval(data)
 
-            wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
+            if filter_type in [1, 2]:
+                criteria1 = data[0]
+                criteria2 = data[1]
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, criteria1, criteria2, filter_type)
+            else:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")

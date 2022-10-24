@@ -2,7 +2,7 @@
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello - Juan Siro",
   "description": "Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "33.14.5",
+  "version": "33.14.6",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -3147,9 +3147,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Hoja 1",
+              "es": "Hoja1",
               "en": "Sheet1",
-              "pr": "Planilha 1"
+              "pr": "Planilha1"
             },
             "title": {
               "es": "Hoja: ",
@@ -3207,9 +3207,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "['filtro1','filtro2', 'filtro3']",
-              "en": "['filter1','filter2', 'filter3'] ",
-              "pr": "['filtro1','filtro2', 'filtro3']"
+              "es": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']",
+              "en": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']",
+              "pr": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']"
             },
             "title": {
               "es": "Filtro: ",
@@ -3217,16 +3217,57 @@
               "pr": "Filtro: "
             },
             "description": {
-              "es": "Filtro o lista de filtros a agregar. Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
-              "en": "Filter or list of filters to add. Use \"=\" to find blank fields, \"<>\" for non-empty cells and data negation.",
-              "pr": "Filtro ou lista de filtros a adicionar. Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
+              "es": "Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej: valor entre A y B). Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos.",
+              "en": "Value or list of values, filter of unique criteria or list of two items for double criteria (eg: value between A and B). Use \"=\" to find blank fields, \"<>\" for non-empty cells and data negation.",
+              "pr": "Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex: de valor entre A e B). Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
             },
             "help": {
-              "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos",
+              "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos.",
               "en": "Use \"=\" to find blank fields, \"<>\" to find non-blank fields, and to select (No Data) fields in data types.",
-              "pr": "Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados"
+              "pr": "Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
             },
             "id": "filter",
+            "css": "col-md-12"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "Tipo de filtro",
+              "en": "Filter type",
+              "pr": "Tipo de filtro"
+            },
+            "title": {
+              "es": "Seleccione filtro: ",
+              "en": "Select filter: "
+            },
+            "options": [
+              {
+                "title": "---- Select filter ----",
+                "value": ""
+              },
+              {
+                "title": "xlAnd",
+                "value": "1"
+              },
+              {
+                "title": "xlOr",
+                "value": "2"
+              },
+              {
+                "title": "xlFilterValues",
+                "value": "7"
+              }
+            ],
+            "description": {
+              "es": "Tipo de filtro a aplicar.",
+              "en": "Type of filter to apply."
+            },
+            "help": {
+              "es": "Use xlAnd para \"<\", \"<=\", \">\" o \">=\"; xlOr para valores entre [\">=\", \"<=\"]; xlFilterValues para valores especificos.",
+              "en": "Use xlAnd for \"<\", \"<=\", \">\" or \">=\"; xlOr for values between [\">=\", \"<=\"]; xlFilterValues for specific values.",
+              "pr": "Use xlAnd para \"<\", \"<=\", \">\" ou \">=\"; xlOr para valores entre [\">=\", \"<=\"]; xlFilterValues para valores específicos."
+            },
+            "id": "filter_type",
             "css": "col-md-12"
           }
         ]
