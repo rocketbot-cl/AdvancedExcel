@@ -11,6 +11,9 @@ Módulo con opciones avanzadas para Excel
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+## Como usar este modulo
+Para usar este modulo debe tener Microsoft Excel.
+
 ## Descripción de los comandos
 
 ### Abrir sin alertas
@@ -56,16 +59,19 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Hoja |Hoja del libro|Hoja1|
+|Toda la hoja|Si se marca esta casilla, el color se aplicara a toda la hoja.||
 |Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
-### Obtener Color de celda
+### Obtener color de celda
   
-Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en 
+formato RGB.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Ingrese hoja |Hoja|Hoja1|
-|Ingrese celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
+|Hoja |Hoja|Hoja1|
+|Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
 |Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
 ### Insertar Formula
@@ -122,8 +128,8 @@ Copia un rango de celdas desde una hoja a otra
 |Rango donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
 |Opción de Pegado|Seleccionar tipo de pegado para la celda o rango de celdas.|Opcion|
 |Operación de Pegado|Seleccionar operación de pegado para la celda o rango de celdas.|Operación|
-|Saltar Blancos||Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.|
-|Transponer||Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.|
+|Saltar Blancos|Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.||
+|Transponer|Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.||
 
 ### Formatear Celda
   
@@ -267,10 +273,11 @@ Agrega filtro automático a una tabla excel
 Filtra a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 |Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
 |Columna |Columna donde agregar el filtro|A |
-|Filtro |Filtro o lista de filtros a agregar. Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos|['filtro1','filtro2', 'filtro3']|
+|Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
+|Seleccione filtro |Tipo de filtro a aplicar.|Tipo de filtro|
 
 ### Renombrar hoja
   
@@ -320,8 +327,8 @@ Ejecuta el comando eliminar duplicados de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
-|Ingrese celdas donde filtrar|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
-|Columna |Indicar la columna donde se buscarán los duplicados|A |
+|Rango|Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Columna |Indicar la columna donde se buscarán los duplicados|A / ['A', 'B']|
 |Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
 ### Exportar a PDF avanzado
@@ -550,3 +557,4 @@ Guarda un archivo Excel en la ruta indicada
 Cierra el libro abierto por Rocketbot
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
+|Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||

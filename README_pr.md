@@ -4,7 +4,7 @@
 
 # Opções avançadas para Excel
   
-Módulo com opções avançadas para Excel  
+Módulo com opções avançadas para Excel
 
 ## Como instalar este módulo
   
@@ -31,7 +31,8 @@ Conta todas as linhas ou dentro de um intervalo.
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 
 6. Obter cor da célula  
-Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato 
+RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 
@@ -111,10 +112,10 @@ Colar dados em células em Excel
 32. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-33.  Exportar para PDF avançado  
+33. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-34. Copiar-Mover Planilha
+34. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
 35. Inserir Formulário  
@@ -187,7 +188,7 @@ Salva um arquivo Excel
 Salva um arquivo Excel na ruta indicada
 
 58. Fechar XLSX  
-Fecha o arquivo aberto por Rocketbot  
+Fecha o arquivo aberto por Rocketbot   
 
 ----
 ### OS

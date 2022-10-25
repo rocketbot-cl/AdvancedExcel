@@ -30,8 +30,9 @@ Cuenta todas las filas o dentro de un rango.
 5. Color celda  
 Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
 
-6. Obtener Color de celda  
-Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
+6. Obtener color de celda  
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en 
+formato RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 
@@ -111,7 +112,7 @@ Pega datos en celdas en Excel
 32. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-34.  Exportar a PDF avanzado  
+33. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
 34. Copiar-Mover Hoja  
