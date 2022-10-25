@@ -1822,15 +1822,26 @@ try:
                     separator.append(str(i*int(other)))
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
-           
-        ws_ = wb.api.Sheets(sheet_name).Range(range_)
         
-        wb.api.Sheets(sheet_name).Range(range_).TextToColumns(
-            ws_,
+        try:
+            # Call api directly, do not work everytime, eg. If working whit a shared folder through the cloud
+            xlWorkbook = win32com.client.GetObject(wb.fullname)
+            xlWorksheet = xlWorkbook.Sheets[sheet_name]
+            xlWorksheet.Range(range_).TextToColumns(
+            xlWorksheet.Range(range_),
             DataType = int(data_type),            
             TrailingMinusNumbers=True, 
             **options
-        )
+            )
+        except:
+            # Call api through xlwings
+            ws_ = wb.api.Sheets(sheet_name).Range(range_)
+            wb.api.Sheets(sheet_name).Range(range_).TextToColumns(
+                ws_,
+                DataType = int(data_type),            
+                TrailingMinusNumbers=True, 
+                **options
+            )
 
     if (module == "convertDecimalTimeToHours"):
         import math
