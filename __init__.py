@@ -25,8 +25,6 @@ To install libraries use in the module path:
 # from xlsx2csv import Xlsx2csv
 import decimal
 import io
-from pickle import TRUE
-from numpy import ones_like
 import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
@@ -49,7 +47,6 @@ base_path = tmp_global_obj["basepath"]
 cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 if cur_path not in sys.path:
     sys.path.append(cur_path)
-
 
 
 def import_lib(relative_path, name, class_name=None):
@@ -113,8 +110,6 @@ def set_password(excel_file_path, pw):
 
     return None
 
-
-platform_ = platform.system()
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -524,7 +519,6 @@ if module == "copy_other":
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
-        platform_ = platform.system()
 
         wb1 = wb.app.books.open(excel1)
         if hoja1 not in [sh.name for sh in wb1.sheets]:
@@ -536,7 +530,7 @@ if module == "copy_other":
         if only_values is not None:
             only_values = eval(only_values)
 
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             password = None
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=2)
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
@@ -583,11 +577,10 @@ if module == "addRow":
                 f"The name {sheet_name} does not exist in the book")
 
         sheet = wb.sheets[sheet_name]
-        platform_ = platform.system()
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in row:
                     if tipo == "down_":
                         fila = row.split(':')
@@ -663,7 +656,6 @@ if module == "addCol":
         hoja = GetParams("sheet")
         col_ = GetParams("col_")
         opcion_ = GetParams("option_")
-        platform_ = platform.system()
         
 
         if not hoja in [sh.name for sh in wb.sheets]:
@@ -671,7 +663,7 @@ if module == "addCol":
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
 
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Insert(
@@ -689,7 +681,7 @@ if module == "addCol":
                     wb.sheets[hoja].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Delete()
                 else:
@@ -720,8 +712,7 @@ if module == "csvToxlsx":
         import csv
         from openpyxl import Workbook, load_workbook
 
-        platform_ = platform.system()
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             import ctypes as ct
 
             csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
@@ -748,7 +739,8 @@ if module == "xlsxToCsv":
     delimiter = GetParams("delimiter")
     sheet_name = GetParams("sheet_name")
     import csv
-
+    from openpyxl import Workbook, load_workbook
+    
     try:
         if delimiter == "\\t":
             delimiter = "\t"
@@ -757,7 +749,6 @@ if module == "xlsxToCsv":
 
         if not sheet_name:
             sheet_name = "Sheet0"
-
         data_xls = load_workbook(xlsx_path)[sheet_name]
         data = [[str(data).replace("\xa0", "") for data in row]
                 for row in data_xls.iter_rows(values_only=True)]
@@ -772,6 +763,44 @@ if module == "xlsxToCsv":
 
         # data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
         # Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter, floatformat=True).convert(csv_path)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "xlsx_to_csv":
+    csv_path = GetParams("csv_path")
+    xlsx_path = GetParams("xlsx_path")
+    delimiter = GetParams("delimiter")
+    sheet_name = GetParams("sheet_name")
+
+    try:
+        import xlwings as xw
+        import csv
+
+        app = xw.App(visible=False)
+        wb = xw.Book(xlsx_path)
+        sheet = wb.sheets[sheet_name]
+        
+        # The VBA API was dicarded because it has trouble with special characters
+        # wb.sheets[sheet_name].api.Copy()
+        # xw.books.active.api.SaveAs(csv_path, 6, ConflictResolution = 2)
+        
+        sheet_ = []
+        for row in sheet.used_range.value:
+            row_ = []
+            for value in row:
+                if isinstance(value, str):
+                    value = ''.join(i for i in value if ord(i)<128)
+                row_.append(value)
+            sheet_.append(row_)
+            
+        with open(csv_path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            writer.writerows(sheet_)
+
+        wb.close()
+        app.kill()
+        
     except Exception as e:
         PrintException()
         raise e
@@ -1008,15 +1037,14 @@ if module == "AutoFilter":
     columns = GetParams("columns")
 
     try:
-        # Mac
-        if platform_ == 'darwin':
-            rng = wb.sheets[sheet].api.cells[columns]
-            r = wb.sheets[sheet].api.autofilter_range(rng)
-        else:
+        if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
             wb.sheets[sheet].select()
             wb.sheets[sheet].api.Range(columns).AutoFilter()
+        else:
+            rng = wb.sheets[sheet].api.cells[columns]
+            r = wb.sheets[sheet].api.autofilter_range(rng)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1036,10 +1064,7 @@ if module == "Filter":
             raise Exception(f"The name {sheet} does not exist in the book")
         
         # Mac
-        if platform_ == 'darwin':
-            rng = wb.sheets[sheet].api.cells[range_]
-            r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
-        else:
+        if platform.system() == 'Windows':
             wb.sheets[sheet].select()
             if ":" in start:
                 range_ = start
@@ -1061,6 +1086,9 @@ if module == "Filter":
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, criteria1, criteria2, filter_type)
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
+        else:
+            rng = wb.sheets[sheet].api.cells[range_]
+            r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1156,7 +1184,7 @@ if module == "Paste":
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
-                if platform_ == "Windows":
+                if platform.system() == "Windows":
                     wb.sheets[sheet].api.Paste()
                 else:
                     wb.sheets[sheet].range(cells).paste()
@@ -1369,16 +1397,7 @@ if module == "GetCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
 
-        # Mac
-        if platform_ == 'darwin':
-            sh = wb.sheets[sheet]
-            sh_range = sh.api.cells[range_]
-            ra = sh.api.special_cells(sh_range, type = 12)
-            cell_values = []
-            for area in ra.areas():
-                for row in area.rows():
-                    cell_values += row.value()
-        else:
+        if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             cell_values = []
@@ -1402,7 +1421,15 @@ if module == "GetCells":
                     cell_values.append(info)
                 else:
                     cell_values.append(range_cell)
-                    # cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell                       
+                    # cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell
+        else:
+            sh = wb.sheets[sheet]
+            sh_range = sh.api.cells[range_]
+            ra = sh.api.special_cells(sh_range, type = 12)
+            cell_values = []
+            for area in ra.areas():
+                for row in area.rows():
+                    cell_values += row.value()
 
         if result:
             SetVar(result, cell_values)
@@ -1452,7 +1479,14 @@ if module == "GetCountCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         
-        if platform_ == 'darwin':
+        if platform.system() == 'Windows':
+            sheet_selected_api = wb.sheets[sheet].api
+            
+            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            count = 0
+            for area in filtered_cells.Areas:
+                count += area.Count
+        else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]
             ra = sh.api.special_cells(sh_range, type = 12)
@@ -1461,14 +1495,6 @@ if module == "GetCountCells":
                 for row in area.rows():
                     cell_values += row.value()
             count = len(cell_values)
-                
-        else:
-            sheet_selected_api = wb.sheets[sheet].api
-            
-            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-            count = 0
-            for area in filtered_cells.Areas:
-                count += area.Count
 
         if result:
             SetVar(result, count)
