@@ -25,8 +25,6 @@ To install libraries use in the module path:
 # from xlsx2csv import Xlsx2csv
 import decimal
 import io
-from pickle import TRUE
-from numpy import ones_like
 import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
@@ -49,7 +47,6 @@ base_path = tmp_global_obj["basepath"]
 cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 if cur_path not in sys.path:
     sys.path.append(cur_path)
-
 
 
 def import_lib(relative_path, name, class_name=None):
@@ -114,8 +111,6 @@ def set_password(excel_file_path, pw):
     return None
 
 module = GetParams("module")
-global platform_
-platform_ = platform.system()
 
 # Get excel variables from Rocketbot
 excel = GetGlobals("excel")
@@ -535,7 +530,7 @@ if module == "copy_other":
         if only_values is not None:
             only_values = eval(only_values)
 
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             password = None
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=2)
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
@@ -585,7 +580,7 @@ if module == "addRow":
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in row:
                     if tipo == "down_":
                         fila = row.split(':')
@@ -668,7 +663,7 @@ if module == "addCol":
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
 
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Insert(
@@ -686,7 +681,7 @@ if module == "addCol":
                     wb.sheets[hoja].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Delete()
                 else:
@@ -717,7 +712,7 @@ if module == "csvToxlsx":
         import csv
         from openpyxl import Workbook, load_workbook
 
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             import ctypes as ct
 
             csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
@@ -1042,7 +1037,7 @@ if module == "AutoFilter":
     columns = GetParams("columns")
 
     try:
-        if platform_ == 'Windows':
+        if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
             wb.sheets[sheet].select()
@@ -1069,7 +1064,7 @@ if module == "Filter":
             raise Exception(f"The name {sheet} does not exist in the book")
         
         # Mac
-        if platform_ == 'Windows':
+        if platform.system() == 'Windows':
             wb.sheets[sheet].select()
             if ":" in start:
                 range_ = start
@@ -1189,7 +1184,7 @@ if module == "Paste":
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
-                if platform_ == "Windows":
+                if platform.system() == "Windows":
                     wb.sheets[sheet].api.Paste()
                 else:
                     wb.sheets[sheet].range(cells).paste()
@@ -1402,7 +1397,7 @@ if module == "GetCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
 
-        if platform_ == 'Windows':
+        if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             cell_values = []
@@ -1484,7 +1479,7 @@ if module == "GetCountCells":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         
-        if platform_ == 'Windows':
+        if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
             
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
