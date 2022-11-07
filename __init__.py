@@ -1063,32 +1063,53 @@ if module == "Filter":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         
-        # Mac
-        if platform.system() == 'Windows':
-            wb.sheets[sheet].select()
-            if ":" in start:
-                range_ = start
-                start = start.split(":")[0]
-            else:
-                start = start + str(1)
-                range_ = column + str(1)
+        wb.sheets[sheet].select()
+        if ":" in start:
+            range_ = start
+            start = start.split(":")[0]
+        else:
+            start = start + str(1)
+            range_ = column + str(1)
+        
+        if data.startswith("["):
+            data = eval(data)
 
+            if filter_type in ["1", "2"]:
+                if len(data) == 2:
+                    criteria1 = data[0]
+                    criteria2 = data[1]
+                elif len(data) == 0:
+                    criteria1 = None
+                    criteria2 = None
+                elif len(data) > 2:
+                    raise Exception("Filter 'xlOr' and 'xlAnd' must have one or two conditions. ['<>100'] & ['>=10', '<=20']")
+                else:
+                    criteria1 = data[0]
+                    criteria2 = None
+            
+            if filter_type == "7":
+                if len(data) == 0:
+                    raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
+
+        else:
+            raise Exception("Filter format must be a list.")
+
+        if platform.system() == 'Windows':
             n_start = wb.sheets[sheet].range(start).column
             n_end = wb.sheets[sheet].range(column + str(1)).column
 
             filter_column = n_end - n_start + 1
-            if data.startswith("["):
-                data = eval(data)
 
-            if filter_type in [1, 2]:
-                criteria1 = data[0]
-                criteria2 = data[1]
-                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, criteria1, criteria2, filter_type)
+            if filter_type in ["1", "2"]:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=criteria1, Criteria2=criteria2, Operator=filter_type)
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
         else:
             rng = wb.sheets[sheet].api.cells[range_]
-            r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
+            if filter_type in ["1", "2"]:
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
+            else:
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1258,6 +1279,8 @@ if module == "save_mac":
         path_file = xls["path"]
     if path_file.endswith(".xlsx"):
         args = {"FileFormat": 51}
+    if path_file.endswith(".xls"):
+        args = {"FileFormat": 56}
     
     try:
         if path_file == xls["path"]:

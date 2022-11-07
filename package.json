@@ -3191,19 +3191,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A1:E6 ",
-              "en": "A1:E6 ",
-              "pr": "A1:E6 "
+              "es": "A:E ",
+              "en": "A:E ",
+              "pr": "A:E "
             },
             "title": {
-              "es": "Rango: ",
-              "en": "Range: ",
-              "pr": "Intervalo: "
+              "es": "Columnas: ",
+              "en": "Columns: ",
+              "pr": "Colunas: "
             },
             "description": {
-              "es": "Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1:B1) ",
-              "en": "Cell or Range of cells. The syntax must be the same as excel (A1 or A1:B1) ",
-              "pr": "Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1:B1) "
+              "es": "Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o A:B) ",
+              "en": "Columna or Range of columns. The syntax must be the same as excel (A o A:B) ",
+              "pr": "Coluna ou intervalo de colunas. A sintaxe deve ser a mesma do excel (A o A:B) "
             },
             "id": "columns",
             "css": "col-md-6"
@@ -3308,7 +3308,7 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']",
+              "es": "['>=10'] or ['>=10', '<=20'] or ['10','20', '30']",
               "en": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']",
               "pr": "['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']"
             },
@@ -3323,23 +3323,19 @@
               "pr": "Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex: de valor entre A e B). Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
             },
             "help": {
-              "es": "Use \"=\" para encontrar campos en blanco, \"<>\" para celdas no vacías y negación de datos.",
-              "en": "Use \"=\" to find blank fields, \"<>\" to find non-blank fields, and to select (No Data) fields in data types.",
-              "pr": "Use \"=\" para encontrar campos em branco, \"<>\" para células não vazias e negação de dados."
+              "es": "Use [''] para seleccionar campos en blanco, ['<>'] para celdas no vacías y [] (lista vacía) para mostrar todo.",
+              "en": "Use [''] to select blank fields, ['<>'] to find non-blank fields and [] (empty list) to show all.",
+              "pr": "Use [''] para selecionar campos em branco, ['<>'] para células não vazias e [] (lista vazia) para mostrar todos."
             },
             "id": "filter",
             "css": "col-md-12"
           },
           {
             "type": "select",
-            "placeholder": {
-              "es": "Tipo de filtro",
-              "en": "Filter type",
-              "pr": "Tipo de filtro"
-            },
             "title": {
-              "es": "Seleccione filtro: ",
-              "en": "Select filter: "
+              "es": "Tipo de filtro: ",
+              "en": "Filter type: ",
+              "pr": "Tipo de filtro: "
             },
             "options": [
               {
@@ -3364,9 +3360,9 @@
               "en": "Type of filter to apply."
             },
             "help": {
-              "es": "Use xlAnd para \"<\", \"<=\", \">\" o \">=\"; xlOr para valores entre [\">=\", \"<=\"]; xlFilterValues para valores especificos [\"value1\", \"value2\", \"value3\"].",
-              "en": "Use xlAnd for \"<\", \"<=\", \">\" or \">=\"; xlOr for values between [\">=\", \"<=\"]; xlFilterValues for specific values [\"value1\", \"value2\", \"value3\"].",
-              "pr": "Use xlAnd para \"<\", \"<=\", \">\" ou \">=\"; xlOr para valores entre [\">=\", \"<=\"]; xlFilterValues para valores específicos [\"value1\", \"value2\", \"value3\"]."
+              "es": "Utilizar xlFilterValues para seleccionar valores especificos  ['10', '20', '30'...]. Utilizar xlAnd y xlOr para filtros condicionales, con una ['<>100'] o dos condiciones ['>=10', '<=20'].",
+              "en": "Use xlFilterValues to select specific values ['10', '20', '30'...]. Use xlAnd and xlOr for conditional filters, with one ['<>100'] or two conditions ['>=10', '<=20'].",
+              "pr": "Use xlFilterValues para selecionar valores específicos  ['10', '20', '30'...]. Use xlAnd e xlOr para filtros condicionais, com um ['<>100'] ou duas condições ['>=10', '<=20']."
             },
             "id": "filter_type",
             "css": "col-md-12"
