@@ -4,16 +4,14 @@
 
 # Excel Advanced Options
   
-Module with advanced options for Excel
+Module with advanced options for Excel  
 
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-
 ## How to use this module
 To use this module, you must have Microsoft Excel.
-
 
 ## Overview
 
@@ -74,126 +72,134 @@ Add or Delete a Column
 19. Convert CSV to XLSX  
 Convert a csv document to xlsx
 
-20. Convert XLSX to CSV  
+20. (Deprecated) Convert XLSX to CSV  
 Convert a xlsx document to csv
 
-21. Convert XLS to XLSX  
+21. Convert XLSX to CSV  
+Convert a xlsx document to csv
+
+22. Convert XLS to XLSX  
 Convert a xls document to xlsx
 
-22. Get active cell  
+23. Get active cell  
 Get row and column of active cell
 
-23. Refresh Pivot table  
+24. Refresh Pivot table  
 Refresh a pivot table. Deprecated! Use PivotTableExcel module
 
-24. Fit cells  
+25. Fit cells  
 Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
 
-25. Get Formula  
+26. Get Formula  
 Get the formula into cell
 
-26. Add Auto Filter  
+27. Add Auto Filter  
 Add auto filter to excel table
 
-27. Filter  
+28. Filter  
 Add filter to excel table
 
-28. Rename sheet  
+29. Rename sheet  
 Change name to excel sheet
 
-29. Text Format  
+30. Text Format  
 Change the Horizontal or Vertical alignment of values in a range of cells
 
-30. Cell Style  
+31. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-31. Paste in Cells  
+32. Paste in Cells  
 Paste data to cells in Excel
 
-32. Remove Duplicates  
+33. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-33. Export to advanced PDF  
+34. Export to advanced PDF  
 Export to PDF with options
 
-34. Copy-Move Sheet  
+35. Copy-Move Sheet  
 Copy or move a sheet
 
-35. Insert Form  
+36. Insert Form  
 Insert Form in Excel
 
-36. Read Filtered Cells  
+37. Read Filtered Cells  
 Allow read only cells filters 
 
-37. Count Filtered Cells  
+38. Count Filtered Cells  
 Allow count only cells filters 
 
-38. Replace  
+39. Replace  
 Run replace action to excel 
 
-39. Order  
+40. Order  
 Run replace action to excel 
 
-40. Refresh All  
+41. Refresh All  
 Refresh all data in Excel
 
-41. Find  
+42. Find  
 Return de first found cell 
 
-42. Lock Cells  
+43. Lock Cells  
 Lock or Unlock cells
 
-43. Add Chart  
+44. Add Chart  
 Create a new chart in an excel sheet
 
-44. Remove Password  
+45. Remove Password  
 Remove password and save the Excel
 
-45. Insert image  
+46. Insert image  
 Insert an image
 
-46. Export Chart  
+47. Export Chart  
 Export a chart from index
 
-47. Not visible mode  
+48. Not visible mode  
 Open not visible excel.
 
-48. Write array objects  
+49. Write array objects  
 Write array object on Excel cells.
 
-49. Copy-Paste Format  
+50. Copy-Paste Format  
 Copy format range cell to another sheet
 
-50. Update links  
+51. Update links  
 Changes a link from one document to another
 
-51. Unlock sheet  
+52. Unlock sheet  
 Unlock sheet
 
-52. Convert to .txt  
+53. Convert to .txt  
 Convert to .txt
 
-53. Text to columns  
+54. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-54. Convert Excel time to hours  
+55. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-55. Print sheet  
+56. Print sheet  
 Prints a sheet
 
-56. Save Excel with password  
+57. Save Excel with password  
 Save a Excel file
 
-57. Save Excel  
+58. Save Excel  
 Save a Excel file in the indicated path
 
-58. Close XLSX  
+59. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 
 
 ### Updates
+### 07-Nov-2022
+- Add the possibilitie to save in .xls format
+### 02-Nov-2022
+- Add Filter, Auto Filter, Read and Write filtered cells for mac
+- Add new xslx_to_csv command using xlwings, openpyxl one deprecated
 #### 24-Oct-2022
 - Add new features Filter command and update Text2Column to rely only on xlwings
 #### 19-Oct-2022

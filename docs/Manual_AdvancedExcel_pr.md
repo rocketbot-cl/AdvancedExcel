@@ -4,8 +4,8 @@
 
 # Opções avançadas para Excel
   
-Módulo com opções avançadas para Excel
- 
+Módulo com opções avançadas para Excel  
+  
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
@@ -201,6 +201,16 @@ Converte um documento CSV para XLSX
 |Codificação|Digite o tipo de codificação do arquivo. O padrão é latino-1|utf-8|
 |Caminho do arquivo XLSX|Direcação do arquivo xlsx onde será salvo|file.xlsx|
 
+### (Descontinuado) Converter XLSX para CSV
+  
+Converte um documento XLSX para CSV
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Caminho do arquivo XLSX|Caminho do arquivo xlsx que se quer converter|C:/Users/User/Desktop/file.xlsx|
+|Delimitador|Delimitador da arquivo csv|,|
+|Nome da planilha|Nome da planilha onde os dados estão localizados|Sheet0|
+|Direcação do arquivo CSV|Direção do arquivo csv onde será salvo|C:/Users/User/Desktop/file.csv|
+
 ### Converter XLSX para CSV
   
 Converte um documento XLSX para CSV
@@ -266,7 +276,7 @@ Adiciona filtro automático a uma tabela excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
-|Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:E6 |
+|Colunas |Coluna ou intervalo de colunas. A sintaxe deve ser a mesma do excel (A o AB) |A:E |
 
 ### Filtrar
   
@@ -277,7 +287,7 @@ Filtra a uma tabela excel
 |Início da tabela |Coluna onde começa a tabela a ser filtrada|A |
 |Coluna |Coluna onde adicionar o filtro|A |
 |Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
-|Select filter |Type of filter to apply.|Tipo de filtro|
+|Tipo de filtro |Type of filter to apply.||
 
 ### Renomear planilha
   
