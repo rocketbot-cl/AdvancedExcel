@@ -4,7 +4,7 @@
 
 # Excel Advanced Options
   
-Module with advanced options for Excel
+Module with advanced options for Excel  
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
@@ -200,6 +200,16 @@ Convert a csv document to xlsx
 |Encoding|Type the encoding type of the file. Default is latin-1|utf-8|
 |XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
 
+### (Deprecated) Convert XLSX to CSV
+  
+Convert a xlsx document to csv
+|Parameters|Description|example|
+| --- | --- | --- |
+|XLSX file path|Path of the xlsx file to be converted|C:/Users/User/Desktop/file.xlsx|
+|Delimiter|Delimiter of the csv file|,|
+|Sheet name|Name of the sheet where the data are located|Sheet0|
+|CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
+
 ### Convert XLSX to CSV
   
 Convert a xlsx document to csv
@@ -265,7 +275,7 @@ Add auto filter to excel table
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:E6 |
+|Columns |Columna or Range of columns. The syntax must be the same as excel (A o AB) |A:E |
 
 ### Filter
   
@@ -276,7 +286,7 @@ Add filter to excel table
 |Table start |Column where the table to be filtered begins|A |
 |Column |Column where to add the filter|A |
 |Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
-|Select filter |Type of filter to apply.|Filter type|
+|Filter type |Type of filter to apply.||
 
 ### Rename sheet
   

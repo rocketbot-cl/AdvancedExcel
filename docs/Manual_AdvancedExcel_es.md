@@ -201,6 +201,16 @@ Convierte un documento CSV a XLSX
 |Codificación|Escriba el tipo de codificación del archivo. Por defecto es latin-1|latin-1|
 |Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
 
+### (Deprecado) Convertir XLSX a CSV
+  
+Convierte un documento XLSX a CSV
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|C:/Users/User/Desktop/file.xlsx|
+|Delimitador|Separador del archivo csv|,|
+|Nombre de la hoja|Nombre de la hoja donde se encuentran los datos|Sheet0|
+|Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
+
 ### Convertir XLSX a CSV
   
 Convierte un documento XLSX a CSV
@@ -266,7 +276,7 @@ Agrega filtro automático a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:E6 |
+|Columnas |Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o AB) |A:E |
 
 ### Filtrar
   
@@ -276,8 +286,8 @@ Filtra a una tabla excel
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 |Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
 |Columna |Columna donde agregar el filtro|A |
-|Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
-|Seleccione filtro |Tipo de filtro a aplicar.|Tipo de filtro|
+|Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=10'] or ['>=10', '<=20'] or ['10','20', '30']|
+|Tipo de filtro |Tipo de filtro a aplicar.||
 
 ### Renombrar hoja
   
