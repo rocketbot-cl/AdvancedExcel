@@ -4,7 +4,7 @@
 
 # Opciones avanzadas para Excel
   
-Module with advanced options for Excel  
+Módulo con opciones avanzadas para Excel
 
 ## Como instalar este módulo
   
