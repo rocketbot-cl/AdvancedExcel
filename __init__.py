@@ -1040,12 +1040,11 @@ if module == "AutoFilter":
         if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
-            wb.sheets[sheet].select()
-            wb.sheets[sheet].api.Range(columns).AutoFilter()
+            wb.sheets[sheet].range(columns).api.AutoFilter()
         else:
             rng = wb.sheets[sheet].api.cells[columns]
             r = wb.sheets[sheet].api.autofilter_range(rng)
-        
+
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1105,11 +1104,16 @@ if module == "Filter":
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
         else:
+            n_start = wb.sheets[sheet].api.range(start).column
+            n_end = wb.sheets[sheet].api.range(column + str(1)).column
+
+            filter_column = n_end - n_start + 1
+            
             rng = wb.sheets[sheet].api.cells[range_]
             if filter_type in ["1", "2"]:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=column, criteria1=data)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1504,20 +1508,19 @@ if module == "GetCountCells":
         
         if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
-            
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             count = 0
             for area in filtered_cells.Areas:
-                count += area.Count
+                for row in area.Rows:
+                    count += 1
         else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]
             ra = sh.api.special_cells(sh_range, type = 12)
-            cell_values = []
+            count = 0
             for area in ra.areas():
                 for row in area.rows():
-                    cell_values += row.value()
-            count = len(cell_values)
+                    count += 1
 
         if result:
             SetVar(result, count)
