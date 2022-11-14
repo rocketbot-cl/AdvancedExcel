@@ -1119,6 +1119,70 @@ if module == "Filter":
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
+    
+if module == "AdvancedFilter":
+
+    try:
+        sheet = GetParams("sheet")
+        range = GetParams("range")
+        filter = GetParams("filter")
+        unique = GetParams("unique")
+        copy = GetParams("copy")
+        paste = GetParams("paste")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if unique:
+            unique_ = eval(unique)
+        else:
+            unique_ = False
+            
+        if copy:
+            copy_ = eval(copy)
+        
+        if platform.system() == 'Windows':
+            
+            filter_ = wb.sheets[sheet].api.Range(filter)
+            
+            if copy_:
+                paste_ = wb.sheets[sheet].api.Range(paste)
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(2, CriteriaRange=filter_, CopyToRange=paste_, Unique=unique_)
+            else:
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(1, CriteriaRange=filter_, CopyToRange=None, Unique=unique_)
+        
+        else:
+            
+            filter_ = wb.sheets[sheet].api.cells[filter]
+            
+            if copy_:
+                paste_ = wb.sheets[sheet].api.cells(paste)
+                wb.sheets[sheet].api.cells(range).advancedfilter(2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+            else:
+                wb.sheets[sheet].api.cells(range).advancedfilter(1, criteriarange=filter_, copytorange=None, unique=unique_)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "ClearFilters":
+
+    try:
+        sheet = GetParams("sheet")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if platform.system() == 'Windows':
+            wb.sheets[sheet].api.ShowAllData()
+        else:
+            wb.sheets[sheet].api.showalldata()
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "rename_sheet":
     sheet = GetParams("sheet")
