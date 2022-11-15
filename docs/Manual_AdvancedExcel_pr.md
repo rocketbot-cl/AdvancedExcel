@@ -289,6 +289,25 @@ Filtra a uma tabela excel
 |Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
 |Tipo de filtro |Type of filter to apply.||
 
+### Filtro avançado
+  
+Aplicar filtro avançado a uma tabela
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
+|Intervalo do tabela |Intervalo do a ser filtrada|A1:G500 |
+|Intervalo de critérios  |Intervalo com os critérios de filtro a serem aplicados|A1:B4 |
+|Apenas registros únicos|||
+|Copiar para outro lugar|Cole a tabela resultante na célula de destino||
+|Destino  |Célula onde colar a tabela de resultados do filtro|J1 |
+
+### Remover filtros
+  
+Remova os filtros e mostre todos os dados
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
+
 ### Renomear planilha
   
 Muda o nome de uma planilha de excel

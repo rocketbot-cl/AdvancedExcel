@@ -101,97 +101,103 @@ Agrega filtro automático a una tabla excel
 28. Filtrar  
 Filtra a una tabla excel
 
-29. Renombrar hoja  
+29. Filtro avanzado  
+Filtra a una tabla excel
+
+30. Remover Filtros  
+Eliminar filtros y mostrar todos los datos
+
+31. Renombrar hoja  
 Cambia el nombre a una hoja de excel
 
-30. Formato de texto  
+32. Formato de texto  
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 
-31. Estilo Celda  
+33. Estilo Celda  
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 
-32. Pegar en Celdas  
+34. Pegar en Celdas  
 Pega datos en celdas en Excel
 
-33. Eliminar duplicados  
+35. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-34. Exportar a PDF avanzado  
+36. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-35. Copiar-Mover Hoja  
+37. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-36. Insertar Formulario  
+38. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-37. Leer celdas filtradas  
+39. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-38. Contar celdas filtradas  
+40. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-39. Reemplazar  
+41. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-40. Ordenar  
+42. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-41. Actualizar Todo  
+43. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-42. Buscar  
+44. Buscar  
 Devuelve la primera celda encontrada
 
-43. Bloquear celdas  
+45. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-44. Agregar Gráfico  
+46. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-45. Quitar Contraseña  
+47. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-46. Insertar imagen  
+48. Insertar imagen  
 Inserta una imagen
 
-47. Exportar gráfico  
+49. Exportar gráfico  
 Exporta un gráfico por índice
 
-48. Modo no visible  
+50. Modo no visible  
 Abre excel en modo no visible
 
-49. Escribir array de objetos  
+51. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-50. Copiar-Pegar Formato  
+52. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-51. Actualizar vínculos  
+53. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-52. Desbloquear hoja  
+54. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-53. Convertir a .txt  
+55. Convertir a .txt  
 Convierte a .txt
 
-54. Texto en columna  
+56. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-55. Convertir tiempo de Excel a horas  
+57. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-56. Imprimir hoja  
+58. Imprimir hoja  
 Imprime una hoja
 
-57. Guardar Excel con password  
+59. Guardar Excel con password  
 Guarda un archivo Excel
 
-58. Guardar Excel  
+60. Guardar Excel  
 Guarda un archivo Excel en la ruta indicada
 
-59. Cerrar XLSX  
+61. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 ----

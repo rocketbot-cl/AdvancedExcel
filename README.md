@@ -10,10 +10,13 @@ Module with advanced options for Excel
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
+
 ## How to use this module
 To use this module, you must have Microsoft Excel.
 
+
 ## Overview
+
 
 1. Open Without Alerts  
 Open a file preventing MS Excel alerts.
@@ -99,102 +102,110 @@ Add auto filter to excel table
 28. Filter  
 Add filter to excel table
 
-29. Rename sheet  
+29. Advanced filter  
+Apply advanced filter to a table
+
+30. Clear filters  
+Remove filters and show all data
+
+31. Rename sheet  
 Change name to excel sheet
 
-30. Text Format  
+32. Text Format  
 Change the Horizontal or Vertical alignment of values in a range of cells
 
-31. Cell Style  
+33. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-32. Paste in Cells  
+34. Paste in Cells  
 Paste data to cells in Excel
 
-33. Remove Duplicates  
+35. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-34. Export to advanced PDF  
+36. Export to advanced PDF  
 Export to PDF with options
 
-35. Copy-Move Sheet  
+37. Copy-Move Sheet  
 Copy or move a sheet
 
-36. Insert Form  
+38. Insert Form  
 Insert Form in Excel
 
-37. Read Filtered Cells  
+39. Read Filtered Cells  
 Allow read only cells filters 
 
-38. Count Filtered Cells  
+40. Count Filtered Cells  
 Allow count only cells filters 
 
-39. Replace  
+41. Replace  
 Run replace action to excel 
 
-40. Order  
+42. Order  
 Run replace action to excel 
 
-41. Refresh All  
+43. Refresh All  
 Refresh all data in Excel
 
-42. Find  
+44. Find  
 Return de first found cell 
 
-43. Lock Cells  
+45. Lock Cells  
 Lock or Unlock cells
 
-44. Add Chart  
+46. Add Chart  
 Create a new chart in an excel sheet
 
-45. Remove Password  
+47. Remove Password  
 Remove password and save the Excel
 
-46. Insert image  
+48. Insert image  
 Insert an image
 
-47. Export Chart  
+49. Export Chart  
 Export a chart from index
 
-48. Not visible mode  
+50. Not visible mode  
 Open not visible excel.
 
-49. Write array objects  
+51. Write array objects  
 Write array object on Excel cells.
 
-50. Copy-Paste Format  
+52. Copy-Paste Format  
 Copy format range cell to another sheet
 
-51. Update links  
+53. Update links  
 Changes a link from one document to another
 
-52. Unlock sheet  
+54. Unlock sheet  
 Unlock sheet
 
-53. Convert to .txt  
+55. Convert to .txt  
 Convert to .txt
 
-54. Text to columns  
+56. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-55. Convert Excel time to hours  
+57. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-56. Print sheet  
+58. Print sheet  
 Prints a sheet
 
-57. Save Excel with password  
+59. Save Excel with password  
 Save a Excel file
 
-58. Save Excel  
+60. Save Excel  
 Save a Excel file in the indicated path
 
-59. Close XLSX  
+61. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 
 
 ### Updates
+### 15-Nov-2022
+- Add Advanced Filter and Remove Filter commands
 ### 07-Nov-2022
 - Add the possibilitie to save in .xls format
 ### 02-Nov-2022
@@ -275,6 +286,7 @@ Close the workbook opened by Rocketbot
 - Remove duplicates: Rocketbot can now remove duplicate data on range Excel
 #### 5-Jun-2020
 - Focus Excel: Rocketbot can now set Excel to the foreground window
+
 
 ----
 ### OS
