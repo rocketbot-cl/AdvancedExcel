@@ -1101,8 +1101,10 @@ if module == "Filter":
 
             if filter_type in ["1", "2"]:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=criteria1, Criteria2=criteria2, Operator=filter_type)
-            else:
+            elif filter_type == '7':
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
+            else:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
         else:
             n_start = wb.sheets[sheet].api.range(start).column
             n_end = wb.sheets[sheet].api.range(column + str(1)).column

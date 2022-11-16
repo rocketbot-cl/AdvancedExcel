@@ -10,13 +10,10 @@ Module with advanced options for Excel
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-
 ## How to use this module
 To use this module, you must have Microsoft Excel.
 
-
 ## Overview
-
 
 1. Open Without Alerts  
 Open a file preventing MS Excel alerts.
