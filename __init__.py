@@ -1497,18 +1497,19 @@ if module == "GetCells":
             for r in filtered_cells.Areas:
                 range_cell = []
                 for ro in r:
+                    cells = []
                     if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                        cells = []
                         for cell in ro.Cells:
                             if isinstance(cell.Value, datetime.datetime):
                                 cells.append(get_date_with_format(cell.Value2))
                             else:
                                 cells.append(cell.Value2)
-
-                        range_cell.append(cells)
+                            range_cell.append(cells)
                     else:
-                        range_cell.append(ro.Value)
-                
+                        if isinstance(ro.Value, datetime.datetime):
+                            range_cell.append(get_date_with_format(ro.Value2))
+                        else:
+                            range_cell.append(ro.Value2)
                 if extends:
                     info = {"range": r.Address.replace("$", ""), "data": range_cell}
                     cell_values.append(info)
