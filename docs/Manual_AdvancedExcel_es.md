@@ -289,6 +289,25 @@ Filtra a una tabla excel
 |Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=10'] or ['>=10', '<=20'] or ['10','20', '30']|
 |Tipo de filtro |Tipo de filtro a aplicar.||
 
+### Filtro avanzado
+  
+Filtra a una tabla excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Rango de tabla |Rango de la tabla que se filtrará|A1:G500 |
+|Rango de criterios  |Rango con los criterios del filtro a aplicar|A1:B4 |
+|Solo registros únicos|||
+|Copiar a otro lugar|Pega la tabla resultante en la celda de destino||
+|Destino  |Celda donde pegar la tabla resultado del filtro|J1 |
+
+### Remover Filtros
+  
+Eliminar filtros y mostrar todos los datos
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+
 ### Renombrar hoja
   
 Cambia el nombre a una hoja de excel

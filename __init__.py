@@ -1101,8 +1101,10 @@ if module == "Filter":
 
             if filter_type in ["1", "2"]:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=criteria1, Criteria2=criteria2, Operator=filter_type)
-            else:
+            elif filter_type == '7':
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
+            else:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
         else:
             n_start = wb.sheets[sheet].api.range(start).column
             n_end = wb.sheets[sheet].api.range(column + str(1)).column
@@ -1114,6 +1116,70 @@ if module == "Filter":
                 r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
                 r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+    
+if module == "AdvancedFilter":
+
+    try:
+        sheet = GetParams("sheet")
+        range = GetParams("range")
+        filter = GetParams("filter")
+        unique = GetParams("unique")
+        copy = GetParams("copy")
+        paste = GetParams("paste")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if unique:
+            unique_ = eval(unique)
+        else:
+            unique_ = False
+            
+        if copy:
+            copy_ = eval(copy)
+        
+        if platform.system() == 'Windows':
+            
+            filter_ = wb.sheets[sheet].api.Range(filter)
+            
+            if copy_:
+                paste_ = wb.sheets[sheet].api.Range(paste)
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(2, CriteriaRange=filter_, CopyToRange=paste_, Unique=unique_)
+            else:
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(1, CriteriaRange=filter_, CopyToRange=None, Unique=unique_)
+        
+        else:
+            
+            filter_ = wb.sheets[sheet].api.cells[filter]
+            
+            if copy_:
+                paste_ = wb.sheets[sheet].api.cells(paste)
+                wb.sheets[sheet].api.cells(range).advancedfilter(2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+            else:
+                wb.sheets[sheet].api.cells(range).advancedfilter(1, criteriarange=filter_, copytorange=None, unique=unique_)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "ClearFilters":
+
+    try:
+        sheet = GetParams("sheet")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if platform.system() == 'Windows':
+            wb.sheets[sheet].api.ShowAllData()
+        else:
+            wb.sheets[sheet].api.showalldata()
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1431,18 +1497,19 @@ if module == "GetCells":
             for r in filtered_cells.Areas:
                 range_cell = []
                 for ro in r:
+                    cells = []
                     if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                        cells = []
                         for cell in ro.Cells:
                             if isinstance(cell.Value, datetime.datetime):
                                 cells.append(get_date_with_format(cell.Value2))
                             else:
                                 cells.append(cell.Value2)
-
-                        range_cell.append(cells)
+                            range_cell.append(cells)
                     else:
-                        range_cell.append(ro.Value)
-                
+                        if isinstance(ro.Value, datetime.datetime):
+                            range_cell.append(get_date_with_format(ro.Value2))
+                        else:
+                            range_cell.append(ro.Value2)
                 if extends:
                     info = {"range": r.Address.replace("$", ""), "data": range_cell}
                     cell_values.append(info)

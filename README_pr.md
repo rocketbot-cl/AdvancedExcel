@@ -13,7 +13,7 @@ __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot
 ## Como usar este módulo
 Para usar este módulo você deve ter o Microsoft Excel.
 
-## Overview
+## Overview  
 
 1. Abrir sem alertas  
 Abre um arquivo sem mostrar alertas do MS Excel.
@@ -100,97 +100,103 @@ Adiciona filtro automático a uma tabela excel
 28. Filtrar  
 Filtra a uma tabela excel
 
-29. Renomear planilha  
+29. Filtro avançado  
+Aplicar filtro avançado a uma tabela
+
+30. Remover filtros  
+Remova os filtros e mostre todos os dados
+
+31. Renomear planilha  
 Muda o nome de uma planilha de excel
 
-30. Formato de texto  
+32. Formato de texto  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 
-31. Estilo de Célula  
+33. Estilo de Célula  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 
-32. Colar em Células  
+34. Colar em Células  
 Colar dados em células em Excel
 
-33. Remover duplicatas  
+35. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-34. Exportar para PDF avançado  
+36. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-35. Copiar-Mover Planilha  
+37. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
-36. Inserir Formulário  
+38. Inserir Formulário  
 Insere um Formulário no Excel
 
-37. Ler células filtradas  
+39. Ler células filtradas  
 Ler somente as células filtradas
 
-38. Contar celulas filtradas  
+40. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-39. Replace  
+41. Replace  
 Run replace action to excel 
 
-40. Ordenar  
+42. Ordenar  
 Executa a ação de substituir de excel
 
-41. Atualizar Tudo  
+43. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-42. Buscar  
+44. Buscar  
 Devuelve a primeira celula encontrada
 
-43. Bloquear celulas  
+45. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-44. Adicionar Gráfico  
+46. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-45. Remover Senha  
+47. Remover Senha  
 Remove a senha e salva o Excel
 
-46. Inserir imagem  
+48. Inserir imagem  
 Inserir uma imagem
 
-47. Exportar gráfico  
+49. Exportar gráfico  
 Exporta um gráfico por índice
 
-48. Modo não visível  
+50. Modo não visível  
 Abre excel em modo não visível
 
-49. Escrever array de objetos  
+51. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-50. Copiar-Colar Formato  
+52. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-51. Atualizar vínculos  
+53. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-52. Desbloquear planilha  
+54. Desbloquear planilha  
 Desbloquea uma planilha com senha
 
-53. Converter para .txt  
+55. Converter para .txt  
 Converte para .txt
 
-54. Texto em coluna  
+56. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-55. Converter tempo de Excel para horas  
+57. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-56. Imprimir planilha  
+58. Imprimir planilha  
 Imprime uma planilha
 
-57. Salvar Excel com senha  
+59. Salvar Excel com senha  
 Salva um arquivo Excel
 
-58. Salvar Excel  
+60. Salvar Excel  
 Salva um arquivo Excel na ruta indicada
 
-59. Fechar XLSX  
+61. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot   
 
 ----

@@ -288,6 +288,25 @@ Add filter to excel table
 |Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
 |Filter type |Type of filter to apply.||
 
+### Advanced filter
+  
+Apply advanced filter to a table
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Table range |Range of the table to be filtered begins|A1:G500 |
+|Criteria range  |Range with the filter criteria to apply|A1:B4 |
+|Unique records only|||
+|Copy to another place|Paste the resulting table to the target cell||
+|Target  |Cell where to paste the result table of the filter|J1 |
+
+### Clear filters
+  
+Remove filters and show all data
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+
 ### Rename sheet
   
 Change name to excel sheet
