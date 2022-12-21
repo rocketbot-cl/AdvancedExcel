@@ -1735,7 +1735,12 @@ if module == "add_chart":
     range_ = GetParams("range")
     cell = GetParams("cell")
     type_ = GetParams("type")
-
+    sheet_data = None
+    
+    if '!' in range_:
+        sheet_data = range_.split('!')[0]
+        range_ = range_.split('!')[1]
+        
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1757,15 +1762,25 @@ if module == "add_chart":
         if type_ in types_charts:
             type_ = types_charts[type_]
 
-        print(type_)
         sheet = wb.sheets[sheet_name]
+        if sheet_data:
+            sheet = wb.sheets[sheet_data]
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        cell = sheet.range(cell)
-        range_ = sheet.range(range_)
+            sheet = wb.sheets[sheet_name]
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
+            
+            
+        else:  
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        active_chart = sheet.charts.add(cell.left, cell.top)
-        active_chart.set_source_data(range_)
-        active_chart.chart_type = type_
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")

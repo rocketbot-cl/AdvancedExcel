@@ -5540,9 +5540,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A1:B100 ",
-              "en": "A1:B100 ",
-              "pr": "A1:B100 "
+              "es": "Sheet!A1:B100 ",
+              "en": "Sheet!A1:B100 ",
+              "pr": "Sheet!A1:B100 "
             },
             "title": {
               "es": "Rango de datos: ",
