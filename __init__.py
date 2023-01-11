@@ -135,12 +135,11 @@ if module == "Open":
         file_path = file_path.replace("/", os.sep)
 
         try:
-            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
-                                        CorruptLoad=2)
+            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
         except:
             PrintException()
-            wb = app.books.open(file_path)
+            wb = app.books.open(file_path, update_links = False, ignore_read_only_recommended = True)
             SetVar(var_, False)
         excel.actual_id = excel.id_default
 
@@ -1102,9 +1101,9 @@ if module == "Filter":
                     criteria1 = data[0]
                     criteria2 = None
             
-            if filter_type == "7":
-                if len(data) == 0:
-                    raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
+            # if filter_type == "7":
+            #     if len(data) == 0:
+            #         raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
 
         else:
             raise Exception("Filter format must be a list.")
@@ -1122,8 +1121,8 @@ if module == "Filter":
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
         else:
-            n_start = wb.sheets[sheet].api.range(start).column
-            n_end = wb.sheets[sheet].api.range(column + str(1)).column
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
 
             filter_column = n_end - n_start + 1
             
@@ -1131,7 +1130,7 @@ if module == "Filter":
             if filter_type in ["1", "2"]:
                 r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1369,9 +1368,9 @@ if module == "save_mac":
     if not path_file:
         path_file = xls["path"]
     if path_file.endswith(".xlsx"):
-        args = {"FileFormat": 51}
+        args = {"FileFormat": 51} #ConflictResolution:2
     if path_file.endswith(".xls"):
-        args = {"FileFormat": 56}
+        args = {"FileFormat": 56} #ConflictResolution:2
     
     try:
         if path_file == xls["path"]:
