@@ -1,8 +1,8 @@
 {
   "author": "Danilo Toro - José González - Marcela Vergara - David Cuello - Juan Siro",
-  "description": "Module with advanced options for Excel",
+  "description": "Module with advanced options for Excel | Módulo com opções avançadas para Excel | Módulo con opciones avanzadas para Excel",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "33.15.0",
+  "version": "33.15.2",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": false,
@@ -2926,7 +2926,7 @@
               "pr": "Ao marcar esta opção, as linhas serão desagrupadas na faixa selecionada."
             },
             "id": "un_row",
-            "css": "col-md-4"
+            "css": "col-md-3"
           },
           {
             "type": "checkbox",
@@ -2946,7 +2946,7 @@
               "pr": "Ao marcar esta opção, as colunas serão desagrupadas na faixa selecionada."
             },
             "id": "un_column",
-            "css": "col-md-4"
+            "css": "col-md-3"
           },
           {
             "type": "checkbox",
@@ -2966,7 +2966,27 @@
               "pr": "Marcar esta caixa de seleção mesclará as células no intervalo selecionado"
             },
             "id": "mergeCell",
-            "css": "col-md-4"
+            "css": "col-md-3"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Separar celdas",
+              "en": "Unmerge cells",
+              "pr": "Dividir células"
+            },
+            "description": {
+              "es": "Al marcar este checkbox, se separaran las celdas en el rango seleccionado",
+              "en": "Checking this checkbox will unmerge the cells in the selected range",
+              "pr": "Marcar esta caixa de seleção separam-se as células no intervalo selecionado"
+            },
+            "id": "unmergeCell",
+            "css": "col-md-3"
           },
           {
             "type": "input",
@@ -4707,6 +4727,52 @@
             "css": "col-md-6"
           },
           {
+            "type": "input",
+            "placeholder": {
+              "es": "%m/%d/%Y, %H:%M:%S",
+              "en": "%m/%d/%Y, %H:%M:%S",
+              "pr": "%m/%d/%Y, %H:%M:%S"
+            },
+            "title": {
+              "es": "Formato para datos almacenados como fecha: ",
+              "en": "Format for data stored as date: ",
+              "pr": "Formato para dados armazenados como data: "
+            },
+            "help": {
+              "es": "Opcional. El formato por defecto es: %Y-%m-%d",
+              "en": "Optional. The default format is: %Y-%m-%d",
+              "pr": "Opcional. O formato padrão é: %Y-%m-%d"
+            },
+            "description": {
+              "es": "Dar formato especifico a datos almacenados como fecha",
+              "en": "Give an specific format to data stored as date",
+              "pr": "Dê formato específico aos dados armazenados como data"
+            },
+            "remove_vars": true,
+            "id": "date_format",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Filas",
+              "en": "Rows",
+              "pr": "Linhas"
+            },
+            "help": {
+              "es": "Si se marca, devolverá lista de Filas independientes en lugar de Areas Visibles",
+              "en": "If checked, it will return list of Independent Rows instead of Visible Areas",
+              "pr": "Se marcado, retornará uma lista de Linhas Independentes em vez de Áreas Visíveis"
+            },
+            "id": "rows",
+            "css": "col-md-6"
+          },
+          {
             "type": "checkbox",
             "placeholder": {
               "es": "",
@@ -4719,9 +4785,9 @@
               "pr": "Mais dados "
             },
             "help": {
-              "es": "Si se marca, devolverá las celdas con sus rangos",
-              "en": "If check, return cell information with range",
-              "pr": "Se marcado, retornará as células com seus intervalos"
+              "es": "Si se marca, devolverá las celdas con sus rangos o las filas (Si se marca la otra casilla) con su numero",
+              "en": "If checked, it will return the cells with their ranges or the rows (if the other box is checked) with their number",
+              "pr": "Se marcada, retornará as células com seus intervalos ou as linhas (se a outra caixa estiver marcada) com seu número"
             },
             "id": "more_data",
             "css": "col-md-6"
@@ -5474,9 +5540,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A1:B100 ",
-              "en": "A1:B100 ",
-              "pr": "A1:B100 "
+              "es": "Sheet!A1:B100 ",
+              "en": "Sheet!A1:B100 ",
+              "pr": "Sheet!A1:B100 "
             },
             "title": {
               "es": "Rango de datos: ",

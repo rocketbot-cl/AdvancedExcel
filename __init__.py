@@ -70,11 +70,14 @@ def import_lib(relative_path, name, class_name=None):
     return foo
 
 
-def get_date_with_format(xl_date):
+def get_date_with_format(xl_date, format_=None):
     import xlrd #type:ignore #ignore linter warnings
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
     date_object = datetime_date.date()
-    return date_object.isoformat()
+    if format_ in [None, ""]:
+        return date_object.isoformat()
+    else:
+        return datetime_date.strftime(format_)
 
 
 def set_password(excel_file_path, pw):
@@ -132,12 +135,11 @@ if module == "Open":
         file_path = file_path.replace("/", os.sep)
 
         try:
-            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
-                                        CorruptLoad=2)
+            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
         except:
             PrintException()
-            wb = app.books.open(file_path, UpdateLinks=False)
+            wb = app.books.open(file_path, update_links = False, ignore_read_only_recommended = True)
             SetVar(var_, False)
         excel.actual_id = excel.id_default
 
@@ -704,7 +706,11 @@ if module == "csvToxlsx":
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
     encoding = GetParams("encoding") or "latin-1"
-
+    
+    import string
+    global printable
+    printable = set(string.printable)
+    
     try:
         if not csv_path or not xlsx_path:
             raise Exception("Falta una ruta")
@@ -725,7 +731,12 @@ if module == "csvToxlsx":
             csv_reader = csv.reader(fobj, delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
+                    
+                    # Eliminates non priteable characters to avoid writing errors
+                    value = ''.join(filter(lambda x: x in printable, value))
+                    
                     worksheet.cell(row_index + 1, col_index + 1).value = value
+
         workbook.save(xlsx_path)
 
     except Exception as e:
@@ -963,6 +974,7 @@ if module == "fitCells":
         columnWidth = GetParams("columnWidth")
         rowHeight = GetParams("rowHeight")
         mergeCell = GetParams("mergeCell")
+        unmergeCell = GetParams("unmergeCell")
         
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet_name} does not exist in the book")
@@ -976,6 +988,7 @@ if module == "fitCells":
         else:
             fit = eval(fit)
         if mergeCell is not None: mergeCell = eval(mergeCell)
+        if unmergeCell is not None: unmergeCell = eval(unmergeCell)
         if row_group is not None: row_group = eval(row_group)
         if col_group is not None: col_group = eval(col_group)
         if row_ungroup is not None: row_ungroup = eval(row_ungroup)
@@ -989,6 +1002,8 @@ if module == "fitCells":
         if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
         if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
         if mergeCell: sheet.range(range_cell).api.Merge(True)
+        if unmergeCell: sheet.range(range_cell).api.Unmerge()
+        
         if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
         if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
 
@@ -1086,9 +1101,9 @@ if module == "Filter":
                     criteria1 = data[0]
                     criteria2 = None
             
-            if filter_type == "7":
-                if len(data) == 0:
-                    raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
+            # if filter_type == "7":
+            #     if len(data) == 0:
+            #         raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
 
         else:
             raise Exception("Filter format must be a list.")
@@ -1106,8 +1121,8 @@ if module == "Filter":
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
         else:
-            n_start = wb.sheets[sheet].api.range(start).column
-            n_end = wb.sheets[sheet].api.range(column + str(1)).column
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
 
             filter_column = n_end - n_start + 1
             
@@ -1115,7 +1130,7 @@ if module == "Filter":
             if filter_type in ["1", "2"]:
                 r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, criteria1=data)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1145,7 +1160,10 @@ if module == "AdvancedFilter":
         
         if platform.system() == 'Windows':
             
-            filter_ = wb.sheets[sheet].api.Range(filter)
+            if filter:
+                filter_ = wb.sheets[sheet].api.Range(filter)
+            else:
+                filter_ = None 
             
             if copy_:
                 paste_ = wb.sheets[sheet].api.Range(paste)
@@ -1155,8 +1173,10 @@ if module == "AdvancedFilter":
         
         else:
             
-            filter_ = wb.sheets[sheet].api.cells[filter]
-            
+            if filter:
+                filter_ = wb.sheets[sheet].api.cells[filter]
+            else:
+                filter_ = None 
             if copy_:
                 paste_ = wb.sheets[sheet].api.cells(paste)
                 wb.sheets[sheet].api.cells(range).advancedfilter(2, criteriarange=filter_, copytorange=paste_, unique=unique_)
@@ -1348,9 +1368,9 @@ if module == "save_mac":
     if not path_file:
         path_file = xls["path"]
     if path_file.endswith(".xlsx"):
-        args = {"FileFormat": 51}
+        args = {"FileFormat": 51} #ConflictResolution:2
     if path_file.endswith(".xls"):
-        args = {"FileFormat": 56}
+        args = {"FileFormat": 56} #ConflictResolution:2
     
     try:
         if path_file == xls["path"]:
@@ -1479,10 +1499,13 @@ if module == "GetCells":
     sheet = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
+    format_ = GetParams("date_format")
+    get_rows = GetParams("rows")
     extends = GetParams("more_data")
     
     try:
         extends = eval(extends)
+        get_rows = eval(get_rows)
     except TypeError:
         pass
     
@@ -1494,28 +1517,47 @@ if module == "GetCells":
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             cell_values = []
-            for r in filtered_cells.Areas:
-                range_cell = []
-                for ro in r:
-                    cells = []
-                    if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                        for cell in ro.Cells:
-                            if isinstance(cell.Value, datetime.datetime):
-                                cells.append(get_date_with_format(cell.Value2))
-                            else:
-                                cells.append(cell.Value2)
-                            range_cell.append(cells)
-                    else:
-                        if isinstance(ro.Value, datetime.datetime):
-                            range_cell.append(get_date_with_format(ro.Value2))
+            # Range Areas
+            if not get_rows:
+                for area in filtered_cells.Areas:
+                    range_cell = []
+                    for cells in area:
+                        if isinstance(cells.Value2, datetime.datetime):
+                            range_cell.append(get_date_with_format(cells.Value2, format_))
                         else:
-                            range_cell.append(ro.Value2)
+                            range_cell.append(cells.Value2)
+                    if extends:
+                        info = {"range": area.Address.replace("$", ""), "data": range_cell}
+                        cell_values.append(info)
+                    else:
+                        cell_values.append(range_cell)
+            
+            # Rows
+            if get_rows:
+                rows = {}
+                for area in filtered_cells.Areas:
+                    range_cell = []
+                    
+                    for cells in area:
+                        fila = 'Fila' + str(cells.row)
+                        if not rows.get(fila):
+                            rows[fila] = []
+
+                        if isinstance(cells.Value, datetime.datetime):
+                            rows[fila].append(get_date_with_format(cells.Value2, format_))
+                        else:
+                            rows[fila].append(cells.Value2)    
+                
                 if extends:
-                    info = {"range": r.Address.replace("$", ""), "data": range_cell}
-                    cell_values.append(info)
+                    cell_values = rows
                 else:
-                    cell_values.append(range_cell)
-                    # cell_values = cell_values + range_cell if len(cell_values) > 0 else range_cell
+                    for k, v in rows.items():
+                        cell_values.append(v)
+            
+
+                  
+                
+                    
         else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]
@@ -1692,7 +1734,12 @@ if module == "add_chart":
     range_ = GetParams("range")
     cell = GetParams("cell")
     type_ = GetParams("type")
-
+    sheet_data = None
+    
+    if '!' in range_:
+        sheet_data = range_.split('!')[0]
+        range_ = range_.split('!')[1]
+        
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1714,15 +1761,25 @@ if module == "add_chart":
         if type_ in types_charts:
             type_ = types_charts[type_]
 
-        print(type_)
         sheet = wb.sheets[sheet_name]
+        if sheet_data:
+            sheet = wb.sheets[sheet_data]
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        cell = sheet.range(cell)
-        range_ = sheet.range(range_)
+            sheet = wb.sheets[sheet_name]
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
+            
+            
+        else:  
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        active_chart = sheet.charts.add(cell.left, cell.top)
-        active_chart.set_source_data(range_)
-        active_chart.chart_type = type_
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
