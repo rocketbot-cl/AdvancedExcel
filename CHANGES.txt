@@ -1,4 +1,15 @@
-### Updates
+### 12-Jan-2023
+- Add lock sheet command
+### 11-Jan-2023
+- Fix filter for mac and open whithout alerts compatibility for Rocket V2022
+### 16-Nov-2022
+- Can select chart Data Range from different sheet
+### 16-Dic-2022
+- Improve Get Filtered Cells, Fit Cells and CSV to XLSX
+### 18-Nov-2022
+- Get Filtered Cells parse cells with dates correctly
+### 16-Nov-2022
+- Fix compatibility with older versions of Filter command
 ### 15-Nov-2022
 - Add Advanced Filter and Remove Filter commands
 ### 07-Nov-2022

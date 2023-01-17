@@ -1,7 +1,3 @@
-
-
-
-
 # Excel Advanced Options
   
 Module with advanced options for Excel  
@@ -11,8 +7,10 @@ Module with advanced options for Excel
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
+
 ## How to use this module
 To use this module, you must have Microsoft Excel.
+
 
 ## Description of the commands
 
@@ -256,6 +254,7 @@ Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or 
 |Ungroup rows|To mark this checkbox will upgroup the rows in the selected range.||
 |Ungroup columns|To mark this checkbox will upgroup the columns in the selected range.||
 |Merge cells|Checking this checkbox will merge the cells in the selected range||
+|Unmerge cells|Checking this checkbox will unmerge the cells in the selected range||
 |Row level|To mark this checkbox will displays the specified number of row levels of an outline|2|
 |Column level|To mark this checkbox will displays the specified number of column levels of an outline|2|
 |Column width|Width to which the column will fit|20|
@@ -395,6 +394,8 @@ Allow read only cells filters
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Format for data stored as date |Give an specific format to data stored as date|%m/%d/%Y, %H:%M:%S|
+|Rows|||
 |More data |||
 
 ### Count Filtered Cells
@@ -459,7 +460,7 @@ Create a new chart in an excel sheet
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Type of Chart|Select the type of chart to be inserted in excel|Line|
 |Cell position |Cell where will be inserted the chart. The syntax must be the same as excel (A1) |A1|
-|Data range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
+|Data range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |Sheet!A1:B100 |
 
 ### Remove Password
   
@@ -525,11 +526,19 @@ Changes a link from one document to another
 
 ### Unlock sheet
   
-Unlock sheet
+Unlock sheet with password
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet to be unlocked|Sheet1|
+|Password|Password of the locked sheet|Password|
+
+### Lock sheet
+  
+Lock a sheet with password
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet to be locked|Sheet1|
-|Password|Password of the locked sheet|Password|
+|Password|Password to lock the sheet|Password|
 
 ### Convert to .txt
   

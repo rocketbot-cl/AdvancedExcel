@@ -1,7 +1,3 @@
-
-
-
-
 # Opciones avanzadas para Excel
   
 Módulo con opciones avanzadas para Excel  
@@ -11,8 +7,12 @@ Módulo con opciones avanzadas para Excel
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+
+
+
 ## Como usar este modulo
 Para usar este modulo debe tener Microsoft Excel.
+
 
 ## Descripción de los comandos
 
@@ -257,6 +257,7 @@ Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar po
 |Desagrupar filas|Al marcar este checkbox, se desagruparán las filas en el rango seleccionado||
 |Desagrupar columnas|Al marcar este checkbox, se desagruparán las columnas en el rango seleccionado||
 |Unir celdas|Al marcar este checkbox, se uniran las celdas en el rango seleccionado||
+|Separar celdas|Al marcar este checkbox, se separaran las celdas en el rango seleccionado||
 |Nivel de fila|Al marcar esta casilla se mostrará el número especificado de niveles de fila|2|
 |Rango de columna|Al marcar esta casilla se mostrará el número especificado de niveles de columna|2|
 |Ancho de columna|Ancho al que se ajustara la columna|20|
@@ -396,6 +397,8 @@ Lee solo las celdas filtradas
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+|Formato para datos almacenados como fecha |Dar formato especifico a datos almacenados como fecha|%m/%d/%Y, %H:%M:%S|
+|Filas|||
 |Datos extra|||
 
 ### Contar celdas filtradas
@@ -460,7 +463,7 @@ Agrega un nuevo gráfico sobre una hoja en excel
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Tipo de Gráfico|Seleccione el tipo de gráfico que se insertará en el excel|Line|
 |Celda donde insertar gráfico |Celda donde insertar el gráfico. La sintaxis debe ser la misma de excel (A1) |A1|
-|Rango de datos |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Rango de datos |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |Sheet!A1:B100 |
 
 ### Quitar Contraseña
   
@@ -529,8 +532,16 @@ Cambia un vínculo desde un documento a otro
 Desbloquea una hoja con contraseña
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Hoja|Nombre de la hoja que se quiere bloquear|Hoja 1|
+|Hoja|Nombre de la hoja que se quiere desbloquear|Hoja 1|
 |Contraseña|Contraseña de la hoja bloqueada|Contraseña|
+
+### Bloquear hoja
+  
+Bloquear una hoja con contraseña
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja que se quiere bloquear|Hoja 1|
+|Contraseña|Contraseña para bloquear la hoja|Contraseña|
 
 ### Convertir a .txt
   

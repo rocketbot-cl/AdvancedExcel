@@ -45,8 +45,14 @@ GetGlobals = GetGlobals #type:ignore
 # -----------------------------------
 base_path = tmp_global_obj["basepath"]
 cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
-if cur_path not in sys.path:
-    sys.path.append(cur_path)
+
+cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
+cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
+
+if sys.maxsize > 2**32:
+    sys.path.append(cur_path_x64)
+else:
+    sys.path.append(cur_path_x86)
 
 
 def import_lib(relative_path, name, class_name=None):
@@ -732,7 +738,7 @@ if module == "csvToxlsx":
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
                     
-                    # Eliminates non priteable characters to avoid writing errors
+                    # Eliminates non printeable characters to avoid writing errors
                     value = ''.join(filter(lambda x: x in printable, value))
                     
                     worksheet.cell(row_index + 1, col_index + 1).value = value
@@ -1051,6 +1057,9 @@ if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
 
+    if len(columns) == 1:
+        columns = columns + ":" + columns   
+    
     try:
         if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
@@ -1178,10 +1187,11 @@ if module == "AdvancedFilter":
             else:
                 filter_ = None 
             if copy_:
-                paste_ = wb.sheets[sheet].api.cells(paste)
-                wb.sheets[sheet].api.cells(range).advancedfilter(2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+                paste_ = wb.sheets[sheet].api.cells[paste]
+                rng = wb.sheets[sheet].api.cells[range]
+                wb.sheets[sheet].api.advanced_filter(rng, action=2, criteriarange=filter_, copytorange=paste_, unique=unique_)
             else:
-                wb.sheets[sheet].api.cells(range).advancedfilter(1, criteriarange=filter_, copytorange=None, unique=unique_)
+                wb.sheets[sheet].api.advanced_filter(rng, action=1, criteriarange=filter_, copytorange=None, unique=unique_)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1199,7 +1209,7 @@ if module == "ClearFilters":
         if platform.system() == 'Windows':
             wb.sheets[sheet].api.ShowAllData()
         else:
-            wb.sheets[sheet].api.showalldata()
+            wb.sheets[sheet].api.show_all_data()
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1958,7 +1968,12 @@ try:
    
         wb.sheets[sheet_name].api.Unprotect(password)
 
-
+    if module == "lockSheet":
+        sheet_name = GetParams("sheet")
+        password = GetParams("password")
+   
+        wb.sheets[sheet_name].api.Protect(password)
+    
     if module == "xlsxToTxt":
         file_path_txt = GetParams("path_txt")
 

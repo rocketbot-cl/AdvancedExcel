@@ -1,7 +1,3 @@
-
-
-
-
 # Excel Advanced Options
   
 Module with advanced options for Excel  
@@ -10,10 +6,14 @@ Module with advanced options for Excel
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
+
+
 ## How to use this module
 To use this module, you must have Microsoft Excel.
 
+
 ## Overview
+
 
 1. Open Without Alerts  
 Open a file preventing MS Excel alerts.
@@ -175,32 +175,46 @@ Copy format range cell to another sheet
 Changes a link from one document to another
 
 54. Unlock sheet  
-Unlock sheet
+Unlock sheet with password
 
-55. Convert to .txt  
+55. Lock sheet  
+Lock a sheet with password
+
+56. Convert to .txt  
 Convert to .txt
 
-56. Text to columns  
+57. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-57. Convert Excel time to hours  
+58. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-58. Print sheet  
+59. Print sheet  
 Prints a sheet
 
-59. Save Excel with password  
+60. Save Excel with password  
 Save a Excel file
 
-60. Save Excel  
+61. Save Excel  
 Save a Excel file in the indicated path
 
-61. Close XLSX  
+62. Close XLSX  
 Close the workbook opened by Rocketbot  
 
+### Changes
 
-
-### Updates
+### 12-Jan-2023
+- Add lock sheet command
+### 11-Jan-2023
+- Fix filter for mac and open whithout alerts compatibility for Rocket V2022
+### 16-Nov-2022
+- Can select chart Data Range from different sheet
+### 16-Dic-2022
+- Improve Get Filtered Cells, Fit Cells and CSV to XLSX
+### 18-Nov-2022
+- Get Filtered Cells parse cells with dates correctly
+### 16-Nov-2022
+- Fix compatibility with older versions of Filter command
 ### 15-Nov-2022
 - Add Advanced Filter and Remove Filter commands
 ### 07-Nov-2022
@@ -283,7 +297,6 @@ Close the workbook opened by Rocketbot
 - Remove duplicates: Rocketbot can now remove duplicate data on range Excel
 #### 5-Jun-2020
 - Focus Excel: Rocketbot can now set Excel to the foreground window
-
 
 ----
 ### OS
