@@ -1,3 +1,17 @@
+### Updates
+### 15-Nov-2022
+- Add Advanced Filter and Remove Filter commands
+### 07-Nov-2022
+- Add the possibilitie to save in .xls format
+### 02-Nov-2022
+- Add Filter, Auto Filter, Read and Write filtered cells for mac
+- Add new xslx_to_csv command using xlwings, openpyxl one deprecated
+#### 24-Oct-2022
+- Add new features Filter command and update Text2Column to rely only on xlwings
+#### 19-Oct-2022
+- Add Filter, AutoFilter, GetCells and CountCells for MacOS
+#### 28-Sep-2022
+- Fix Remove Duplicates
 #### 09-Aug-2022
 - Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
 #### 22-Jul-2022

@@ -12,7 +12,10 @@ Module with advanced options for Excel
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-## Descripción de los comandos
+## How to use this module
+To use this module, you must have Microsoft Excel.
+
+## Description of the commands
 
 ### Open Without Alerts
   
@@ -53,14 +56,16 @@ Counts all the rows or from a range.
 
 ### Cell color
   
-Change color of a cell or range of cells. Can be a default color or custom 
+Change color of a cell or range of cells. Can be a default color or custom
 |Parameters|Description|example|
 | --- | --- | --- |
 |Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
+|Sheet |Workbook sheet|Sheet1|
+|Entire sheet|If this box is checked, the color will be applied to the entire sheet.||
 |RGB color cell |RGB values of the color that will be the cell or cells|250,250,250|
 |Select color |Select the color. You can use the previous input to customize the color|red|
 
-### Get Cell Colors
+### Get Cell Color
   
 Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 |Parameters|Description|example|
@@ -123,8 +128,8 @@ Copy range cell to another sheet
 |Range to paste|Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Paste Option|Select paste type for the cell or cells range.|Option|
 |Paste Operation|Select paste operation for the cell or cells range.|Operation|
-|Skip Blanks||Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.|
-|Transpose||Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.|
+|Skip Blanks|Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.||
+|Transpose|Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.||
 
 ### Format Cell
   
@@ -196,6 +201,16 @@ Convert a csv document to xlsx
 |Encoding|Type the encoding type of the file. Default is latin-1|utf-8|
 |XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
 
+### (Deprecated) Convert XLSX to CSV
+  
+Convert a xlsx document to csv
+|Parameters|Description|example|
+| --- | --- | --- |
+|XLSX file path|Path of the xlsx file to be converted|C:/Users/User/Desktop/file.xlsx|
+|Delimiter|Delimiter of the csv file|,|
+|Sheet name|Name of the sheet where the data are located|Sheet0|
+|CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
+
 ### Convert XLSX to CSV
   
 Convert a xlsx document to csv
@@ -261,7 +276,7 @@ Add auto filter to excel table
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:E6 |
+|Columns |Columna or Range of columns. The syntax must be the same as excel (A o AB) |A:E |
 
 ### Filter
   
@@ -271,7 +286,27 @@ Add filter to excel table
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Table start |Column where the table to be filtered begins|A |
 |Column |Column where to add the filter|A |
-|Filter |Filter or list of filters to add. Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['filter1','filter2', 'filter3'] |
+|Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
+|Filter type |Type of filter to apply.||
+
+### Advanced filter
+  
+Apply advanced filter to a table
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Table range |Range of the table to be filtered begins|A1:G500 |
+|Criteria range  |Range with the filter criteria to apply|A1:B4 |
+|Unique records only|||
+|Copy to another place|Paste the resulting table to the target cell||
+|Target  |Cell where to paste the result table of the filter|J1 |
+
+### Clear filters
+  
+Remove filters and show all data
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
 
 ### Rename sheet
   
@@ -321,8 +356,8 @@ Execute the remove duplicates command of Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet|Name of the sheet to automate|Hoja 1|
-|cells where filter |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Column |Indicate the column where the duplicates are to be searched for|A |
+|Range|Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
+|Column |Indicate the column where the duplicates are to be searched for|A / ['A', 'B'] |
 |Do it have headers?|Check this checkbox if the excel has headers|True|
 
 ### Export to advanced PDF
@@ -553,3 +588,4 @@ Save a Excel file in the indicated path
 Close the workbook opened by Rocketbot
 |Parameters|Description|example|
 | --- | --- | --- |
+|Kill process |If this box is marked, the process will be completely closed.||

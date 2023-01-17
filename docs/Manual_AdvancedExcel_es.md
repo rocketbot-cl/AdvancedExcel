@@ -11,6 +11,9 @@ Módulo con opciones avanzadas para Excel
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+## Como usar este modulo
+Para usar este modulo debe tener Microsoft Excel.
+
 ## Descripción de los comandos
 
 ### Abrir sin alertas
@@ -56,16 +59,19 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Hoja |Hoja del libro|Hoja1|
+|Toda la hoja|Si se marca esta casilla, el color se aplicara a toda la hoja.||
 |Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
-### Obtener Color de celda
+### Obtener color de celda
   
-Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en 
+formato RGB.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Ingrese hoja |Hoja|Hoja1|
-|Ingrese celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
+|Hoja |Hoja|Hoja1|
+|Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
 |Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
 ### Insertar Formula
@@ -122,8 +128,8 @@ Copia un rango de celdas desde una hoja a otra
 |Rango donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
 |Opción de Pegado|Seleccionar tipo de pegado para la celda o rango de celdas.|Opcion|
 |Operación de Pegado|Seleccionar operación de pegado para la celda o rango de celdas.|Operación|
-|Saltar Blancos||Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.|
-|Transponer||Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.|
+|Saltar Blancos|Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.||
+|Transponer|Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.||
 
 ### Formatear Celda
   
@@ -195,6 +201,16 @@ Convierte un documento CSV a XLSX
 |Codificación|Escriba el tipo de codificación del archivo. Por defecto es latin-1|latin-1|
 |Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
 
+### (Deprecado) Convertir XLSX a CSV
+  
+Convierte un documento XLSX a CSV
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|C:/Users/User/Desktop/file.xlsx|
+|Delimitador|Separador del archivo csv|,|
+|Nombre de la hoja|Nombre de la hoja donde se encuentran los datos|Sheet0|
+|Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
+
 ### Convertir XLSX a CSV
   
 Convierte un documento XLSX a CSV
@@ -260,17 +276,37 @@ Agrega filtro automático a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
-|Rango |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:E6 |
+|Columnas |Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o AB) |A:E |
 
 ### Filtrar
   
 Filtra a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 |Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
 |Columna |Columna donde agregar el filtro|A |
-|Filtro |Filtro o lista de filtros a agregar. Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos|['filtro1','filtro2', 'filtro3']|
+|Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=10'] or ['>=10', '<=20'] or ['10','20', '30']|
+|Tipo de filtro |Tipo de filtro a aplicar.||
+
+### Filtro avanzado
+  
+Filtra a una tabla excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Rango de tabla |Rango de la tabla que se filtrará|A1:G500 |
+|Rango de criterios  |Rango con los criterios del filtro a aplicar|A1:B4 |
+|Solo registros únicos|||
+|Copiar a otro lugar|Pega la tabla resultante en la celda de destino||
+|Destino  |Celda donde pegar la tabla resultado del filtro|J1 |
+
+### Remover Filtros
+  
+Eliminar filtros y mostrar todos los datos
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 
 ### Renombrar hoja
   
@@ -320,8 +356,8 @@ Ejecuta el comando eliminar duplicados de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
-|Ingrese celdas donde filtrar|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
-|Columna |Indicar la columna donde se buscarán los duplicados|A |
+|Rango|Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Columna |Indicar la columna donde se buscarán los duplicados|A / ['A', 'B']|
 |Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
 ### Exportar a PDF avanzado
@@ -550,3 +586,4 @@ Guarda un archivo Excel en la ruta indicada
 Cierra el libro abierto por Rocketbot
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
+|Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||

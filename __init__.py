@@ -25,8 +25,6 @@ To install libraries use in the module path:
 # from xlsx2csv import Xlsx2csv
 import decimal
 import io
-from pickle import TRUE
-from numpy import ones_like
 import pandas as pd
 from xlwings.constants import InsertShiftDirection
 import xlwings as xw
@@ -51,7 +49,6 @@ if cur_path not in sys.path:
     sys.path.append(cur_path)
 
 
-
 def import_lib(relative_path, name, class_name=None):
     """
     - relative_path: library path from the module's libs folder
@@ -73,11 +70,14 @@ def import_lib(relative_path, name, class_name=None):
     return foo
 
 
-def get_date_with_format(xl_date):
+def get_date_with_format(xl_date, format_=None):
     import xlrd #type:ignore #ignore linter warnings
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
     date_object = datetime_date.date()
-    return date_object.isoformat()
+    if format_ in [None, ""]:
+        return date_object.isoformat()
+    else:
+        return datetime_date.strftime(format_)
 
 
 def set_password(excel_file_path, pw):
@@ -113,8 +113,6 @@ def set_password(excel_file_path, pw):
 
     return None
 
-
-platform_ = platform.system()
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -137,12 +135,11 @@ if module == "Open":
         file_path = file_path.replace("/", os.sep)
 
         try:
-            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True,
-                                        CorruptLoad=2)
+            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
         except:
             PrintException()
-            wb = app.books.open(file_path, UpdateLinks=False)
+            wb = app.books.open(file_path, update_links = False, ignore_read_only_recommended = True)
             SetVar(var_, False)
         excel.actual_id = excel.id_default
 
@@ -164,10 +161,14 @@ if module == "Open":
 
 if module == "CellColor":
 
+    import traceback
+    
     range_ = GetParams("range")
+    sheet_ = GetParams("sheet")
+    all_ = GetParams("all")
     color = GetParams("color")
     custom = GetParams("custom")
-
+    
     try:
         if color == "red":
             rgb = (255, 0, 0)
@@ -182,15 +183,22 @@ if module == "CellColor":
             rgb = (255, 255, 0)
         else:
             rgb = eval(custom)
+        
+        if all_ and eval(all_) == True:
+            if sheet_ == "" or sheet_ == None:
+                raise Exception('Must select a sheet.')
+            else:
+                xw.sheets[sheet_].api.Cells.Interior.Color = xw.utils.rgb_to_int(rgb)
+        else:            
+            if sheet_:
+                xw.sheets[sheet_].range(range_).color = rgb
+            elif range_:
+                xw.Range(range_).color = rgb
+            else:
+                raise Exception('Must select sheet or range.')
 
-        xw.Range(range_).color = rgb
-
-        # print("salimos")
-        # xw.Range('A1:C1').column_width = 23
-        # xw.Range('A1').row_height = 12
-        # xw.Range('A2').formula = 2+2
-        # print(xw.Range('A1'))
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -215,14 +223,16 @@ if module == "GetColor":
         PrintException()
         raise e
 
-
 if module == "InsertFormula":
     
     hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
     
-    sheet = wb.sheets(hoja)
+    if not hoja:
+        sheet = wb.sheets.active
+    else:
+        sheet = wb.sheets(hoja)
     sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
@@ -331,9 +341,6 @@ if module == "copyPaste":
     ope = GetParams("operation")
     saltar = GetParams("skip_blanks")
     trans = GetParams("transpose")
-
-    print(saltar)
-    print(trans)
     
     try:
         args = {}
@@ -355,7 +362,6 @@ if module == "copyPaste":
         if not hoja2 in [sh.name for sh in xw.sheets]:
             raise Exception(f"The name {hoja2} does not exist in the book")
         
-        print(ope)
         xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
         xw.sheets[hoja2].range(rango2).paste(**args)
     
@@ -389,8 +395,7 @@ if module == "formatCell":
                                 cell = float(cell)
                         except:
                             new_row.append(cell)    
-                    new_range.append(new_row)
-                print(new_range) 
+                    new_range.append(new_row) 
             else:
                 for cell in wb.sheets[hoja].range(rango).value:
                     try:
@@ -516,7 +521,6 @@ if module == "copy_other":
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
-        platform_ = platform.system()
 
         wb1 = wb.app.books.open(excel1)
         if hoja1 not in [sh.name for sh in wb1.sheets]:
@@ -528,7 +532,7 @@ if module == "copy_other":
         if only_values is not None:
             only_values = eval(only_values)
 
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             password = None
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=2)
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
@@ -575,11 +579,10 @@ if module == "addRow":
                 f"The name {sheet_name} does not exist in the book")
 
         sheet = wb.sheets[sheet_name]
-        platform_ = platform.system()
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in row:
                     if tipo == "down_":
                         fila = row.split(':')
@@ -655,7 +658,6 @@ if module == "addCol":
         hoja = GetParams("sheet")
         col_ = GetParams("col_")
         opcion_ = GetParams("option_")
-        platform_ = platform.system()
         
 
         if not hoja in [sh.name for sh in wb.sheets]:
@@ -663,7 +665,7 @@ if module == "addCol":
 
         if opcion_ == "add_":
 
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
 
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Insert(
@@ -681,7 +683,7 @@ if module == "addCol":
                     wb.sheets[hoja].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
-            if platform_ == 'Windows':
+            if platform.system() == 'Windows':
                 if ":" in col_:
                     wb.sheets[hoja].range(col_).api.Delete()
                 else:
@@ -704,7 +706,11 @@ if module == "csvToxlsx":
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
     encoding = GetParams("encoding") or "latin-1"
-
+    
+    import string
+    global printable
+    printable = set(string.printable)
+    
     try:
         if not csv_path or not xlsx_path:
             raise Exception("Falta una ruta")
@@ -712,8 +718,7 @@ if module == "csvToxlsx":
         import csv
         from openpyxl import Workbook, load_workbook
 
-        platform_ = platform.system()
-        if platform_ == "Windows":
+        if platform.system() == "Windows":
             import ctypes as ct
 
             csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
@@ -726,7 +731,12 @@ if module == "csvToxlsx":
             csv_reader = csv.reader(fobj, delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
+                    
+                    # Eliminates non priteable characters to avoid writing errors
+                    value = ''.join(filter(lambda x: x in printable, value))
+                    
                     worksheet.cell(row_index + 1, col_index + 1).value = value
+
         workbook.save(xlsx_path)
 
     except Exception as e:
@@ -740,7 +750,8 @@ if module == "xlsxToCsv":
     delimiter = GetParams("delimiter")
     sheet_name = GetParams("sheet_name")
     import csv
-
+    from openpyxl import Workbook, load_workbook
+    
     try:
         if delimiter == "\\t":
             delimiter = "\t"
@@ -749,7 +760,6 @@ if module == "xlsxToCsv":
 
         if not sheet_name:
             sheet_name = "Sheet0"
-
         data_xls = load_workbook(xlsx_path)[sheet_name]
         data = [[str(data).replace("\xa0", "") for data in row]
                 for row in data_xls.iter_rows(values_only=True)]
@@ -768,6 +778,44 @@ if module == "xlsxToCsv":
         PrintException()
         raise e
 
+if module == "xlsx_to_csv":
+    csv_path = GetParams("csv_path")
+    xlsx_path = GetParams("xlsx_path")
+    delimiter = GetParams("delimiter")
+    sheet_name = GetParams("sheet_name")
+
+    try:
+        import xlwings as xw
+        import csv
+
+        app = xw.App(visible=False)
+        wb = xw.Book(xlsx_path)
+        sheet = wb.sheets[sheet_name]
+        
+        # The VBA API was dicarded because it has trouble with special characters
+        # wb.sheets[sheet_name].api.Copy()
+        # xw.books.active.api.SaveAs(csv_path, 6, ConflictResolution = 2)
+        
+        sheet_ = []
+        for row in sheet.used_range.value:
+            row_ = []
+            for value in row:
+                if isinstance(value, str):
+                    value = ''.join(i for i in value if ord(i)<128)
+                row_.append(value)
+            sheet_.append(row_)
+            
+        with open(csv_path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            writer.writerows(sheet_)
+
+        wb.close()
+        app.kill()
+        
+    except Exception as e:
+        PrintException()
+        raise e
+
 if module == "countColumns":
 
     sheet = GetParams("sheet")
@@ -778,7 +826,6 @@ if module == "countColumns":
         
         # excel_path = excel.file_["default"]["path"]
         excel_path = wb.fullname
-        print(excel_path)
 
         df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
 
@@ -818,7 +865,6 @@ if module == "countRows":
         else:
             total = wb.sheets[sheet].range(
                 row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
-        # print(total)
 
         if result:
             SetVar(result, total)
@@ -928,6 +974,7 @@ if module == "fitCells":
         columnWidth = GetParams("columnWidth")
         rowHeight = GetParams("rowHeight")
         mergeCell = GetParams("mergeCell")
+        unmergeCell = GetParams("unmergeCell")
         
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet_name} does not exist in the book")
@@ -941,6 +988,7 @@ if module == "fitCells":
         else:
             fit = eval(fit)
         if mergeCell is not None: mergeCell = eval(mergeCell)
+        if unmergeCell is not None: unmergeCell = eval(unmergeCell)
         if row_group is not None: row_group = eval(row_group)
         if col_group is not None: col_group = eval(col_group)
         if row_ungroup is not None: row_ungroup = eval(row_ungroup)
@@ -954,6 +1002,8 @@ if module == "fitCells":
         if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
         if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
         if mergeCell: sheet.range(range_cell).api.Merge(True)
+        if unmergeCell: sheet.range(range_cell).api.Unmerge()
+        
         if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
         if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
 
@@ -969,9 +1019,18 @@ if module == "fitCells":
         #sheet.api.Colums("A:D").ColumnWidth = 32.71
         
 if module == "CloseExcel":
+    kill_app = GetParams("kill_app")
     
-    xw.books.active.close()
-    #xw.books.active.quit()
+    if kill_app:
+        if eval(kill_app) == True:
+            xw.books.active.app.kill()
+    else:
+        try:
+            xw.books.active.close()
+        except Exception as e:
+            print("\x1B[" + "31;40mError\x1B[" + "0m")
+            PrintException()
+            raise e
 
 if module == "getFormula":
     
@@ -993,11 +1052,13 @@ if module == "AutoFilter":
     columns = GetParams("columns")
 
     try:
-        
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        wb.sheets[sheet].select()
-        wb.sheets[sheet].api.Range(columns).AutoFilter()
+        if platform.system() == 'Windows':
+            if not sheet in [sh.name for sh in wb.sheets]:
+                raise Exception(f"The name {sheet} does not exist in the book")
+            wb.sheets[sheet].range(columns).api.AutoFilter()
+        else:
+            rng = wb.sheets[sheet].api.cells[columns]
+            r = wb.sheets[sheet].api.autofilter_range(rng)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1011,10 +1072,11 @@ if module == "Filter":
         start = GetParams("start")
         column = GetParams("column")
         data = GetParams("filter")
-        result = GetParams("var_")
+        filter_type = GetParams("filter_type")
         
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
+        
         wb.sheets[sheet].select()
         if ":" in start:
             range_ = start
@@ -1022,16 +1084,123 @@ if module == "Filter":
         else:
             start = start + str(1)
             range_ = column + str(1)
-
-        n_start = wb.sheets[sheet].range(start).column
-        n_end = wb.sheets[sheet].range(column + str(1)).column
-
-        filter_column = n_end - n_start + 1
+        
         if data.startswith("["):
             data = eval(data)
 
-        wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
+            if filter_type in ["1", "2"]:
+                if len(data) == 2:
+                    criteria1 = data[0]
+                    criteria2 = data[1]
+                elif len(data) == 0:
+                    criteria1 = None
+                    criteria2 = None
+                elif len(data) > 2:
+                    raise Exception("Filter 'xlOr' and 'xlAnd' must have one or two conditions. ['<>100'] & ['>=10', '<=20']")
+                else:
+                    criteria1 = data[0]
+                    criteria2 = None
+            
+            # if filter_type == "7":
+            #     if len(data) == 0:
+            #         raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
 
+        else:
+            raise Exception("Filter format must be a list.")
+
+        if platform.system() == 'Windows':
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
+
+            filter_column = n_end - n_start + 1
+
+            if filter_type in ["1", "2"]:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=criteria1, Criteria2=criteria2, Operator=filter_type)
+            elif filter_type == '7':
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
+            else:
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
+        else:
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
+
+            filter_column = n_end - n_start + 1
+            
+            rng = wb.sheets[sheet].api.cells[range_]
+            if filter_type in ["1", "2"]:
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
+            else:
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+    
+if module == "AdvancedFilter":
+
+    try:
+        sheet = GetParams("sheet")
+        range = GetParams("range")
+        filter = GetParams("filter")
+        unique = GetParams("unique")
+        copy = GetParams("copy")
+        paste = GetParams("paste")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if unique:
+            unique_ = eval(unique)
+        else:
+            unique_ = False
+            
+        if copy:
+            copy_ = eval(copy)
+        
+        if platform.system() == 'Windows':
+            
+            if filter:
+                filter_ = wb.sheets[sheet].api.Range(filter)
+            else:
+                filter_ = None 
+            
+            if copy_:
+                paste_ = wb.sheets[sheet].api.Range(paste)
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(2, CriteriaRange=filter_, CopyToRange=paste_, Unique=unique_)
+            else:
+                wb.sheets[sheet].api.Range(range).AdvancedFilter(1, CriteriaRange=filter_, CopyToRange=None, Unique=unique_)
+        
+        else:
+            
+            if filter:
+                filter_ = wb.sheets[sheet].api.cells[filter]
+            else:
+                filter_ = None 
+            if copy_:
+                paste_ = wb.sheets[sheet].api.cells(paste)
+                wb.sheets[sheet].api.cells(range).advancedfilter(2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+            else:
+                wb.sheets[sheet].api.cells(range).advancedfilter(1, criteriarange=filter_, copytorange=None, unique=unique_)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "ClearFilters":
+
+    try:
+        sheet = GetParams("sheet")
+        
+        if not sheet in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
+        
+        if platform.system() == 'Windows':
+            wb.sheets[sheet].api.ShowAllData()
+        else:
+            wb.sheets[sheet].api.showalldata()
+        
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1039,8 +1208,7 @@ if module == "Filter":
 
 if module == "rename_sheet":
     sheet = GetParams("sheet")
-    name = GetParams("name")
-    
+    name = GetParams("name")  
 
     try:
         
@@ -1127,7 +1295,7 @@ if module == "Paste":
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
-                if platform_ == "Windows":
+                if platform.system() == "Windows":
                     wb.sheets[sheet].api.Paste()
                 else:
                     wb.sheets[sheet].range(cells).paste()
@@ -1162,18 +1330,32 @@ if module == "remove_duplicate":
     column = GetParams("column")
     with_header = GetParams("header")
     
+    from openpyxl.utils.cell import get_column_interval
+    
     try:
         
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         sheet_selected = wb.sheets[sheet]
         sheet_selected.select()
+        # Parses into list
         column = eval(column) if column.startswith("[") else [column]
-        column_choice = []
+        
+        # Obtain the beggining and ending cells of the range 
+        cells = range_.split(":")
+        # From these cells it gets just the columns
+        list_col = [cell[0] for cell in cells]
+        # Using the columns as parameters it creates a list of the whole interval
+        col_interval = get_column_interval(list_col[0], list_col[-1])
+        
+        columns_ = []
+        # It checks the relative position of the selected columns into the interval
         for col in column:
-            column_choice.append(wb.sheets[sheet].api.Range(col + "1").column)
+            columns_.append(col_interval.index(col)+1)
+        
         sheet_selected.api.Range(range_).RemoveDuplicates(
-            Columns=column_choice, Header=int(bool(with_header)))
+            Columns=columns_, Header=int(bool(with_header)))
+    
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1186,7 +1368,9 @@ if module == "save_mac":
     if not path_file:
         path_file = xls["path"]
     if path_file.endswith(".xlsx"):
-        args = {"FileFormat": 51}
+        args = {"FileFormat": 51} #ConflictResolution:2
+    if path_file.endswith(".xls"):
+        args = {"FileFormat": 56} #ConflictResolution:2
     
     try:
         if path_file == xls["path"]:
@@ -1315,40 +1499,73 @@ if module == "GetCells":
     sheet = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
+    format_ = GetParams("date_format")
+    get_rows = GetParams("rows")
     extends = GetParams("more_data")
+    
+    try:
+        extends = eval(extends)
+        get_rows = eval(get_rows)
+    except TypeError:
+        pass
     
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
 
-        sheet_selected_api = wb.sheets[sheet].api
-        filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-        cell_values = []
-
-        for r in filtered_cells.Areas:
-            range_cell = []
-            for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
-                if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
-                    cells = []
-                    for cell in ro.Cells:
-                        if isinstance(cell.Value, datetime.datetime):
-                            cells.append(get_date_with_format(cell.Value2))
+        if platform.system() == 'Windows':
+            sheet_selected_api = wb.sheets[sheet].api
+            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            cell_values = []
+            # Range Areas
+            if not get_rows:
+                for area in filtered_cells.Areas:
+                    range_cell = []
+                    for cells in area:
+                        if isinstance(cells.Value2, datetime.datetime):
+                            range_cell.append(get_date_with_format(cells.Value2, format_))
                         else:
-                            cells.append(cell.Value2)
+                            range_cell.append(cells.Value2)
+                    if extends:
+                        info = {"range": area.Address.replace("$", ""), "data": range_cell}
+                        cell_values.append(info)
+                    else:
+                        cell_values.append(range_cell)
+            
+            # Rows
+            if get_rows:
+                rows = {}
+                for area in filtered_cells.Areas:
+                    range_cell = []
+                    
+                    for cells in area:
+                        fila = 'Fila' + str(cells.row)
+                        if not rows.get(fila):
+                            rows[fila] = []
 
-                    range_cell.append(cells)
+                        if isinstance(cells.Value, datetime.datetime):
+                            rows[fila].append(get_date_with_format(cells.Value2, format_))
+                        else:
+                            rows[fila].append(cells.Value2)    
+                
+                if extends:
+                    cell_values = rows
                 else:
-                    range_cell.append([ro.Value])
-            try:
-                extends = eval(extends)
-            except TypeError:
-                pass
-            if extends:
-                info = {"range": r.Address.replace("$", ""), "data": range_cell}
-                cell_values.append(info)
-            else:
-                cell_values = cell_values + \
-                    range_cell if len(cell_values) > 0 else range_cell
+                    for k, v in rows.items():
+                        cell_values.append(v)
+            
+
+                  
+                
+                    
+        else:
+            sh = wb.sheets[sheet]
+            sh_range = sh.api.cells[range_]
+            ra = sh.api.special_cells(sh_range, type = 12)
+            cell_values = []
+            for area in ra.areas():
+                for row in area.rows():
+                    cell_values += row.value()
 
         if result:
             SetVar(result, cell_values)
@@ -1397,13 +1614,22 @@ if module == "GetCountCells":
     try:
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
-        sheet_selected_api = wb.sheets[sheet].api
         
-        filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
-        count = 0
-        
-        for area in filtered_cells.Areas:
-            count += area.Count
+        if platform.system() == 'Windows':
+            sheet_selected_api = wb.sheets[sheet].api
+            filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            count = 0
+            for area in filtered_cells.Areas:
+                for row in area.Rows:
+                    count += 1
+        else:
+            sh = wb.sheets[sheet]
+            sh_range = sh.api.cells[range_]
+            ra = sh.api.special_cells(sh_range, type = 12)
+            count = 0
+            for area in ra.areas():
+                for row in area.rows():
+                    count += 1
 
         if result:
             SetVar(result, count)
@@ -1459,6 +1685,9 @@ if module == "refreshAll":
         raise e
 
 if module == "find":
+    # We tried to used the find funtion of the api at its full, but no feature worked
+    # Find(What=text, LookAt = 1, LookIn = -4123, SearchDirection = 1, MatchCase = True)
+      
     sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
@@ -1473,8 +1702,8 @@ if module == "find":
         result = result.address if result is not None else ""
         if var_:
             SetVar(var_, result)
-
     except Exception as e:
+        SetVar(var_, False)
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
@@ -1505,7 +1734,12 @@ if module == "add_chart":
     range_ = GetParams("range")
     cell = GetParams("cell")
     type_ = GetParams("type")
-
+    sheet_data = None
+    
+    if '!' in range_:
+        sheet_data = range_.split('!')[0]
+        range_ = range_.split('!')[1]
+        
     try:
         if not sheet_name in [sh.name for sh in wb.sheets]:
             raise Exception(
@@ -1527,15 +1761,25 @@ if module == "add_chart":
         if type_ in types_charts:
             type_ = types_charts[type_]
 
-        print(type_)
         sheet = wb.sheets[sheet_name]
+        if sheet_data:
+            sheet = wb.sheets[sheet_data]
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        cell = sheet.range(cell)
-        range_ = sheet.range(range_)
+            sheet = wb.sheets[sheet_name]
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
+            
+            
+        else:  
+            cell = sheet.range(cell)
+            range_ = sheet.range(range_)
 
-        active_chart = sheet.charts.add(cell.left, cell.top)
-        active_chart.set_source_data(range_)
-        active_chart.chart_type = type_
+            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart.set_source_data(range_)
+            active_chart.chart_type = type_
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1723,8 +1967,6 @@ try:
 
     if module == "text2column":
         
-        import win32com.client
-        
         sheet_name = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
@@ -1756,17 +1998,27 @@ try:
                     separator.append(str(i*int(other)))
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
-
-        xlWorkbook = win32com.client.GetObject(wb.fullname)
-        xlWorksheet = xlWorkbook.Sheets[sheet_name]
-        xlWorksheet.Range(range_).TextToColumns(
+        
+        try:
+            # Call api directly, do not work everytime, eg. If working whit a shared folder through the cloud
+            xlWorkbook = win32com.client.GetObject(wb.fullname)
+            xlWorksheet = xlWorkbook.Sheets[sheet_name]
+            xlWorksheet.Range(range_).TextToColumns(
             xlWorksheet.Range(range_),
             DataType = int(data_type),            
             TrailingMinusNumbers=True, 
             **options
-        )
+            )
+        except:
+            # Call api through xlwings
+            ws_ = wb.api.Sheets(sheet_name).Range(range_)
+            wb.api.Sheets(sheet_name).Range(range_).TextToColumns(
+                ws_,
+                DataType = int(data_type),            
+                TrailingMinusNumbers=True, 
+                **options
+            )
 
-    
     if (module == "convertDecimalTimeToHours"):
         import math
 

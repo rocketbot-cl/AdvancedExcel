@@ -13,7 +13,7 @@ __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot
 ## Como usar este módulo
 Para usar este módulo você deve ter o Microsoft Excel.
 
-## Overview
+## Overview  
 
 1. Abrir sem alertas  
 Abre um arquivo sem mostrar alertas do MS Excel.
@@ -31,7 +31,8 @@ Conta todas as linhas ou dentro de um intervalo.
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 
 6. Obter cor da célula  
-Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato 
+RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 
@@ -72,122 +73,131 @@ Adiciona o exclui uma coluna
 19. Converter CSV para XLSX  
 Converte um documento CSV para XLSX
 
-20. Converter XLSX para CSV  
+20. (Descontinuado) Converter XLSX para CSV  
 Converte um documento XLSX para CSV
 
-21. Converter XLS para XLSX  
+21. Converter XLSX para CSV  
+Converte um documento XLSX para CSV
+
+22. Converter XLS para XLSX  
 Converte um documento XLS para XLSX
 
-22. Obter celula activa  
+23. Obter celula activa  
 Obter linha e coluna de uma celula activa
 
-23. Atualizar tabela dinâmica  
+24. Atualizar tabela dinâmica  
 Atualiza uma tabela dinâmica. Descontinuado! Use o módulo PivotTableExcel
 
-24. Ajustar células  
+25. Ajustar células  
 Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/desagrupar por linhas ou colunas
 
-25. Obter Formula  
+26. Obter Formula  
 Obtém a fórmula numa célula
 
-26. Adicionar Filtro Automático  
+27. Adicionar Filtro Automático  
 Adiciona filtro automático a uma tabela excel
 
-27. Filtrar  
+28. Filtrar  
 Filtra a uma tabela excel
 
-28. Renomear planilha  
+29. Filtro avançado  
+Aplicar filtro avançado a uma tabela
+
+30. Remover filtros  
+Remova os filtros e mostre todos os dados
+
+31. Renomear planilha  
 Muda o nome de uma planilha de excel
 
-29. Formato de texto  
+32. Formato de texto  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 
-30. Estilo de Célula  
+33. Estilo de Célula  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 
-31. Colar em Células  
+34. Colar em Células  
 Colar dados em células em Excel
 
-32. Remover duplicatas  
+35. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-33.  Exportar para PDF avançado  
+36. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-34. Copiar-Mover Planilha
+37. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
-35. Inserir Formulário  
+38. Inserir Formulário  
 Insere um Formulário no Excel
 
-36. Ler células filtradas  
+39. Ler células filtradas  
 Ler somente as células filtradas
 
-37. Contar celulas filtradas  
+40. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-38. Replace  
+41. Replace  
 Run replace action to excel 
 
-39. Ordenar  
+42. Ordenar  
 Executa a ação de substituir de excel
 
-40. Atualizar Tudo  
+43. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-41. Buscar  
+44. Buscar  
 Devuelve a primeira celula encontrada
 
-42. Bloquear celulas  
+45. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-43. Adicionar Gráfico  
+46. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-44. Remover Senha  
+47. Remover Senha  
 Remove a senha e salva o Excel
 
-45. Inserir imagem  
+48. Inserir imagem  
 Inserir uma imagem
 
-46. Exportar gráfico  
+49. Exportar gráfico  
 Exporta um gráfico por índice
 
-47. Modo não visível  
+50. Modo não visível  
 Abre excel em modo não visível
 
-48. Escrever array de objetos  
+51. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-49. Copiar-Colar Formato  
+52. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-50. Atualizar vínculos  
+53. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-51. Desbloquear planilha  
+54. Desbloquear planilha  
 Desbloquea uma planilha com senha
 
-52. Converter para .txt  
+55. Converter para .txt  
 Converte para .txt
 
-53. Texto em coluna  
+56. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-54. Converter tempo de Excel para horas  
+57. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-55. Imprimir planilha  
+58. Imprimir planilha  
 Imprime uma planilha
 
-56. Salvar Excel com senha  
+59. Salvar Excel com senha  
 Salva um arquivo Excel
 
-57. Salvar Excel  
+60. Salvar Excel  
 Salva um arquivo Excel na ruta indicada
 
-58. Fechar XLSX  
-Fecha o arquivo aberto por Rocketbot  
+61. Fechar XLSX  
+Fecha o arquivo aberto por Rocketbot   
 
 ----
 ### OS
