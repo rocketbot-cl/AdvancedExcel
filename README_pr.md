@@ -1,7 +1,3 @@
-
-
-
-
 # Opções avançadas para Excel
   
 Módulo com opções avançadas para Excel  
@@ -10,10 +6,14 @@ Módulo com opções avançadas para Excel
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
 
+
+
 ## Como usar este módulo
 Para usar este módulo você deve ter o Microsoft Excel.
 
-## Overview  
+
+## Overview
+
 
 1. Abrir sem alertas  
 Abre um arquivo sem mostrar alertas do MS Excel.
@@ -176,28 +176,127 @@ Copia formato de um intervalo de células de uma planilha para outra
 Muda um vínculo de um documento para outro
 
 54. Desbloquear planilha  
-Desbloquea uma planilha com senha
+Desbloquea uma folha com senha
 
-55. Converter para .txt  
+55. Bloquear folha  
+Bloquear uma folha com senha
+
+56. Converter para .txt  
 Converte para .txt
 
-56. Texto em coluna  
+57. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-57. Converter tempo de Excel para horas  
+58. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-58. Imprimir planilha  
+59. Imprimir planilha  
 Imprime uma planilha
 
-59. Salvar Excel com senha  
+60. Salvar Excel com senha  
 Salva um arquivo Excel
 
-60. Salvar Excel  
+61. Salvar Excel  
 Salva um arquivo Excel na ruta indicada
 
-61. Fechar XLSX  
-Fecha o arquivo aberto por Rocketbot   
+62. Fechar XLSX  
+Fecha o arquivo aberto por Rocketbot  
+
+### Changes
+### 12-Jan-2023
+- Add lock sheet command
+### 11-Jan-2023
+- Fix filter for mac and open whithout alerts compatibility for Rocket V2022
+### 16-Nov-2022
+- Can select chart Data Range from different sheet
+### 16-Dic-2022
+- Improve Get Filtered Cells, Fit Cells and CSV to XLSX
+### 18-Nov-2022
+- Get Filtered Cells parse cells with dates correctly
+### 16-Nov-2022
+- Fix compatibility with older versions of Filter command
+### 15-Nov-2022
+- Add Advanced Filter and Remove Filter commands
+### 07-Nov-2022
+- Add the possibilitie to save in .xls format
+### 02-Nov-2022
+- Add Filter, Auto Filter, Read and Write filtered cells for mac
+- Add new xslx_to_csv command using xlwings, openpyxl one deprecated
+#### 24-Oct-2022
+- Add new features Filter command and update Text2Column to rely only on xlwings
+#### 19-Oct-2022
+- Add Filter, AutoFilter, GetCells and CountCells for MacOS
+#### 28-Sep-2022
+- Fix Remove Duplicates
+#### 09-Aug-2022
+- Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
+#### 22-Jul-2022
+- Fix Copy to another excel and Copy-Paste Format
+#### 13-Jun-2022
+- Format text: Added command to change text alignment
+#### 12-May-2022
+- Copy to another excel: fixed command to copy from one excel to another
+#### 18-Apr-2022
+- Text to Column: command fixed to separate text in columns
+#### 06-Apr-2022
+- Fit Cells: Added merge cells, adjust rows, adjust columns functions
+#### 28-Dec-2021
+- Count Rows: command fixed to count all rows.
+#### 9-Nov-2021
+- Order command: Apply multiple orders and clean filters.
+#### 13-Oct-2021
+- Fix count cells filtered
+#### 30-Sep-2021
+- Paste command: Update compatibilities
+#### 28-Sep-2021
+- Fix get filtered cells command. Now returns extended data
+#### 06-Jul-2021
+- Fix language
+#### 01-Jul-2021
+- Read Filtered Cells: The command was fixed because it didn't getting all cell range
+#### 27-Apr-2021
+- Texto to column: Parses a column of cells that contain text into several columns.
+#### 18-Mar-2021
+- Unlock sheet: Convert XLSX to TXT.
+#### 09-Mar-2021
+- Unlock sheet: Unlock a sheet by password.
+#### 09-Mar-2021
+- Update links: Changes a link from one document to another
+#### 17-Feb-2021
+- Find and Connect: Find opened Excel file and connect it
+#### 1-Feb-2021
+- Add command Copy-Paste Format. You can copy format cell to another.
+#### 25-Jan-2021
+- Write array objects: Writes information obtained from an array of objects to excel cells
+#### 21-Jan-2021
+- Not visible mode: Open background Excel
+#### 1-Dec-2020
+- Export chart: Export a chart from index.
+#### 24-Nov-2020
+- Insert image in a cell.
+#### 24-Sep-2020
+- Open without alerts: Add field 'Password'
+#### 16-Sep-2020
+- Add chart: Create a new chart on excel sheet 
+#### 15-Sep-2020
+- Lock Cells: Lock or unlock cells 
+#### 2-Sep-2020
+- Find: Replicate Excel Find command 
+#### 31-Jul-2020
+- Order: Replicate Excel Order command 
+#### 15-Jul-2020
+- Read Filtered Cells: Read cell after execute Filter command
+- Replace: Replicate Excel Replace command 
+#### 2-Jul-2020
+- Insert Form: Rocketbot can insert VBA Form to Excel
+#### 30-Jun-2020
+- Csv to xlsx: Checkbox header was added to decide if the csv has a header
+- Export to Advanced PDF: Rocketbot export to PDF command enhancement
+- Copy-Move Sheet: Replicate move/copy sheet command of Excel
+#### 17-Jun-2020
+- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
+#### 5-Jun-2020
+- Focus Excel: Rocketbot can now set Excel to the foreground window
 
 ----
 ### OS

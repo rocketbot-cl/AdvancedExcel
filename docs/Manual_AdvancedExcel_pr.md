@@ -1,7 +1,3 @@
-
-
-
-
 # Opções avançadas para Excel
   
 Módulo com opções avançadas para Excel  
@@ -11,8 +7,12 @@ Módulo com opções avançadas para Excel
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
 
+
+
+
 ## Como usar este módulo
 Para usar este módulo você deve ter o Microsoft Excel.
+
 
 ## Descrição do comando
 
@@ -257,6 +257,7 @@ Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/des
 |Desagrupar linhas|Ao marcar esta opção, as linhas serão desagrupadas na faixa selecionada.||
 |Desagrupar colunas|Ao marcar esta opção, as colunas serão desagrupadas na faixa selecionada.||
 |Mesclar células|Marcar esta caixa de seleção mesclará as células no intervalo selecionado||
+|Dividir células|Marcar esta caixa de seleção separam-se as células no intervalo selecionado||
 |Nível de linha|Ao marcar esta caixa, será exibido o número especificado de níveis de linha.|2|
 |Faixa de coluna|Ao marcar esta caixa, será exibido o número especificado de níveis de coluna.|2|
 |Largura da coluna|Largura na qual a coluna se ajustará|20|
@@ -396,6 +397,8 @@ Ler somente as células filtradas
 |Planilha |Nome da planilha onde os dados estão localizados|Sheet1|
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
+|Formato para dados armazenados como data |Dê formato específico aos dados armazenados como data|%m/%d/%Y, %H:%M:%S|
+|Linhas|||
 |Mais dados |||
 
 ### Contar celulas filtradas
@@ -460,7 +463,7 @@ Adiciona um novo gráfico sobre uma planilha de excel
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
 |Tipo de Gráfico|Selecione o tipo de gráfico a ser inserido no Excel|Linha|
 |Célula onde inserir gráfico |Célula onda vai ser inserido o gráfico. A sintaxe deve ser a mesma do excel (A1) |A1|
-|Intervalo de dados |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
+|Intervalo de dados |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |Sheet!A1:B100 |
 
 ### Remover Senha
   
@@ -526,11 +529,19 @@ Muda um vínculo de um documento para outro
 
 ### Desbloquear planilha
   
-Desbloquea uma planilha com senha
+Desbloquea uma folha com senha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|Planilha|Nome da planilha a ser bloqueada|Planilha 1|
+|Planilha|Nome da folha que você deseja desbloquear|Planilha 1|
 |Senha|Senha da planilha bloqueada|Senha|
+
+### Bloquear folha
+  
+Bloquear uma folha com senha
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha|Nome da folha que você deseja bloquear|Planilha 1|
+|Senha|Senha para bloquear a planilha|Senha|
 
 ### Converter para .txt
   
