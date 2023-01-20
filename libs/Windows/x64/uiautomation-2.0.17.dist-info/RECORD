@@ -1,0 +1,17 @@
+../../bin/__pycache__/automation.cpython-310.pyc,,
+../../bin/automation.py,sha256=ZiNrSn6H5f4wYW4J2CHcjNqMLXEkF1NUErE4yYm-VNI,4836
+uiautomation-2.0.17.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+uiautomation-2.0.17.dist-info/LICENSE,sha256=fDYXKwn6sXZyAjK-hThMsdXMZO5A3Q9Q0zW6BKo9cfs,11537
+uiautomation-2.0.17.dist-info/METADATA,sha256=FJiN36qcR8gn2_OqkgwOQZvYOyu8sbn_wMWJ_atoIvA,698
+uiautomation-2.0.17.dist-info/RECORD,,
+uiautomation-2.0.17.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+uiautomation-2.0.17.dist-info/WHEEL,sha256=z9j0xAa_JmUKMpmz72K0ZGALSM_n-wQVmGbleXx2VHg,110
+uiautomation-2.0.17.dist-info/top_level.txt,sha256=XAA4nCZEKrHlEduVpO-0h_Zbp45jT9A0-T-392SBn24,13
+uiautomation/__init__.py,sha256=CGK0nDGraSGVTlMmV34QSpoIyq9U16vxS0lXeGLwoaM,101
+uiautomation/__pycache__/__init__.cpython-310.pyc,,
+uiautomation/__pycache__/uiautomation.cpython-310.pyc,,
+uiautomation/__pycache__/version.cpython-310.pyc,,
+uiautomation/bin/UIAutomationClient_VC140_X64.dll,sha256=7nt9QbL94ADQK7BM3EBXcvn8dagXzEZ7mI0ydAv6Dzk,101888
+uiautomation/bin/UIAutomationClient_VC140_X86.dll,sha256=qunExbVLetZVHeLk2_B0AnO2BgZ5s2RVBMOXkpOUcno,84480
+uiautomation/uiautomation.py,sha256=FvEtwJzbbck0-Gg2VYqKlh-_Rgvg9yIdhspO6wFefsk,386866
+uiautomation/version.py,sha256=GE49xEGBrfMEP6RfjJoexmkjh-AymQPgH4quV2iLzgg,19
