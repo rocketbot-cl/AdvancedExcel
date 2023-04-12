@@ -1,11 +1,21 @@
+
+
+
+
 # Excel Advanced Options
   
-Module with advanced options for Excel  
+Module with advanced options to work with files with Microsoft Excel  
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip 
+it in the modules folder. The folder name must be the same as the module and inside it must have the following files and
+ folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to 
+be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the 
+**Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## How to use this module
@@ -19,7 +29,7 @@ To use this module, you must have Microsoft Excel.
 Open a file preventing MS Excel alerts.
 |Parameters|Description|example|
 | --- | --- | --- |
-|Patho to XLSX file |Path of the xlsx file to be opened|file.XLSX|
+|Path to XLSX file |Path of the xlsx file to be opened|file.XLSX|
 |Password (optional) |Password of the xlsx file|P@ssW0rd|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|id|
 |Assign result to variable |Variable where the result will be stored|id|
@@ -338,6 +348,8 @@ This command modifies the formatting of the selected cell or range of cells. You
 |Italic|Mark this checkbox to change the font to italic|True|
 |Underline|Mark this checkbox to change the font to underline|True|
 |Adjust Text||True|
+|Horizontal Alignment|Type of horizontal alignment of the cell that you want to format|Alignment|
+|Vertical Alignment|Type of vertical alignment of the cell that you want to format|Alignment|
 
 ### Paste in Cells
   
@@ -433,13 +445,25 @@ Refresh all data in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 
-### Find
+### (Deprecated) Find
   
 Return de first found cell 
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
+|Text to find|Text to be searched in the excel|Lorem|
+|Assign result to variable |Name of the variable where the result will be stored|Variable|
+
+### Find data
+  
+Returns the first cell that matches the search data
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1)|A1:B100 |
+|Letter of column with dates (Optional)|Letter of the column/s that contain dates.|A,B|
+|Date Format (Optional)|Date format to search for.|%d/%m/%Y|
 |Text to find|Text to be searched in the excel|Lorem|
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
@@ -513,7 +537,7 @@ Copy format range cell to another sheet
 | --- | --- | --- |
 |Origin Sheet|Name of the source sheet|Sheet1|
 |Range to copy||A1:C4|
-|Destiny Sheet|Name of the destinity sheet|Sheet2|
+|Destiny Sheet|Name of the destiny sheet|Sheet2|
 |Range to paste||A1:C4|
 
 ### Update links
@@ -545,7 +569,7 @@ Lock a sheet with password
 Convert to .txt
 |Parameters|Description|example|
 | --- | --- | --- |
-|Patho to XLSX file |Path of the xlsx file to be converted|file.XLSX|
+|Path to XLSX file |Path of the xlsx file to be converted|file.XLSX|
 |Save TXT|Path where to save the .txt file|/Users/user/Desktop/test.txt|
 
 ### Text to columns
