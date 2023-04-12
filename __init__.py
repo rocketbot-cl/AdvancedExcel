@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "34.15.4"
+__version__ = "34.16.4"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -2058,8 +2058,11 @@ try:
     if module == "lockSheet":
         sheet_name = GetParams("sheet")
         password = GetParams("password")
-   
-        wb.sheets[sheet_name].api.Protect(password)
+
+        if not password or password == "":
+            wb.sheets[sheet_name].api.Protect()
+        else:
+            wb.sheets[sheet_name].api.Protect(password)
     
     if module == "xlsxToTxt":
         file_path_txt = GetParams("path_txt")
