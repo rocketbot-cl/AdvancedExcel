@@ -10,12 +10,8 @@ Module with advanced options to work with files with Microsoft Excel
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
-1. Manual: __Download__ the .zip file and unzip 
-it in the modules folder. The folder name must be the same as the module and inside it must have the following files and
- folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to 
-be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the 
-**Addons** section, select **Install Mods**, search for the desired module and press install.  
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## How to use this module
@@ -465,6 +461,7 @@ Returns the first cell that matches the search data
 |Letter of column with dates (Optional)|Letter of the column/s that contain dates.|A,B|
 |Date Format (Optional)|Date format to search for.|%d/%m/%Y|
 |Text to find|Text to be searched in the excel|Lorem|
+|Not case sensitive|If this box is checked, it will search for the text string without differences between upper and lower letters.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Lock Cells

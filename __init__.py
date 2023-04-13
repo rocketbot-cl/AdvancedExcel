@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "34.16.4"
+__version__ = "34.17.5"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -32,6 +32,7 @@ import platform
 import os
 import sys
 import subprocess
+from datetime import datetime
 
 # This lines is to linter
 # -----------------------------------
@@ -1740,7 +1741,8 @@ if module == 'find_pandas':
     date_format = GetParams("format")
     text = GetParams("text")
     var_ = GetParams("var_")
-
+    not_case = GetParams("not_case")
+    
     import re
     import traceback
     import numpy as np
@@ -1775,20 +1777,35 @@ if module == 'find_pandas':
 
         df = pd.read_excel(excel_path, sheet_name=sheet_name, skiprows=skip, nrows=rows,  usecols=cols, header=None, parse_dates=columns_)
         
+        if not_case and eval(not_case) == True:
+            # If "Not case sensitive" option is selected, it sets every cell content that is string into lowercase together with the text to search.
+            text = text.lower()
+            for col in df.columns:
+                for i in range(len(df[col])):
+                    try:
+                        df.iloc[i, col] = df.iloc[i, col].lower()
+                    except:
+                        continue
+        
+        # Leave this options to parse data into number types in case is needed later        
+        # df.astype({0: "float", 1: str}, errors='ignore')
+        # pd.to_numeric(df[1], errors='ignore')
+        
+        if columns_ != None and date_format != "":
+            for col in columns_:
+                try:
+                    df[col].dt.strftime(date_format)    
+                except Exception as e:
+                    # print(e)
+                    for i in range(len(df[col])):
+                        try:
+                            df.iloc[i, col] = parse(df.iloc[i, col]).strftime(date_format)
+                        except:
+                            continue            
         try:
-            df[col].dt.strftime(date_format)    
-        except:
-            print('a')
-            # if columns_ != None and date_format != "":
-            #     for col in columns_:
-            #         for i in range(len(df[col])):
-            #             try:
-            #                 df.iloc[i, col] = parse(df.iloc[i, col]).strftime(date_format)
-            #             except:
-            #                 continue
-                
-        print(df)
-        row, col = np.where(df == text)
+            row, col = np.where(df == pd.to_numeric(text))
+        except:   
+            row, col = np.where(df == text)
         
         if len(col) > 0:
             row = (skip if skip != None else 0) + row[0] + 1 # If the range doesn't start at the beginning it add to the row number of de DF the skiped rows, in none are skipped, skip turns into 0.  

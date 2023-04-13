@@ -10,15 +10,8 @@ Módulo con opciones avanzadas para trabajar con archivos en Microsoft Excel
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
-1. Manual: __Descargar__ el archivo .zip y 
-descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los 
-siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, 
-refresca el navegador para poder utilizar el nuevo modulo.
-2. Automática: Al ingresar a Rocketbot Studio sobre el margen
- derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar 
-install.  
-
-
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
 ## Como usar este modulo
@@ -469,6 +462,7 @@ Devuelve la primera celda que coincida con el dato buscado
 |Letra de columna con fechas (Opcional)|Letra de la columna/as que contienen fechas.|A,B|
 |Formato de Fecha (Opcional)|Formato de la fecha a buscar.|%d/%m/%Y|
 |Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Bloquear celdas

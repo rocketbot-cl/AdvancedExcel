@@ -10,14 +10,8 @@ Módulo com opções avançadas para trabalhar com arquivos no Microsoft Excel
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
-1. Manual: __Baixe__ o arquivo .zip e 
-descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos
- e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador 
-para poder usar o novo módulo.
-2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção 
-**Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
-
-
+1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
+2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
 
 ## Como usar este módulo
@@ -468,6 +462,7 @@ Retorna a primeira célula que corresponde aos dados da pesquisa
 |Letra de coluna com datas (Opcional)|Letra da(s) coluna(s) que contém as datas.|A,B|
 |Formato de data (Opcional)|Formato de data a ser pesquisado.|%d/%m/%Y|
 |Texto a buscar|Texto a ser procurado no excel|Lorem|
+|Não diferencia maiúsculas de minúsculas|Se esta caixa estiver marcada, ela procurará a sequência de texto sem diferenças entre letras maiúsculas e minúsculas.|Lorem|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Bloquear celulas
