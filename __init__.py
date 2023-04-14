@@ -885,18 +885,26 @@ if module == "xlsToxlsx":
     xlsx_path = GetParams('xlsx_path')
 
     try:
-        p = import_lib("pyexcel/__init__.py", "pyexcel") # import pyexcel as p
+        
+        if sys.maxsize > 2**32:
+            p = import_lib(f"Windows{os.sep}x64{os.sep}pyexcel{os.sep}__init__.py", "pyexcel") # import pyexcel as p
+        if sys.maxsize > 32:
+            p = import_lib(f"Windows{os.sep}x86{os.sep}pyexcel{os.sep}__init__.py", "pyexcel") # import pyexcel as p
+        
         try:
             
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
         except:
+            if sys.maxsize > 2**32:
+                Workbook = import_lib(f"Windows{os.sep}x64{os.sep}xlwt{os.sep}__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
+            if sys.maxsize > 32:
+                Workbook = import_lib(f"Windows{os.sep}x86{os.sep}xlwt{os.sep}__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             
-            Workbook = import_lib("xlwt/__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             filename = xls_path
             # Opening the file using 'utf-16' encoding
             file1 = io.open(filename, "r", encoding="utf-16")
-            print(dir(file1), file1.read())
+                
             data = file1.readlines()
 
             # Creating a workbook object
