@@ -1,11 +1,16 @@
+
+
+
+
 # Excel Advanced Options
   
-Module with advanced options for Excel  
+Module with advanced options to work with files with Microsoft Excel  
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## How to use this module
@@ -144,159 +149,66 @@ Run replace action to excel
 43. Refresh All  
 Refresh all data in Excel
 
-44. Find  
+44. (Deprecated) Find  
 Return de first found cell 
 
-45. Lock Cells  
+45. Find data  
+Returns the first cell that matches the search data
+
+46. Lock Cells  
 Lock or Unlock cells
 
-46. Add Chart  
+47. Add Chart  
 Create a new chart in an excel sheet
 
-47. Remove Password  
+48. Remove Password  
 Remove password and save the Excel
 
-48. Insert image  
+49. Insert image  
 Insert an image
 
-49. Export Chart  
+50. Export Chart  
 Export a chart from index
 
-50. Not visible mode  
+51. Not visible mode  
 Open not visible excel.
 
-51. Write array objects  
+52. Write array objects  
 Write array object on Excel cells.
 
-52. Copy-Paste Format  
+53. Copy-Paste Format  
 Copy format range cell to another sheet
 
-53. Update links  
+54. Update links  
 Changes a link from one document to another
 
-54. Unlock sheet  
+55. Unlock sheet  
 Unlock sheet with password
 
-55. Lock sheet  
+56. Lock sheet  
 Lock a sheet with password
 
-56. Convert to .txt  
+57. Convert to .txt  
 Convert to .txt
 
-57. Text to columns  
+58. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-58. Convert Excel time to hours  
+59. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-59. Print sheet  
+60. Print sheet  
 Prints a sheet
 
-60. Save Excel with password  
+61. Save Excel with password  
 Save a Excel file
 
-61. Save Excel  
+62. Save Excel  
 Save a Excel file in the indicated path
 
-62. Close XLSX  
+63. Close XLSX  
 Close the workbook opened by Rocketbot  
 
-### Changes
-
-### 12-Jan-2023
-- Add lock sheet command
-### 11-Jan-2023
-- Fix filter for mac and open whithout alerts compatibility for Rocket V2022
-### 16-Nov-2022
-- Can select chart Data Range from different sheet
-### 16-Dic-2022
-- Improve Get Filtered Cells, Fit Cells and CSV to XLSX
-### 18-Nov-2022
-- Get Filtered Cells parse cells with dates correctly
-### 16-Nov-2022
-- Fix compatibility with older versions of Filter command
-### 15-Nov-2022
-- Add Advanced Filter and Remove Filter commands
-### 07-Nov-2022
-- Add the possibilitie to save in .xls format
-### 02-Nov-2022
-- Add Filter, Auto Filter, Read and Write filtered cells for mac
-- Add new xslx_to_csv command using xlwings, openpyxl one deprecated
-#### 24-Oct-2022
-- Add new features Filter command and update Text2Column to rely only on xlwings
-#### 19-Oct-2022
-- Add Filter, AutoFilter, GetCells and CountCells for MacOS
-#### 28-Sep-2022
-- Fix Remove Duplicates
-#### 09-Aug-2022
-- Add "Special Paste" options to Copy-Paste and add Get Cell Colors command
-#### 22-Jul-2022
-- Fix Copy to another excel and Copy-Paste Format
-#### 13-Jun-2022
-- Format text: Added command to change text alignment
-#### 12-May-2022
-- Copy to another excel: fixed command to copy from one excel to another
-#### 18-Apr-2022
-- Text to Column: command fixed to separate text in columns
-#### 06-Apr-2022
-- Fit Cells: Added merge cells, adjust rows, adjust columns functions
-#### 28-Dec-2021
-- Count Rows: command fixed to count all rows.
-#### 9-Nov-2021
-- Order command: Apply multiple orders and clean filters.
-#### 13-Oct-2021
-- Fix count cells filtered
-#### 30-Sep-2021
-- Paste command: Update compatibilities
-#### 28-Sep-2021
-- Fix get filtered cells command. Now returns extended data
-#### 06-Jul-2021
-- Fix language
-#### 01-Jul-2021
-- Read Filtered Cells: The command was fixed because it didn't getting all cell range
-#### 27-Apr-2021
-- Texto to column: Parses a column of cells that contain text into several columns.
-#### 18-Mar-2021
-- Unlock sheet: Convert XLSX to TXT.
-#### 09-Mar-2021
-- Unlock sheet: Unlock a sheet by password.
-#### 09-Mar-2021
-- Update links: Changes a link from one document to another
-#### 17-Feb-2021
-- Find and Connect: Find opened Excel file and connect it
-#### 1-Feb-2021
-- Add command Copy-Paste Format. You can copy format cell to another.
-#### 25-Jan-2021
-- Write array objects: Writes information obtained from an array of objects to excel cells
-#### 21-Jan-2021
-- Not visible mode: Open background Excel
-#### 1-Dec-2020
-- Export chart: Export a chart from index.
-#### 24-Nov-2020
-- Insert image in a cell.
-#### 24-Sep-2020
-- Open without alerts: Add field 'Password'
-#### 16-Sep-2020
-- Add chart: Create a new chart on excel sheet 
-#### 15-Sep-2020
-- Lock Cells: Lock or unlock cells 
-#### 2-Sep-2020
-- Find: Replicate Excel Find command 
-#### 31-Jul-2020
-- Order: Replicate Excel Order command 
-#### 15-Jul-2020
-- Read Filtered Cells: Read cell after execute Filter command
-- Replace: Replicate Excel Replace command 
-#### 2-Jul-2020
-- Insert Form: Rocketbot can insert VBA Form to Excel
-#### 30-Jun-2020
-- Csv to xlsx: Checkbox header was added to decide if the csv has a header
-- Export to Advanced PDF: Rocketbot export to PDF command enhancement
-- Copy-Move Sheet: Replicate move/copy sheet command of Excel
-#### 17-Jun-2020
-- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
-#### 5-Jun-2020
-- Focus Excel: Rocketbot can now set Excel to the foreground window
 
 ----
 ### OS

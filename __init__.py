@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "33.13.3"
+__version__ = "34.17.5"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -49,11 +49,10 @@ cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
 cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
 
-if sys.maxsize > 2**32:
-    sys.path.append(cur_path_x64)
-else:
-    sys.path.append(cur_path_x86)
-
+if sys.maxsize > 2**32 and cur_path_x64 not in sys.path:
+        sys.path.append(cur_path_x64)
+if sys.maxsize > 32 and cur_path_x86 not in sys.path:
+        sys.path.append(cur_path_x86)
 
 def import_lib(relative_path, name, class_name=None):
     """
@@ -390,7 +389,7 @@ if module == "formatCell":
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
-        if texttoval == True:
+        if texttoval and eval(texttoval) == True:
             new_range = []
             if isinstance(wb.sheets[hoja].range(rango).value[0], list):
                 for row in wb.sheets[hoja].range(rango).value:
@@ -405,11 +404,12 @@ if module == "formatCell":
             else:
                 for cell in wb.sheets[hoja].range(rango).value:
                     try:
-                        if cell.isnumeric():
+                        if cell.strip().isnumeric():
                             cell = float(cell)
+                            new_range.append(cell)
                     except:    
-                        new_range.append(cell)   
-            
+                        new_range.append(cell)
+                        
             wb.sheets[hoja].range(rango).value = new_range
         
         if formato == "number_":
@@ -775,7 +775,6 @@ if module == "xlsxToCsv":
             csv_writer = csv.writer(
                 csv_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for row in data:
-                print(row)
                 csv_writer.writerow(row)
 
         # data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
@@ -885,18 +884,26 @@ if module == "xlsToxlsx":
     xlsx_path = GetParams('xlsx_path')
 
     try:
-        p = import_lib("pyexcel/__init__.py", "pyexcel") # import pyexcel as p
+        
+        if sys.maxsize > 2**32:
+            p = import_lib(f"Windows{os.sep}x64{os.sep}pyexcel{os.sep}__init__.py", "pyexcel") # import pyexcel as p
+        if sys.maxsize > 32:
+            p = import_lib(f"Windows{os.sep}x86{os.sep}pyexcel{os.sep}__init__.py", "pyexcel") # import pyexcel as p
+        
         try:
             
             p.save_book_as(file_name=xls_path,
                            dest_file_name=xlsx_path)
         except:
+            if sys.maxsize > 2**32:
+                Workbook = import_lib(f"Windows{os.sep}x64{os.sep}xlwt{os.sep}__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
+            if sys.maxsize > 32:
+                Workbook = import_lib(f"Windows{os.sep}x86{os.sep}xlwt{os.sep}__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             
-            Workbook = import_lib("xlwt/__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             filename = xls_path
             # Opening the file using 'utf-16' encoding
             file1 = io.open(filename, "r", encoding="utf-16")
-            print(dir(file1), file1.read())
+                
             data = file1.readlines()
 
             # Creating a workbook object
@@ -1086,7 +1093,10 @@ if module == "Filter":
         if not sheet in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         
-        wb.sheets[sheet].select()
+        if not filter_type:
+            filter_type = "7"
+        
+        wb.sheets[sheet].activate()
         if ":" in start:
             range_ = start
             start = start.split(":")[0]
@@ -1094,28 +1104,32 @@ if module == "Filter":
             start = start + str(1)
             range_ = column + str(1)
         
-        if data.startswith("["):
+        if data.startswith("[") or data.startswith("("):
             data = eval(data)
-
-            if filter_type in ["1", "2"]:
-                if len(data) == 2:
-                    criteria1 = data[0]
-                    criteria2 = data[1]
-                elif len(data) == 0:
-                    criteria1 = None
-                    criteria2 = None
-                elif len(data) > 2:
-                    raise Exception("Filter 'xlOr' and 'xlAnd' must have one or two conditions. ['<>100'] & ['>=10', '<=20']")
-                else:
-                    criteria1 = data[0]
-                    criteria2 = None
-            
+        else:
+            data = data.split(",")
+            # data = [data]
+        
+        if filter_type in ["1", "2"]:
+            if len(data) == 2:
+                criteria1 = data[0]
+                criteria2 = data[1]
+            elif len(data) == 0:
+                criteria1 = None
+                criteria2 = None
+            elif len(data) > 2:
+                raise Exception("Filter 'xlOr' and 'xlAnd' must have one or two conditions. ['<>100'] & ['>=10', '<=20']")
+            else:
+                criteria1 = data[0]
+                criteria2 = None
             # if filter_type == "7":
             #     if len(data) == 0:
             #         raise Exception("Filter 'xlFilterValues' need a list of one or more values. ['10', '20' , '30'...]")
-
+        elif filter_type in ["8", "9"]:
+            data = int(data[0]) + int(data[1]) * 256 + int(data[2]) * 256 * 256
         else:
-            raise Exception("Filter format must be a list.")
+            if len(data) == 0:
+                data = None
 
         if platform.system() == 'Windows':
             n_start = wb.sheets[sheet].range(start).column
@@ -1125,10 +1139,10 @@ if module == "Filter":
 
             if filter_type in ["1", "2"]:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=criteria1, Criteria2=criteria2, Operator=filter_type)
-            elif filter_type == '7':
-                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
+            # elif filter_type == "7":
+            #     wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, filter_type)
             else:
-                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, data, 7)
+                wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=data, Operator=filter_type)
         else:
             n_start = wb.sheets[sheet].range(start).column
             n_end = wb.sheets[sheet].range(column + str(1)).column
@@ -1244,6 +1258,9 @@ if module == "style_cells":
     italic = GetParams("italic")
     adjustText = GetParams("adjustText")
 
+    horizontal = GetParams("horizontal")
+    vertical = GetParams("vertical")
+    
     try:
         
         if not sheet in [sh.name for sh in wb.sheets]:
@@ -1279,7 +1296,13 @@ if module == "style_cells":
         if adjustText:
             wb.sheets[sheet].range(range_).api.WrapText = True
             print("El check box esta activo")
-            
+
+        if horizontal:
+            wb.sheets[sheet].range(range_).api.HorizontalAlignment = int(horizontal)
+        
+        if vertical:
+            wb.sheets[sheet].range(range_).api.VerticalAlignment = int(vertical)
+        
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1718,6 +1741,94 @@ if module == "find":
         PrintException()
         raise e
 
+if module == 'find_pandas':
+    sheet_name = GetParams("sheet")
+    range_ = GetParams("range")
+    columns = GetParams("columns")
+    date_format = GetParams("format")
+    text = GetParams("text")
+    var_ = GetParams("var_")
+    not_case = GetParams("not_case")
+    
+    import re
+    import traceback
+    import numpy as np
+    from openpyxl.utils.cell import get_column_letter, column_index_from_string
+    from dateutil.parser import parse
+    from datetime import datetime
+    
+    if columns and columns != "":
+        columns = columns.split(',')
+        columns_ = []
+        for col in columns:
+            columns_.append(column_index_from_string(col)-1)
+    else:
+        columns_ = None
+
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(
+                f"The name {sheet_name} does not exist in the book")
+            
+        excel_path = excel.file_[excel.actual_id]['path']
+        wb.save() # It saves the workbook before it reads it to have every change made til that moment.
+        
+        if range_:
+            regex = "([a-zA-Z]+)([0-9]+):([a-zA-Z]+)([0-9]+)"
+            matches = re.match(regex, range_).groups()
+            
+            skip = int(matches[1])-1 if int(matches[1]) != 1 else None
+            header = int(matches[1])-1 if int(matches[1]) != 1 else 0 # DF start form index 0, so it substracts one to the beginning of the range, unles it start in row one so it's 0.
+            rows = int(matches[3]) - int(matches[1]) + 1 # It add one because range beginning and end point are included.
+            cols = matches[0] + ":" + matches[2]
+
+        df = pd.read_excel(excel_path, sheet_name=sheet_name, skiprows=skip, nrows=rows,  usecols=cols, header=None, parse_dates=columns_)
+        
+        if not_case and eval(not_case) == True:
+            # If "Not case sensitive" option is selected, it sets every cell content that is string into lowercase together with the text to search.
+            text = text.lower()
+            for col in df.columns:
+                for i in range(len(df[col])):
+                    try:
+                        df.iloc[i, col] = df.iloc[i, col].lower()
+                    except:
+                        continue
+        
+        # Leave this options to parse data into number types in case is needed later        
+        # df.astype({0: "float", 1: str}, errors='ignore')
+        # pd.to_numeric(df[1], errors='ignore')
+        
+        if columns_ != None and date_format != "":
+            for col in columns_:
+                try:
+                    df[col].dt.strftime(date_format)    
+                except Exception as e:
+                    # print(e)
+                    for i in range(len(df[col])):
+                        try:
+                            df.iloc[i, col] = parse(df.iloc[i, col]).strftime(date_format)
+                        except:
+                            continue            
+        try:
+            row, col = np.where(df == pd.to_numeric(text))
+        except:   
+            row, col = np.where(df == text)
+        
+        if len(col) > 0:
+            row = (skip if skip != None else 0) + row[0] + 1 # If the range doesn't start at the beginning it add to the row number of de DF the skiped rows, in none are skipped, skip turns into 0.  
+            col = get_column_letter(col[0] + 1)
+
+            SetVar(var_, f"{col}{row}")
+        else:
+            SetVar(var_, "")
+    
+    except Exception as e:
+        SetVar(var_, False)
+        traceback.print_exc()
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
 if module == "LockCells":
     sheet_name = GetParams("sheet")
     range_ = GetParams("range")
@@ -1971,8 +2082,11 @@ try:
     if module == "lockSheet":
         sheet_name = GetParams("sheet")
         password = GetParams("password")
-   
-        wb.sheets[sheet_name].api.Protect(password)
+
+        if not password or password == "":
+            wb.sheets[sheet_name].api.Protect()
+        else:
+            wb.sheets[sheet_name].api.Protect(password)
     
     if module == "xlsxToTxt":
         file_path_txt = GetParams("path_txt")
