@@ -1064,14 +1064,16 @@ if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
 
-    if len(columns) == 1:
-        columns = columns + ":" + columns   
-    
     try:
+        if len(columns) == 1:
+            columns = columns + ":" + columns 
+        
         if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
-            wb.sheets[sheet].range(columns).api.AutoFilter()
+
+            wb.sheets[sheet].api.Range(columns).AutoFilter(Field=1)
+            
         else:
             rng = wb.sheets[sheet].api.cells[columns]
             r = wb.sheets[sheet].api.autofilter_range(rng)

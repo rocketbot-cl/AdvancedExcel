@@ -4,7 +4,9 @@
 
 # Excel Advanced Options
   
-Module with advanced options to work with files with Microsoft Excel  
+Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
+
+*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
@@ -13,9 +15,8 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
-
 ## How to use this module
-To use this module, you must have Microsoft Excel.
+To use this module, you must have Microsoft Excel installed.
 
 
 ## Description of the commands
@@ -25,7 +26,7 @@ To use this module, you must have Microsoft Excel.
 Open a file preventing MS Excel alerts.
 |Parameters|Description|example|
 | --- | --- | --- |
-|Path to XLSX file |Path of the xlsx file to be opened|file.XLSX|
+|path to XLSX file |Path of the xlsx file to be opened|file.XLSX|
 |Password (optional) |Password of the xlsx file|P@ssW0rd|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|id|
 |Assign result to variable |Variable where the result will be stored|id|
@@ -127,7 +128,7 @@ Copy range cell to another sheet
 | --- | --- | --- |
 |Origin Sheet|Name of the sheet to automate|Sheet1|
 |Range to copy|Cell or Range of cells to copy. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
-|Destiny Sheet|Name of the destinity sheet|Sheet2|
+|Destiny Sheet|Name of the destiny sheet|Sheet2|
 |Range to paste|Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Paste Option|Select paste type for the cell or cells range.|Option|
 |Paste Operation|Select paste operation for the cell or cells range.|Operation|
@@ -515,7 +516,7 @@ Export a chart from index
 Open not visible excel.
 |Parameters|Description|example|
 | --- | --- | --- |
-|Patho to XLSX file |Path of the xlsx file to be opened|File.XLSX|
+|path to XLSX file |Path of the xlsx file to be opened|File.XLSX|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|default|
 
 ### Write array objects
@@ -566,7 +567,7 @@ Lock a sheet with password
 Convert to .txt
 |Parameters|Description|example|
 | --- | --- | --- |
-|Path to XLSX file |Path of the xlsx file to be converted|file.XLSX|
+|path to XLSX file |Path of the xlsx file to be converted|file.XLSX|
 |Save TXT|Path where to save the .txt file|/Users/user/Desktop/test.txt|
 
 ### Text to columns

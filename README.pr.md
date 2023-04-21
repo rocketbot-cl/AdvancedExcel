@@ -4,20 +4,15 @@
 
 # Opções avançadas para Excel
   
-Module with advanced options to work with files with Microsoft Excel  
+Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel.  
+
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
-1. Manual: __Baixe__ o arquivo .zip e 
-descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
+1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
-
-
-
-
-## Como usar este módulo
-Para usar este módulo você deve ter o Microsoft Excel.
 
 
 ## Overview
@@ -39,8 +34,7 @@ Conta todas as linhas ou dentro de um intervalo.
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 
 6. Obter cor da célula  
-Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato 
-RGB.
+Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 
 7. Insertar Formula  
 Inserta formula sobre una celda 
@@ -213,6 +207,132 @@ Salva um arquivo Excel na ruta indicada
 63. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
+
+
+### Changes
+### 12-Jan-2023
+- Add lock sheet command
+### 11-Jan-2023
+- Fix filter for mac and open whithout alerts compatibility for
+ Rocket V2022
+### 16-Nov-2022
+- Can select chart Data Range from different sheet
+### 16-Dic-2022
+- Improve Get Filtered 
+Cells, Fit Cells and CSV to XLSX
+### 18-Nov-2022
+- Get Filtered Cells parse cells with dates correctly
+### 16-Nov-2022
+-
+ Fix compatibility with older versions of Filter command
+### 15-Nov-2022
+- Add Advanced Filter and Remove Filter 
+commands
+### 07-Nov-2022
+- Add the possibilitie to save in .xls format
+### 02-Nov-2022
+- Add Filter, Auto Filter, Read 
+and Write filtered cells for mac
+- Add new xslx_to_csv command using xlwings, openpyxl one deprecated
+#### 24-Oct-2022
+-
+ Add new features Filter command and update Text2Column to rely only on xlwings
+#### 19-Oct-2022
+- Add Filter, 
+AutoFilter, GetCells and CountCells for MacOS
+#### 28-Sep-2022
+- Fix Remove Duplicates
+#### 09-Aug-2022
+- Add "Special 
+Paste" options to Copy-Paste and add Get Cell Colors command
+#### 22-Jul-2022
+- Fix Copy to another excel and Copy-Paste
+ Format
+#### 13-Jun-2022
+- Format text: Added command to change text alignment
+#### 12-May-2022
+- Copy to another excel:
+ fixed command to copy from one excel to another
+#### 18-Apr-2022
+- Text to Column: command fixed to separate text in 
+columns
+#### 06-Apr-2022
+- Fit Cells: Added merge cells, adjust rows, adjust columns functions
+#### 28-Dec-2021
+- Count 
+Rows: command fixed to count all rows.
+#### 9-Nov-2021
+- Order command: Apply multiple orders and clean filters.
+#### 
+13-Oct-2021
+- Fix count cells filtered
+#### 30-Sep-2021
+- Paste command: Update compatibilities
+#### 28-Sep-2021
+- Fix 
+get filtered cells command. Now returns extended data
+#### 06-Jul-2021
+- Fix language
+#### 01-Jul-2021
+- Read Filtered 
+Cells: The command was fixed because it didn't getting all cell range
+#### 27-Apr-2021
+- Texto to column: Parses a 
+column of cells that contain text into several columns.
+#### 18-Mar-2021
+- Unlock sheet: Convert XLSX to TXT.
+#### 
+09-Mar-2021
+- Unlock sheet: Unlock a sheet by password.
+#### 09-Mar-2021
+- Update links: Changes a link from one 
+document to another
+#### 17-Feb-2021
+- Find and Connect: Find opened Excel file and connect it
+#### 1-Feb-2021
+- Add 
+command Copy-Paste Format. You can copy format cell to another.
+#### 25-Jan-2021
+- Write array objects: Writes 
+information obtained from an array of objects to excel cells
+#### 21-Jan-2021
+- Not visible mode: Open background Excel
+
+#### 1-Dec-2020
+- Export chart: Export a chart from index.
+#### 24-Nov-2020
+- Insert image in a cell.
+#### 24-Sep-2020
+-
+ Open without alerts: Add field 'Password'
+#### 16-Sep-2020
+- Add chart: Create a new chart on excel sheet 
+#### 
+15-Sep-2020
+- Lock Cells: Lock or unlock cells 
+#### 2-Sep-2020
+- Find: Replicate Excel Find command 
+#### 31-Jul-2020
+-
+ Order: Replicate Excel Order command 
+#### 15-Jul-2020
+- Read Filtered Cells: Read cell after execute Filter command
+- 
+Replace: Replicate Excel Replace command 
+#### 2-Jul-2020
+- Insert Form: Rocketbot can insert VBA Form to Excel
+#### 
+30-Jun-2020
+- Csv to xlsx: Checkbox header was added to decide if the csv has a header
+- Export to Advanced PDF: 
+Rocketbot export to PDF command enhancement
+- Copy-Move Sheet: Replicate move/copy sheet command of Excel
+#### 
+17-Jun-2020
+- Remove duplicates: Rocketbot can now remove duplicate data on range Excel
+#### 5-Jun-2020
+- Focus Excel: 
+Rocketbot can now set Excel to the foreground window
 
 ----
 ### OS
