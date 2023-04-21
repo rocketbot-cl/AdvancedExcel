@@ -1572,7 +1572,7 @@ if module == "GetCells":
                     range_cell = []
                     
                     for cells in area:
-                        fila = 'Fila' + str(cells.row)
+                        fila = 'Fila' + str(cells.Row)
                         if not rows.get(fila):
                             rows[fila] = []
 
