@@ -8,7 +8,7 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
@@ -285,13 +285,13 @@ Add auto filter to excel table
 
 ### Filter
   
-Add filter to excel table
+Filter an excel table according to the relative value, exact content, background color or font color of the cells. *Examples according the filter type: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Table start |Column where the table to be filtered begins|A |
 |Column |Column where to add the filter|A |
-|Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
+|Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
 |Filter type |Type of filter to apply.||
 
 ### Advanced filter
