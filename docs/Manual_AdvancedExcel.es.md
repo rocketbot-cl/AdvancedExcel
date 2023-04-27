@@ -1,17 +1,24 @@
+
+
+
+
 # Opciones avanzadas para Excel
   
-Módulo con opciones avanzadas para Excel  
+Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
+
+*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
-__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
-
+Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
 
 ## Como usar este modulo
-Para usar este modulo debe tener Microsoft Excel.
+Para usar este modulo debe tener Microsoft Excel instalado.
 
 
 ## Descripción de los comandos
@@ -28,7 +35,7 @@ Abre un archivo sin mostrar carteles de alerta.
 
 ### Buscar y conectar
   
-Busca un excel abrierto y se conecta a este.
+Busca un excel abierto y se conecta a este.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Nombre del archivo XLSX abierto||Archivo.XLSX|
@@ -66,8 +73,7 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 
 ### Obtener color de celda
   
-Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en 
-formato RGB.
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Hoja|Hoja1|
@@ -341,6 +347,8 @@ Este comando modifica el formato de la celda o rango de celdas seleccionado. Pue
 |Cursiva|Marcar esta casilla para cambiar la fuente a cursiva|True|
 |Subrayar|Marcar esta casilla para cambiar la fuente a subrayado|True|
 |Ajustar Texto|Marcar esta casilla para ajustar el texto en el rango especificado|True|
+|Alineación Horizontal|Tipo de alineado horizontal de la celda que se quiere formatear|Alignment|
+|Alineación Vertical|Tipo de alineado verticaal de la celda que se quiere formatear|Alignment|
 
 ### Pegar en Celdas
   
@@ -436,7 +444,7 @@ Actualiza todas las fuentes del libro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Buscar
+### (Deprecado) Buscar
   
 Devuelve la primera celda encontrada
 |Parámetros|Descripción|ejemplo|
@@ -444,6 +452,19 @@ Devuelve la primera celda encontrada
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+
+### Encontrar dato
+  
+Devuelve la primera celda que coincida con el dato buscado
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1)|A1:B100 |
+|Letra de columna con fechas (Opcional)|Letra de la columna/as que contienen fechas.|A,B|
+|Formato de Fecha (Opcional)|Formato de la fecha a buscar.|%d/%m/%Y|
+|Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Bloquear celdas
