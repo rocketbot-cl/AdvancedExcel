@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "34.17.5"
+__version__ = "34.17.9"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -835,7 +835,6 @@ if module == "countColumns":
         df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
 
         col = df.shape[1]
-       
         if column_name is not None:
             column_name = eval(column_name)
         if column_name:
@@ -901,11 +900,15 @@ if module == "xlsToxlsx":
                 Workbook = import_lib(f"Windows{os.sep}x86{os.sep}xlwt{os.sep}__init__.py", "xlwt", "Workbook") # from xlwt import Workbook
             
             filename = xls_path
-            # Opening the file using 'utf-16' encoding
-            file1 = io.open(filename, "r", encoding="utf-16")
-                
-            data = file1.readlines()
-
+            try:
+                # Opening the file using 'utf-16' encoding
+                file1 = io.open(filename, "r", encoding="utf-16")
+                data = file1.readlines()
+            except:
+                # Opening the file using 'utf-8' encoding
+                file1 = io.open(filename, "r", encoding="utf-8")
+                data = file1.readlines()
+                                
             # Creating a workbook object
             xldoc = Workbook()
             # Adding a sheet to the workbook object

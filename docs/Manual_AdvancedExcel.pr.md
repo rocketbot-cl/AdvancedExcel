@@ -8,7 +8,7 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
@@ -287,13 +287,13 @@ Adiciona filtro automático a uma tabela excel
 
 ### Filtrar
   
-Filtra a uma tabela excel
+Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor de fundo ou cor da fonte das células. *Exemplos por tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
 |Início da tabela |Coluna onde começa a tabela a ser filtrada|A |
 |Coluna |Coluna onde adicionar o filtro|A |
-|Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=value1'] or ['>=value1', '<=value2'] or ['value1','value2', 'value3']|
+|Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
 |Tipo de filtro |Type of filter to apply.||
 
 ### Filtro avançado
