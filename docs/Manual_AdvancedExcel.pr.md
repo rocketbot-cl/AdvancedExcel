@@ -96,9 +96,9 @@ Insere uma Macro a Excel
 | --- | --- | --- |
 |Caminho da Macro|Caminho do arquivo .bas que se quer inserir|Macro.bas|
 
-### Selecionar Células
+### Selecionar e copiar Células
   
-Seleciona células em Excel
+Seleciona e copia células em Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha|Nome da planilha a ser automatizada|Planilha 1|
