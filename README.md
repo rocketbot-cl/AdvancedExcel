@@ -42,8 +42,8 @@ Insert formula into cell
 8. Insert Macro  
 Insert Macro in Excel
 
-9. Select Cells  
-Select cells in Excel
+9. Select and copy Cells 
+Select and Copy cells in Excel
 
 10. Get Cell With Currency Format  
 Get cells with currency format

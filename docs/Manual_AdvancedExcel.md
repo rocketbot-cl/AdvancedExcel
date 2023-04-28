@@ -92,9 +92,9 @@ Insert Macro in Excel
 | --- | --- | --- |
 |Macro path |Path of the bas file to be inserted|Macro.bas|
 
-### Select Cells
+### Select and copy Cells
   
-Select cells in Excel
+Select and Copy cells in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet to automate|Hoja 1|
