@@ -1675,9 +1675,21 @@ if module == "GetCountCells":
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             count = 0
-            for area in filtered_cells.Areas:
-                for row in area.Rows:
-                    count += 1
+            for r in filtered_cells.Areas:
+                range_cell = 0
+                for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
+                    if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
+                        for cell in ro.Cells:
+                            count += 1
+                    else:
+                        count += 1
+
+            # sheet_selected_api = wb.sheets[sheet].api
+            # filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            # count = 0
+            # for area in filtered_cells.Areas:
+            #     for row in area.Rows:
+            #         count += 1
         else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]
