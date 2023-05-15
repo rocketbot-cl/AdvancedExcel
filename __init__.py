@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "34.17.9"
+__version__ = "34.19.0"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -1555,20 +1555,44 @@ if module == "GetCells":
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             cell_values = []
-            # Range Areas
+            
             if not get_rows:
-                for area in filtered_cells.Areas:
+                for r in filtered_cells.Areas:
                     range_cell = []
-                    for cells in area:
-                        if isinstance(cells.Value2, datetime.datetime):
-                            range_cell.append(get_date_with_format(cells.Value2, format_))
+                    for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
+                        if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
+                            cells = []
+                            for cell in ro.Cells:
+                                if isinstance(cell.Value, datetime.datetime):
+                                    cells.append(get_date_with_format(cell.Value2, format_))
+                                else:
+                                    cells.append(cell.Value2)
+
+                            range_cell.append(cells)
                         else:
-                            range_cell.append(cells.Value2)
+                            range_cell.append([ro.Value])
+                    
                     if extends:
-                        info = {"range": area.Address.replace("$", ""), "data": range_cell}
+                        info = {"range": r.Address.replace("$", ""), "data": range_cell}
                         cell_values.append(info)
                     else:
-                        cell_values.append(range_cell)
+                        cell_values = cell_values + \
+                            range_cell if len(cell_values) > 0 else range_cell
+            
+            # # Range Areas
+            # if not get_rows:
+            #     for area in filtered_cells.Areas:
+            #         range_cell = []
+            #         for cells in area:
+            #             if isinstance(cells.Value2, datetime.datetime):
+            #                 range_cell.append(get_date_with_format(cells.Value2, format_))
+            #             else:
+            #                 range_cell.append(cells.Value2)
+            #         if extends:
+            #             info = {"range": area.Address.replace("$", ""), "data": range_cell}
+            #             cell_values.append(info)
+            #         else:
+            #             cell_values.append(range_cell)
             
             # Rows
             if get_rows:
@@ -1584,18 +1608,12 @@ if module == "GetCells":
                         if isinstance(cells.Value, datetime.datetime):
                             rows[fila].append(get_date_with_format(cells.Value2, format_))
                         else:
-                            rows[fila].append(cells.Value2)    
-                
+                            rows[fila].append(cells.Value2)            
                 if extends:
                     cell_values = rows
                 else:
                     for k, v in rows.items():
-                        cell_values.append(v)
-            
-
-                  
-                
-                    
+                        cell_values.append(v)          
         else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]
@@ -1657,9 +1675,21 @@ if module == "GetCountCells":
             sheet_selected_api = wb.sheets[sheet].api
             filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
             count = 0
-            for area in filtered_cells.Areas:
-                for row in area.Rows:
-                    count += 1
+            for r in filtered_cells.Areas:
+                range_cell = 0
+                for ro in wb.sheets[sheet].api.Range(r.Address).Rows:
+                    if isinstance(ro.Value, list) or isinstance(ro.Value, tuple):
+                        for cell in ro.Cells:
+                            count += 1
+                    else:
+                        count += 1
+
+            # sheet_selected_api = wb.sheets[sheet].api
+            # filtered_cells = sheet_selected_api.Range(range_).SpecialCells(12)
+            # count = 0
+            # for area in filtered_cells.Areas:
+            #     for row in area.Rows:
+            #         count += 1
         else:
             sh = wb.sheets[sheet]
             sh_range = sh.api.cells[range_]

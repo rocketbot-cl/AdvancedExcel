@@ -42,8 +42,8 @@ Inserta formula sobre una celda
 8. Inserir Macro a Excel  
 Insere uma Macro a Excel
 
-9. Selecionar Células  
-Seleciona células em Excel
+9. Selecionar e copiar Células  
+Seleciona e copia células em Excel
 
 10. Obter Célula Formato Moeda  
 Obtém células com formato moeda
