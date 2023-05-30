@@ -1,7 +1,7 @@
 # coding: utf-8
 
 __author__ = "Rocketbot"
-__version__ = "34.19.0"
+__version__ = "34.19.1"
 
 """
 Module to work with excel opened or created with rocketbot.
@@ -711,11 +711,14 @@ if module == "csvToxlsx":
     xlsx_path = GetParams("xlsx_path")
     sep = GetParams("separator") or ","
     with_header = GetParams("header")
-    encoding = GetParams("encoding") or "latin-1"
+    encoding = GetParams("encoding")
     
     import string
     global printable
     printable = set(string.printable)
+    
+    if not encoding or encoding == '':
+        encoding = 'latin-1'
     
     try:
         if not csv_path or not xlsx_path:
@@ -732,16 +735,22 @@ if module == "csvToxlsx":
         if sep.startswith("\\t"):
             sep = "\t"
         workbook = Workbook()
+        workbook.encoding = encoding
         worksheet = workbook.active
         with open(csv_path, "r", encoding=encoding) as fobj:
             csv_reader = csv.reader(fobj, delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
-                    
-                    # Eliminates non printeable characters to avoid writing errors
-                    value = ''.join(filter(lambda x: x in printable, value))
-                    
-                    worksheet.cell(row_index + 1, col_index + 1).value = value
+                    try:
+                        value = value.decode()
+                    except:
+                        pass
+                    try:                      
+                        worksheet.cell(row_index + 1, col_index + 1).value = value
+                    except:
+                        # Eliminates non printeable characters to avoid writing errors
+                        value = ''.join(filter(lambda x: x in printable, value))
+                        worksheet.cell(row_index + 1, col_index + 1).value = value  
 
         workbook.save(xlsx_path)
 
@@ -831,9 +840,12 @@ if module == "countColumns":
         
         # excel_path = excel.file_["default"]["path"]
         excel_path = wb.fullname
-
-        df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
-
+        try:
+            # For .xlsx files
+            df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
+        except:
+            # For .xls files
+            df = pd.read_excel(excel_path, sheet_name=sheet, engine='xlrd')
         col = df.shape[1]
         if column_name is not None:
             column_name = eval(column_name)
@@ -1101,7 +1113,11 @@ if module == "Filter":
         if not filter_type:
             filter_type = "7"
         
-        wb.sheets[sheet].activate()
+        try:
+            wb.sheets[sheet].activate()
+        except:
+            pass
+        
         if ":" in start:
             range_ = start
             start = start.split(":")[0]
@@ -1409,6 +1425,8 @@ if module == "save_mac":
         args = {"FileFormat": 51} #ConflictResolution:2
     if path_file.endswith(".xls"):
         args = {"FileFormat": 56} #ConflictResolution:2
+    if path_file.endswith(".csv"):
+        args = {"FileFormat": 6} #ConflictResolution:2
     
     try:
         if path_file == xls["path"]:
@@ -1767,7 +1785,11 @@ if module == "find":
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
-        result = result.address if result is not None else ""
+        try:
+            result = result.Address if result is not None else ""
+        except:
+            result = result.address if result is not None else ""
+        
         if var_:
             SetVar(var_, result)
     except Exception as e:
