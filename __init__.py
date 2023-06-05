@@ -32,6 +32,7 @@ import platform
 import os
 import sys
 import subprocess
+import dateutil.parser
 
 # This lines is to linter
 # -----------------------------------
@@ -389,27 +390,56 @@ if module == "formatCell":
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
-        if texttoval and eval(texttoval) == True:
-            new_range = []
-            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
-                for row in wb.sheets[hoja].range(rango).value:
-                    new_row = []
-                    for cell in row:
-                        try:
-                            if cell.isnumeric():
-                                cell = float(cell)
-                        except:
-                            new_row.append(cell)    
-                    new_range.append(new_row) 
-            else:
-                for cell in wb.sheets[hoja].range(rango).value:
+        def transform_data(cell=None, row=None):
+            global new_range
+            global dateutil
+            if row:
+                new_row = []
+                for cell in row:
                     try:
                         if cell.strip().isnumeric():
                             cell = float(cell)
                             new_range.append(cell)
-                    except:    
+                        else:
+                            try:
+                                cell_date = dateutil.parser.parse(cell)
+                                new_row.append(cell_date)
+                            except ValueError as err:
+                                new_row.append(cell)
+                    except:
+                        new_row.append(cell) 
+                new_range.append(new_row)
+            else:
+                try:
+                    if cell.strip().isnumeric():
+                        cell = float(cell)
                         new_range.append(cell)
-                        
+                    else:
+                        try:
+                            cell_date = dateutil.parser.parse(cell)
+                            new_range.append(cell_date)
+                        except ValueError as err:
+                            new_range.append(cell)
+                except:
+                    new_row.append(cell)
+
+        if texttoval and eval(texttoval) == True:
+            new_range = []
+            # Multiple rows
+            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
+                for row in wb.sheets[hoja].range(rango).value:
+                    transform_data(row=row)
+                    
+            # Single row
+            elif isinstance(wb.sheets[hoja].range(rango).value, list):
+                for cell in wb.sheets[hoja].range(rango).value:
+                    transform_data(cell=cell)
+                    
+            # Cell
+            else:
+                cell = wb.sheets[hoja].range(rango).value
+                transform_data(cell=cell)
+
             wb.sheets[hoja].range(rango).value = new_range
         
         if formato == "number_":
@@ -1422,11 +1452,11 @@ if module == "save_mac":
     if not path_file:
         path_file = xls["path"]
     if path_file.endswith(".xlsx"):
-        args = {"FileFormat": 51} #ConflictResolution:2
+        args = {"FileFormat": 51, "ConflictResolution" :2}
     if path_file.endswith(".xls"):
-        args = {"FileFormat": 56} #ConflictResolution:2
+        args = {"FileFormat": 56, "ConflictResolution" :2}
     if path_file.endswith(".csv"):
-        args = {"FileFormat": 6} #ConflictResolution:2
+        args = {"FileFormat": 6, "ConflictResolution" :2}
     
     try:
         if path_file == xls["path"]:
