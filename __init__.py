@@ -138,7 +138,7 @@ if module == "Open":
         file_path = file_path.replace("/", os.sep)
 
         try:
-            wb = app.api.Workbooks.Open(file_path, 0, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
         except:
             PrintException()
