@@ -8,7 +8,7 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png o jpg)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
@@ -78,6 +78,15 @@ Get the color of a cell. The funtion will return a list of two elements: Backgro
 |Cell |Cell. The syntax must be the same as excel (A1)|A1|
 |Assign to var|Name of the variable where the result will be stored|color|
 
+### Get Cell Formats
+  
+Get the format of a cell. The function will return a dictionary with the cell properties and the value of each one.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Sheet|Sheet1|
+|Cell |Cell. The syntax must be the same as excel (A1)|A1|
+|Assign to var|Name of the variable where the result will be stored|color|
+
 ### Insert Formula
   
 Insert formula into cell
@@ -85,7 +94,7 @@ Insert formula into cell
 | --- | --- | --- |
 |Sheet |Sheet|Sheet5|
 |Cell |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A5|
-|Write formula |Formula that will be inserted|=SUM(A1:A4)|
+|Write formula |Formula that will be inserted. Must be writen in english. Remember to use *,* to separate the parameters|=SUM(A1:A4)|
 
 ### Insert Macro
   
@@ -146,6 +155,14 @@ Format Cell
 |Custom format |Custom format. Must be the same as the one shown in the Excel custom section|00000|
 |Text to Value|||
 
+### Clear Contents
+  
+Clears formulas and values from the selected range, keeping the format.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Cell or Range of cells|Range that contains the data to align|A1:D7|
+
 ### Create Sheet
   
 Create sheet in the end
@@ -167,10 +184,12 @@ Delete sheet
 Copy range to another Excel in the background
 |Parameters|Description|example|
 | --- | --- | --- |
-|Excel origin|Path of the source xlsx file|Sheet1|
-|Sheet name|Name of the source sheet|Sheet1|
+|Excel origin (optional)|Path of the source xlsx file|Sheet1|
+|Id (optional) |Name or identifier for the file to be opened. |id|
+|Sheet name|Name of the source sheet|Source file path:|
 |Range to copy|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
-|Excel destination|Path of the destination xlsx file|Sheet1|
+|Excel destination|Path of the destination xlsx file|Target file path:|
+|Normal opening|If this checkbox is checked, the destination file opens normally keeping data, formats and objects. Otherwise it only recovers data.|True|
 |Sheet name|Name of the sheet to be copied|Sheet1|
 |Range to paste|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
 |Only Values|If this checkbox is checked, only the value will be copied|True|
@@ -196,7 +215,7 @@ Add or Delete a Column
 
 ### Convert CSV to XLSX
   
-Convert a csv document to xlsx
+Convert a CSV document to XLSX format
 |Parameters|Description|example|
 | --- | --- | --- |
 |CSV file path|Path of the csv file to be converted||
@@ -282,6 +301,13 @@ Add auto filter to excel table
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Columns |Columna or Range of columns. The syntax must be the same as excel (A o AB) |A:E |
+
+### Remove Auto Filter
+  
+Remove auto filter from an excel sheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
 
 ### Filter
   
@@ -386,6 +412,7 @@ Copy or move a sheet
 |Origin Sheet|Name of the source sheet|Sheet1|
 |Move/copy before sheet|Name of the sheet to be moved|Sheet2|
 |Excel destination|Path of the .xlsx file where move or copy the sheet|C:/path/to/excel.xlsx|
+|Password (optional) |Password of the xlsx file|P@ssW0rd|
 |Copy |By checking the checkbox, the sheet will be copied||
 
 ### Insert Form
@@ -442,14 +469,17 @@ Refresh all data in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 
-### (Deprecated) Find
+### Find
   
-Return de first found cell 
+Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Text to find|Text to be searched in the excel|Lorem|
+|Look at (optional)|Indicates the desired type of match the whole searched text or within any part (ba default within any part). ||
+|Look in (optional)|Indicates where to do the searching value, formula or comment (default value). ||
+|Not case sensitive|If this box is checked, it will search for the text string without differences between upper and lower letters.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Find data
@@ -606,7 +636,7 @@ Save a Excel file
 
 ### Save Excel
   
-Save a Excel file in the indicated path
+Save an Excel file (as '.xlsx', '.xls' or '.csv') in the indicated path
 |Parameters|Description|example|
 | --- | --- | --- |
 |Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
