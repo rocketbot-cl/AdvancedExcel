@@ -1,8 +1,5 @@
 # coding: utf-8
 
-__author__ = "Rocketbot"
-__version__ = "34.19.1"
-
 """
 Module to work with excel opened or created with rocketbot.
 
@@ -123,7 +120,7 @@ module = GetParams("module")
 
 # Get excel variables from Rocketbot
 excel = GetGlobals("excel")
-if excel.actual_id in excel.file_:
+if excel.actual_id in excel.file_ and module != "Open":
     xls = excel.file_[excel.actual_id]
     wb = xls['workbook']
 
@@ -141,7 +138,7 @@ if module == "Open":
         file_path = file_path.replace("/", os.sep)
 
         try:
-            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+            wb = app.api.Workbooks.Open(file_path, 0, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
         except:
             PrintException()
@@ -224,6 +221,71 @@ if module == "GetColor":
         colors.append(background)
         colors.append(font_)
         SetVar(res, colors)
+    
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "GetCellFormats":
+    
+    sheet = GetParams("sheet")
+    cell = GetParams("cell")
+    res = GetParams("res")
+    
+    try:        
+        cell = xw.sheets[sheet].range(cell)
+        
+        horizontal_alignment_glossary = {
+            -4108: "xlHAlignCenter",
+            -4131: "xlHAlignLeft",
+            -4152: "xlHAlignRight",
+            -4117: "xlHAlignDistributed",
+            1: "xlHAlignGeneral",
+            -4130: "xlHAlignJustify",
+            7: "xlHAlignCenterAcrossSelection",
+            5: "xlHAlignFill"
+        }
+
+        vertical_alignment_glossary = {
+            -4107: "xlVAlignBottom",
+            -4108: "xlVAlignCenter",
+            -4117: "xlVAlignDistributed",
+            -4160: "xlVAlignTop",
+            -4130: "xlVAlignJustify",
+        }
+
+        font_underline_glossary = {
+            -4142: "xlUnderlineStyleNone",
+            2: "xlUnderlineStyleSingle",
+            -4119: "xlUnderlineStyleDouble",
+            4: "xlUnderlineStyleSingleAccounting",
+            5: "xlUnderlineStyleDoubleAccounting",
+        }
+        
+        formats = {
+            'FontColor': xw.utils.int_to_rgb(cell.api.Font.Color),
+            'BackgroundColor': xw.utils.int_to_rgb(cell.api.Interior.Color),
+            'HorizontalAlignment': horizontal_alignment_glossary.get(cell.api.HorizontalAlignment),
+            'VerticalAlignment': vertical_alignment_glossary.get(cell.api.VerticalAlignment),
+            'Indentation': cell.api.IndentLevel,
+            'FontName': cell.api.Font.Name,
+            'FontSize': cell.api.Font.Size,
+            'FontBold': cell.api.Font.Bold,
+            'FontItalic': cell.api.Font.Italic,
+            'FontUnderline': font_underline_glossary.get(cell.api.Font.Underline),
+            'FontStrikethrough': cell.api.Font.Strikethrough,
+            'FontSubscript': cell.api.Font.Subscript,
+            'FontSuperscript': cell.api.Font.Superscript,
+            'NumberFormat': cell.api.NumberFormat,
+            'CellWidth': cell.api.ColumnWidth,
+            'CellHeight': cell.api.RowHeight,
+            'WrapText': cell.api.WrapText,
+            'MergeCells': cell.api.MergeCells,
+            'Locked': cell.api.Locked
+        }
+        
+        
+        SetVar(res, formats)
     
     except Exception as e:
         PrintException()
@@ -517,6 +579,24 @@ if module == "formatCell":
         PrintException()
         raise e
 
+
+if module == "clearCell":
+    sheet_name = GetParams("sheet")
+    range_ = GetParams("cell_range")
+    
+    if not sheet_name in [sh.name for sh in wb.sheets]:
+        raise Exception(f"The name {sheet_name} does not exist in the book")
+    
+    try:
+        sheet = wb.sheets[sheet_name]
+        
+        sheet.api.Range(range_).ClearContents()
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
 if module == "createSheet":
     hoja = GetParams("sheet_name")
     last = GetParams("after")
@@ -551,26 +631,37 @@ if module == "copy_other":
 
     try:
         excel1 = GetParams("excel1")
+        id_ = GetParams("id")
         excel2 = GetParams("excel2")
         hoja1 = GetParams("sheet_name1")
         hoja2 = GetParams("sheet_name2")
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
-
-        wb1 = wb.app.books.open(excel1)
+        normal = GetParams("normal")
+        password = GetParams("password")              
+        
+        if not id_:
+            wb1 = wb.app.books.open(excel1)
+        else:
+            if id_ not in excel.file_:
+                raise Exception(f"The id {id_} does not exist.")
+            xls = excel.file_[id_]
+            wb1 = xls['workbook']
+        
         if hoja1 not in [sh.name for sh in wb1.sheets]:
-            raise Exception(
-                f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
-
+            raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+        
         origin_sheet = wb1.sheets[hoja1]
         my_values = origin_sheet.range(rango1)
         if only_values is not None:
             only_values = eval(only_values)
 
         if platform.system() == "Windows":
-            password = None
-            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=2)
+            
+            load = 0 if normal and eval(normal) else 2
+            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load, UpdateLinks=2)
+            
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
                 raise Exception(
                     f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
@@ -909,9 +1000,12 @@ if module == "countRows":
             total = wb.sheets[sheet].api.UsedRange.Rows.Count
 
         else:
-            total = wb.sheets[sheet].range(
-                row_ + str(wb.sheets[sheet].cells.last_cell.row)).end('up').row
+            # Selects the whole row, goes to the last cell and goes up until find the first cell with value.
+            a = wb.sheets[sheet].range(f"{row_}:{row_}").last_cell
+            while not a.value:
+                a = a.end('up')
 
+            total = wb.sheets[sheet].range(row_ + str(a.row)).row
         if result:
             SetVar(result, total)
 
@@ -1108,7 +1202,7 @@ if module == "getFormula":
 if module == "AutoFilter":
     sheet = GetParams("sheet")
     columns = GetParams("columns")
-
+    from time import sleep
     try:
         if len(columns) == 1:
             columns = columns + ":" + columns 
@@ -1117,11 +1211,32 @@ if module == "AutoFilter":
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
 
+            if wb.api.Sheets(sheet).AutoFilterMode == True:
+                wb.api.Sheets(sheet).AutoFilterMode = False
+                sleep(1)
             wb.sheets[sheet].api.Range(columns).AutoFilter(Field=1)
             
         else:
             rng = wb.sheets[sheet].api.cells[columns]
             r = wb.sheets[sheet].api.autofilter_range(rng)
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "RemoveAutoFilter":
+    sheet = GetParams("sheet")
+
+    try:        
+        if platform.system() == 'Windows':
+            if not sheet in [sh.name for sh in wb.sheets]:
+                raise Exception(f"The name {sheet} does not exist in the book")
+
+            wb.api.Sheets(sheet).AutoFilterMode = False
+            
+        else:
+            wb.sheets[sheet].api.autofilter_mode = False
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1457,6 +1572,8 @@ if module == "save_mac":
         args = {"FileFormat": 56, "ConflictResolution" :2}
     if path_file.endswith(".csv"):
         args = {"FileFormat": 6, "ConflictResolution" :2}
+    if path_file.endswith(".xlsm"):
+        args = {"FileFormat": 52, "ConflictResolution" :2}
     
     try:
         if path_file == xls["path"]:
@@ -1497,37 +1614,37 @@ if module == "copyMove":
     sheet1 = GetParams('sheet_name1')
     sheet2 = GetParams('sheet_name2')
     book = GetParams("book")
+    password = GetParams("password")
     copy_ = GetParams("copy")
-    
     try:
         if not sheet1 in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet1} does not exist in the book")
-        sheet_selected = wb.sheets[sheet1]
+        sheet_selected = wb.api.Sheets(sheet1)
         # sheet_selected.select()
-        if not sheet2:
-            sheet2 = "tmp"
+        # if not sheet2:
+        #     sheet2 = "tmp"
+        
+        if not password:
+            password=None
 
-        if book:
-            wb2 = wb.app.books.open(book)
-            if sheet2 == "tmp":
-                wb2.sheets.add(name=sheet2, after=wb2.sheets[-1])
-            destiny = wb2.api.Sheets(sheet2)
-        else:
-            print(sheet2, copy_, book)
-            if sheet2 == "tmp":
-                wb.sheets.add(name=sheet2, after=wb.sheets[-1])
-            destiny = wb.api.Sheets(sheet2)
+        if book: 
+            app = excel.file_[excel.actual_id]['workbook'].app
+            
+            wb2 = app.api.Workbooks.Open(book, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+            if not sheet2:
+                last = wb2.Sheets.Count
+                destiny = wb2.Sheets(last)
+            else:
+                destiny = wb2.Sheets(sheet2)
 
         if copy_:
-            sheet_selected.api.Copy(Before=destiny)
+            sheet_selected.Copy(Before=destiny)
         else:
-            sheet_selected.api.Move(Before=destiny)
+            sheet_selected.Move(Before=destiny)
 
         try:
-            wb2.sheets["tmp"].select() if book else wb.sheets["tmp"].select()
-            wb2.sheets["tmp"].delete() if book else wb.sheets["tmp"].delete()
-            wb2.save()
-            wb2.close()
+            wb2.Save()
+            wb2.Close()
         except:
             pass
 
@@ -1807,6 +1924,9 @@ if module == "find":
     sheet_name = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
+    look_in = GetParams("look_in")
+    look_at = GetParams("look_at")
+    match_case = GetParams("match_case")
     var_ = GetParams("var_")
 
     try:
@@ -1815,6 +1935,16 @@ if module == "find":
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
         result = sheet.api.Range(range_).Find(text)
+        
+        if not look_in:
+            look_in = -4163 #xlValues
+        if not look_at:
+            look_at = 2 #xlPart
+        if not match_case:
+            match_case = False
+        
+        result = sheet.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+        
         try:
             result = result.Address if result is not None else ""
         except:
