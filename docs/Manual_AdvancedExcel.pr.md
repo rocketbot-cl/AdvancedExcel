@@ -183,12 +183,12 @@ Elmina uma planilha
 
 ### Copiar de um Excel para outro
   
-Copia um intervalo de um Excel para outro, o excel de destino não deve estar aberto
+Copie o intervalo dse um arquivo do Excel para outro. Use o atual aberto, selecione um dos abertos por ID ou faça tudo em segundo plano abrindo os dois Excels e fechando-os no final.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|Excel de origem (opcional)|Caminho do arquivo xlsx de origen|Folha1|
-|Identificador (opcional)|Nome ou identificador para o arquivo que se abrirá.|id|
-|Planilha de origem|Nome da planilha de origen|Caminho do arquivo origem:|
+|Excel de origem (opcional)|Caminho do arquivo xlsx de origen|Caminho do arquivo origem:|
+|Identificador (opcional)|Nome ou ID do arquivo de código aberto.|id|
+|Planilha de origem|Nome da planilha de origen|Folha1|
 |Intervalo a copiar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:D7|
 |Excel de destino|Caminho do arquivo xlsx de destino|Caminho do arquivo destino:|
 |Abrir normalmente|Se esta caixa de seleção estiver marcada, o arquivo de destino abre normalmente mantendo os dados, formatos e objetos. Caso contrário, ele apenas recupera dados.|True|

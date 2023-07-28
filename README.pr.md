@@ -70,7 +70,7 @@ Adiciona uma planilha no final
 Elmina uma planilha
 
 18. Copiar de um Excel para outro  
-Copia um intervalo de um Excel para outro, o excel de destino não deve estar aberto
+Copie o intervalo dse um arquivo do Excel para outro. Use o atual aberto, selecione um dos abertos por ID ou faça tudo em segundo plano abrindo os dois Excels e fechando-os no final.
 
 19. Adicionar/Eliminar Linha  
 Adiciona ou elimina uma linha

@@ -70,7 +70,7 @@ Create sheet in the end
 Delete sheet
 
 18. Copy to another excel  
-Copy range to another Excel in the background
+Copy range from one Excel file to another. Use the current opened one, select one of the opened ones by ID or do everything in the background opening both Excels and closing them at the end.
 
 19. Add/Delete Row  
 Add or Delete a Row
