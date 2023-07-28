@@ -641,40 +641,50 @@ if module == "copy_other":
         normal = GetParams("normal")
         password = GetParams("password")              
         
-        if not id_:
-            wb1 = wb.app.books.open(excel1)
-        else:
+        load = 0 if normal and eval(normal) else 2
+        app1 = xw.App()
+        app1.api.DisplayAlerts = False
+        app1.api.Visible = False
+        
+        if excel1:
+            wb1 = app1.books.api.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+        elif id_:
             if id_ not in excel.file_:
                 raise Exception(f"The id {id_} does not exist.")
             xls = excel.file_[id_]
-            wb1 = xls['workbook']
+            wb1 = xls['workbook'].api
+        else:
+            wb1 = wb.api
         
-        if hoja1 not in [sh.name for sh in wb1.sheets]:
+        if hoja1 not in [sh.Name for sh in wb1.Sheets]:
             raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
         
-        origin_sheet = wb1.sheets[hoja1]
-        my_values = origin_sheet.range(rango1)
+        origin_sheet = wb1.Sheets(hoja1)
+        my_values = origin_sheet.Range(rango1)
         if only_values is not None:
             only_values = eval(only_values)
 
         if platform.system() == "Windows":
-            
-            load = 0 if normal and eval(normal) else 2
-            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load, UpdateLinks=2)
+            if excel1:
+                wb2 = app1.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+            else:
+                wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
             
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
                 raise Exception(
                     f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
             destiny_sheet = wb2.Sheets(hoja2)
             if not only_values:
-                origin_sheet.api.Range(rango1).Copy(
+                origin_sheet.Range(rango1).Copy(
                     destiny_sheet.Range(rango2))
             else:
-                destiny_sheet.Range(rango2).Value = my_values.api.Value
+                destiny_sheet.Range(rango2).Value = my_values.Value
                 
             wb2.Application.DisplayAlerts = False
             wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
+            if excel1:
+                wb1.Close()
 
         else:
             values = my_values.value
@@ -937,6 +947,9 @@ if module == "xlsx_to_csv":
             for value in row:
                 if isinstance(value, str):
                     value = ''.join(i for i in value if ord(i)<128)
+                if isinstance(value, float):
+                    if value.is_integer():
+                        value = int(value)
                 row_.append(value)
             sheet_.append(row_)
             

@@ -181,12 +181,12 @@ Delete sheet
 
 ### Copy to another excel
   
-Copy range to another Excel in the background
+Copy range from one Excel file to another. Use the current opened one, select one of the opened ones by ID or do everything in the background opening both Excels and closing them at the end.
 |Parameters|Description|example|
 | --- | --- | --- |
-|Excel origin (optional)|Path of the source xlsx file|Sheet1|
-|Id (optional) |Name or identifier for the file to be opened. |id|
-|Sheet name|Name of the source sheet|Source file path:|
+|Excel origin (optional)|Path of the source xlsx file|Source file path:|
+|Id (optional) |Name or ID of the open source file.|id|
+|Sheet name|Name of the source sheet|Sheet1|
 |Range to copy|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
 |Excel destination|Path of the destination xlsx file|Target file path:|
 |Normal opening|If this checkbox is checked, the destination file opens normally keeping data, formats and objects. Otherwise it only recovers data.|True|

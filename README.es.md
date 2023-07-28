@@ -70,7 +70,7 @@ Añade una hoja al final
 Elimina una hoja
 
 18. Copiar de un Excel a otro  
-Copia un rango desde un Excel a otro, el excel de destino no debe estar abierto
+Copie el rango de un archivo de Excel a otro. Use el abierto actual, seleccione uno de los abiertos por ID o haga todo en segundo plano abriendo ambos Excel y cerrándolos al final.
 
 19. Insertar/Eliminar Fila  
 Inserta o elimina una fila
