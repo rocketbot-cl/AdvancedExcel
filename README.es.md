@@ -108,112 +108,115 @@ Agrega filtro automático a una tabla excel
 30. Eliminar Filtro Automático  
 Eliminar el filtro automático de una hoja de Excel
 
-31. Filtrar  
+31. Borrar Filtro  
+Borra todos los filtros realizados sobre una hoja de Excel
+
+32. Filtrar  
 Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-32. Filtro avanzado  
+33. Filtro avanzado  
 Filtra a una tabla excel
 
-33. Remover Filtros  
+34. Remover Filtros  
 Eliminar filtros y mostrar todos los datos
 
-34. Renombrar hoja  
+35. Renombrar hoja  
 Cambia el nombre a una hoja de excel
 
-35. Formato de texto  
+36. Formato de texto  
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 
-36. Estilo Celda  
+37. Estilo Celda  
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 
-37. Pegar en Celdas  
+38. Pegar en Celdas  
 Pega datos en celdas en Excel
 
-38. Eliminar duplicados  
+39. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-39. Exportar a PDF avanzado  
+40. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-40. Copiar-Mover Hoja  
+41. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-41. Insertar Formulario  
+42. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-42. Leer celdas filtradas  
+43. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-43. Contar celdas filtradas  
+44. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-44. Reemplazar  
+45. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-45. Ordenar  
+46. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-46. Actualizar Todo  
+47. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-47. Buscar  
+48. Buscar  
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 
-48. Encontrar dato  
+49. Encontrar dato  
 Devuelve la primera celda que coincida con el dato buscado
 
-49. Bloquear celdas  
+50. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-50. Agregar Gráfico  
+51. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-51. Quitar Contraseña  
+52. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-52. Insertar imagen  
+53. Insertar imagen  
 Inserta una imagen
 
-53. Exportar gráfico  
+54. Exportar gráfico  
 Exporta un gráfico por índice
 
-54. Modo no visible  
+55. Modo no visible  
 Abre excel en modo no visible
 
-55. Escribir array de objetos  
+56. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-56. Copiar-Pegar Formato  
+57. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-57. Actualizar vínculos  
+58. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-58. Desbloquear hoja  
+59. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-59. Bloquear hoja  
+60. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-60. Convertir a .txt  
+61. Convertir a .txt  
 Convierte a .txt
 
-61. Texto en columna  
+62. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-62. Convertir tiempo de Excel a horas  
+63. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-63. Imprimir hoja  
+64. Imprimir hoja  
 Imprime una hoja
 
-64. Guardar Excel con password  
+65. Guardar Excel con password  
 Guarda un archivo Excel
 
-65. Guardar Excel  
-Guarda un archivo Excel (como '.xlsx', '.xls' or '.csv') en la ruta indicada
+66. Guardar Excel  
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-66. Cerrar XLSX  
+67. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

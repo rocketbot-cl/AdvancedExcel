@@ -965,19 +965,25 @@ if module == "xlsx_to_csv":
         raise e
 
 if module == "countColumns":
-
     sheet = GetParams("sheet")
     column_name = GetParams("column")
     result = GetParams("var_")
 
     try:
+        if not sheet:
+            sheet = wb.sheets.active.name
+        
+        if sheet not in [sh.name for sh in wb.sheets]:
+            raise Exception(f"The name {sheet} does not exist in the book")
         
         # excel_path = excel.file_["default"]["path"]
         excel_path = wb.fullname
+        
         try:
             # For .xlsx files
             df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
-        except:
+        except Exception as e:
+            print(e)
             # For .xls files
             df = pd.read_excel(excel_path, sheet_name=sheet, engine='xlrd')
         col = df.shape[1]
@@ -1003,7 +1009,11 @@ if module == "countRows":
             countAll = eval(countAll)
 
     if not sheet:
-        sheet = 0
+        sheet = wb.sheets.active.name
+    
+    if sheet not in [sh.name for sh in wb.sheets]:
+        raise Exception(f"The name {sheet} does not exist in the book")
+    
     if not row_:
         row_ = 'A'
 
@@ -1245,11 +1255,29 @@ if module == "RemoveAutoFilter":
         if platform.system() == 'Windows':
             if not sheet in [sh.name for sh in wb.sheets]:
                 raise Exception(f"The name {sheet} does not exist in the book")
-
+            
+            wb.api.Sheets(sheet).ShowAllData()
             wb.api.Sheets(sheet).AutoFilterMode = False
             
         else:
             wb.sheets[sheet].api.autofilter_mode = False
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "ClearFilter":
+    sheet = GetParams("sheet")
+
+    try:        
+        if platform.system() == 'Windows':
+            if not sheet in [sh.name for sh in wb.sheets]:
+                raise Exception(f"The name {sheet} does not exist in the book")
+            
+            wb.api.Sheets(sheet).ShowAllData()         
+        else:
+            wb.sheets[sheet].api.show_all_data()
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1940,6 +1968,7 @@ if module == "find":
     look_in = GetParams("look_in")
     look_at = GetParams("look_at")
     match_case = GetParams("match_case")
+    find_all = GetParams("find_all")
     var_ = GetParams("var_")
 
     try:
@@ -1947,24 +1976,41 @@ if module == "find":
             raise Exception(
                 f"The name {sheet_name} does not exist in the book")
         sheet = wb.sheets[sheet_name]
-        result = sheet.api.Range(range_).Find(text)
         
         if not look_in:
             look_in = -4163 #xlValues
+        else:
+            look_in = eval(look_in)
         if not look_at:
             look_at = 2 #xlPart
+        else:
+            look_at = eval(look_at)
         if not match_case:
             match_case = False
+        else:
+            match_case = eval(match_case)
         
-        result = sheet.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-        
-        try:
-            result = result.Address if result is not None else ""
-        except:
-            result = result.address if result is not None else ""
-        
+        if find_all and eval(find_all):
+            matches = []
+            range_obj = sheet.api.Range(range_)
+            result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+            try:
+                while result is not None and result.Address not in matches:
+                    matches.append(result.Address)
+                    result = range_obj.FindNext(result)
+            except:
+                while result is not None and result.address not in matches:
+                    matches.append(result.address)
+                    result = range_obj.FindNext(result)
+        else:
+            result = sheet.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+            try:
+                matches = result.Address if result is not None else ""
+            except:
+                matches = result.address if result is not None else ""
+       
         if var_:
-            SetVar(var_, result)
+            SetVar(var_, matches)
     except Exception as e:
         SetVar(var_, False)
         print("\x1B[" + "31;40mError\x1B[" + "0m")

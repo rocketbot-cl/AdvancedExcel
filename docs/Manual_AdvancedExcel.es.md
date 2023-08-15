@@ -309,7 +309,14 @@ Agrega filtro automático a una tabla excel
 Eliminar el filtro automático de una hoja de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Hoja |Nombre de la hoja donde se encuentra el filtro a quitar|Hoja 1|
+
+### Borrar Filtro
+  
+Borra todos los filtros realizados sobre una hoja de Excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos filtrados|Hoja 1|
 
 ### Filtrar
   
@@ -482,6 +489,7 @@ Busca un texto en el rango indicado y retorna la celda donde se encuentra la pri
 |Buscar en (opcional)|Indica el tipo de coincidencia deseada todo el texto buscado o dentro de cualquier parte (por defecto cualquier parte). ||
 |Buscar dentro (opcional)|Indica dónde hacer la búsqueda valor, fórmula o comentario (predeterminado valor).||
 |No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
+|Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Encontrar dato
@@ -638,7 +646,7 @@ Guarda un archivo Excel
 
 ### Guardar Excel
   
-Guarda un archivo Excel (como '.xlsx', '.xls' or '.csv') en la ruta indicada
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|

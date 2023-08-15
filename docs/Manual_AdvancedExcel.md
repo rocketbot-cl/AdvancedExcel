@@ -307,7 +307,14 @@ Add auto filter to excel table
 Remove auto filter from an excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
+|Sheet |Name of the sheet where the filter to remove is located|Sheet1|
+
+### Clear Filter
+  
+Clears every filter made over an excel sheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the filtered data is located|Sheet1|
 
 ### Filter
   
@@ -480,6 +487,7 @@ Searches a text in the given range and returns the address of the cell of the fi
 |Look at (optional)|Indicates the desired type of match the whole searched text or within any part (ba default within any part). ||
 |Look in (optional)|Indicates where to do the searching value, formula or comment (default value). ||
 |Not case sensitive|If this box is checked, it will search for the text string without differences between upper and lower letters.||
+|Find all|If this box is checked, it will return a list with every coincidence.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Find data
@@ -636,7 +644,7 @@ Save a Excel file
 
 ### Save Excel
   
-Save an Excel file (as '.xlsx', '.xls' or '.csv') in the indicated path
+Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
 |Parameters|Description|example|
 | --- | --- | --- |
 |Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|

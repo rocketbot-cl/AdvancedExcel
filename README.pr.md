@@ -108,112 +108,115 @@ Adiciona filtro automático a uma tabela excel
 30. Remover Filtro Automático  
 Remova o filtro automático de uma planilha do Excel
 
-31. Filtrar  
+31. Limpa Filtro  
+Limpa todos os filtros feitos em uma planilha do Excel
+
+32. Filtrar  
 Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor de fundo ou cor da fonte das células. *Exemplos por tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-32. Filtro avançado  
+33. Filtro avançado  
 Aplicar filtro avançado a uma tabela
 
-33. Remover filtros  
+34. Remover filtros  
 Remova os filtros e mostre todos os dados
 
-34. Renomear planilha  
+35. Renomear planilha  
 Muda o nome de uma planilha de excel
 
-35. Formato de texto  
+36. Formato de texto  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 
-36. Estilo de Célula  
+37. Estilo de Célula  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 
-37. Colar em Células  
+38. Colar em Células  
 Colar dados em células em Excel
 
-38. Remover duplicatas  
+39. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-39. Exportar para PDF avançado  
+40. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-40. Copiar-Mover Planilha  
+41. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
-41. Inserir Formulário  
+42. Inserir Formulário  
 Insere um Formulário no Excel
 
-42. Ler células filtradas  
+43. Ler células filtradas  
 Ler somente as células filtradas
 
-43. Contar celulas filtradas  
+44. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-44. Replace  
+45. Replace  
 Run replace action to excel 
 
-45. Ordenar  
+46. Ordenar  
 Executa a ação de substituir de excel
 
-46. Atualizar Tudo  
+47. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-47. Procurar  
+48. Procurar  
 Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 
-48. Encontrar dados  
+49. Encontrar dados  
 Retorna a primeira célula que corresponde aos dados da pesquisa
 
-49. Bloquear celulas  
+50. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-50. Adicionar Gráfico  
+51. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-51. Remover Senha  
+52. Remover Senha  
 Remove a senha e salva o Excel
 
-52. Inserir imagem  
+53. Inserir imagem  
 Inserir uma imagem
 
-53. Exportar gráfico  
+54. Exportar gráfico  
 Exporta um gráfico por índice
 
-54. Modo não visível  
+55. Modo não visível  
 Abre excel em modo não visível
 
-55. Escrever array de objetos  
+56. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-56. Copiar-Colar Formato  
+57. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-57. Atualizar vínculos  
+58. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-58. Desbloquear planilha  
+59. Desbloquear planilha  
 Desbloquea uma folha com senha
 
-59. Bloquear folha  
+60. Bloquear folha  
 Bloquear uma folha com senha
 
-60. Converter para .txt  
+61. Converter para .txt  
 Converte para .txt
 
-61. Texto em coluna  
+62. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-62. Converter tempo de Excel para horas  
+63. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-63. Imprimir planilha  
+64. Imprimir planilha  
 Imprime uma planilha
 
-64. Salvar Excel com senha  
+65. Salvar Excel com senha  
 Salva um arquivo Excel
 
-65. Salvar Excel  
-Salva um arquivo Excel (como '.xlsx', '.xls' or '.csv')  na ruta indicada
+66. Salvar Excel  
+Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 
-66. Fechar XLSX  
+67. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
 
