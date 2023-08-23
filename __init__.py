@@ -627,7 +627,6 @@ if module == "deleteSheet":
     SetVar(var_, res)
 
 if module == "copy_other":
-    import datetime
 
     try:
         excel1 = GetParams("excel1")
@@ -642,33 +641,44 @@ if module == "copy_other":
         password = GetParams("password")              
         
         load = 0 if normal and eval(normal) else 2
-        app1 = xw.App()
-        app1.api.DisplayAlerts = False
-        app1.api.Visible = False
-        
-        if excel1:
-            wb1 = app1.books.api.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
-        elif id_:
-            if id_ not in excel.file_:
-                raise Exception(f"The id {id_} does not exist.")
-            xls = excel.file_[id_]
-            wb1 = xls['workbook'].api
-        else:
-            wb1 = wb.api
-        
-        if hoja1 not in [sh.Name for sh in wb1.Sheets]:
-            raise Exception(f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
-        
-        origin_sheet = wb1.Sheets(hoja1)
-        my_values = origin_sheet.Range(rango1)
+
         if only_values is not None:
             only_values = eval(only_values)
 
         if platform.system() == "Windows":
             if excel1:
-                wb2 = app1.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                open = 0
+                global excel__
+                excel__ = excel
+                paths = [excel__.file_[i]['path'] for i in list(excel__.file_.keys())]
+                if excel1 not in paths:
+                    try:
+                        wb1 = wb.app.books.api.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                    except:
+                        app = xw.App(add_book=False)
+                        app.api.DisplayAlerts = False
+                        app.api.Visible = False
+                        wb1 = app.api.Workbooks.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                        wb = app.books[0]
+                    open = 1
+                else:
+                    wb1 = wb.api
+            elif id_:
+                if id_ not in excel.file_:
+                    raise Exception(f"The id {id_} does not exist.")
+                xls = excel.file_[id_]
+                wb1 = xls['workbook'].api
             else:
-                wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                wb1 = wb.api
+            
+            if hoja1 not in [sh.Name for sh in wb1.Sheets]:
+                raise Exception(
+                    f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+            
+            origin_sheet = wb1.Sheets(hoja1)
+            my_values = origin_sheet.Range(rango1)
+            
+            wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
             
             if hoja2 not in [sh.Name for sh in wb2.Sheets]:
                 raise Exception(
@@ -683,10 +693,24 @@ if module == "copy_other":
             wb2.Application.DisplayAlerts = False
             wb2.SaveAs(excel2.replace("/",os.sep))
             wb2.Close()
-            if excel1:
+            if open == 1:
                 wb1.Close()
-
         else:
+            if id_:
+                if id_ not in excel.file_:
+                    raise Exception(f"The id {id_} does not exist.")
+                xls = excel.file_[id_]
+                wb1 = xls['workbook']
+            else:
+                wb1 = wb.app.books.open(excel1)
+                
+            if hoja1 not in [sh.name for sh in wb1.sheets]:
+                raise Exception(
+                    f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+
+            origin_sheet = wb1.sheets[hoja1]
+            my_values = origin_sheet.range(rango1)
+            
             values = my_values.value
             wb2 = wb.app.books.open(excel2)
             if hoja2 not in [sh.name for sh in wb2.sheets]:
