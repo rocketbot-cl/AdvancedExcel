@@ -408,10 +408,12 @@ Exporta Excel para PDF com opções
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Salvar PDF|Caminho onde salvar o arquivo .pdf|/Users/user/Desktop/excel.pdf|
+|Planilha |Nome da planilha a exportar|Planilha 1|
 |Ajuste Automático|||
-|Zoom|||
-|Ajustar Altura|||
-|Ajustar Largura|||
+|Zoom|Ajuste o zoom do conteúdo da planilha.||
+|Ajustar Altura|Ajuste a altura do conteúdo da planilha para o número definido de páginas.|1|
+|Ajustar Largura|Ajuste a largura do conteúdo da planilha para o número definido de páginas.|1|
+|Orientação|||
 
 ### Copiar-Mover Planilha
   

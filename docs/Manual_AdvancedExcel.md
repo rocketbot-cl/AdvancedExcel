@@ -1,10 +1,12 @@
 
-# Excel Advanced Options
 
+
+
+# Excel Advanced Options
+  
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
-
   
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
@@ -404,10 +406,12 @@ Export to PDF with options
 |Parameters|Description|example|
 | --- | --- | --- |
 |Save PDF|Path where to save the .pdf file|/Users/user/Desktop/excel.pdf|
+|Sheet |Name of the sheet to export|Sheet1|
 |Autofit|||
-|Zoom|||
-|FitToPagesTall|||
-|FitToPagesWide|||
+|Zoom|Adjust the zoom of the spreadsheet content.||
+|FitToPagesTall|Adjust the height of the spreadsheet content to the defined number of pages.|1|
+|FitToPagesWide|Adjust the width of the spreadsheet content to the defined number of pages.|1|
+|Orientation|||
 
 ### Copy-Move Sheet
   
@@ -618,8 +622,6 @@ Parses a column of cells that contain text into several columns.
 |Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
 
 ### Convert Excel time to hours
-
-
   
 Convert Excel time to hours. Returns the format as hh: mm: ss
 |Parameters|Description|example|

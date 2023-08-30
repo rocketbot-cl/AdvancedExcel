@@ -648,10 +648,11 @@ if module == "copy_other":
         if platform.system() == "Windows":
             if excel1:
                 open = 0
+                app = None
                 global excel__
                 excel__ = excel
-                paths = [excel__.file_[i]['path'] for i in list(excel__.file_.keys())]
-                if excel1 not in paths:
+                paths = [excel__.file_[i]['path'].replace("\\","/") for i in list(excel__.file_.keys())]
+                if excel1.replace("\\","/") not in paths:
                     try:
                         wb1 = wb.app.books.api.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
                     except:
@@ -662,7 +663,19 @@ if module == "copy_other":
                         wb = app.books[0]
                     open = 1
                 else:
-                    wb1 = wb.api
+                    try:
+                        wb1 = wb.api
+                        wb1.Sheets
+                    except:
+                        try:
+                            wb1 = wb.app.books.api.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                        except:
+                            app = xw.App(add_book=False)
+                            app.api.DisplayAlerts = False
+                            app.api.Visible = False
+                            wb1 = app.api.Workbooks.Open(excel1, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
+                            wb = app.books[0]
+                        open = 1
             elif id_:
                 if id_ not in excel.file_:
                     raise Exception(f"The id {id_} does not exist.")
@@ -695,6 +708,8 @@ if module == "copy_other":
             wb2.Close()
             if open == 1:
                 wb1.Close()
+                if app is not None:
+                    app.kill()
         else:
             if id_:
                 if id_ not in excel.file_:
@@ -994,23 +1009,29 @@ if module == "countColumns":
     result = GetParams("var_")
 
     try:
-        if not sheet:
-            sheet = wb.sheets.active.name
+        # if not sheet:
+        #     sheet = wb.sheets.active.name
         
         if sheet not in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {sheet} does not exist in the book")
         
-        # excel_path = excel.file_["default"]["path"]
-        excel_path = wb.fullname
+        if not sheet:
+            sheet = wb.sheets.active
+        else:
+            sheet = wb.sheets[sheet]
+            
+        # excel_path = wb.fullname
         
-        try:
-            # For .xlsx files
-            df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
-        except Exception as e:
-            print(e)
-            # For .xls files
-            df = pd.read_excel(excel_path, sheet_name=sheet, engine='xlrd')
-        col = df.shape[1]
+        # try:
+        #     # For .xlsx files
+        #     df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
+        # except Exception as e:
+        #     print(e)
+        #     # For .xls files
+        #     df = pd.read_excel(excel_path, sheet_name=sheet, engine='xlrd')
+        # col = df.shape[1]
+        col = sheet.used_range.last_cell.column
+        
         if column_name is not None:
             column_name = eval(column_name)
         if column_name:
@@ -1721,13 +1742,22 @@ if module == "copyMove":
 if module == "exportPDF":
     
     path_file = GetParams('path_file')
+    sheet = GetParams('sheet')
     option = GetParams('option')
     check_zoom = GetParams('check_zoom')
+    select_zoom = GetParams('select_zoom')
     check_tall = GetParams('check_tall')
+    input_tall = GetParams('input_tall')
     check_wide = GetParams('check_wide')
+    input_wide = GetParams('input_wide')
+    orientation = GetParams('orientation')
+    
 
-    sh = xls['sheet']
-
+    if not sheet:
+        sh = wb.sheets.active
+    else:
+        sh = wb.sheets[sheet]
+    
     try:
         if option:
             if option == "all":
@@ -1739,15 +1769,28 @@ if module == "exportPDF":
             if option == "rows":
                 sh.autofit('r')
 
+        if orientation:
+            sh.api.PageSetup.Orientation = orientation
+        else:
+            sh.api.PageSetup.Orientation = 1
+        
         if check_zoom:
             sh.api.PageSetup.Zoom = False
+        elif select_zoom:
+            sh.api.PageSetup.Zoom = eval(select_zoom)
+        
         if check_tall:
             sh.api.PageSetup.FitToPagesTall = False
+        elif input_tall:
+            sh.api.PageSetup.FitToPagesTall = eval(input_tall)
+            
         if check_wide:
             sh.api.PageSetup.FitToPagesWide = 1
+        elif input_wide:
+            sh.api.PageSetup.FitToPagesWide = eval(input_wide)
 
         wb.api.ActiveSheet.ExportAsFixedFormat(
-            0, path_file.replace("/", os.sep))
+            0, path_file.replace("/", os.sep), IncludeDocProperties=True, IgnorePrintAreas=False)
 
     except Exception as e:
         PrintException()
