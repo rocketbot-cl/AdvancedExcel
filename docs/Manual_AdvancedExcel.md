@@ -181,7 +181,7 @@ Delete sheet
 
 ### Copy to another excel
   
-Copy range from one Excel file to another. Use the current opened one, select one of the opened ones by ID or do everything in the background opening both Excels and closing them at the end.
+Copy the range from one Excel file to another. Indicating the file path, it will open excel to copy or paste the data. If you enter the id of an open excel, it will use that instance to copy or paste.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Excel origin (optional)|Path of the source xlsx file|Source file path:|

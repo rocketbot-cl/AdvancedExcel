@@ -1996,19 +1996,19 @@
     {
       "en": {
         "title": "Copy to another excel",
-        "description": "Copy range from one Excel file to another. Use the current opened one, select one of the opened ones by ID or do everything in the background opening both Excels and closing them at the end.",
+        "description": "Copy the range from one Excel file to another. Indicating the file path, it will open excel to copy or paste the data. If you enter the id of an open excel, it will use that instance to copy or paste.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Copiar de un Excel a otro",
-        "description": "Copie el rango de un archivo de Excel a otro. Use el abierto actual, seleccione uno de los abiertos por ID o haga todo en segundo plano abriendo ambos Excel y cerrándolos al final.",
+        "description": "Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Copiar de um Excel para outro",
-        "description": "Copie o intervalo dse um arquivo do Excel para outro. Use o atual aberto, selecione um dos abertos por ID ou faça tudo em segundo plano abrindo os dois Excels e fechando-os no final.",
+        "description": "Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo, abrirá o Excel para copiar ou colar os dados. Se você inserir o id de um Excel aberto, ele usará essa instância para copiar ou colar.",
         "title_options": null,
         "options": null
       },
@@ -2033,9 +2033,9 @@
               "pr": "Caminho do arquivo xlsx de origen"
             },
             "help":{
-              "es": "Ruta del archivo de origen para abrir. El copiar y pegar se hará en segundo plano.",
-              "en": "Path of the source file to open. The copy and paste will be done in the background.",
-              "pr": "Caminho do arquivo de origem a ser aberto. A cópia e colagem serão feitas em segundo plano."
+              "es": "IMPORTANTE: si se utiliza este campo se abrirá el archivo de excel, asegurate de que esté cerrado antes de ejecutar este comando",
+              "en": "IMPORTANT: if this field is used the excel file will be opened, make sure it is closed before executing this command",
+              "pr": "IMPORTANTE: se este campo for utilizado o arquivo excel será aberto, certifique-se de que esteja fechado antes de executar este comando"
             },
             "id": "excel1",
             "css": "col-md-9"
@@ -2116,6 +2116,11 @@
               "es": "Ruta del archivo excel de destino",
               "en": "Path of the destination xlsx file",
               "pr": "Caminho do arquivo xlsx de destino"
+            },
+            "help":{
+              "es": "IMPORTANTE: se abrirá el archivo de excel, asegurate de que esté cerrado antes de ejecutar este comando",
+              "en": "IMPORTANT: the excel file will open, make sure it is closed before running this command",
+              "pr": "IMPORTANTE: o arquivo excel será aberto, certifique-se de que esteja fechado antes de executar este comando"
             },
             "id": "excel2",
             "css": "col-md-12"

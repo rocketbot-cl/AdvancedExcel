@@ -183,7 +183,7 @@ Elimina una hoja
 
 ### Copiar de un Excel a otro
   
-Copie el rango de un archivo de Excel a otro. Use el abierto actual, seleccione uno de los abiertos por ID o haga todo en segundo plano abriendo ambos Excel y cerrándolos al final.
+Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Excel origen (opcional)|Ruta del archivo excel de origen|Ruta archivo origen:|
