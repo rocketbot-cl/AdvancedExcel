@@ -8,7 +8,7 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png o jpg)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
@@ -80,6 +80,15 @@ Obtener el color de una celda. La función devolverá una lista con dos elemento
 |Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
 |Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
+### Obtener formatos de celda
+  
+Obtener el formato de una celda. La función devolverá un diccionario con las propiedades de la celda y el valor de cada una.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Hoja|Hoja1|
+|Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
+|Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
+
 ### Insertar Formula
   
 Inserta formula sobre una celda 
@@ -87,7 +96,7 @@ Inserta formula sobre una celda
 | --- | --- | --- |
 |Ingrese hoja |Hoja|Hoja1|
 |Ingrese celda |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A5|
-|Escriba fórmula |Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar parámetros|=SUM(A1:A4)|
+|Escriba fórmula |Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar los parámetros|=SUM(A1:A4)|
 
 ### Insertar Macro a Excel
   
@@ -148,6 +157,14 @@ Formatear Celda
 |Formato personalizado |Formato personalizado. Debe ser el mismo mostrado en la sección personalizado de Excel|00000|
 |Texto a Valor|||
 
+### Borrar contenido
+  
+Borra fórmulas y valores del rango seleccionado, manteniendo el formato.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda o Rango de celdas|Rango que contiene los datos a alinear|A1:D7|
+
 ### Crear Hoja
   
 Añade una hoja al final
@@ -166,13 +183,15 @@ Elimina una hoja
 
 ### Copiar de un Excel a otro
   
-Copia un rango desde un Excel a otro, el excel de destino no debe estar abierto
+Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Excel origen|Ruta del archivo excel de origen|Sheet1|
+|Excel origen (opcional)|Ruta del archivo excel de origen|Ruta archivo origen:|
+|Identificador (opcional)|Nombre o ID del archivo de código abierto.|id|
 |Hoja origen|Nombre de la hoja de origen|Sheet1|
 |Rango a copiar|Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
-|Excel destino|Ruta del archivo excel de destino|Sheet1|
+|Excel destino|Ruta del archivo excel de destino|Ruta archivo destino:|
+|Abrir normalmente|Si esta casilla está marcada, el archivo de destino se abre normalmente manteniendo los datos, formatos y objetos. De lo contrario, solo recupera datos.|True|
 |Hoja destino|Nombre de la hoja donde se copiará|Sheet1|
 |Rango donde pegar|Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
 |Solo valores|Si esta casilla es seleccionada, copiará solo los valores|True|
@@ -198,7 +217,7 @@ Inserta o elimina una columna
 
 ### Convertir CSV a XLSX
   
-Convierte un documento CSV a XLSX
+Convierte un documento CSV a formato XLSX
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ruta archivo CSV|Ruta del archivo csv que se quiere convertir||
@@ -284,6 +303,20 @@ Agrega filtro automático a una tabla excel
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Columnas |Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o AB) |A:E |
+
+### Eliminar Filtro Automático
+  
+Eliminar el filtro automático de una hoja de Excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentra el filtro a quitar|Hoja 1|
+
+### Borrar Filtro
+  
+Borra todos los filtros realizados sobre una hoja de Excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos filtrados|Hoja 1|
 
 ### Filtrar
   
@@ -375,10 +408,12 @@ Exporta Excel a PDF con opciones
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar PDF|Ruta donde guardar el archivo .pdf|/Users/user/Desktop/excel.pdf|
+|Hoja |Nombre de la hoja a exportar|Hoja 1|
 |Ajuste Automatico|||
-|Zoom|||
-|Ajustar Alto|||
-|Ajustar ancho|||
+|Zoom|Ajusta el zoom del contenido de la planilla.||
+|Ajustar Alto|Ajusta el alto del contenido de la planilla al numero de carillas definido.|1|
+|Ajustar ancho|Ajusta el ancho del contenido de la planilla al numero de carillas definido.|1|
+|Orientación|||
 
 ### Copiar-Mover Hoja
   
@@ -388,6 +423,7 @@ Copia o mueve una hoja
 |Hoja origen |Nombre de la hoja de origen|Sheet1|
 |Mover/copiar antes de hoja |Nombre de la hoja donde se moverá|Sheet2|
 |Excel destino|Ruta del archivo .xlsx donde mover o copiar la hoja|C:/ruta/al/excel.xlsx|
+|Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
 |Copiar|Al marcar la casilla, se creará una copia de la hoja||
 
 ### Insertar Formulario
@@ -444,14 +480,18 @@ Actualiza todas las fuentes del libro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### (Deprecado) Buscar
+### Buscar
   
-Devuelve la primera celda encontrada
+Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|Buscar en (opcional)|Indica el tipo de coincidencia deseada todo el texto buscado o dentro de cualquier parte (por defecto cualquier parte). ||
+|Buscar dentro (opcional)|Indica dónde hacer la búsqueda valor, fórmula o comentario (predeterminado valor).||
+|No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
+|Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Encontrar dato
@@ -608,7 +648,7 @@ Guarda un archivo Excel
 
 ### Guardar Excel
   
-Guarda un archivo Excel en la ruta indicada
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|

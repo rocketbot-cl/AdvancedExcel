@@ -8,7 +8,7 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png o jpg)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
@@ -80,6 +80,15 @@ Obter a cor de uma célula. A função retornará uma lista com dois elementos: 
 |Célula |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
 |Atribuir a variável|Nome da variável para armazenar o resultado|cor|
 
+### Obter formato de célula
+  
+Obtenha o formato de uma célula. A função retornará um dicionário com as propriedades da célula e o valor de cada uma.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Folha |Folha|Folha1|
+|Célula |Célula. A sintaxe deve ser a mesma do excel (A1)|A1|
+|Atribuir a variável|Nome da variável para armazenar o resultado|cor|
+
 ### Insertar Formula
   
 Inserta formula sobre una celda 
@@ -87,7 +96,7 @@ Inserta formula sobre una celda
 | --- | --- | --- |
 |Folha |Folha|Folha5|
 |Celda |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A5|
-|Escreva fórmula |Fórmula a ser inserida. Deve ser escrito em inglês. Lembre-se de usar *,* para separar parâmetros|=SUM(A1:A4)|
+|Escreva fórmula |Fórmula a ser inserida. Deve ser escrito em inglês. Lembre-se de usar *,* para separar os parâmetros|=SUM(A1:A4)|
 
 ### Inserir Macro a Excel
   
@@ -148,6 +157,14 @@ Formatar Célula
 |Formato personalizado|Formato personalizado. Deve ser o mesmo que mostrado na seção personalizada do Excel.|00000|
 |Texto para valor|||
 
+### Remover conteúdo
+  
+Limpa fórmulas e valores do intervalo selecionado, mantendo o formato
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
+|Célula o intervalo de células|Intervalo que contém os dados a alinhar|A1:D7|
+
 ### Criar Planilha
   
 Adiciona uma planilha no final
@@ -166,13 +183,15 @@ Elmina uma planilha
 
 ### Copiar de um Excel para outro
   
-Copia um intervalo de um Excel para outro, o excel de destino não deve estar aberto
+Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo, abrirá o Excel para copiar ou colar os dados. Se você inserir o id de um Excel aberto, ele usará essa instância para copiar ou colar.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|Excel de origem|Caminho do arquivo xlsx de origen|Folha1|
+|Excel de origem (opcional)|Caminho do arquivo xlsx de origen|Caminho do arquivo origem:|
+|Identificador (opcional)|Nome ou ID do arquivo de código aberto.|id|
 |Planilha de origem|Nome da planilha de origen|Folha1|
 |Intervalo a copiar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:D7|
-|Excel de destino|Caminho do arquivo xlsx de destino|Folha1|
+|Excel de destino|Caminho do arquivo xlsx de destino|Caminho do arquivo destino:|
+|Abrir normalmente|Se esta caixa de seleção estiver marcada, o arquivo de destino abre normalmente mantendo os dados, formatos e objetos. Caso contrário, ele apenas recupera dados.|True|
 |Planilha de destino|Nome da planilha onde vai ser colada|Folha1|
 |Intervalo onde colar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:D7|
 |Sólo valores|Se esta caixa foi marcada, copiará apenas os valores|True|
@@ -198,7 +217,7 @@ Adiciona o exclui uma coluna
 
 ### Converter CSV para XLSX
   
-Converte um documento CSV para XLSX
+Converte um documento CSV para formato XLSX
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Caminho do arquivo CSV|Direcação do arquivo csv que se quer converter||
@@ -284,6 +303,20 @@ Adiciona filtro automático a uma tabela excel
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
 |Colunas |Coluna ou intervalo de colunas. A sintaxe deve ser a mesma do excel (A o AB) |A:E |
+
+### Remover Filtro Automático
+  
+Remova o filtro automático de uma planilha do Excel
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da folha onde se encontra o filtro a remover|Planilha 1|
+
+### Limpa Filtro
+  
+Limpa todos os filtros feitos em uma planilha do Excel
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados filtrados estão localizados|Planilha 1|
 
 ### Filtrar
   
@@ -375,10 +408,12 @@ Exporta Excel para PDF com opções
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Salvar PDF|Caminho onde salvar o arquivo .pdf|/Users/user/Desktop/excel.pdf|
+|Planilha |Nome da planilha a exportar|Planilha 1|
 |Ajuste Automático|||
-|Zoom|||
-|Ajustar Altura|||
-|Ajustar Largura|||
+|Zoom|Ajuste o zoom do conteúdo da planilha.||
+|Ajustar Altura|Ajuste a altura do conteúdo da planilha para o número definido de páginas.|1|
+|Ajustar Largura|Ajuste a largura do conteúdo da planilha para o número definido de páginas.|1|
+|Orientação|||
 
 ### Copiar-Mover Planilha
   
@@ -388,6 +423,7 @@ Copiar ou mover uma planilha
 |Planilha origem|Nome da planilha de origen|Sheet1|
 |Mover/copiar antes da planilha|Nome da planilha onde vai ser movida|Sheet2|
 |Excel destino|Caminho do arquivo .xlsx onde mover ou copiar a planilha|C:/ruta/para/excel.xlsx|
+|Password (opcional)|Password do arquivo xlsx|P@ssW0rd|
 |Copy |Ao marcar a caixa, a planilha vai ser copiada.||
 
 ### Inserir Formulário
@@ -444,14 +480,18 @@ Atualiza todas as fontes do livro
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 
-### (Descontinuado) Pesquisar
+### Procurar
   
-Devuelve a primeira celula encontrada
+Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Folha1 |
 |Intervalo onde buscar |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Texto a buscar|Texto a ser procurado no excel|Lorem|
+|Perquisar em (opcional)|Indica o tipo de correspondência desejada todo o texto pesquisado ou em qualquer parte (padrão em qualquer lugar). ||
+|Pesquisar dentro (opcional)|Indica onde fazer a busca valor, fórmula ou comentário (padrão valor).||
+|Não diferencia maiúsculas de minúsculas|Se esta caixa estiver marcada, ela procurará a sequência de texto sem diferenças entre letras maiúsculas e minúsculas.||
+|Encontrar tudo|Se esta caixa estiver marcada, ela retornará uma lista com todas as coincidências.||
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Encontrar dados
@@ -608,7 +648,7 @@ Salva um arquivo Excel
 
 ### Salvar Excel
   
-Salva um arquivo Excel na ruta indicada
+Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Salvar Excel|Caminho onde salvar o arquivo .xlsx|/Users/user/Desktop/excel.xlsx|
