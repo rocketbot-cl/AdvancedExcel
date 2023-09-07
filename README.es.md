@@ -156,67 +156,70 @@ Ejecuta la opción de reemplazar de excel
 46. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-47. Actualizar Todo  
+47. Ordenar por múltiples niveles  
+Ordene una hoja de Excel por valor, estableciendo múltiples niveles
+
+48. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-48. Buscar  
+49. Buscar  
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 
-49. Encontrar dato  
+50. Encontrar dato  
 Devuelve la primera celda que coincida con el dato buscado
 
-50. Bloquear celdas  
+51. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-51. Agregar Gráfico  
+52. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-52. Quitar Contraseña  
+53. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-53. Insertar imagen  
+54. Insertar imagen  
 Inserta una imagen
 
-54. Exportar gráfico  
+55. Exportar gráfico  
 Exporta un gráfico por índice
 
-55. Modo no visible  
+56. Modo no visible  
 Abre excel en modo no visible
 
-56. Escribir array de objetos  
+57. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-57. Copiar-Pegar Formato  
+58. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-58. Actualizar vínculos  
+59. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-59. Desbloquear hoja  
+60. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-60. Bloquear hoja  
+61. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-61. Convertir a .txt  
+62. Convertir a .txt  
 Convierte a .txt
 
-62. Texto en columna  
+63. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-63. Convertir tiempo de Excel a horas  
+64. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-64. Imprimir hoja  
+65. Imprimir hoja  
 Imprime una hoja
 
-65. Guardar Excel con password  
+66. Guardar Excel con password  
 Guarda un archivo Excel
 
-66. Guardar Excel  
+67. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-67. Cerrar XLSX  
+68. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

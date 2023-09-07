@@ -156,67 +156,70 @@ Run replace action to excel
 46. Ordenar  
 Executa a ação de substituir de excel
 
-47. Atualizar Tudo  
+47. Ordenar por múltiples niveles  
+Ordene uma planilha Excel por valor, definindo vários níveis
+
+48. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-48. Procurar  
+49. Procurar  
 Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 
-49. Encontrar dados  
+50. Encontrar dados  
 Retorna a primeira célula que corresponde aos dados da pesquisa
 
-50. Bloquear celulas  
+51. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-51. Adicionar Gráfico  
+52. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-52. Remover Senha  
+53. Remover Senha  
 Remove a senha e salva o Excel
 
-53. Inserir imagem  
+54. Inserir imagem  
 Inserir uma imagem
 
-54. Exportar gráfico  
+55. Exportar gráfico  
 Exporta um gráfico por índice
 
-55. Modo não visível  
+56. Modo não visível  
 Abre excel em modo não visível
 
-56. Escrever array de objetos  
+57. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-57. Copiar-Colar Formato  
+58. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-58. Atualizar vínculos  
+59. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-59. Desbloquear planilha  
+60. Desbloquear planilha  
 Desbloquea uma folha com senha
 
-60. Bloquear folha  
+61. Bloquear folha  
 Bloquear uma folha com senha
 
-61. Converter para .txt  
+62. Converter para .txt  
 Converte para .txt
 
-62. Texto em coluna  
+63. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-63. Converter tempo de Excel para horas  
+64. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-64. Imprimir planilha  
+65. Imprimir planilha  
 Imprime uma planilha
 
-65. Salvar Excel com senha  
+66. Salvar Excel com senha  
 Salva um arquivo Excel
 
-66. Salvar Excel  
+67. Salvar Excel  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 
-67. Fechar XLSX  
+68. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
 

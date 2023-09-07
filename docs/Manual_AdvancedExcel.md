@@ -472,6 +472,16 @@ Run replace action to excel
 |Column|Indicate the column to be sorted|A1:A22|
 |Order type |Indicate how the column will be sorted|Ascending|
 
+### Order by multiple levels
+  
+Order an excel sheet by value, setting multiple levels
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet 1|
+|Range to sort |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
+|It has headers|If this option is checked, it will take the first row of the range as headers.||
+|Sort fields|||
+
 ### Refresh All
   
 Refresh all data in Excel
@@ -619,7 +629,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
 
 ### Convert Excel time to hours
   

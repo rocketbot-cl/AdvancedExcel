@@ -2017,6 +2017,58 @@ if module == "Order":
         PrintException()
         raise e
 
+if module == "OrderMultiple":
+    sheet_name = GetParams("sheet")
+    range_ = GetParams("range")
+    headers = GetParams("headers")
+    iframe = GetParams("iframe")
+
+    try:
+        if iframe != None:
+            iframe = iframe if isinstance(iframe, dict) else eval(iframe)
+            fields = iframe["table"]
+            print(fields)
+        else:
+            fields = {}
+    except Exception as e:
+        PrintException()
+        print(e)
+    
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(
+                f"The name {sheet_name} does not exist in the book")
+        sheet = wb.api.Sheets(sheet_name)
+
+        sheet.Sort.SortFields.Clear()
+            
+        for field in fields:
+            order = field['order']
+            if order == 'Ascending':
+                order = 1
+            elif order == 'Descending':
+                order = 2
+            else:
+                order = 1
+            column = field['column'] + ":" + field['column']
+            key = sheet.Range(column)
+            
+            sheet.Sort.SortFields.Add(Key=key, Order=order)
+        
+        if headers and eval(headers):
+            sheet.Sort.Header = 1
+        else:
+            sheet.Sort.Header = 0
+        
+        range_ = sheet.Range(range_)
+        sheet.Sort.SetRange(range_)
+        sheet.Sort.Apply()
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
 if module == "refreshAll":
 
     try:

@@ -474,6 +474,16 @@ Executa a ação de substituir de excel
 |Coluna|Indicar a coluna que vai ser classificada|A1:A22|
 |Tipo de ordem |Indicar como a coluna vai ser classificada|Ascendente|
 
+### Ordenar por múltiples niveles
+  
+Ordene uma planilha Excel por valor, definindo vários níveis
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
+|Intervalo para classificar |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
+|Tem cabeçalhos|Se esta opção estiver marcada, a primeira linha do intervalo será usada como cabeçalho.||
+|Campos de organizar|||
+
 ### Atualizar Tudo
   
 Atualiza todas as fontes do livro
@@ -621,7 +631,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   
