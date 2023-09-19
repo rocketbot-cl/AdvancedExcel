@@ -358,10 +358,19 @@ if (module == "getCurrencyValue"):
 
     if (cont > 1):
         for each in valueGotten:
-            try:
-                finalResult.append(float(each))
-            except:
-                finalResult.append(each)
+            if isinstance(each, list):
+                list_ = []
+                for each2 in each:
+                    try:
+                        list_.append(float(each2))
+                    except:
+                        list_.append(each2)
+                finalResult.append(list_)
+            else:
+                try:
+                    finalResult.append(float(each))
+                except:
+                    finalResult.append(each)
     else:
         try:
             finalResult.append(float(valueGotten))
