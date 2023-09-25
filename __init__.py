@@ -908,7 +908,7 @@ if module == "csvToxlsx":
         workbook.encoding = encoding
         worksheet = workbook.active
         with open(csv_path, "r", encoding=encoding) as fobj:
-            csv_reader = csv.reader(fobj, delimiter=sep)
+            csv_reader = csv.reader((x.replace('\0', '') for x in fobj), delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
                     try:
@@ -2484,10 +2484,24 @@ try:
             wb.sheets[sheet_name].api.Protect(password)
     
     if module == "xlsxToTxt":
+        file_path_xlsx = GetParams("path_xlsx")
         file_path_txt = GetParams("path_txt")
-
+        
         file_path_txt = file_path_txt.replace("/", os.sep)
-        wb.api.SaveAs(file_path_txt,21)
+        
+        if file_path_xlsx:
+            try:
+                file_path_xlsx = file_path_xlsx.replace("/", os.sep)
+                app = xw.App(add_book=False)
+                app.api.DisplayAlerts = False
+                app.api.Visible = False
+                wb = app.api.Workbooks.Open(file_path_xlsx, False, None, None, None, None, IgnoreReadOnlyRecommended=True, CorruptLoad=0)          
+                sleep(2)
+                wb.SaveAs(file_path_txt,21)
+            except Exception as e:
+                raise e
+        else:
+            wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
         
