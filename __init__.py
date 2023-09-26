@@ -358,10 +358,19 @@ if (module == "getCurrencyValue"):
 
     if (cont > 1):
         for each in valueGotten:
-            try:
-                finalResult.append(float(each))
-            except:
-                finalResult.append(each)
+            if isinstance(each, list):
+                list_ = []
+                for each2 in each:
+                    try:
+                        list_.append(float(each2))
+                    except:
+                        list_.append(each2)
+                finalResult.append(list_)
+            else:
+                try:
+                    finalResult.append(float(each))
+                except:
+                    finalResult.append(each)
     else:
         try:
             finalResult.append(float(valueGotten))
@@ -908,7 +917,7 @@ if module == "csvToxlsx":
         workbook.encoding = encoding
         worksheet = workbook.active
         with open(csv_path, "r", encoding=encoding) as fobj:
-            csv_reader = csv.reader(fobj, delimiter=sep)
+            csv_reader = csv.reader((x.replace('\0', '') for x in fobj), delimiter=sep)
             for row_index, row in enumerate(csv_reader):
                 for col_index, value in enumerate(row):
                     try:
@@ -2017,6 +2026,58 @@ if module == "Order":
         PrintException()
         raise e
 
+if module == "OrderMultiple":
+    sheet_name = GetParams("sheet")
+    range_ = GetParams("range")
+    headers = GetParams("headers")
+    iframe = GetParams("iframe")
+
+    try:
+        if iframe != None:
+            iframe = iframe if isinstance(iframe, dict) else eval(iframe)
+            fields = iframe["table"]
+            print(fields)
+        else:
+            fields = {}
+    except Exception as e:
+        PrintException()
+        print(e)
+    
+    try:
+        if not sheet_name in [sh.name for sh in wb.sheets]:
+            raise Exception(
+                f"The name {sheet_name} does not exist in the book")
+        sheet = wb.api.Sheets(sheet_name)
+
+        sheet.Sort.SortFields.Clear()
+            
+        for field in fields:
+            order = field['order']
+            if order == 'Ascending':
+                order = 1
+            elif order == 'Descending':
+                order = 2
+            else:
+                order = 1
+            column = field['column'] + ":" + field['column']
+            key = sheet.Range(column)
+            
+            sheet.Sort.SortFields.Add(Key=key, Order=order)
+        
+        if headers and eval(headers):
+            sheet.Sort.Header = 1
+        else:
+            sheet.Sort.Header = 0
+        
+        range_ = sheet.Range(range_)
+        sheet.Sort.SetRange(range_)
+        sheet.Sort.Apply()
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
 if module == "refreshAll":
 
     try:
@@ -2432,10 +2493,24 @@ try:
             wb.sheets[sheet_name].api.Protect(password)
     
     if module == "xlsxToTxt":
+        file_path_xlsx = GetParams("path_xlsx")
         file_path_txt = GetParams("path_txt")
-
+        
         file_path_txt = file_path_txt.replace("/", os.sep)
-        wb.api.SaveAs(file_path_txt,21)
+        
+        if file_path_xlsx:
+            try:
+                file_path_xlsx = file_path_xlsx.replace("/", os.sep)
+                app = xw.App(add_book=False)
+                app.api.DisplayAlerts = False
+                app.api.Visible = False
+                wb = app.api.Workbooks.Open(file_path_xlsx, False, None, None, None, None, IgnoreReadOnlyRecommended=True, CorruptLoad=0)          
+                sleep(2)
+                wb.SaveAs(file_path_txt,21)
+            except Exception as e:
+                raise e
+        else:
+            wb.api.SaveAs(file_path_txt,21)
 
     if module == "text2column":
         

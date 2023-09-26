@@ -474,6 +474,16 @@ Ejecuta la opción de reemplazar de excel
 |Columna|Indicar la columna a ordenar|A1:A22|
 |Tipo de orden |Indicar como se ordenará la columna|Ascending|
 
+### Ordenar por múltiples niveles
+  
+Ordene una hoja de Excel por valor, estableciendo múltiples niveles
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango a ordenar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Posee encabezados|Si se marca esta opción, tomara la primer fila del rango como encabezados.||
+|Campos de orden|||
+
 ### Actualizar Todo
   
 Actualiza todas las fuentes del libro
@@ -621,7 +631,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   

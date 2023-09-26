@@ -156,67 +156,70 @@ Run replace action to excel
 46. Order  
 Run replace action to excel 
 
-47. Refresh All  
+47. Order by multiple levels  
+Order an excel sheet by value, setting multiple levels
+
+48. Refresh All  
 Refresh all data in Excel
 
-48. Find  
+49. Find  
 Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
 
-49. Find data  
+50. Find data  
 Returns the first cell that matches the search data
 
-50. Lock Cells  
+51. Lock Cells  
 Lock or Unlock cells
 
-51. Add Chart  
+52. Add Chart  
 Create a new chart in an excel sheet
 
-52. Remove Password  
+53. Remove Password  
 Remove password and save the Excel
 
-53. Insert image  
+54. Insert image  
 Insert an image
 
-54. Export Chart  
+55. Export Chart  
 Export a chart from index
 
-55. Not visible mode  
+56. Not visible mode  
 Open not visible excel.
 
-56. Write array objects  
+57. Write array objects  
 Write array object on Excel cells.
 
-57. Copy-Paste Format  
+58. Copy-Paste Format  
 Copy format range cell to another sheet
 
-58. Update links  
+59. Update links  
 Changes a link from one document to another
 
-59. Unlock sheet  
+60. Unlock sheet  
 Unlock sheet with password
 
-60. Lock sheet  
+61. Lock sheet  
 Lock a sheet with password
 
-61. Convert to .txt  
+62. Convert to .txt  
 Convert to .txt
 
-62. Text to columns  
+63. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-63. Convert Excel time to hours  
+64. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-64. Print sheet  
+65. Print sheet  
 Prints a sheet
 
-65. Save Excel with password  
+66. Save Excel with password  
 Save a Excel file
 
-66. Save Excel  
+67. Save Excel  
 Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
 
-67. Close XLSX  
+68. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 
