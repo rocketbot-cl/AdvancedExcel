@@ -1056,7 +1056,7 @@ if module == "countColumns":
 if module == "countRows":
 
     sheet = GetParams("sheet")
-    row_ = GetParams("row_")
+    row_ = GetParams("row_") #Column
     result = GetParams("var_")
     countAll = GetParams("countAll")
     if countAll is not None:
@@ -1081,8 +1081,13 @@ if module == "countRows":
             a = wb.sheets[sheet].range(f"{row_}:{row_}").last_cell
             while not a.value:
                 a = a.end('up')
-
-            total = wb.sheets[sheet].range(row_ + str(a.row)).row
+                if a.row == 1 and not a.value:
+                    a = 0
+                    break
+            if a == 0:
+                total = 0
+            else:
+                total = wb.sheets[sheet].range(row_ + str(a.row)).row
         if result:
             SetVar(result, total)
 
