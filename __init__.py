@@ -1082,12 +1082,9 @@ if module == "countRows":
             while not a.value:
                 a = a.end('up')
                 if a.row == 1 and not a.value:
-                    a = 0
                     break
-            if a == 0:
-                total = 0
-            else:
-                total = wb.sheets[sheet].range(row_ + str(a.row)).row
+
+            total = wb.sheets[sheet].range(row_ + str(a.row)).row
         if result:
             SetVar(result, total)
 
@@ -2482,6 +2479,16 @@ try:
 
         wb.api.ChangeLink(Name=name, NewName=new_name, Type=1)
 
+    if module == "unlockBook":
+        password = GetParams("password")
+   
+        wb.api.Unprotect(password)
+
+    if module == "lockBook":
+        password = GetParams("password")
+
+        wb.api.Protect(password, True)
+            
     if module == "unlockSheet":
         sheet_name = GetParams("sheet")
         password = GetParams("password")
