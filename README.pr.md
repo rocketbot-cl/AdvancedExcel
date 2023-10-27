@@ -195,31 +195,37 @@ Copia formato de um intervalo de células de uma planilha para outra
 59. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-60. Desbloquear planilha  
+60. Desbloquear livro  
+Desbloquea um livro com senha
+
+61. Bloquear livro  
+Bloquear um livro com senha
+
+62. Desbloquear planilha  
 Desbloquea uma folha com senha
 
-61. Bloquear folha  
+63. Bloquear folha  
 Bloquear uma folha com senha
 
-62. Converter para .txt  
+64. Converter para .txt  
 Converte para .txt
 
-63. Texto em coluna  
+65. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-64. Converter tempo de Excel para horas  
+66. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-65. Imprimir planilha  
+67. Imprimir planilha  
 Imprime uma planilha
 
-66. Salvar Excel com senha  
+68. Salvar Excel com senha  
 Salva um arquivo Excel
 
-67. Salvar Excel  
+69. Salvar Excel  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 
-68. Fechar XLSX  
+70. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
 

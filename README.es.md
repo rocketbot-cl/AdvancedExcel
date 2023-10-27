@@ -195,31 +195,37 @@ Copia formato de un rango de celdas desde una hoja a otra
 59. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-60. Desbloquear hoja  
+60. Desbloquear libro  
+Desbloquea un libro con contraseña
+
+61. Bloquear libro  
+Bloquear un libro con contraseña
+
+62. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-61. Bloquear hoja  
+63. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-62. Convertir a .txt  
+64. Convertir a .txt  
 Convierte a .txt
 
-63. Texto en columna  
+65. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-64. Convertir tiempo de Excel a horas  
+66. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-65. Imprimir hoja  
+67. Imprimir hoja  
 Imprime una hoja
 
-66. Guardar Excel con password  
+68. Guardar Excel con password  
 Guarda un archivo Excel
 
-67. Guardar Excel  
+69. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-68. Cerrar XLSX  
+70. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

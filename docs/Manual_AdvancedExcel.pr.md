@@ -97,6 +97,7 @@ Inserta formula sobre una celda
 |Folha |Folha|Folha5|
 |Celda |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A5|
 |Escreva fórmula |Fórmula a ser inserida. Deve ser escrito em inglês. Lembre-se de usar *,* para separar os parâmetros|=SUM(A1:A4)|
+|No IIE|Se esta caixa estiver marcada, você poderá enviar a fórmula sem IIE|True|
 
 ### Inserir Macro a Excel
   
@@ -154,7 +155,7 @@ Formatar Célula
 |Nome da Planilha|Nome da planilha a ser automatizada|Folha1|
 |Célula a formatar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:C4|
 |Formato|O tipo de formato para a célula deve ser selecionado. Selecione o formato personalizado para adicionar um formato personalizado|dd-mm-yy|
-|Formato personalizado|Formato personalizado. Deve ser o mesmo que mostrado na seção personalizada do Excel.|00000|
+|Formato personalizado|Formato personalizado. Doc https//support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
 |Texto para valor|||
 
 ### Remover conteúdo
@@ -409,6 +410,7 @@ Exporta Excel para PDF com opções
 | --- | --- | --- |
 |Salvar PDF|Caminho onde salvar o arquivo .pdf|/Users/user/Desktop/excel.pdf|
 |Planilha |Nome da planilha a exportar|Planilha 1|
+|Todas as folhas|Ao marcar a caixa, todas as planilhas serão exportadas||
 |Ajuste Automático|||
 |Zoom|Ajuste o zoom do conteúdo da planilha.||
 |Ajustar Altura|Ajuste a altura do conteúdo da planilha para o número definido de páginas.|1|
@@ -597,6 +599,20 @@ Muda um vínculo de um documento para outro
 | --- | --- | --- |
 |Direcação|Direcação do arquivo xlsx que se quere atualizar||
 |Direcação atualizada|Direcação do arquivo xlsx que substituirá o vínculo|file.xlsx|
+
+### Desbloquear livro
+  
+Desbloquea um livro com senha
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Senha|Senha da planilha bloqueada|Senha|
+
+### Bloquear livro
+  
+Bloquear um livro com senha
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Senha|Senha para bloquear o livro|Senha|
 
 ### Desbloquear planilha
   

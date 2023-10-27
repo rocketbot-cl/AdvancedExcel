@@ -195,31 +195,37 @@ Copy format range cell to another sheet
 59. Update links  
 Changes a link from one document to another
 
-60. Unlock sheet  
+60. Unlock book  
+Unlock book with password
+
+61. Lock book  
+Lock a book with password
+
+62. Unlock sheet  
 Unlock sheet with password
 
-61. Lock sheet  
+63. Lock sheet  
 Lock a sheet with password
 
-62. Convert to .txt  
+64. Convert to .txt  
 Convert to .txt
 
-63. Text to columns  
+65. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-64. Convert Excel time to hours  
+66. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-65. Print sheet  
+67. Print sheet  
 Prints a sheet
 
-66. Save Excel with password  
+68. Save Excel with password  
 Save a Excel file
 
-67. Save Excel  
+69. Save Excel  
 Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
 
-68. Close XLSX  
+70. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 

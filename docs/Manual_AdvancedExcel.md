@@ -95,6 +95,7 @@ Insert formula into cell
 |Sheet |Sheet|Sheet5|
 |Cell |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A5|
 |Write formula |Formula that will be inserted. Must be writen in english. Remember to use *,* to separate the parameters|=SUM(A1:A4)|
+|No IIE|If this box is checked, it allows you to send the formula without IIE|True|
 
 ### Insert Macro
   
@@ -152,7 +153,7 @@ Format Cell
 |Sheet Name |Name of the sheet to automate|Sheet1|
 |Cell |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
 |Format|You should select the formatting type for the cell. Select custom to add a customizable format|dd-mm-yy|
-|Custom format |Custom format. Must be the same as the one shown in the Excel custom section|00000|
+|Custom format |Custom format. Doc https//support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
 |Text to Value|||
 
 ### Clear Contents
@@ -407,6 +408,7 @@ Export to PDF with options
 | --- | --- | --- |
 |Save PDF|Path where to save the .pdf file|/Users/user/Desktop/excel.pdf|
 |Sheet |Name of the sheet to export|Sheet1|
+|Al sheets|By checking the checkbox, all sheets will be exported||
 |Autofit|||
 |Zoom|Adjust the zoom of the spreadsheet content.||
 |FitToPagesTall|Adjust the height of the spreadsheet content to the defined number of pages.|1|
@@ -595,6 +597,20 @@ Changes a link from one document to another
 | --- | --- | --- |
 |Path to change|Path of the xlsx file to be updated||
 |Updated path|Path of the xlsx file that will replace the link|file.xlsx|
+
+### Unlock book
+  
+Unlock book with password
+|Parameters|Description|example|
+| --- | --- | --- |
+|Password|Password of the locked sheet|Password|
+
+### Lock book
+  
+Lock a book with password
+|Parameters|Description|example|
+| --- | --- | --- |
+|Password|Password to lock the book|Password|
 
 ### Unlock sheet
   
