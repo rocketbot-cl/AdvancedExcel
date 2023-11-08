@@ -97,6 +97,7 @@ Inserta formula sobre una celda
 |Ingrese hoja |Hoja|Hoja1|
 |Ingrese celda |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A5|
 |Escriba fórmula |Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar los parámetros|=SUM(A1:A4)|
+|No IIE|Si se marca esta casilla, permite enviar la formula sin IIE|True|
 
 ### Insertar Macro a Excel
   
@@ -154,7 +155,7 @@ Formatear Celda
 |Nombre de Hoja|Nombre de la hoja que se quiere automatizar|Sheet1|
 |Rango a formatear |Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
 |Formato|Se debe seleccionar el tipo de formato para la celda. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
-|Formato personalizado |Formato personalizado. Debe ser el mismo mostrado en la sección personalizado de Excel|00000|
+|Formato personalizado |Formato personalizado. Doc https//support.microsoft.com/es-es/office/revisar-las-instrucciones-para-personalizar-un-formato-de-n%C3%BAmero-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
 |Texto a Valor|||
 
 ### Borrar contenido
@@ -409,6 +410,7 @@ Exporta Excel a PDF con opciones
 | --- | --- | --- |
 |Guardar PDF|Ruta donde guardar el archivo .pdf|/Users/user/Desktop/excel.pdf|
 |Hoja |Nombre de la hoja a exportar|Hoja 1|
+|Todas las hojas|Al marcar la casilla, se exportaran todas las hojas||
 |Ajuste Automatico|||
 |Zoom|Ajusta el zoom del contenido de la planilla.||
 |Ajustar Alto|Ajusta el alto del contenido de la planilla al numero de carillas definido.|1|
@@ -597,6 +599,20 @@ Cambia un vínculo desde un documento a otro
 | --- | --- | --- |
 |Ruta a cambiar|Ruta del archivo xlsx que se quiere actualizar||
 |Ruta actualizada|Ruta del archivo xlsx que reemplazará el vinculo|file.xlsx|
+
+### Desbloquear libro
+  
+Desbloquea un libro con contraseña
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Contraseña|Contraseña de la hoja bloqueada|Contraseña|
+
+### Bloquear libro
+  
+Bloquear un libro con contraseña
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Contraseña|Contraseña para bloquear el libro|Contraseña|
 
 ### Desbloquear hoja
   

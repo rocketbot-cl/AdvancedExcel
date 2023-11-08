@@ -30,6 +30,7 @@ import os
 import sys
 import subprocess
 import dateutil.parser
+import traceback
 
 # This lines is to linter
 # -----------------------------------
@@ -296,12 +297,16 @@ if module == "InsertFormula":
     hoja = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
-    
+    no_iie = GetParams("no_iie")
     if not hoja:
         sheet = wb.sheets.active
     else:
         sheet = wb.sheets(hoja)
-    sheet.range(cell).formula = formula
+        
+    if no_iie and eval(no_iie):
+        sheet.range(cell).api.Formula2 = formula
+    else:
+        sheet.range(cell).formula = formula
 
 if module == "InsertMacro":
     macro = GetParams("macro_path")
@@ -452,32 +457,33 @@ if module == "formatCell":
     formato = GetParams("format_")
     custom = GetParams("custom")
     texttoval = GetParams("texttoval")
-
+    
+    import re 
     try:
         if not hoja in [sh.name for sh in wb.sheets]:
             raise Exception(f"The name {hoja} does not exist in the book")
+
         if len(rango) == 1:
             rango = rango + ':' + rango
+        
         if formato == "text":
             wb.sheets[hoja].range(rango).number_format = '@'
 
         def transform_data(cell=None, row=None):
-            global new_range
             global dateutil
+            new_row = []
             if row:
-                new_row = []
                 for cell in row:
                     try:
                         if cell.strip().isnumeric():
                             cell = float(cell)
                             new_range.append(cell)
+                        elif "/" in cell or "-" in cell:
+                            cell_date = dateutil.parser.parse(cell, dayfirst=True)
+                            new_row.append(cell_date)
                         else:
-                            try:
-                                cell_date = dateutil.parser.parse(cell)
-                                new_row.append(cell_date)
-                            except ValueError as err:
-                                new_row.append(cell)
-                    except:
+                            new_range.append(float(cell.replace(".","").replace(",", ".")))
+                    except Exception as e:
                         new_row.append(cell) 
                 new_range.append(new_row)
             else:
@@ -485,16 +491,16 @@ if module == "formatCell":
                     if cell.strip().isnumeric():
                         cell = float(cell)
                         new_range.append(cell)
+                    elif "/" in cell or "-" in cell:
+                        cell_date = dateutil.parser.parse(cell, dayfirst=True)
+                        new_range.append(cell_date)
                     else:
-                        try:
-                            cell_date = dateutil.parser.parse(cell)
-                            new_range.append(cell_date)
-                        except ValueError as err:
-                            new_range.append(cell)
-                except:
-                    new_row.append(cell)
+                        new_range.append(float(cell.replace(".","").replace(",", ".")))
+                except Exception as e:
+                    new_range.append(cell)
 
         if texttoval and eval(texttoval) == True:
+            global new_range
             new_range = []
             # Multiple rows
             if isinstance(wb.sheets[hoja].range(rango).value[0], list):
@@ -510,7 +516,18 @@ if module == "formatCell":
             else:
                 cell = wb.sheets[hoja].range(rango).value
                 transform_data(cell=cell)
-
+            
+            # This block of code is used when the 'Text o Value' is applied to one column. Wher the range.value returns a sigle list.
+            # So, when re-writing it has to be refactore to a list of lists (with one element each).
+            # The Try/except is used to avoid errors when the ranges is a single cell.
+            try:
+                regex = "([a-zA-Z]+)[0-9]?:([a-zA-Z]?)[0-9]?"
+                matches = re.match(regex, rango).groups()
+                if matches[0] == matches[1]:
+                    new_range = [[i] for i in new_range]
+            except:
+                pass
+                
             wb.sheets[hoja].range(rango).value = new_range
         
         if formato == "number_":
@@ -586,6 +603,7 @@ if module == "formatCell":
             
     except Exception as e:
         PrintException()
+        traceback.print_exc()
         raise e
 
 
@@ -968,6 +986,7 @@ if module == "xlsxToCsv":
         # data_xls.to_csv(csv_path, encoding='utf-8', index=False, header=False)
         # Xlsx2csv(xlsx_path, outputencoding="utf-8", delimiter=delimiter, floatformat=True).convert(csv_path)
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -990,9 +1009,22 @@ if module == "xlsx_to_csv":
         # xw.books.active.api.SaveAs(csv_path, 6, ConflictResolution = 2)
         
         sheet_ = []
-        for row in sheet.used_range.value:
-            row_ = []
-            for value in row:
+        used_range = sheet.used_range.value
+        print(used_range)
+        try:
+            for row in used_range:
+                row_ = []
+                for value in row:
+                    if isinstance(value, str):
+                        value = ''.join(i for i in value if ord(i)<128)
+                    if isinstance(value, float):
+                        if value.is_integer():
+                            value = int(value)
+                    row_.append(value)
+                sheet_.append(row_)
+        # When the sheet to convert has one row.
+        except TypeError:
+            for value in used_range:
                 if isinstance(value, str):
                     value = ''.join(i for i in value if ord(i)<128)
                 if isinstance(value, float):
@@ -1000,7 +1032,7 @@ if module == "xlsx_to_csv":
                         value = int(value)
                 row_.append(value)
             sheet_.append(row_)
-            
+                 
         with open(csv_path, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
             writer.writerows(sheet_)
@@ -1009,6 +1041,8 @@ if module == "xlsx_to_csv":
         app.kill()
         
     except Exception as e:
+        wb.close()
+        app.kill()
         PrintException()
         raise e
 
@@ -1056,7 +1090,7 @@ if module == "countColumns":
 if module == "countRows":
 
     sheet = GetParams("sheet")
-    row_ = GetParams("row_")
+    row_ = GetParams("row_") #Column
     result = GetParams("var_")
     countAll = GetParams("countAll")
     if countAll is not None:
@@ -1081,6 +1115,8 @@ if module == "countRows":
             a = wb.sheets[sheet].range(f"{row_}:{row_}").last_cell
             while not a.value:
                 a = a.end('up')
+                if a.row == 1 and not a.value:
+                    break
 
             total = wb.sheets[sheet].range(row_ + str(a.row)).row
         if result:
@@ -1752,6 +1788,7 @@ if module == "exportPDF":
     
     path_file = GetParams('path_file')
     sheet = GetParams('sheet')
+    all_pages = GetParams('all_pages')
     option = GetParams('option')
     check_zoom = GetParams('check_zoom')
     select_zoom = GetParams('select_zoom')
@@ -1760,46 +1797,52 @@ if module == "exportPDF":
     check_wide = GetParams('check_wide')
     input_wide = GetParams('input_wide')
     orientation = GetParams('orientation')
-    
 
     if not sheet:
-        sh = wb.sheets.active
+        sheets = [wb.sheets.active]
     else:
-        sh = wb.sheets[sheet]
-    
+        sheets = [wb.sheets[sheet]]
+        wb.sheets[sheet].activate()
+    if all_pages and eval(all_pages):
+        sheets = wb.sheets
+
     try:
-        if option:
-            if option == "all":
-                sh.autofit()
+        for sh in sheets:
+            if option:
+                if option == "all":
+                    sh.autofit()
 
-            if option == "columns":
-                sh.autofit('c')
+                if option == "columns":
+                    sh.autofit('c')
 
-            if option == "rows":
-                sh.autofit('r')
+                if option == "rows":
+                    sh.autofit('r')
 
-        if orientation:
-            sh.api.PageSetup.Orientation = orientation
-        else:
-            sh.api.PageSetup.Orientation = 1
-        
-        if check_zoom:
-            sh.api.PageSetup.Zoom = False
-        elif select_zoom:
-            sh.api.PageSetup.Zoom = eval(select_zoom)
-        
-        if check_tall:
-            sh.api.PageSetup.FitToPagesTall = False
-        elif input_tall:
-            sh.api.PageSetup.FitToPagesTall = eval(input_tall)
+            if orientation:
+                sh.api.PageSetup.Orientation = orientation
+            else:
+                sh.api.PageSetup.Orientation = 1
             
-        if check_wide:
-            sh.api.PageSetup.FitToPagesWide = 1
-        elif input_wide:
-            sh.api.PageSetup.FitToPagesWide = eval(input_wide)
-
-        wb.api.ActiveSheet.ExportAsFixedFormat(
-            0, path_file.replace("/", os.sep), IncludeDocProperties=True, IgnorePrintAreas=False)
+            if check_zoom:
+                sh.api.PageSetup.Zoom = False
+            elif select_zoom:
+                sh.api.PageSetup.Zoom = eval(select_zoom)
+            
+            if check_tall:
+                sh.api.PageSetup.FitToPagesTall = False
+            elif input_tall:
+                sh.api.PageSetup.FitToPagesTall = eval(input_tall)
+                
+            if check_wide:
+                sh.api.PageSetup.FitToPagesWide = 1
+            elif input_wide:
+                sh.api.PageSetup.FitToPagesWide = eval(input_wide)
+        if all_pages and eval(all_pages):
+            wb.api.ExportAsFixedFormat(
+                0, path_file.replace("/", os.sep), IncludeDocProperties=True, IgnorePrintAreas=False)
+        elif len(sheets) == 1:
+            wb.api.ActiveSheet.ExportAsFixedFormat(
+                0, path_file.replace("/", os.sep), IncludeDocProperties=True, IgnorePrintAreas=False)
 
     except Exception as e:
         PrintException()
@@ -2477,6 +2520,16 @@ try:
 
         wb.api.ChangeLink(Name=name, NewName=new_name, Type=1)
 
+    if module == "unlockBook":
+        password = GetParams("password")
+   
+        wb.api.Unprotect(password)
+
+    if module == "lockBook":
+        password = GetParams("password")
+
+        wb.api.Protect(password, True)
+            
     if module == "unlockSheet":
         sheet_name = GetParams("sheet")
         password = GetParams("password")
