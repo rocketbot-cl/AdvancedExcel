@@ -163,6 +163,66 @@ if module == "Open":
         SetVar(var_, False)
         raise e
 
+if module == "Calculate":
+    calculation_type = GetParams("calculation_type")
+    calculate = GetParams("calculate")
+    
+    try:
+        if calculation_type:
+            wb.api.Application.Calculation = eval(calculation_type)
+        
+        if calculate and eval(calculate):
+            wb.api.Application.Calculate()
+        
+    except Exception as e:
+        traceback.print_exc()
+        PrintException()
+        raise e
+
+if module == "ReadCells":
+    range_ = GetParams("range")
+    sheet_ = GetParams("sheet")
+    var_ = GetParams("var_")
+    
+    try:
+        if not sheet_:
+            sheet = wb.sheets.active
+        else:
+            wb_sheets = [sh.name for sh in wb.sheets]
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = wb.sheets(s)
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        global _values    
+        _values = sheet.api.Range(range_).Value2
+        value = [list(i) for i in _values if isinstance(_values, tuple)]
+        value = value if value != [] else _values
+        
+        
+        SetVar(var_, value)
+        
+    except Exception as e:
+        traceback.print_exc()
+        PrintException()
+        raise e
+
+if module == "ExcelDateToDate":
+    date_ = GetParams("excel_date")
+    format_ = GetParams("format")
+    var_ = GetParams("var_")
+    
+    try:
+        value = get_date_with_format(int(date_), format_)
+        
+        SetVar(var_, value)
+    except Exception as e:
+        traceback.print_exc()
+        PrintException()
+        raise e
+
 if module == "CellColor":
 
     import traceback
@@ -188,14 +248,19 @@ if module == "CellColor":
         else:
             rgb = eval(custom)
         
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break       
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")        
+                
         if all_ and eval(all_) == True:
-            if sheet_ == "" or sheet_ == None:
-                raise Exception('Must select a sheet.')
-            else:
-                xw.sheets[sheet_].api.Cells.Interior.Color = xw.utils.rgb_to_int(rgb)
+            xw.sheets[sheet].api.Cells.Interior.Color = xw.utils.rgb_to_int(rgb)
         else:            
             if sheet_:
-                xw.sheets[sheet_].range(range_).color = rgb
+                xw.sheets[sheet].range(range_).color = rgb
             elif range_:
                 xw.Range(range_).color = rgb
             else:
@@ -208,11 +273,19 @@ if module == "CellColor":
 
 if module == "GetColor":
     
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     cell = GetParams("cell")
     res = GetParams("res")
     
     colors = []
+    
+    wb_sheets = [sh.name for sh in wb.sheets]
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book") 
     try:
         background = xw.sheets[sheet].range(cell).color
         # Range object in xlwings has no font property, so I use the API (py32win) wich returns an int
@@ -229,11 +302,18 @@ if module == "GetColor":
 
 if module == "GetCellFormats":
     
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     cell = GetParams("cell")
     res = GetParams("res")
     
-    try:        
+    try:
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")    
         cell = xw.sheets[sheet].range(cell)
         
         horizontal_alignment_glossary = {
@@ -294,14 +374,22 @@ if module == "GetCellFormats":
 
 if module == "InsertFormula":
     
-    hoja = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     cell = GetParams("cell")
     formula = GetParams("formula")
     no_iie = GetParams("no_iie")
-    if not hoja:
+    
+    if not sheet_:
         sheet = wb.sheets.active
     else:
-        sheet = wb.sheets(hoja)
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = wb.sheets(s)
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+           
         
     if no_iie and eval(no_iie):
         sheet.range(cell).api.Formula2 = formula
@@ -329,16 +417,20 @@ if module == "SelectCells":
 
     cells = GetParams("cells")
     copy = GetParams("copy")
-    sheet = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
 
     if copy is None:
         copy = False
 
     try:
-
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        wb.sheets[sheet].select()
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         wb.sheets[sheet].range(cells).select()
 
         if copy:
@@ -350,10 +442,19 @@ if module == "SelectCells":
 
 if (module == "getCurrencyValue"):
 
-    sheetWanted = GetParams("sheetWanted")
+    sheet_ = GetParams("sheetWanted")
     cellRange = GetParams("cellRange")
     finalResult = []
-    valueGotten = xw.sheets[sheetWanted].range(cellRange).value
+    
+    wb_sheets = [sh.name for sh in wb.sheets]
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book")
+    
+    valueGotten = xw.sheets[sheet].range(cellRange).value
     cont = 1
     try:
         if isinstance(valueGotten, list):
@@ -388,10 +489,19 @@ if (module == "getCurrencyValue"):
 
 if (module == "getDateValue"):
 
-    sheetWanted = GetParams("sheetWanted")
+    sheet_ = GetParams("sheetWanted")
     cellRange = GetParams("cellRange")
     finalResult = []
-    valueGotten = xw.sheets[sheetWanted].range(cellRange).value
+    
+    wb_sheets = [sh.name for sh in wb.sheets]
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book")
+    
+    valueGotten = xw.sheets[sheet].range(cellRange).value
     cont = 0
     try:
         try:
@@ -417,8 +527,8 @@ if (module == "getDateValue"):
 if module == "copyPaste":
     rango1 = GetParams("cell_range1")
     rango2 = GetParams("cell_range2")
-    hoja1 = GetParams("sheet_name1")
-    hoja2 = GetParams("sheet_name2")
+    hoja1_ = GetParams("sheet_name1")
+    hoja2_ = GetParams("sheet_name2")
     option = GetParams("option")
     ope = GetParams("operation")
     saltar = GetParams("skip_blanks")
@@ -439,10 +549,20 @@ if module == "copyPaste":
         if trans and trans != "False":
             args['transpose'] = True
         
-        if not hoja1 in [sh.name for sh in xw.sheets]:
-            raise Exception(f"The name {hoja1} does not exist in the book")
-        if not hoja2 in [sh.name for sh in xw.sheets]:
-            raise Exception(f"The name {hoja2} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == hoja1_:
+                hoja1 = s
+                break
+        for s in wb_sheets:
+            if s.strip() == hoja2_:
+                hoja2 = s
+                break
+        
+        if not hoja1:
+            raise Exception(f"The name {hoja1_} does not exist in the book")
+        if not hoja2:
+            raise Exception(f"The name {hoja2_} does not exist in the book")
         
         xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
         xw.sheets[hoja2].range(rango2).paste(**args)
@@ -452,7 +572,7 @@ if module == "copyPaste":
         raise e
     
 if module == "formatCell":
-    hoja = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
     rango = GetParams("cell_range")
     formato = GetParams("format_")
     custom = GetParams("custom")
@@ -460,14 +580,19 @@ if module == "formatCell":
     
     import re 
     try:
-        if not hoja in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {hoja} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
         if len(rango) == 1:
             rango = rango + ':' + rango
         
         if formato == "text":
-            wb.sheets[hoja].range(rango).number_format = '@'
+            wb.sheets[sheet].range(rango).number_format = '@'
 
         def transform_data(cell=None, row=None):
             global dateutil
@@ -503,21 +628,21 @@ if module == "formatCell":
             global new_range
             new_range = []
             # Multiple rows
-            if isinstance(wb.sheets[hoja].range(rango).value[0], list):
-                for row in wb.sheets[hoja].range(rango).value:
+            if isinstance(wb.sheets[sheet].range(rango).value[0], list):
+                for row in wb.sheets[sheet].range(rango).value:
                     transform_data(row=row)
                     
             # Single row
-            elif isinstance(wb.sheets[hoja].range(rango).value, list):
-                for cell in wb.sheets[hoja].range(rango).value:
+            elif isinstance(wb.sheets[sheet].range(rango).value, list):
+                for cell in wb.sheets[sheet].range(rango).value:
                     transform_data(cell=cell)
                     
             # Cell
             else:
-                cell = wb.sheets[hoja].range(rango).value
+                cell = wb.sheets[sheet].range(rango).value
                 transform_data(cell=cell)
-            
-            # This block of code is used when the 'Text o Value' is applied to one column. Wher the range.value returns a sigle list.
+                            
+            # This block of code is used when the 'Text o Value' is applied to one column. Where the range.value returns a sigle list.
             # So, when re-writing it has to be refactore to a list of lists (with one element each).
             # The Try/except is used to avoid errors when the ranges is a single cell.
             try:
@@ -528,10 +653,10 @@ if module == "formatCell":
             except:
                 pass
                 
-            wb.sheets[hoja].range(rango).value = new_range
+            wb.sheets[sheet].range(rango).value = new_range
         
         if formato == "number_":
-            numbers = wb.sheets[hoja].range(rango).value
+            numbers = wb.sheets[sheet].range(rango).value
             d = 0
             if type(numbers[0]) != list and len(numbers) == 1:
                 numbers = [numbers]
@@ -569,37 +694,36 @@ if module == "formatCell":
                 for i in range(len(numbers)):
                     numbers[i] = [numbers[i]]
 
-            wb.sheets[hoja].range(rango).value = numbers
-            print("format", wb.sheets[hoja].range(rango).number_format)
+            wb.sheets[sheet].range(rango).value = numbers
+            print("format", wb.sheets[sheet].range(rango).number_format)
             if d == 0:
-                wb.sheets[hoja].range(rango).number_format = '0'
+                wb.sheets[sheet].range(rango).number_format = '0'
             else:
-                wb.sheets[hoja].range(
-                    rango).number_format = '0,{}'.format('0' * d)
+                wb.sheets[sheet].range(rango).number_format = '0,{}'.format('0' * d)
         
         if formato == "coin_":
-            wb.sheets[hoja].range(rango).number_format = '$#.##0'
+            wb.sheets[sheet].range(rango).number_format = '$#.##0'
 
         if formato == "date1":
-            wb.sheets[hoja].range(rango).number_format = 'dd-mm-yyyy'
+            wb.sheets[sheet].range(rango).number_format = 'dd-mm-yyyy'
 
         if formato == "date2":
-            wb.sheets[hoja].range(rango).number_format = 'dd-mm-yy'
+            wb.sheets[sheet].range(rango).number_format = 'dd-mm-yy'
 
         if formato == "date3":
-            wb.sheets[hoja].range(rango).number_format = 'yyyy-mm-dd'
+            wb.sheets[sheet].range(rango).number_format = 'yyyy-mm-dd'
 
         if formato == "decimal1":
-            wb.sheets[hoja].range(rango).number_format = '0,0'
+            wb.sheets[sheet].range(rango).number_format = '0,0'
 
         if formato == "decimal2":
-            wb.sheets[hoja].range(rango).number_format = '#.##0,0'
+            wb.sheets[sheet].range(rango).number_format = '#.##0,0'
 
         if formato == "long_date":
-            wb.sheets[hoja].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
+            wb.sheets[sheet].range(rango).number_format = 'dd/mm/yyyy h:mm:ss'
         
         if formato == 'custom':
-            wb.sheets[hoja].range(rango).number_format = custom        
+            wb.sheets[sheet].range(rango).number_format = custom        
             
     except Exception as e:
         PrintException()
@@ -608,16 +732,21 @@ if module == "formatCell":
 
 
 if module == "clearCell":
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("cell_range")
     
-    if not sheet_name in [sh.name for sh in wb.sheets]:
-        raise Exception(f"The name {sheet_name} does not exist in the book")
+    wb_sheets = [sh.name for sh in wb.sheets]
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book")
     
     try:
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
         
-        sheet.api.Range(range_).ClearContents()
+        sheet_selected.api.Range(range_).ClearContents()
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -642,15 +771,21 @@ if module == "createSheet":
 
 if module == "deleteSheet":
 
-    hoja = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
     var_ = GetParams("var_")
     res = False
 
-    for sheet in xw.sheets:
-        if hoja in sheet.name:
-            sheet.delete()
-            res = True
-
+    wb_sheets = [sh.name for sh in wb.sheets]
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        SetVar(var_, res)
+        raise Exception(f"The name {sheet_} does not exist in the book")
+    
+    wb.sheets[sheet].delete()
+    res = True
     SetVar(var_, res)
 
 if module == "copy_other":
@@ -659,8 +794,8 @@ if module == "copy_other":
         excel1 = GetParams("excel1")
         id_ = GetParams("id")
         excel2 = GetParams("excel2")
-        hoja1 = GetParams("sheet_name1")
-        hoja2 = GetParams("sheet_name2")
+        hoja1_ = GetParams("sheet_name1")
+        hoja2_ = GetParams("sheet_name2")
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
         only_values = GetParams("values")
@@ -711,18 +846,27 @@ if module == "copy_other":
             else:
                 wb1 = wb.api
             
-            if hoja1 not in [sh.Name for sh in wb1.Sheets]:
-                raise Exception(
-                    f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+            wb_sheets1 = [sh.name for sh in wb1.sheets]
+            for s in wb_sheets1:
+                if s.strip() == hoja1_:
+                    hoja1 = s
+                    break
+            if not hoja1:
+                raise Exception(f"The name {hoja1_} does not exist in the book")
             
             origin_sheet = wb1.Sheets(hoja1)
             my_values = origin_sheet.Range(rango1)
             
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
             
-            if hoja2 not in [sh.Name for sh in wb2.Sheets]:
-                raise Exception(
-                    f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            wb_sheets2 = [sh.name for sh in wb2.sheets]
+            for s in wb_sheets2:
+                if s.strip() == hoja2_:
+                    hoja2 = s
+                    break
+            if not hoja2:
+                raise Exception(f"The name {hoja2_} does not exist in the book")
+            
             destiny_sheet = wb2.Sheets(hoja2)
             if not only_values:
                 origin_sheet.Range(rango1).Copy(
@@ -745,19 +889,29 @@ if module == "copy_other":
                 wb1 = xls['workbook']
             else:
                 wb1 = wb.app.books.open(excel1)
-                
-            if hoja1 not in [sh.name for sh in wb1.sheets]:
-                raise Exception(
-                    f"The name {hoja1} does not exist in the book {excel1.split('/')[-1]}")
+            
+            wb_sheets1 = [sh.name for sh in wb1.sheets]
+            for s in wb_sheets1:
+                if s.strip() == hoja1_:
+                    hoja1 = s
+                    break
+            if not hoja1:
+                raise Exception(f"The name {hoja1_} does not exist in the book")
 
             origin_sheet = wb1.sheets[hoja1]
             my_values = origin_sheet.range(rango1)
             
             values = my_values.value
             wb2 = wb.app.books.open(excel2)
-            if hoja2 not in [sh.name for sh in wb2.sheets]:
-                raise Exception(
-                    f"The name {hoja2} does not exist in the book  {excel2.split('/')[-1]}")
+            
+            wb_sheets2 = [sh.name for sh in wb2.sheets]
+            for s in wb_sheets2:
+                if s.strip() == hoja2_:
+                    hoja2 = s
+                    break
+            if not hoja2:
+                raise Exception(f"The name {hoja2_} does not exist in the book")
+                
             destiny_sheet = wb2.sheets(hoja2)
             destiny_sheet.range(rango2).value = values
             wb2.DisplayAlerts = False
@@ -772,16 +926,20 @@ if module == "copy_other":
 if module == "addRow":
 
     try:
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         row = GetParams("row_")
         tipo = GetParams("type_")
         opcion_ = GetParams("option_")
 
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
 
         if opcion_ == "add_":
 
@@ -796,12 +954,12 @@ if module == "addRow":
                         fila = str(f1) + ':' + str(f2)
                         print('FILA down', fila)
                         # row = int(row) + 1
-                        sheet.range(fila).api.Insert(
+                        sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
                         print('FILA up', row)
-                        sheet.range(row).api.Insert(
+                        sheet_selected.range(row).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                 else:
@@ -811,13 +969,13 @@ if module == "addRow":
                         fila = str(row) + ':' + str(row)
                         print('FILA down', fila)
 
-                        sheet.range(fila).api.Insert(
+                        sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
                         fila = str(row) + ':' + str(row)
                         print('FILA up', fila)
-                        sheet.range(fila).api.Insert(
+                        sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
             else:
@@ -830,9 +988,9 @@ if module == "addRow":
                         f2 = int(f2) + 1
                         fila = str(f1) + ':' + str(f2)
                         # row = int(row) + 1
-                        sheet.api.rows[fila].insert_into_range()
+                        sheet_selected.api.Rows[fila].insert_into_range()
                     if tipo == "up_":
-                        sheet.api.rows[row].insert_into_range()
+                        sheet_selected.api.Rows[row].insert_into_range()
 
                 else:
                     if tipo == "down_":
@@ -840,17 +998,17 @@ if module == "addRow":
                         # print(row)
                         fila = str(row) + ':' + str(row)
 
-                        sheet.api.rows[fila].insert_into_range()
+                        sheet_selected.api.Rows[fila].insert_into_range()
 
                     if tipo == "up_":
                         fila = str(row) + ':' + str(row)
-                        sheet.api.rows[fila].insert_into_range()
+                        sheet_selected.api.Rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
             if ":" not in row:
                 row = str(row) + ":" + str(row)
 
-            sheet.range(row).api.Delete()
+            sheet_selected.range(row).api.Delete()
 
     except Exception as e:
         PrintException()
@@ -858,50 +1016,55 @@ if module == "addRow":
 
 if module == "addCol":
     try:
-        hoja = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         col_ = GetParams("col_")
         opcion_ = GetParams("option_")
         
-
-        if not hoja in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {hoja} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
         if opcion_ == "add_":
 
             if platform.system() == 'Windows':
 
                 if ":" in col_:
-                    wb.sheets[hoja].range(col_).api.Insert(
+                    wb.sheets[sheet].range(col_).api.Insert(
                         InsertShiftDirection.xlShiftToRight)
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.sheets[hoja].range(col).api.Insert(
+                    wb.sheets[sheet].range(col).api.Insert(
                         InsertShiftDirection.xlShiftToRight)
 
             else:
                 if ":" in col_:
-                    wb.sheets[hoja].api.columns[col_].insert_into_range()
+                    wb.sheets[sheet].api.columns[col_].insert_into_range()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.sheets[hoja].api.columns[col].insert_into_range()
+                    wb.sheets[sheet].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
             if platform.system() == 'Windows':
                 if ":" in col_:
-                    wb.sheets[hoja].range(col_).api.Delete()
+                    wb.sheets[sheet].range(col_).api.Delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.sheets[hoja].range(col).api.Delete()
+                    wb.sheets[sheet].range(col).api.Delete()
 
             else:
                 if ":" in col_:
-                    wb.sheets[hoja].range(col_).api.delete()
+                    wb.sheets[sheet].range(col_).api.delete()
                 else:
                     col = str(col_) + ':' + str(col_)
-                    wb.sheets[hoja].range(col).api.delete()
+                    wb.sheets[sheet].range(col).api.delete()
 
-    except:
+    except Exception as e:
         PrintException()
+        raise e
 
 if module == "csvToxlsx":
     csv_path = GetParams("csv_path")
@@ -1010,7 +1173,6 @@ if module == "xlsx_to_csv":
         
         sheet_ = []
         used_range = sheet.used_range.value
-        print(used_range)
         try:
             for row in used_range:
                 row_ = []
@@ -1047,37 +1209,28 @@ if module == "xlsx_to_csv":
         raise e
 
 if module == "countColumns":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     column_name = GetParams("column")
     result = GetParams("var_")
 
     try:
-        # if not sheet:
-        #     sheet = wb.sheets.active.name
         
-        if sheet not in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        
-        if not sheet:
-            sheet = wb.sheets.active
+        if not sheet_:
+            sheet = wb.sheets.active.name
         else:
-            sheet = wb.sheets[sheet]
+            wb_sheets = [sh.name for sh in wb.sheets]
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
             
-        # excel_path = wb.fullname
+        sheet_selected = wb.sheets[sheet]
+            
+        col = sheet_selected.used_range.last_cell.column
         
-        # try:
-        #     # For .xlsx files
-        #     df = pd.read_excel(excel_path, sheet_name=sheet, engine='openpyxl')
-        # except Exception as e:
-        #     print(e)
-        #     # For .xls files
-        #     df = pd.read_excel(excel_path, sheet_name=sheet, engine='xlrd')
-        # col = df.shape[1]
-        col = sheet.used_range.last_cell.column
-        
-        if column_name is not None:
-            column_name = eval(column_name)
-        if column_name:
+        if column_name and eval(column_name):
             col = wb.sheets[sheet].cells(1,col).get_address()
 
         if result:
@@ -1089,18 +1242,23 @@ if module == "countColumns":
 
 if module == "countRows":
 
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     row_ = GetParams("row_") #Column
     result = GetParams("var_")
     countAll = GetParams("countAll")
     if countAll is not None:
             countAll = eval(countAll)
 
-    if not sheet:
+    if not sheet_:
         sheet = wb.sheets.active.name
-    
-    if sheet not in [sh.name for sh in wb.sheets]:
-        raise Exception(f"The name {sheet} does not exist in the book")
+    else:
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
     
     if not row_:
         row_ = 'A'
@@ -1209,13 +1367,18 @@ if module == "getActiveCell":
         raise e
 
 if module == "refreshPivot":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     pivotTableName = GetParams("table")
 
     try:
-        
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+
         wb.sheets[sheet].select()
         wb.api.ActiveSheet.PivotTables(pivotTableName).PivotCache().refresh()
     except Exception as e:
@@ -1225,7 +1388,7 @@ if module == "refreshPivot":
 
 if module == "fitCells":
     try:
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         range_cell = GetParams("cell_range")
         fit = GetParams("fit")
         row_group = GetParams("row")
@@ -1241,10 +1404,15 @@ if module == "fitCells":
         mergeCell = GetParams("mergeCell")
         unmergeCell = GetParams("unmergeCell")
         
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
 
         if fit is None and not columnWidth and not rowHeight:
             fit = True
@@ -1260,20 +1428,20 @@ if module == "fitCells":
         if col_ungroup is not None: col_ungroup = eval(col_ungroup)
 
         if fit:
-            sh = sheet.autofit()
-        if row_group: sheet.range(range_cell).api.Rows.Group()
-        if col_group: sheet.range(range_cell).api.Columns.Group()
+            sh = sheet_selected.autofit()
+        if row_group: sheet_selected.range(range_cell).api.Rows.Group()
+        if col_group: sheet_selected.range(range_cell).api.Columns.Group()
 
-        if row_ungroup: sheet.range(range_cell).api.Rows.Ungroup()
-        if col_ungroup: sheet.range(range_cell).api.Columns.Ungroup()
-        if mergeCell: sheet.range(range_cell).api.Merge(True)
-        if unmergeCell: sheet.range(range_cell).api.Unmerge()
+        if row_ungroup: sheet_selected.range(range_cell).api.Rows.Ungroup()
+        if col_ungroup: sheet_selected.range(range_cell).api.Columns.Ungroup()
+        if mergeCell: sheet_selected.range(range_cell).api.Merge(True)
+        if unmergeCell: sheet_selected.range(range_cell).api.Unmerge()
         
-        if row_levels: sheet.api.Outline.ShowLevels(RowLevels=int(row_levels))
-        if col_levels: sheet.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
+        if row_levels: sheet_selected.api.Outline.ShowLevels(RowLevels=int(row_levels))
+        if col_levels: sheet_selected.api.Outline.ShowLevels(RowLevels=0, ColumnLevels=int(col_levels))
 
-        if columnWidth: sheet.range(range_cell).api.ColumnWidth = columnWidth
-        if rowHeight: sheet.range(range_cell).api.RowHeight = rowHeight
+        if columnWidth: sheet_selected.range(range_cell).api.ColumnWidth = columnWidth
+        if rowHeight: sheet_selected.range(range_cell).api.RowHeight = rowHeight
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1313,7 +1481,7 @@ if module == "getFormula":
         raise e
 
 if module == "AutoFilter":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     columns = GetParams("columns")
     from time import sleep
     try:
@@ -1321,8 +1489,13 @@ if module == "AutoFilter":
             columns = columns + ":" + columns 
         
         if platform.system() == 'Windows':
-            if not sheet in [sh.name for sh in wb.sheets]:
-                raise Exception(f"The name {sheet} does not exist in the book")
+            wb_sheets = [sh.name for sh in wb.sheets]
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
 
             if wb.api.Sheets(sheet).AutoFilterMode == True:
                 wb.api.Sheets(sheet).AutoFilterMode = False
@@ -1330,8 +1503,8 @@ if module == "AutoFilter":
             wb.sheets[sheet].api.Range(columns).AutoFilter(Field=1)
             
         else:
-            rng = wb.sheets[sheet].api.cells[columns]
-            r = wb.sheets[sheet].api.autofilter_range(rng)
+            rng = wb.sheets[sheet_].api.cells[columns]
+            r = wb.sheets[sheet_].api.autofilter_range(rng)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1339,18 +1512,27 @@ if module == "AutoFilter":
         raise e
 
 if module == "RemoveAutoFilter":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
 
     try:        
         if platform.system() == 'Windows':
-            if not sheet in [sh.name for sh in wb.sheets]:
-                raise Exception(f"The name {sheet} does not exist in the book")
+            wb_sheets = [sh.name for sh in wb.sheets]
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
             
-            wb.api.Sheets(sheet).ShowAllData()
+            try:
+                wb.api.Sheets(sheet).ShowAllData()
+            except:
+                pass
+            
             wb.api.Sheets(sheet).AutoFilterMode = False
             
         else:
-            wb.sheets[sheet].api.autofilter_mode = False
+            wb.sheets[sheet_].api.autofilter_mode = False
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1358,17 +1540,49 @@ if module == "RemoveAutoFilter":
         raise e
 
 if module == "ClearFilter":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
 
     try:        
         if platform.system() == 'Windows':
-            if not sheet in [sh.name for sh in wb.sheets]:
-                raise Exception(f"The name {sheet} does not exist in the book")
+            wb_sheets = [sh.name for sh in wb.sheets]
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
             
-            wb.api.Sheets(sheet).ShowAllData()         
+            try:
+                wb.api.Sheets(sheet).ShowAllData()
+            except:
+                pass         
         else:
-            wb.sheets[sheet].api.show_all_data()
+            wb.sheets[sheet_].api.show_all_data()
 
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+    
+# Duplicated - NOT VISIBLE
+if module == "ClearFilters":
+
+    try:
+        sheet_ = GetParams("sheet")
+        
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        if platform.system() == 'Windows':
+            wb.sheets[sheet].api.ShowAllData()
+        else:
+            wb.sheets[sheet_].api.show_all_data()
+        
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -1377,14 +1591,19 @@ if module == "ClearFilter":
 if module == "Filter":
 
     try:
-        sheet = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         start = GetParams("start")
         column = GetParams("column")
         data = GetParams("filter")
         filter_type = GetParams("filter_type")
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
         
         if not filter_type:
             filter_type = "7"
@@ -1441,16 +1660,16 @@ if module == "Filter":
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=data, Operator=filter_type)
         else:
-            n_start = wb.sheets[sheet].range(start).column
-            n_end = wb.sheets[sheet].range(column + str(1)).column
+            n_start = wb.sheets[sheet_].range(start).column
+            n_end = wb.sheets[sheet_].range(column + str(1)).column
 
             filter_column = n_end - n_start + 1
             
-            rng = wb.sheets[sheet].api.cells[range_]
+            rng = wb.sheets[sheet_].api.cells[range_]
             if filter_type in ["1", "2"]:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
+                r = wb.sheets[sheet_].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
-                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
+                r = wb.sheets[sheet_].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1460,15 +1679,20 @@ if module == "Filter":
 if module == "AdvancedFilter":
 
     try:
-        sheet = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         range = GetParams("range")
         filter = GetParams("filter")
         unique = GetParams("unique")
         copy = GetParams("copy")
         paste = GetParams("paste")
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
         
         if unique:
             unique_ = eval(unique)
@@ -1494,47 +1718,35 @@ if module == "AdvancedFilter":
         else:
             
             if filter:
-                filter_ = wb.sheets[sheet].api.cells[filter]
+                filter_ = wb.sheets[sheet_].api.cells[filter]
             else:
                 filter_ = None 
             if copy_:
-                paste_ = wb.sheets[sheet].api.cells[paste]
-                rng = wb.sheets[sheet].api.cells[range]
-                wb.sheets[sheet].api.advanced_filter(rng, action=2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+                paste_ = wb.sheets[sheet_].api.cells[paste]
+                rng = wb.sheets[sheet_].api.cells[range]
+                wb.sheets[sheet_].api.advanced_filter(rng, action=2, criteriarange=filter_, copytorange=paste_, unique=unique_)
             else:
-                wb.sheets[sheet].api.advanced_filter(rng, action=1, criteriarange=filter_, copytorange=None, unique=unique_)
+                wb.sheets[sheet_].api.advanced_filter(rng, action=1, criteriarange=filter_, copytorange=None, unique=unique_)
 
-    except Exception as e:
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
-        PrintException()
-        raise e
-
-if module == "ClearFilters":
-
-    try:
-        sheet = GetParams("sheet")
-        
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        
-        if platform.system() == 'Windows':
-            wb.sheets[sheet].api.ShowAllData()
-        else:
-            wb.sheets[sheet].api.show_all_data()
-        
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
 if module == "rename_sheet":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     name = GetParams("name")  
 
     try:
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         wb.sheets[sheet].select()
         wb.sheets[sheet].name = name
 
@@ -1544,7 +1756,7 @@ if module == "rename_sheet":
         raise e
 
 if module == "style_cells":
-    sheet = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
     range_ = GetParams("cell_range")
     position = GetParams("position")
     line_style = GetParams("lineStyle")
@@ -1560,8 +1772,14 @@ if module == "style_cells":
     
     try:
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         rng = wb.sheets[sheet].api.Range(range_)
         if line_style:
             line_style = int(line_style)
@@ -1607,17 +1825,20 @@ if module == "style_cells":
 
 if module == "Paste":
 
-    sheet = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
     values = GetParams("values")
     cells = GetParams("cells")
 
     try:
 
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
-        wb.sheets[sheet].select()
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
-        selected = wb.sheets[sheet].range(cells).select()
         if values is not None:
             values = eval(values)
         try:
@@ -1655,28 +1876,34 @@ if module == "focus":
             raise e
 
 if module == "remove_duplicate":
-    sheet = GetParams("sheet_name")
+    sheet_ = GetParams("sheet_name")
     range_ = GetParams("range")
     column = GetParams("column")
     with_header = GetParams("header")
     
     from openpyxl.utils.cell import get_column_interval
+    import re
     
     try:
         
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         sheet_selected = wb.sheets[sheet]
         sheet_selected.select()
         # Parses into list
         column = eval(column) if column.startswith("[") else [column]
         
-        # Obtain the beggining and ending cells of the range 
-        cells = range_.split(":")
-        # From these cells it gets just the columns
-        list_col = [cell[0] for cell in cells]
+        regex = "([a-zA-Z]+)([0-9]+):([a-zA-Z]+)([0-9]+)"
+        matches = re.match(regex, range_).groups()
+        cols = matches[0] + ":" + matches[2]
         # Using the columns as parameters it creates a list of the whole interval
-        col_interval = get_column_interval(list_col[0], list_col[-1])
+        col_interval = get_column_interval(matches[0], matches[2])
         
         columns_ = []
         # It checks the relative position of the selected columns into the interval
@@ -1748,13 +1975,15 @@ if module == "copyMove":
     password = GetParams("password")
     copy_ = GetParams("copy")
     try:
-        if not sheet1 in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet1} does not exist in the book")
-        sheet_selected = wb.api.Sheets(sheet1)
-        # sheet_selected.select()
-        # if not sheet2:
-        #     sheet2 = "tmp"
         
+        wb_sheets1 = [sh.name for sh in wb.sheets]
+        for s in wb_sheets1:
+            if s.strip() == sheet1:
+                sheet_selected = wb.api.Sheets(s)
+                break
+        if not sheet_selected:
+            raise Exception(f"The name {sheet1} does not exist in the book")
+
         if not password:
             password=None
 
@@ -1766,8 +1995,26 @@ if module == "copyMove":
                 last = wb2.Sheets.Count
                 destiny = wb2.Sheets(last)
             else:
-                destiny = wb2.Sheets(sheet2)
-
+                wb_sheets2 = [sh.name for sh in wb2.sheets]
+                for s in wb_sheets:
+                    if s.strip() == sheet2:
+                        destiny = wb2.Sheets(s)
+                        break
+                if not destiny:
+                    raise Exception(f"The name {sheet2} does not exist in the book")
+        else:
+            if not sheet2:
+                last = wb.api.Sheets.Count
+                destiny = wb.api.Sheets(last)
+            else:
+                for s in wb_sheets2:
+                    if s.strip() == sheet2:
+                        destiny = wb.api.Sheets(s)
+                        break
+                if not destiny:
+                    raise Exception(f"The name {sheet2} does not exist in the book")
+                
+            
         if copy_:
             sheet_selected.Copy(Before=destiny)
         else:
@@ -1787,7 +2034,7 @@ if module == "copyMove":
 if module == "exportPDF":
     
     path_file = GetParams('path_file')
-    sheet = GetParams('sheet')
+    sheet_ = GetParams('sheet')
     all_pages = GetParams('all_pages')
     option = GetParams('option')
     check_zoom = GetParams('check_zoom')
@@ -1801,8 +2048,17 @@ if module == "exportPDF":
     if not sheet:
         sheets = [wb.sheets.active]
     else:
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         sheets = [wb.sheets[sheet]]
         wb.sheets[sheet].activate()
+    
     if all_pages and eval(all_pages):
         sheets = wb.sheets
 
@@ -1859,7 +2115,7 @@ if module == "ImportForm":
         raise e
 
 if module == "GetCells":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
     format_ = GetParams("date_format")
@@ -1873,8 +2129,13 @@ if module == "GetCells":
         pass
     
     try:
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
         if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
@@ -1988,13 +2249,18 @@ def get_filtered_cells(sheet, range_, result, extends, excel, xls, wb):
 
 
 if module == "GetCountCells":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
     
     try:
-        if not sheet in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
         
         if platform.system() == 'Windows':
             sheet_selected_api = wb.sheets[sheet].api
@@ -2016,7 +2282,7 @@ if module == "GetCountCells":
             #     for row in area.Rows:
             #         count += 1
         else:
-            sh = wb.sheets[sheet]
+            sh = wb.sheets[sheet_]
             sh_range = sh.api.cells[range_]
             ra = sh.api.special_cells(sh_range, type = 12)
             count = 0
@@ -2033,13 +2299,23 @@ if module == "GetCountCells":
         raise e
 
 if module == "Replace":
-    sheet = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     what = GetParams("what")
     replacement = GetParams("replace")
     
     try:
-        wb.sheets[sheet].range(range_).api.Replace(what, replacement)
+        what = eval(what)
+    except:
+        pass
+    
+    try:
+        replacement = eval(replacement)
+    except:
+        pass
+    
+    try:
+        wb.selection.api.Replace(what, replacement)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -2047,30 +2323,35 @@ if module == "Replace":
         raise e
 
 if module == "Order":
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     column = GetParams("column")
     order = GetParams("order")
     clean = GetParams("clean")
     try:
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
-        sheet = wb.sheets[sheet_name]
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        sheet_selected = wb.sheets[sheet]
         if order:
             order = int(order)
         else:
             order = 1
         if clean:
-            sheet.Sort.SortFields().Clear()
-        sheet.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order, Orientation=1)
+            sheet_selected.Sort.SortFields().Clear()
+        sheet_selected.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order, Orientation=1)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
 if module == "OrderMultiple":
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     headers = GetParams("headers")
     iframe = GetParams("iframe")
@@ -2087,12 +2368,17 @@ if module == "OrderMultiple":
         print(e)
     
     try:
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
-        sheet = wb.api.Sheets(sheet_name)
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        sheet_selected = wb.api.Sheets(sheet)
 
-        sheet.Sort.SortFields.Clear()
+        sheet_selected.Sort.SortFields.Clear()
             
         for field in fields:
             order = field['order']
@@ -2105,16 +2391,16 @@ if module == "OrderMultiple":
             column = field['column'] + ":" + field['column']
             key = sheet.Range(column)
             
-            sheet.Sort.SortFields.Add(Key=key, Order=order)
+            sheet_selected.Sort.SortFields.Add(Key=key, Order=order)
         
         if headers and eval(headers):
-            sheet.Sort.Header = 1
+            sheet_selected.Sort.Header = 1
         else:
-            sheet.Sort.Header = 0
+            sheet_selected.Sort.Header = 0
         
-        range_ = sheet.Range(range_)
-        sheet.Sort.SetRange(range_)
-        sheet.Sort.Apply()
+        range_ = sheet_selected.Range(range_)
+        sheet_selected.Sort.SetRange(range_)
+        sheet_selected.Sort.Apply()
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -2129,11 +2415,8 @@ if module == "refreshAll":
         PrintException()
         raise e
 
-if module == "find":
-    # We tried to used the find funtion of the api at its full, but no feature worked
-    # Find(What=text, LookAt = 1, LookIn = -4123, SearchDirection = 1, MatchCase = True)
-      
-    sheet_name = GetParams("sheet")
+if module == "find":      
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
     look_in = GetParams("look_in")
@@ -2143,10 +2426,15 @@ if module == "find":
     var_ = GetParams("var_")
 
     try:
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
-        sheet = wb.sheets[sheet_name]
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        sheet_selected = wb.sheets[sheet]
         
         if not look_in:
             look_in = -4163 #xlValues
@@ -2163,7 +2451,7 @@ if module == "find":
         
         if find_all and eval(find_all):
             matches = []
-            range_obj = sheet.api.Range(range_)
+            range_obj = sheet_selected.api.Range(range_)
             result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
             try:
                 while result is not None and result.Address not in matches:
@@ -2174,7 +2462,7 @@ if module == "find":
                     matches.append(result.address)
                     result = range_obj.FindNext(result)
         else:
-            result = sheet.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+            result = sheet_selected.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
             try:
                 matches = result.Address if result is not None else ""
             except:
@@ -2277,19 +2565,23 @@ if module == 'find_pandas':
         raise e
 
 if module == "LockCells":
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     locked = GetParams("locked")
 
     try:
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
         locked = eval(locked) if locked else False
 
-        sheet = wb.sheets[sheet_name]
-        result = sheet.api.Range(range_).Locked = locked
+        sheet_selected = wb.sheets[sheet]
+        result = sheet_selected.api.Range(range_).Locked = locked
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -2298,7 +2590,7 @@ if module == "LockCells":
 
 if module == "add_chart":
 
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     cell = GetParams("cell")
     type_ = GetParams("type")
@@ -2309,9 +2601,13 @@ if module == "add_chart":
         range_ = range_.split('!')[1]
         
     try:
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
         if not type_ or not bool(type_):
             raise Exception("The type of chart has not been selected")
@@ -2329,23 +2625,23 @@ if module == "add_chart":
         if type_ in types_charts:
             type_ = types_charts[type_]
 
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
         if sheet_data:
-            sheet = wb.sheets[sheet_data]
-            cell = sheet.range(cell)
-            range_ = sheet.range(range_)
+            data_sheet = wb.sheets[sheet_data]
+            cell = data_sheet.range(cell)
+            range_ = data_sheet.range(range_)
 
-            sheet = wb.sheets[sheet_name]
-            active_chart = sheet.charts.add(cell.left, cell.top)
+            sheet_selected = wb.sheets[sheet]
+            active_chart = sheet_selected.charts.add(cell.left, cell.top)
             active_chart.set_source_data(range_)
             active_chart.chart_type = type_
             
             
         else:  
-            cell = sheet.range(cell)
-            range_ = sheet.range(range_)
+            cell = sheet_selected.range(cell)
+            range_ = sheet_selected.range(range_)
 
-            active_chart = sheet.charts.add(cell.left, cell.top)
+            active_chart = sheet_selected.charts.add(cell.left, cell.top)
             active_chart.set_source_data(range_)
             active_chart.chart_type = type_
 
@@ -2392,18 +2688,23 @@ if module == 'removePass':
 
 if module == "insertImage":
     
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     image_path = GetParams("image_path")
     image_path = image_path.replace("/", os.sep)
     cell_position = GetParams("cell_position")
     try:
 
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
-        sheet = wb.sheets[sheet_name]
-        cell = sheet.range(cell_position)
-        sheet.pictures.add(image_path, top=cell.top, left=cell.left)
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        sheet_selected = wb.sheets[sheet]
+        cell = sheet_selected.range(cell_position)
+        sheet_selected.pictures.add(image_path, top=cell.top, left=cell.left)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
@@ -2411,16 +2712,21 @@ if module == "insertImage":
 
 if module == "ExportChart":
     
-    sheet_name = GetParams("sheet")
+    sheet_ = GetParams("sheet")
     index = GetParams("index")
     path = GetParams("path")
     try:
 
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
-        sheet = wb.sheets[sheet_name]
-        chart = sheet.api.ChartObjects(int(index))
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        sheet_selected = wb.sheets[sheet]
+        chart = sheet_selected.api.ChartObjects(int(index))
         chart.Activate()
         chart = chart.Chart
         chart.Export(Filename=path, FilterName="PNG")
@@ -2459,13 +2765,18 @@ try:
 
     if module == "write_cell":
         
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         range_ = GetParams("range")
         data = GetParams("data")
 
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(
-                f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         data = eval(data)
         length = len(data[0])
         data_cells = []
@@ -2477,20 +2788,30 @@ try:
             row_list = [data[1] for data in row.items()]
             data_cells.append(row_list)
 
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
 
-        sheet.range(range_).value = data_cells
+        sheet_selected.range(range_).value = data_cells
 
     if module == "copyPasteFormat":
         rango1 = GetParams("cell_range1")
         rango2 = GetParams("cell_range2")
-        hoja1 = GetParams("sheet_name1")
-        hoja2 = GetParams("sheet_name2")
+        hoja1_ = GetParams("sheet_name1")
+        hoja2_ = GetParams("sheet_name2")
 
-        if not hoja1 in [sh.name for sh in xw.sheets]:
-            raise Exception(f"The name {hoja1} does not exist in the book")
-        if not hoja2 in [sh.name for sh in xw.sheets]:
-            raise Exception(f"The name {hoja2} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == hoja1_:
+                hoja1 = s
+                break
+        if not hoja1:
+            raise Exception(f"The name {hoja1_} does not exist in the book")
+        for s in wb_sheets:
+            if s.strip() == hoja2_:
+                hoja2 = s
+                break
+        if not hoja2:
+            raise Exception(f"The name {hoja2_} does not exist in the book")
+        
         my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
         xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
         xw.sheets[hoja2].range(rango2).value = my_old_value
@@ -2501,6 +2822,7 @@ try:
         name = GetParams("name")
 
         wb = xw.Book(name)
+        wb.app.api.DisplayAlerts = False
         excel.actual_id = excel.id_default
 
         if id_:
@@ -2531,19 +2853,35 @@ try:
         wb.api.Protect(password, True)
             
     if module == "unlockSheet":
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         password = GetParams("password")
-   
-        wb.sheets[sheet_name].api.Unprotect(password)
+
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        wb.sheets[sheet].api.Unprotect(password)
 
     if module == "lockSheet":
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         password = GetParams("password")
 
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        
         if not password or password == "":
-            wb.sheets[sheet_name].api.Protect()
+            wb.sheets[sheet].api.Protect()
         else:
-            wb.sheets[sheet_name].api.Protect(password)
+            wb.sheets[sheet].api.Protect(password)
     
     if module == "xlsxToTxt":
         file_path_xlsx = GetParams("path_xlsx")
@@ -2567,7 +2905,7 @@ try:
 
     if module == "text2column":
         
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         range_ = GetParams("range")
         delimiter_options = GetParams("delimiter")
         other = GetParams("other")
@@ -2598,11 +2936,19 @@ try:
                     separator.append(str(i*int(other)))
                 other = ",".join(separator)
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
+            
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
         
         try:
             # Call api directly, do not work everytime, eg. If working whit a shared folder through the cloud
             xlWorkbook = win32com.client.GetObject(wb.fullname)
-            xlWorksheet = xlWorkbook.Sheets[sheet_name]
+            xlWorksheet = xlWorkbook.Sheets[sheet]
             xlWorksheet.Range(range_).TextToColumns(
             xlWorksheet.Range(range_),
             DataType = int(data_type),            
@@ -2611,8 +2957,8 @@ try:
             )
         except:
             # Call api through xlwings
-            ws_ = wb.api.Sheets(sheet_name).Range(range_)
-            wb.api.Sheets(sheet_name).Range(range_).TextToColumns(
+            ws_ = wb.api.Sheets(sheet).Range(range_)
+            wb.api.Sheets(sheet).Range(range_).TextToColumns(
                 ws_,
                 DataType = int(data_type),            
                 TrailingMinusNumbers=True, 
@@ -2637,28 +2983,38 @@ try:
         SetVar(whereToStoreIn, hoursInString)
 
     if (module == "printSheet"):
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
 
         xls = excel.file_[excel.actual_id]
         wb = xls['workbook']
 
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
 
-        sheet = wb.sheets[sheet_name].select()
+        sheet_selected = wb.sheets[sheet].select()
 
         printSheet = wb.api.ActiveSheet.PrintOut()
     #VerticalAlignment
     if module == "formatText":
-        sheet_name = GetParams("sheet")
+        sheet_ = GetParams("sheet")
         range_ = GetParams("cell_range")
         option_horizontal = GetParams("option_horizontal")
         option_vertical = GetParams("option_vertical")
         
-        if not sheet_name in [sh.name for sh in wb.sheets]:
-            raise Exception(f"The name {sheet_name} does not exist in the book")
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
         
-        sheet = wb.sheets[sheet_name]
+        sheet_selected = wb.sheets[sheet]
 
         alignment_horizontal = {
             'align_to_data_type' : 1,

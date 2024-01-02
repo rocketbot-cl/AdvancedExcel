@@ -39,6 +39,32 @@ Search a Excel Book opened and connect it
 |XLSX filename ||File.XLSX|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|excel1|
 
+### Opciones de calculo
+  
+
+|Parameters|Description|example|
+| --- | --- | --- |
+|Calculation options|Select the book calculation method.||
+|Calculate now|If this box is checked, the formulas in the book are calculated|True|
+
+### Read cells
+  
+Read a cell or range of cells
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
+|Assign result to variable |Name of the variable where the result will be stored|cells|
+
+### Convert serial date
+  
+Convert an excel serial number date to a specific date format
+|Parameters|Description|example|
+| --- | --- | --- |
+|Serial date |Excel serial number that represents a specific date, where 1 = 01/01/1900|44927|
+|Output format |Date format to convert the serial date to|%d/%m/%y|
+|Assign result to variable |Name of the variable where the result will be stored|output_date|
+
 ### Count columns
   
 Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes

@@ -41,6 +41,32 @@ Busca un excel abierto y se conecta a este.
 |Nombre del archivo XLSX abierto||Archivo.XLSX|
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
 
+### Calculation options
+  
+
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Opciones de calculo|Seleccionar la manera de cálculo del libro.||
+|Calcular ahora|Si se marca esta casilla, se calculan las formulas del libro|True|
+
+### Leer celdas
+  
+Lee una celda o rango de celdas
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|cells|
+
+### Convertir fecha serial
+  
+Convierte una fecha numero serial excel a un formato de fecha especifico
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Fecha serial |Numero serial de excel que representa una fecha especifica, siendo 1 = 01/01/1900|44927|
+|Formato de salida |Formato de fecha al cual convertir la fecha serial|%d/%m/%y|
+|Asignar resultado a variable |Nombre de la variable donde guardar el resultado|output_date|
+
 ### Contar Columnas
   
 Cuenta el número de columnas del excel abierto. Se requiere que el excel esté guardado para tomar los últimos cambios
