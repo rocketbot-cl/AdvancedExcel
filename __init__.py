@@ -134,17 +134,18 @@ if module == "Open":
     try:
 
         app = xw.App(add_book=False)
-        app.api.DisplayAlerts = False
 
         file_path = file_path.replace("/", os.sep)
 
-        try:
+        if platform.system() == "Windows":
+            app.api.DisplayAlerts = False
             wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
             SetVar(var_, True)
-        except:
-            PrintException()
+        else:
+            app.api.display_alerts = False
             wb = app.books.open(file_path, update_links = False, ignore_read_only_recommended = True)
-            SetVar(var_, False)
+            SetVar(var_, True)
+        
         excel.actual_id = excel.id_default
 
         if id_:
@@ -807,11 +808,11 @@ if module == "copy_other":
         if only_values is not None:
             only_values = eval(only_values)
 
+        global excel__
         if platform.system() == "Windows":
             if excel1:
                 open = 0
                 app = None
-                global excel__
                 excel__ = excel
                 paths = [excel__.file_[i]['path'].replace("\\","/") for i in list(excel__.file_.keys())]
                 if excel1.replace("\\","/") not in paths:
@@ -845,8 +846,8 @@ if module == "copy_other":
                 wb1 = xls['workbook'].api
             else:
                 wb1 = wb.api
-            
-            wb_sheets1 = [sh.name for sh in wb1.sheets]
+
+            wb_sheets1 = [sh.Name for sh in wb1.Sheets]
             for s in wb_sheets1:
                 if s.strip() == hoja1_:
                     hoja1 = s
@@ -859,7 +860,7 @@ if module == "copy_other":
             
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
             
-            wb_sheets2 = [sh.name for sh in wb2.sheets]
+            wb_sheets2 = [sh.Name for sh in wb2.Sheets]
             for s in wb_sheets2:
                 if s.strip() == hoja2_:
                     hoja2 = s
@@ -882,14 +883,42 @@ if module == "copy_other":
                 if app is not None:
                     app.kill()
         else:
-            if id_:
+            if excel1:
+                open = 0
+                app = None
+                excel__ = excel
+                paths = [excel__.file_[i]['path'].replace("\\","/") for i in list(excel__.file_.keys())]
+                if excel1.replace("\\","/") not in paths:
+                    try:
+                        wb1 = wb.app.books.open(excel1, update_links = False, ignore_read_only_recommended = True)
+                    except:
+                        app = xw.App(add_book=False)
+                        app.api.display_alerts = False
+                        app.api.visible = False
+                        wb1 = app.books.open(excel1, update_links = False, ignore_read_only_recommended = True)
+                        wb = app.books[0]
+                    open = 1
+                else:
+                    try:
+                        wb1 = wb
+                    except:
+                        try:
+                            wb1 = wb.app.books.open(excel1, update_links = False, ignore_read_only_recommended = True)
+                        except:
+                            app = xw.App(add_book=False)
+                            app.api.display_alerts = False
+                            app.api.visible = False
+                            wb1 = app.books.open(excel1, update_links = False, ignore_read_only_recommended = True)
+                            wb = app.books[0]
+                        open = 1
+            elif id_:
                 if id_ not in excel.file_:
                     raise Exception(f"The id {id_} does not exist.")
                 xls = excel.file_[id_]
                 wb1 = xls['workbook']
             else:
-                wb1 = wb.app.books.open(excel1)
-            
+                wb1 = wb
+                
             wb_sheets1 = [sh.name for sh in wb1.sheets]
             for s in wb_sheets1:
                 if s.strip() == hoja1_:
@@ -902,7 +931,7 @@ if module == "copy_other":
             my_values = origin_sheet.range(rango1)
             
             values = my_values.value
-            wb2 = wb.app.books.open(excel2)
+            wb2 = wb.app.books.open(excel2, update_links = False, ignore_read_only_recommended = True)
             
             wb_sheets2 = [sh.name for sh in wb2.sheets]
             for s in wb_sheets2:
@@ -911,12 +940,21 @@ if module == "copy_other":
                     break
             if not hoja2:
                 raise Exception(f"The name {hoja2_} does not exist in the book")
-                
+            
             destiny_sheet = wb2.sheets(hoja2)
-            destiny_sheet.range(rango2).value = values
-            wb2.DisplayAlerts = False
-            wb2.save()
+            if not only_values:
+                origin_sheet.range(rango1).copy(
+                    destiny_sheet.range(rango2))
+            else:
+                destiny_sheet.range(rango2).value = values
+                
+            wb2.app.api.display_alerts = False
+            wb2.api.save_as(excel2.replace("/",os.sep))
             wb2.close()
+            if open == 1:
+                wb1.close()
+                if app is not None:
+                    app.kill()
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1434,7 +1472,7 @@ if module == "fitCells":
 
         if row_ungroup: sheet_selected.range(range_cell).api.Rows.Ungroup()
         if col_ungroup: sheet_selected.range(range_cell).api.Columns.Ungroup()
-        if mergeCell: sheet_selected.range(range_cell).api.Merge(True)
+        if mergeCell: sheet_selected.range(range_cell).api.Merge()
         if unmergeCell: sheet_selected.range(range_cell).api.Unmerge()
         
         if row_levels: sheet_selected.api.Outline.ShowLevels(RowLevels=int(row_levels))
@@ -1514,25 +1552,27 @@ if module == "AutoFilter":
 if module == "RemoveAutoFilter":
     sheet_ = GetParams("sheet")
 
-    try:        
+    try:
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+
         if platform.system() == 'Windows':
-            wb_sheets = [sh.name for sh in wb.sheets]
-            for s in wb_sheets:
-                if s.strip() == sheet_:
-                    sheet = s
-                    break
-            if not sheet:
-                raise Exception(f"The name {sheet_} does not exist in the book")
-            
             try:
                 wb.api.Sheets(sheet).ShowAllData()
             except:
                 pass
-            
             wb.api.Sheets(sheet).AutoFilterMode = False
-            
         else:
-            wb.sheets[sheet_].api.autofilter_mode = False
+            try:
+                wb.sheets[sheet].api.show_all_data()
+            except:
+                pass
+            wb.sheets[sheet].api.autofilter_mode = False
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1542,22 +1582,21 @@ if module == "RemoveAutoFilter":
 if module == "ClearFilter":
     sheet_ = GetParams("sheet")
 
-    try:        
-        if platform.system() == 'Windows':
-            wb_sheets = [sh.name for sh in wb.sheets]
-            for s in wb_sheets:
-                if s.strip() == sheet_:
-                    sheet = s
-                    break
-            if not sheet:
-                raise Exception(f"The name {sheet_} does not exist in the book")
-            
+    try:
+        wb_sheets = [sh.name for sh in wb.sheets]
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        if platform.system() == 'Windows':            
             try:
                 wb.api.Sheets(sheet).ShowAllData()
             except:
                 pass         
         else:
-            wb.sheets[sheet_].api.show_all_data()
+            wb.sheets[sheet].api.show_all_data()
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1566,10 +1605,8 @@ if module == "ClearFilter":
     
 # Duplicated - NOT VISIBLE
 if module == "ClearFilters":
-
-    try:
-        sheet_ = GetParams("sheet")
-        
+    sheet_ = GetParams("sheet") 
+    try:       
         wb_sheets = [sh.name for sh in wb.sheets]
         for s in wb_sheets:
             if s.strip() == sheet_:
@@ -1660,16 +1697,16 @@ if module == "Filter":
             else:
                 wb.sheets[sheet].api.Range(range_).AutoFilter(filter_column, Criteria1=data, Operator=filter_type)
         else:
-            n_start = wb.sheets[sheet_].range(start).column
-            n_end = wb.sheets[sheet_].range(column + str(1)).column
+            n_start = wb.sheets[sheet].range(start).column
+            n_end = wb.sheets[sheet].range(column + str(1)).column
 
             filter_column = n_end - n_start + 1
             
-            rng = wb.sheets[sheet_].api.cells[range_]
+            rng = wb.sheets[sheet].api.cells[range_]
             if filter_type in ["1", "2"]:
-                r = wb.sheets[sheet_].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=criteria1, criteria2=criteria2)
             else:
-                r = wb.sheets[sheet_].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
+                r = wb.sheets[sheet].api.autofilter_range(rng, field=filter_column, operator=filter_type, criteria1=data)
         
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1698,9 +1735,6 @@ if module == "AdvancedFilter":
             unique_ = eval(unique)
         else:
             unique_ = False
-            
-        if copy:
-            copy_ = eval(copy)
         
         if platform.system() == 'Windows':
             
@@ -1709,7 +1743,7 @@ if module == "AdvancedFilter":
             else:
                 filter_ = None 
             
-            if copy_:
+            if copy and eval(copy):
                 paste_ = wb.sheets[sheet].api.Range(paste)
                 wb.sheets[sheet].api.Range(range).AdvancedFilter(2, CriteriaRange=filter_, CopyToRange=paste_, Unique=unique_)
             else:
@@ -1718,15 +1752,16 @@ if module == "AdvancedFilter":
         else:
             
             if filter:
-                filter_ = wb.sheets[sheet_].api.cells[filter]
+                filter_ = wb.sheets[sheet].api.cells[filter]
             else:
                 filter_ = None 
-            if copy_:
-                paste_ = wb.sheets[sheet_].api.cells[paste]
-                rng = wb.sheets[sheet_].api.cells[range]
-                wb.sheets[sheet_].api.advanced_filter(rng, action=2, criteriarange=filter_, copytorange=paste_, unique=unique_)
+
+            rng = wb.sheets[sheet].api.cells[range]
+            if copy and eval(copy):
+                paste_ = wb.sheets[sheet].api.cells[paste]
+                wb.sheets[sheet].api.advanced_filter(rng, action=2, criteria_range=filter_, copy_to_range=paste_, unique=unique_)
             else:
-                wb.sheets[sheet_].api.advanced_filter(rng, action=1, criteriarange=filter_, copytorange=None, unique=unique_)
+                wb.sheets[sheet].api.advanced_filter(rng, action=1, criteria_range=filter_, copy_to_range=None, unique=unique_)
 
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -1841,6 +1876,7 @@ if module == "Paste":
 
         if values is not None:
             values = eval(values)
+        wb.sheets[sheet].range(cells).select()
         try:
             if values:
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
@@ -2449,24 +2485,38 @@ if module == "find":
         else:
             match_case = eval(match_case)
         
-        if find_all and eval(find_all):
-            matches = []
-            range_obj = sheet_selected.api.Range(range_)
-            result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-            try:
-                while result is not None and result.Address not in matches:
-                    matches.append(result.Address)
-                    result = range_obj.FindNext(result)
-            except:
-                while result is not None and result.address not in matches:
-                    matches.append(result.address)
-                    result = range_obj.FindNext(result)
+        if platform.system() == "Windows":        
+            if find_all and eval(find_all):
+                matches = []
+                range_obj = sheet_selected.api.Range(range_)
+                result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+                try:
+                    while result is not None and result.Address not in matches:
+                        matches.append(result.Address)
+                        result = range_obj.FindNext(result)
+                except:
+                    while result is not None and result.address not in matches:
+                        matches.append(result.address)
+                        result = range_obj.FindNext(result)
+            else:
+                result = sheet_selected.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
+                try:
+                    matches = result.Address if result is not None else ""
+                except:
+                    matches = result.address if result is not None else ""
         else:
-            result = sheet_selected.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-            try:
-                matches = result.Address if result is not None else ""
-            except:
-                matches = result.address if result is not None else ""
+            if find_all and eval(find_all):
+                matches = []
+                range_obj = sheet_selected.range(range_)
+                result = range_obj.api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1,match_case = match_case)
+                while result is not None and result.get_address() not in matches:
+                    result.select()
+                    matches.append(result.get_address())
+                    result = range_obj.api.find_next(after_=result)        
+            else:
+                result = sheet_selected.range(range_).api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1, match_case = match_case)
+                matches = result.get_address() if result is not None else ""
+            
        
         if var_:
             SetVar(var_, matches)
@@ -2748,7 +2798,6 @@ try:
         else:
             wb = app.books.add()
             path = ""
-        print(app.books)
 
         excel.actual_id = excel.id_default
 
