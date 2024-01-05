@@ -1626,7 +1626,7 @@ if module == "ClearFilters":
         raise e
 
 if module == "Filter":
-
+    import re
     try:
         sheet_ = GetParams("sheet")
         start = GetParams("start")
@@ -1651,17 +1651,36 @@ if module == "Filter":
             pass
         
         if ":" in start:
-            range_ = start
-            start = start.split(":")[0]
+            # Range
+            regex = "([a-zA-Z]+)([0-9]*):([a-zA-Z]+)([0-9]*)"
+            matches = re.match(regex, start).groups()
+            
+            if matches[1] and matches[3]:
+                # Full range
+                start = matches[0] + matches[1]
+                range_ = start
+            else:
+                # Columns range
+                start = start.split(":")[0] + str(1)
+                range_ = matches[0] + str(1) + ":" + matches[2] + str(1)
         else:
-            start = start + str(1)
-            range_ = column + str(1)
-        
+            # Column
+            regex = "([a-zA-Z]+)([0-9]*)"
+            matches = re.match(regex, start).groups()
+            
+            if matches[1]:
+                # Cell
+                start = start
+                range_ = column + str(matches[1])
+            else:
+                # Column Letter
+                start = start + str(1)
+                range_ = column + str(1)
+                
         if data.startswith("[") or data.startswith("("):
             data = eval(data)
         else:
             data = data.split(",")
-            # data = [data]
         
         if filter_type in ["1", "2"]:
             if len(data) == 2:
