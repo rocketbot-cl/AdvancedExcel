@@ -48,9 +48,9 @@ cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
 cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
 
-if sys.maxsize > 2**32 and cur_path_x64 not in sys.path:
+if sys.maxsize >= 2**32 and cur_path_x64 not in sys.path:
         sys.path.append(cur_path_x64)
-if sys.maxsize > 32 and cur_path_x86 not in sys.path:
+if sys.maxsize < 2**32 and cur_path_x86 not in sys.path:
         sys.path.append(cur_path_x86)
 
 def import_lib(relative_path, name, class_name=None):
@@ -190,6 +190,7 @@ if module == "ReadCells":
             sheet = wb.sheets.active
         else:
             wb_sheets = [sh.name for sh in wb.sheets]
+            sheet=None
             for s in wb_sheets:
                 if s.strip() == sheet_:
                     sheet = wb.sheets(s)
@@ -199,7 +200,11 @@ if module == "ReadCells":
         
         global _values    
         _values = sheet.api.Range(range_).Value2
-        value = [list(i) for i in _values if isinstance(_values, tuple)]
+        print(_values)
+        if isinstance(_values, tuple):
+            value = [list(i) for i in _values if isinstance(_values, tuple)]
+        else:
+            value = _values
         value = value if value != [] else _values
         
         
@@ -250,6 +255,7 @@ if module == "CellColor":
             rgb = eval(custom)
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -281,6 +287,7 @@ if module == "GetColor":
     colors = []
     
     wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
     for s in wb_sheets:
         if s.strip() == sheet_:
             sheet = s
@@ -309,6 +316,7 @@ if module == "GetCellFormats":
     
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -384,6 +392,7 @@ if module == "InsertFormula":
         sheet = wb.sheets.active
     else:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = wb.sheets(s)
@@ -425,17 +434,35 @@ if module == "SelectCells":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
                 break
         if not sheet:
             raise Exception(f"The name {sheet_} does not exist in the book")
-        
-        wb.sheets[sheet].range(cells).select()
-
+        try:
+            wb.sheets[sheet].select()
+        except:
+            pass
+        try:
+            wb.sheets[sheet].range(cells).select()
+        except:
+            pass
+                
         if copy:
-            wb.sheets[sheet].api.Range(cells).Copy()
+            wb.sheets[sheet].range(cells).options(ndim=2).copy()
+            
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
+if module == "CutCopyMode":
+
+    try:
+        wb.api.Application.CutCopyMode = False
+
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -448,6 +475,7 @@ if (module == "getCurrencyValue"):
     finalResult = []
     
     wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
     for s in wb_sheets:
         if s.strip() == sheet_:
             sheet = s
@@ -495,6 +523,7 @@ if (module == "getDateValue"):
     finalResult = []
     
     wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
     for s in wb_sheets:
         if s.strip() == sheet_:
             sheet = s
@@ -551,6 +580,8 @@ if module == "copyPaste":
             args['transpose'] = True
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        hoja1=None
+        hoja2=None
         for s in wb_sheets:
             if s.strip() == hoja1_:
                 hoja1 = s
@@ -582,6 +613,7 @@ if module == "formatCell":
     import re 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -737,6 +769,7 @@ if module == "clearCell":
     range_ = GetParams("cell_range")
     
     wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
     for s in wb_sheets:
         if s.strip() == sheet_:
             sheet = s
@@ -777,6 +810,7 @@ if module == "deleteSheet":
     res = False
 
     wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
     for s in wb_sheets:
         if s.strip() == sheet_:
             sheet = s
@@ -848,6 +882,7 @@ if module == "copy_other":
                 wb1 = wb.api
 
             wb_sheets1 = [sh.Name for sh in wb1.Sheets]
+            hoja1 = None
             for s in wb_sheets1:
                 if s.strip() == hoja1_:
                     hoja1 = s
@@ -861,6 +896,7 @@ if module == "copy_other":
             wb2 = wb.app.books.api.Open(excel2, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=load)
             
             wb_sheets2 = [sh.Name for sh in wb2.Sheets]
+            hoja2 = None
             for s in wb_sheets2:
                 if s.strip() == hoja2_:
                     hoja2 = s
@@ -869,6 +905,12 @@ if module == "copy_other":
                 raise Exception(f"The name {hoja2_} does not exist in the book")
             
             destiny_sheet = wb2.Sheets(hoja2)
+            
+            if not rango2:
+                rango2 = "A" + str(destiny_sheet.UsedRange.Rows.Count)
+            if len(rango2) == 1 and not rango2[0].isnumeric():
+                rango2 = rango2 + str(destiny_sheet.UsedRange.Rows.Count)
+
             if not only_values:
                 origin_sheet.Range(rango1).Copy(
                     destiny_sheet.Range(rango2))
@@ -970,6 +1012,7 @@ if module == "addRow":
         opcion_ = GetParams("option_")
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -979,74 +1022,90 @@ if module == "addRow":
 
         sheet_selected = wb.sheets[sheet]
 
+        try:
+            import re
+            regex = "([a-zA-Z]?)([0-9]+)[:]?([a-zA-Z]?)([0-9]?)"
+            matches = re.match(regex, row).groups()
+        except:
+            pass
+        
         if opcion_ == "add_":
 
             if platform.system() == 'Windows':
                 if ":" in row:
                     if tipo == "down_":
-                        fila = row.split(':')
-                        f1 = fila[0]
-                        f1 = int(f1) + 1
-                        f2 = fila[1]
-                        f2 = int(f2) + 1
-                        fila = str(f1) + ':' + str(f2)
-                        print('FILA down', fila)
-                        # row = int(row) + 1
+                        if matches[0] and matches[2]:
+                            fila = matches[0] + str(int(matches[1])+1) \
+                                + ":" + matches[2] + str(int(matches[3])+1)
+                        else:
+                            fila = str(matches[0]+1) + ":" + str(matches[2]+1)
+                            
                         sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
-                        print('FILA up', row)
                         sheet_selected.range(row).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                 else:
                     if tipo == "down_":
-                        row = int(row) + 1
-                        # print(row)
-                        fila = str(row) + ':' + str(row)
-                        print('FILA down', fila)
+                        if matches[0]:
+                            fila = matches[0] + str(int(matches[1])+1)
+                        else:
+                            fila = str(matches[1]+1) + ":" + str(matches[1]+1)
 
                         sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
                     if tipo == "up_":
-                        fila = str(row) + ':' + str(row)
-                        print('FILA up', fila)
+                        if matches[0]:
+                            fila = row
+                        else:
+                            fila = str(matches[1]) + ":" + str(matches[1])
+                            
                         sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
 
             else:
                 if ":" in row:
                     if tipo == "down_":
-                        fila = row.split(':')
-                        f1 = fila[0]
-                        f1 = int(f1) + 1
-                        f2 = fila[1]
-                        f2 = int(f2) + 1
-                        fila = str(f1) + ':' + str(f2)
-                        # row = int(row) + 1
+                        if matches[0] and matches[2]:
+                            fila = matches[0] + str(int(matches[1])+1) \
+                                + ":" + matches[2] + str(int(matches[3])+1)
+                        else:
+                            fila = str(matches[0]+1) + ":" + str(matches[2]+1)
+                            
                         sheet_selected.api.Rows[fila].insert_into_range()
                     if tipo == "up_":
                         sheet_selected.api.Rows[row].insert_into_range()
 
                 else:
                     if tipo == "down_":
-                        row = int(row) + 1
-                        # print(row)
-                        fila = str(row) + ':' + str(row)
+                        if matches[0]:
+                            fila = matches[0] + str(int(matches[1])+1)
+                        else:
+                            fila = str(matches[1]+1) + ":" + str(matches[1]+1)
 
                         sheet_selected.api.Rows[fila].insert_into_range()
 
                     if tipo == "up_":
-                        fila = str(row) + ':' + str(row)
+                        if matches[0]:
+                            fila = row
+                        else:
+                            fila = str(matches[1]) + ":" + str(matches[1])
+                            
                         sheet_selected.api.Rows[fila].insert_into_range()
 
         if opcion_ == "delete_":
-            if ":" not in row:
-                row = str(row) + ":" + str(row)
+            
+            if ":" in row:
+                fila = row
+            if ":" not in row and matches[0]:
+                fila = row
+            else:
+                fila = str(matches[1]) + ":" + str(matches[1])
 
-            sheet_selected.range(row).api.Delete()
+            sheet_selected.range(fila).api.Delete()
 
     except Exception as e:
         PrintException()
@@ -1059,12 +1118,20 @@ if module == "addCol":
         opcion_ = GetParams("option_")
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
                 break
         if not sheet:
             raise Exception(f"The name {sheet_} does not exist in the book")
+        
+        try:
+            import re
+            regex = "([a-zA-Z]?)([0-9]+)[:]?([a-zA-Z]?)([0-9]?)"
+            matches = re.match(regex, row).groups()
+        except:
+            pass
 
         if opcion_ == "add_":
 
@@ -1074,7 +1141,11 @@ if module == "addCol":
                     wb.sheets[sheet].range(col_).api.Insert(
                         InsertShiftDirection.xlShiftToRight)
                 else:
-                    col = str(col_) + ':' + str(col_)
+                    if matches[0] and matches[1]:
+                        col = col_
+                    else:
+                        col = str(matches[1]) + ":" + str(matches[1])
+                    
                     wb.sheets[sheet].range(col).api.Insert(
                         InsertShiftDirection.xlShiftToRight)
 
@@ -1082,7 +1153,10 @@ if module == "addCol":
                 if ":" in col_:
                     wb.sheets[sheet].api.columns[col_].insert_into_range()
                 else:
-                    col = str(col_) + ':' + str(col_)
+                    if matches[0] and matches[1]:
+                        col = col_
+                    else:
+                        col = str(matches[1]) + ":" + str(matches[1])
                     wb.sheets[sheet].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
@@ -1090,14 +1164,20 @@ if module == "addCol":
                 if ":" in col_:
                     wb.sheets[sheet].range(col_).api.Delete()
                 else:
-                    col = str(col_) + ':' + str(col_)
+                    if matches[0] and matches[1]:
+                        col = col_
+                    else:
+                        col = str(matches[1]) + ":" + str(matches[1])
                     wb.sheets[sheet].range(col).api.Delete()
 
             else:
                 if ":" in col_:
                     wb.sheets[sheet].range(col_).api.delete()
                 else:
-                    col = str(col_) + ':' + str(col_)
+                    if matches[0] and matches[1]:
+                        col = col_
+                    else:
+                        col = str(matches[1]) + ":" + str(matches[1])
                     wb.sheets[sheet].range(col).api.delete()
 
     except Exception as e:
@@ -1257,6 +1337,7 @@ if module == "countColumns":
             sheet = wb.sheets.active.name
         else:
             wb_sheets = [sh.name for sh in wb.sheets]
+            sheet=None
             for s in wb_sheets:
                 if s.strip() == sheet_:
                     sheet = s
@@ -1291,6 +1372,7 @@ if module == "countRows":
         sheet = wb.sheets.active.name
     else:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1410,6 +1492,7 @@ if module == "refreshPivot":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1443,6 +1526,7 @@ if module == "fitCells":
         unmergeCell = GetParams("unmergeCell")
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1492,6 +1576,8 @@ if module == "fitCells":
 if module == "CloseExcel":
     kill_app = GetParams("kill_app")
     
+    xw.books.active.app.api.DisplayAlerts = False
+    
     if kill_app:
         if eval(kill_app) == True:
             xw.books.active.app.kill()
@@ -1528,6 +1614,7 @@ if module == "AutoFilter":
         
         if platform.system() == 'Windows':
             wb_sheets = [sh.name for sh in wb.sheets]
+            sheet=None
             for s in wb_sheets:
                 if s.strip() == sheet_:
                     sheet = s
@@ -1554,6 +1641,7 @@ if module == "RemoveAutoFilter":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1584,6 +1672,7 @@ if module == "ClearFilter":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1608,6 +1697,7 @@ if module == "ClearFilters":
     sheet_ = GetParams("sheet") 
     try:       
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1635,6 +1725,7 @@ if module == "Filter":
         filter_type = GetParams("filter_type")
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1724,6 +1815,7 @@ if module == "AdvancedFilter":
         paste = GetParams("paste")
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1775,6 +1867,7 @@ if module == "rename_sheet":
     try:
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1808,6 +1901,7 @@ if module == "style_cells":
     try:
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1867,6 +1961,7 @@ if module == "Paste":
     try:
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1876,14 +1971,27 @@ if module == "Paste":
 
         if values is not None:
             values = eval(values)
-        wb.sheets[sheet].range(cells).select()
+        
+        try: 
+            wb.sheets[sheet].select()    
+        except:
+            pass
+        try: 
+            wb.sheets[sheet].range(cells).select()
+        except:
+            pass
+            
         try:
             if values:
                 wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4163, Operation=-4142, SkipBlanks=False,
                                                                Transpose=False)
             else:
                 if platform.system() == "Windows":
-                    wb.sheets[sheet].api.Paste()
+                    try:
+                        wb.sheets[sheet].range(cells).paste()
+                    except Exception as e:
+                        wb.sheets[sheet].range(cells).api.PasteSpecial(Paste=-4104, Operation=-4142, SkipBlanks=False,
+                                                                    Transpose=False)
                 else:
                     wb.sheets[sheet].range(cells).paste()
         except:
@@ -1923,6 +2031,7 @@ if module == "remove_duplicate":
     try:
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -1968,6 +2077,8 @@ if module == "save_mac":
         args = {"FileFormat": 6, "ConflictResolution" :2}
     if path_file.endswith(".xlsm"):
         args = {"FileFormat": 52, "ConflictResolution" :2}
+    
+    wb.app.api.DisplayAlerts = False
     
     try:
         if path_file == xls["path"]:
@@ -2085,6 +2196,7 @@ if module == "exportPDF":
         sheets = [wb.sheets.active]
     else:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2166,6 +2278,7 @@ if module == "GetCells":
     
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2291,6 +2404,7 @@ if module == "GetCountCells":
     
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2366,6 +2480,7 @@ if module == "Order":
     clean = GetParams("clean")
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2380,7 +2495,7 @@ if module == "Order":
             order = 1
         if clean:
             sheet_selected.Sort.SortFields().Clear()
-        sheet_selected.api.Range(range_).Sort(Key1=sheet.api.Range(column), Order1=order, Orientation=1)
+        sheet_selected.api.Range(range_).Sort(Key1=sheet_selected.api.Range(column), Order1=order, Orientation=1)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
@@ -2405,6 +2520,7 @@ if module == "OrderMultiple":
     
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2463,6 +2579,7 @@ if module == "find":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2621,6 +2738,7 @@ if module == "LockCells":
 
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2652,6 +2770,7 @@ if module == "add_chart":
         
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2745,6 +2864,7 @@ if module == "insertImage":
     try:
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2768,6 +2888,7 @@ if module == "ExportChart":
     try:
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2819,6 +2940,7 @@ try:
         data = GetParams("data")
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2848,6 +2970,7 @@ try:
         hoja2_ = GetParams("sheet_name2")
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == hoja1_:
                 hoja1 = s
@@ -2906,6 +3029,7 @@ try:
         password = GetParams("password")
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2920,6 +3044,7 @@ try:
         password = GetParams("password")
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -2987,6 +3112,7 @@ try:
             options["FieldInfo"] = [[int(value), 1] for value in other.split(",")]
             
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -3038,6 +3164,7 @@ try:
         wb = xls['workbook']
 
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -3056,6 +3183,7 @@ try:
         option_vertical = GetParams("option_vertical")
         
         wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
         for s in wb_sheets:
             if s.strip() == sheet_:
                 sheet = s
@@ -3082,7 +3210,12 @@ try:
         
         if option_vertical in alignment_vertical:
             sheet.range(range_).api.VerticalAlignment = int(alignment_vertical[option_vertical])
+            
+    if module == "Maximize":
 
+        if platform.system() == "Windows":
+            wb.app.api.WindowState = -4137
+            
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()

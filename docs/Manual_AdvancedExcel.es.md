@@ -41,9 +41,15 @@ Busca un excel abierto y se conecta a este.
 |Nombre del archivo XLSX abierto||Archivo.XLSX|
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
 
+### Maximizar
+  
+Maximizar Ventana de Excel
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+
 ### Calculation options
   
-
+Select the way the formula calculation is executed in the workbook.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Opciones de calculo|Seleccionar la manera de cálculo del libro.||
@@ -219,9 +225,9 @@ Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abr
 |Rango a copiar|Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
 |Excel destino|Ruta del archivo excel de destino|Ruta archivo destino:|
 |Abrir normalmente|Si esta casilla está marcada, el archivo de destino se abre normalmente manteniendo los datos, formatos y objetos. De lo contrario, solo recupera datos.|True|
-|Hoja destino|Nombre de la hoja donde se copiará|Sheet1|
-|Rango donde pegar|Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
 |Solo valores|Si esta casilla es seleccionada, copiará solo los valores|True|
+|Hoja destino|Nombre de la hoja donde se copiará|Sheet1|
+|Rango donde pegar (Opcional)|Columna, Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A, A1 o A1B1) |A1:D7|
 
 ### Insertar/Eliminar Fila
   
@@ -240,7 +246,7 @@ Inserta o elimina una columna
 | --- | --- | --- |
 |Opción|Seleccione Add para agregar una columna o Delete para borrar||
 |Nombre de Hoja|Nombre de la hoja donde se encuentran los datos|Sheet|
-|Columna|Indique la columna o columnas que se quieren agregar o eliminar|B|
+|Rango|Indique la columna o columnas que se quieren agregar o eliminar|B|
 
 ### Convertir CSV a XLSX
   
@@ -340,7 +346,7 @@ Eliminar el filtro automático de una hoja de Excel
 
 ### Borrar Filtro
   
-Borra todos los filtros realizados sobre una hoja de Excel
+Borra todos los filtros aplicados sobre una hoja de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos filtrados|Hoja 1|
@@ -418,6 +424,12 @@ Pega datos en celdas en Excel
 |Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
 |Ingrese celdas donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
 |Solo valores|Si esta casilla es seleccionada, se pegarán solo los valores|True|
+
+### Deshabilitar modo Copiar/Cortar
+  
+Deshabilitar el modo Cortar/Copiar del Excel activo
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
 
 ### Eliminar duplicados
   

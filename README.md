@@ -24,217 +24,223 @@ Open a file preventing MS Excel alerts.
 2. Find and Connect  
 Search a Excel Book opened and connect it
 
-3. Opciones de calculo  
-Select the way the formula calculation is executed in the workbook.
+3. Maximize  
+Maximize Excel Window
 
-4. Read cells  
+4. Opciones de calculo  
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
+
+5. Read cells  
 Read a cell or range of cells
 
-5. Convert serial date  
+6. Convert serial date  
 Convert an excel serial number date to a specific date format
 
-6. Count columns  
+7. Count columns  
 Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
 
-7. Count Rows  
+8. Count Rows  
 Counts all the rows or from a range.
 
-8. Cell color  
+9. Cell color  
 Change color of a cell or range of cells. Can be a default color or custom
 
-9. Get Cell Color  
+10. Get Cell Color  
 Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 
-10. Get Cell Formats  
+11. Get Cell Formats  
 Get the format of a cell. The function will return a dictionary with the cell properties and the value of each one.
 
-11. Insert Formula  
+12. Insert Formula  
 Insert formula into cell
 
-12. Insert Macro  
+13. Insert Macro  
 Insert Macro in Excel
 
-13. Select and copy Cells  
+14. Select and copy Cells  
 Select and Copy cells in Excel
 
-14. Get Cell With Currency Format  
+15. Get Cell With Currency Format  
 Get cells with currency format
 
-15. Get Cell With Date Format  
+16. Get Cell With Date Format  
 Get cells with date format
 
-16. Copy-Paste  
+17. Copy-Paste  
 Copy range cell to another sheet
 
-17. Format Cell  
+18. Format Cell  
 Format Cell
 
-18. Clear Contents  
+19. Clear Contents  
 Clears formulas and values from the selected range, keeping the format.
 
-19. Create Sheet  
+20. Create Sheet  
 Create sheet in the end
 
-20. Delete Sheet  
+21. Delete Sheet  
 Delete sheet
 
-21. Copy to another excel  
+22. Copy to another excel  
 Copy the range from one Excel file to another. Indicating the file path, it will open excel to copy or paste the data. If you enter the id of an open excel, it will use that instance to copy or paste.
 
-22. Add/Delete Row  
+23. Add/Delete Row  
 Add or Delete a Row
 
-23. Add/Delete Column  
+24. Add/Delete Column  
 Add or Delete a Column
 
-24. Convert CSV to XLSX  
+25. Convert CSV to XLSX  
 Convert a CSV document to XLSX format
 
-25. (Deprecated) Convert XLSX to CSV  
+26. (Deprecated) Convert XLSX to CSV  
 Convert a xlsx document to csv
 
-26. Convert XLSX to CSV  
+27. Convert XLSX to CSV  
 Convert a xlsx document to csv
 
-27. Convert XLS to XLSX  
+28. Convert XLS to XLSX  
 Convert a xls document to xlsx
 
-28. Get active cell  
+29. Get active cell  
 Get row and column of active cell
 
-29. Refresh Pivot table  
+30. Refresh Pivot table  
 Refresh a pivot table. Deprecated! Use PivotTableExcel module
 
-30. Fit cells  
+31. Fit cells  
 Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
 
-31. Get Formula  
+32. Get Formula  
 Get the formula into cell
 
-32. Add Auto Filter  
+33. Add Auto Filter  
 Add auto filter to excel table
 
-33. Remove Auto Filter  
+34. Remove Auto Filter  
 Remove auto filter from an excel sheet
 
-34. Clear Filter  
-Clears every filter made over an excel sheet
+35. Clear Filter  
+Clears every filter applied over an excel sheet
 
-35. Filter  
+36. Filter  
 Filter an excel table according to the relative value, exact content, background color or font color of the cells. *Examples according the filter type: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-36. Advanced filter  
+37. Advanced filter  
 Apply advanced filter to a table
 
-37. Clear filters  
+38. Clear filters  
 Remove filters and show all data
 
-38. Rename sheet  
+39. Rename sheet  
 Change name to excel sheet
 
-39. Text Format  
+40. Text Format  
 Change the Horizontal or Vertical alignment of values in a range of cells
 
-40. Cell Style  
+41. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-41. Paste in Cells  
+42. Paste in Cells  
 Paste data to cells in Excel
 
-42. Remove Duplicates  
+43. Disable Cut/Copy Mode  
+Disable Cut/Copy Mode of the active Excel
+
+44. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-43. Export to advanced PDF  
+45. Export to advanced PDF  
 Export to PDF with options
 
-44. Copy-Move Sheet  
+46. Copy-Move Sheet  
 Copy or move a sheet
 
-45. Insert Form  
+47. Insert Form  
 Insert Form in Excel
 
-46. Read Filtered Cells  
+48. Read Filtered Cells  
 Allow read only cells filters 
 
-47. Count Filtered Cells  
+49. Count Filtered Cells  
 Allow count only cells filters 
 
-48. Replace  
+50. Replace  
 Run replace action to excel 
 
-49. Order  
+51. Order  
 Run replace action to excel 
 
-50. Order by multiple levels  
+52. Order by multiple levels  
 Order an excel sheet by value, setting multiple levels
 
-51. Refresh All  
+53. Refresh All  
 Refresh all data in Excel
 
-52. Find  
+54. Find  
 Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
 
-53. Find data  
+55. Find data  
 Returns the first cell that matches the search data
 
-54. Lock Cells  
+56. Lock Cells  
 Lock or Unlock cells
 
-55. Add Chart  
+57. Add Chart  
 Create a new chart in an excel sheet
 
-56. Remove Password  
+58. Remove Password  
 Remove password and save the Excel
 
-57. Insert image  
+59. Insert image  
 Insert an image
 
-58. Export Chart  
+60. Export Chart  
 Export a chart from index
 
-59. Not visible mode  
+61. Not visible mode  
 Open not visible excel.
 
-60. Write array objects  
+62. Write array objects  
 Write array object on Excel cells.
 
-61. Copy-Paste Format  
+63. Copy-Paste Format  
 Copy format range cell to another sheet
 
-62. Update links  
+64. Update links  
 Changes a link from one document to another
 
-63. Unlock book  
+65. Unlock book  
 Unlock book with password
 
-64. Lock book  
+66. Lock book  
 Lock a book with password
 
-65. Unlock sheet  
+67. Unlock sheet  
 Unlock sheet with password
 
-66. Lock sheet  
+68. Lock sheet  
 Lock a sheet with password
 
-67. Convert to .txt  
+69. Convert to .txt  
 Convert to .txt
 
-68. Text to columns  
+70. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-69. Convert Excel time to hours  
+71. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-70. Print sheet  
+72. Print sheet  
 Prints a sheet
 
-71. Save Excel with password  
+73. Save Excel with password  
 Save a Excel file
 
-72. Save Excel  
+74. Save Excel  
 Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
 
-73. Close XLSX  
+75. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 

@@ -39,9 +39,15 @@ Search a Excel Book opened and connect it
 |XLSX filename ||File.XLSX|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|excel1|
 
+### Maximize
+  
+Maximize Excel Window
+|Parameters|Description|example|
+| --- | --- | --- |
+
 ### Opciones de calculo
   
-
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Calculation options|Select the book calculation method.||
@@ -217,9 +223,9 @@ Copy the range from one Excel file to another. Indicating the file path, it will
 |Range to copy|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
 |Excel destination|Path of the destination xlsx file|Target file path:|
 |Normal opening|If this checkbox is checked, the destination file opens normally keeping data, formats and objects. Otherwise it only recovers data.|True|
-|Sheet name|Name of the sheet to be copied|Sheet1|
-|Range to paste|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
 |Only Values|If this checkbox is checked, only the value will be copied|True|
+|Sheet name|Name of the sheet to be copied|Sheet1|
+|Range to paste (Optional)|Column, Cell or Range of cells where to paste. The syntax must be the same as excel (A, A1 or A1B1) |A1:D7|
 
 ### Add/Delete Row
   
@@ -238,7 +244,7 @@ Add or Delete a Column
 | --- | --- | --- |
 |Option|Select Add or Delete a column||
 |Sheet Name|Name of the sheet where the data are located|Sheet|
-|Column|Indicate the column(s) to be added or deleted|B|
+|Range|Indicate the column(s) to be added or deleted|B|
 
 ### Convert CSV to XLSX
   
@@ -338,7 +344,7 @@ Remove auto filter from an excel sheet
 
 ### Clear Filter
   
-Clears every filter made over an excel sheet
+Clears every filter applied over an excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the filtered data is located|Sheet1|
@@ -416,6 +422,12 @@ Paste data to cells in Excel
 |Sheet |Name of the sheet to automate|Hoja 1|
 |cells where paste |Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
 |Only values |If this checkbox is checked, only the value will be pasted|True|
+
+### Disable Cut/Copy Mode
+  
+Disable Cut/Copy Mode of the active Excel
+|Parameters|Description|example|
+| --- | --- | --- |
 
 ### Remove Duplicates
   
