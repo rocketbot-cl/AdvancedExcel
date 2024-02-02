@@ -1129,7 +1129,7 @@ if module == "addCol":
         try:
             import re
             regex = "([a-zA-Z]?)([0-9]+)[:]?([a-zA-Z]?)([0-9]?)"
-            matches = re.match(regex, row).groups()
+            matches = re.match(regex, col_).groups()
         except:
             pass
 
