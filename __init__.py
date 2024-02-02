@@ -596,8 +596,8 @@ if module == "copyPaste":
         if not hoja2:
             raise Exception(f"The name {hoja2_} does not exist in the book")
         
-        xw.sheets[hoja1].range(rango1).options(ndim=2).copy()
-        xw.sheets[hoja2].range(rango2).paste(**args)
+        wb.sheets[hoja1].range(rango1).options(ndim=2).copy()
+        wb.sheets[hoja2].range(rango2).paste(**args)
     
     except Exception as e:
         PrintException()
@@ -1100,11 +1100,11 @@ if module == "addRow":
             
             if ":" in row:
                 fila = row
-            if ":" not in row and matches[0]:
+            elif ":" not in row and matches[0]:
                 fila = row
             else:
                 fila = str(matches[1]) + ":" + str(matches[1])
-
+            
             sheet_selected.range(fila).api.Delete()
 
     except Exception as e:
@@ -1576,14 +1576,14 @@ if module == "fitCells":
 if module == "CloseExcel":
     kill_app = GetParams("kill_app")
     
-    xw.books.active.app.api.DisplayAlerts = False
+    wb.app.api.DisplayAlerts = False
     
     if kill_app:
         if eval(kill_app) == True:
-            xw.books.active.app.kill()
+            wb.app.kill()
     else:
         try:
-            xw.books.active.close()
+            wb.close()
         except Exception as e:
             print("\x1B[" + "31;40mError\x1B[" + "0m")
             PrintException()
@@ -3003,9 +3003,9 @@ try:
         if not hoja2:
             raise Exception(f"The name {hoja2_} does not exist in the book")
         
-        my_old_value = xw.sheets[hoja2].range(rango2).options(ndim=2).value
-        xw.sheets[hoja1].range(rango1).copy(xw.sheets[hoja2].range(rango2))
-        xw.sheets[hoja2].range(rango2).value = my_old_value
+        my_old_value = wb.sheets[hoja2].range(rango2).options(ndim=2).value
+        wb.sheets[hoja1].range(rango1).copy(wb.sheets[hoja2].range(rango2))
+        wb.sheets[hoja2].range(rango2).value = my_old_value
 
     if module == "Opened":
 
