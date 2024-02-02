@@ -1024,7 +1024,7 @@ if module == "addRow":
 
         try:
             import re
-            regex = "([a-zA-Z]?)([0-9]+)[:]?([a-zA-Z]?)([0-9]?)"
+            regex = "([a-zA-Z]*)([0-9]*)[:]?([a-zA-Z]*)([0-9]*)"
             matches = re.match(regex, row).groups()
         except:
             pass
@@ -1038,7 +1038,7 @@ if module == "addRow":
                             fila = matches[0] + str(int(matches[1])+1) \
                                 + ":" + matches[2] + str(int(matches[3])+1)
                         else:
-                            fila = str(matches[0]+1) + ":" + str(matches[2]+1)
+                            fila = str(int(matches[1])+1) + ":" + str(int(matches[3])+1)
                             
                         sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
@@ -1052,7 +1052,7 @@ if module == "addRow":
                         if matches[0]:
                             fila = matches[0] + str(int(matches[1])+1)
                         else:
-                            fila = str(matches[1]+1) + ":" + str(matches[1]+1)
+                            fila = str(int(matches[1])+1) + ":" + str(int(matches[1])+1)
 
                         sheet_selected.range(fila).api.Insert(
                             InsertShiftDirection.xlShiftDown)
@@ -1128,7 +1128,7 @@ if module == "addCol":
         
         try:
             import re
-            regex = "([a-zA-Z]?)([0-9]+)[:]?([a-zA-Z]?)([0-9]?)"
+            regex = "([a-zA-Z]*)([0-9]*)[:]?([a-zA-Z]*)([0-9]*)"
             matches = re.match(regex, col_).groups()
         except:
             pass
@@ -1144,7 +1144,7 @@ if module == "addCol":
                     if matches[0] and matches[1]:
                         col = col_
                     else:
-                        col = str(matches[1]) + ":" + str(matches[1])
+                        col = str(matches[0]) + ":" + str(matches[0])
                     
                     wb.sheets[sheet].range(col).api.Insert(
                         InsertShiftDirection.xlShiftToRight)
@@ -1156,7 +1156,7 @@ if module == "addCol":
                     if matches[0] and matches[1]:
                         col = col_
                     else:
-                        col = str(matches[1]) + ":" + str(matches[1])
+                        col = str(matches[0]) + ":" + str(matches[0])
                     wb.sheets[sheet].api.columns[col].insert_into_range()
 
         if opcion_ == "delete_":
@@ -1167,7 +1167,7 @@ if module == "addCol":
                     if matches[0] and matches[1]:
                         col = col_
                     else:
-                        col = str(matches[1]) + ":" + str(matches[1])
+                        col = str(matches[0]) + ":" + str(matches[0])
                     wb.sheets[sheet].range(col).api.Delete()
 
             else:
@@ -1177,7 +1177,7 @@ if module == "addCol":
                     if matches[0] and matches[1]:
                         col = col_
                     else:
-                        col = str(matches[1]) + ":" + str(matches[1])
+                        col = str(matches[0]) + ":" + str(matches[0])
                     wb.sheets[sheet].range(col).api.delete()
 
     except Exception as e:
