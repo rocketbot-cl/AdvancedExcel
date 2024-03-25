@@ -41,6 +41,38 @@ Busca um excel aberto e conecta-se a este.
 |Nome do arquivo XLSX aberto||Arquivo.XLSX|
 |Identificador (opcional)|Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*.|excel1|
 
+### Maximizar
+  
+Maximizar a janela do Excel
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+
+### Opções de cálculo
+  
+Selecione a forma como o cálculo da fórmula é executado na pasta de trabalho.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Opções de cálculo|Selecione o método de cálculo do livro.||
+|Calcule agora|Se esta caixa estiver marcada, as fórmulas do livro serão calculadas|True|
+
+### Ler células
+  
+Ler uma célula ou intervalo de células
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
+|Células |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B5|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|cells|
+
+### Converter data de série
+  
+Converter uma data de número de série do Excel em um formato de data específico
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Data de série |Número de série do Excel que representa uma data específica, onde 1 = 01/01/1900|44927|
+|Formato de saída|Formato de data para converter a data serial para|%d/%m/%y|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|output_date|
+
 ### Contar Colunas
   
 Conta o número de colunas do excel aberto. É necessário que o excel esteja salvo para tomar os últimos cambios
@@ -193,9 +225,9 @@ Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo
 |Intervalo a copiar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:D7|
 |Excel de destino|Caminho do arquivo xlsx de destino|Caminho do arquivo destino:|
 |Abrir normalmente|Se esta caixa de seleção estiver marcada, o arquivo de destino abre normalmente mantendo os dados, formatos e objetos. Caso contrário, ele apenas recupera dados.|True|
-|Planilha de destino|Nome da planilha onde vai ser colada|Folha1|
-|Intervalo onde colar|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:D7|
 |Sólo valores|Se esta caixa foi marcada, copiará apenas os valores|True|
+|Planilha de destino|Nome da planilha onde vai ser colada|Folha1|
+|Intervalo onde colar (Opcional)|Coluna, célula ou intervalo de células onde colar. A sintaxe deve ser a mesma do excel (A, A1 ou A1B1) |A1:D7|
 
 ### Adicionar/Eliminar Linha
   
@@ -214,7 +246,7 @@ Adiciona o exclui uma coluna
 | --- | --- | --- |
 |Opção|Selecione Add para adicionar uma coluna ou Delete para excluir uma coluna.||
 |Nome da Planilha|Nome da planilha onde os dados estão localizados|Planilha|
-|Coluna|Indicar a(s) coluna(s) a ser(em) adicionada(s) ou deletada(s)|B|
+|Rango|Indicar a(s) coluna(s) a ser(em) adicionada(s) ou deletada(s)|B|
 
 ### Converter CSV para XLSX
   
@@ -392,6 +424,12 @@ Colar dados em células em Excel
 |Planilha|Nome da planilha a ser automatizada|Planilha 1|
 |Ingrese células onde colar|Célula ou intervalo de células onde vai colar. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B3|
 |Só valores|Se esta caixa foi marcada, vai colar apenas os valores|True|
+
+### Desativar modo de corte/cópia
+  
+Desative o modo Cortar/Copiar do Excel ativo
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
 
 ### Remover duplicatas
   

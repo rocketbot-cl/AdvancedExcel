@@ -24,208 +24,223 @@ Abre um arquivo sem mostrar alertas do MS Excel.
 2. Buscar e conectar  
 Busca um excel aberto e conecta-se a este.
 
-3. Contar Colunas  
+3. Maximizar  
+Maximizar a janela do Excel
+
+4. Opções de cálculo  
+Selecione a forma como o cálculo da fórmula é executado na pasta de trabalho.
+
+5. Ler células  
+Ler uma célula ou intervalo de células
+
+6. Converter data de série  
+Converter uma data de número de série do Excel em um formato de data específico
+
+7. Contar Colunas  
 Conta o número de colunas do excel aberto. É necessário que o excel esteja salvo para tomar os últimos cambios
 
-4. Contar Linhas  
+8. Contar Linhas  
 Conta todas as linhas ou dentro de um intervalo.
 
-5. Cor da célula  
+9. Cor da célula  
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 
-6. Obter cor da célula  
+10. Obter cor da célula  
 Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 
-7. Obter formato de célula  
+11. Obter formato de célula  
 Obtenha o formato de uma célula. A função retornará um dicionário com as propriedades da célula e o valor de cada uma.
 
-8. Insertar Formula  
+12. Insertar Formula  
 Inserta formula sobre una celda 
 
-9. Inserir Macro a Excel  
+13. Inserir Macro a Excel  
 Insere uma Macro a Excel
 
-10. Selecionar e copiar Células  
+14. Selecionar e copiar Células  
 Seleciona e copia células em Excel
 
-11. Obter Célula Formato Moeda  
+15. Obter Célula Formato Moeda  
 Obtém células com formato moeda
 
-12. Obter Célula Formato Data  
+16. Obter Célula Formato Data  
 Obtém células com formato de data
 
-13. Copiar-Colar  
+17. Copiar-Colar  
 Copia um intervalo de células de uma planilha para outra
 
-14. Formatar Célula  
+18. Formatar Célula  
 Formatar Célula
 
-15. Remover conteúdo  
+19. Remover conteúdo  
 Limpa fórmulas e valores do intervalo selecionado, mantendo o formato
 
-16. Criar Planilha  
+20. Criar Planilha  
 Adiciona uma planilha no final
 
-17. Eliminar Planilha  
+21. Eliminar Planilha  
 Elmina uma planilha
 
-18. Copiar de um Excel para outro  
+22. Copiar de um Excel para outro  
 Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo, abrirá o Excel para copiar ou colar os dados. Se você inserir o id de um Excel aberto, ele usará essa instância para copiar ou colar.
 
-19. Adicionar/Eliminar Linha  
+23. Adicionar/Eliminar Linha  
 Adiciona ou elimina uma linha
 
-20. Adicionar/Excluir Coluna  
+24. Adicionar/Excluir Coluna  
 Adiciona o exclui uma coluna
 
-21. Converter CSV para XLSX  
+25. Converter CSV para XLSX  
 Converte um documento CSV para formato XLSX
 
-22. (Descontinuado) Converter XLSX para CSV  
+26. (Descontinuado) Converter XLSX para CSV  
 Converte um documento XLSX para CSV
 
-23. Converter XLSX para CSV  
+27. Converter XLSX para CSV  
 Converte um documento XLSX para CSV
 
-24. Converter XLS para XLSX  
+28. Converter XLS para XLSX  
 Converte um documento XLS para XLSX
 
-25. Obter celula activa  
+29. Obter celula activa  
 Obter linha e coluna de uma celula activa
 
-26. Atualizar tabela dinâmica  
+30. Atualizar tabela dinâmica  
 Atualiza uma tabela dinâmica. Descontinuado! Use o módulo PivotTableExcel
 
-27. Ajustar células  
+31. Ajustar células  
 Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/desagrupar por linhas ou colunas
 
-28. Obter Formula  
+32. Obter Formula  
 Obtém a fórmula numa célula
 
-29. Adicionar Filtro Automático  
+33. Adicionar Filtro Automático  
 Adiciona filtro automático a uma tabela excel
 
-30. Remover Filtro Automático  
+34. Remover Filtro Automático  
 Remova o filtro automático de uma planilha do Excel
 
-31. Limpa Filtro  
+35. Limpa Filtro  
 Limpa todos os filtros feitos em uma planilha do Excel
 
-32. Filtrar  
+36. Filtrar  
 Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor de fundo ou cor da fonte das células. *Exemplos por tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-33. Filtro avançado  
+37. Filtro avançado  
 Aplicar filtro avançado a uma tabela
 
-34. Remover filtros  
+38. Remover filtros  
 Remova os filtros e mostre todos os dados
 
-35. Renomear planilha  
+39. Renomear planilha  
 Muda o nome de uma planilha de excel
 
-36. Formato de texto  
+40. Formato de texto  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 
-37. Estilo de Célula  
+41. Estilo de Célula  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 
-38. Colar em Células  
+42. Colar em Células  
 Colar dados em células em Excel
 
-39. Remover duplicatas  
+43. Desativar modo de corte/cópia  
+Desative o modo Cortar/Copiar do Excel ativo
+
+44. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-40. Exportar para PDF avançado  
+45. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-41. Copiar-Mover Planilha  
+46. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
-42. Inserir Formulário  
+47. Inserir Formulário  
 Insere um Formulário no Excel
 
-43. Ler células filtradas  
+48. Ler células filtradas  
 Ler somente as células filtradas
 
-44. Contar celulas filtradas  
+49. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-45. Replace  
+50. Replace  
 Run replace action to excel 
 
-46. Ordenar  
+51. Ordenar  
 Executa a ação de substituir de excel
 
-47. Ordenar por múltiples niveles  
+52. Ordenar por múltiples niveles  
 Ordene uma planilha Excel por valor, definindo vários níveis
 
-48. Atualizar Tudo  
+53. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-49. Procurar  
+54. Procurar  
 Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 
-50. Encontrar dados  
+55. Encontrar dados  
 Retorna a primeira célula que corresponde aos dados da pesquisa
 
-51. Bloquear celulas  
+56. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-52. Adicionar Gráfico  
+57. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-53. Remover Senha  
+58. Remover Senha  
 Remove a senha e salva o Excel
 
-54. Inserir imagem  
+59. Inserir imagem  
 Inserir uma imagem
 
-55. Exportar gráfico  
+60. Exportar gráfico  
 Exporta um gráfico por índice
 
-56. Modo não visível  
+61. Modo não visível  
 Abre excel em modo não visível
 
-57. Escrever array de objetos  
+62. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-58. Copiar-Colar Formato  
+63. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-59. Atualizar vínculos  
+64. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-60. Desbloquear livro  
+65. Desbloquear livro  
 Desbloquea um livro com senha
 
-61. Bloquear livro  
+66. Bloquear livro  
 Bloquear um livro com senha
 
-62. Desbloquear planilha  
+67. Desbloquear planilha  
 Desbloquea uma folha com senha
 
-63. Bloquear folha  
+68. Bloquear folha  
 Bloquear uma folha com senha
 
-64. Converter para .txt  
+69. Converter para .txt  
 Converte para .txt
 
-65. Texto em coluna  
+70. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-66. Converter tempo de Excel para horas  
+71. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-67. Imprimir planilha  
+72. Imprimir planilha  
 Imprime uma planilha
 
-68. Salvar Excel com senha  
+73. Salvar Excel com senha  
 Salva um arquivo Excel
 
-69. Salvar Excel  
+74. Salvar Excel  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 
-70. Fechar XLSX  
+75. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
 
