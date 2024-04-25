@@ -6,17 +6,13 @@
   
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
 
-*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
-  
 ![banner](imgs/Banner_AdvancedExcel.png)
+
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
-
-## How to use this module
-To use this module, you must have Microsoft Excel installed.
 
 
 ## Description of the commands
@@ -360,6 +356,17 @@ Filter an excel table according to the relative value, exact content, background
 |Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
 |Filter type |Type of filter to apply.||
 
+### Filter by Date
+  
+Filter a table by the day, month or year of a date indicated
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet where the data are located|Sheet1|
+|Table start |Column where the table to be filtered begins|A |
+|Column |Column where to add the filter|A |
+|Date Filter |Date or list of dates to set as filter criteria|18/04/2024|
+|Filter type |Type of filter to apply.||
+
 ### Advanced filter
   
 Apply advanced filter to a table
@@ -538,7 +545,7 @@ Searches a text in the given range and returns the address of the cell of the fi
 |Text to find|Text to be searched in the excel|Lorem|
 |Look at (optional)|Indicates the desired type of match the whole searched text or within any part (ba default within any part). ||
 |Look in (optional)|Indicates where to do the searching value, formula or comment (default value). ||
-|Not case sensitive|If this box is checked, it will search for the text string without differences between upper and lower letters.||
+|Case sensitive|If this box is checked, it will search the text string case-sensitive.||
 |Find all|If this box is checked, it will return a list with every coincidence.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
