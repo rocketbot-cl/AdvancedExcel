@@ -1822,7 +1822,55 @@ if module == "Filter":
         print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "DateFilter":
+
+    try:
+        sheet_ = GetParams("sheet")
+        start = GetParams("start")
+        column = GetParams("column")
+        data = GetParams("filter")
+        filter_type = GetParams("filter_type")
     
+        wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")
+        try:
+            wb.sheets[sheet].activate()
+        except:
+            pass
+        if ":" in start:
+            range_ = start
+            start = start.split(":")[0]
+        else:
+            start = start + str(1)
+            range_ = column + str(1)
+        if data.startswith("[") or data.startswith("("):
+            data = eval(data)
+        else:
+            data = data.split(",")
+
+        criteria_list = []
+        for d in data:
+            criteria_list.append(filter_type)
+            criteria_list.append(d)
+        
+        n_start = wb.sheets[sheet].range(start).column
+        n_end = wb.sheets[sheet].range(column + str(1)).column
+        filter_column = n_end - n_start + 1
+
+        wb.sheets[sheet].api.Range(range_).AutoFilter(Field=filter_column, Operator=xw.constants.AutoFilterOperator.xlFilterValues, Criteria2=criteria_list)
+        
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
+
 if module == "AdvancedFilter":
 
     try:
