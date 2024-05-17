@@ -2259,7 +2259,7 @@ if module == "exportPDF":
     input_wide = GetParams('input_wide')
     orientation = GetParams('orientation')
 
-    if not sheet:
+    if not sheet_:
         sheets = [wb.sheets.active]
     else:
         wb_sheets = [sh.name for sh in wb.sheets]
