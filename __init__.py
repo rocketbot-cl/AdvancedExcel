@@ -45,6 +45,8 @@ GetGlobals = GetGlobals #type:ignore
 base_path = tmp_global_obj["basepath"]
 cur_path = os.path.join(base_path, 'modules', 'AdvancedExcel', 'libs')
 
+print("hola mundo")
+
 cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
 cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
 
