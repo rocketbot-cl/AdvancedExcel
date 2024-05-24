@@ -1404,6 +1404,78 @@ if module == "countRows":
         PrintException()
         raise e
 
+if module == "hide":
+    sheet_ = GetParams("sheet")
+    range = GetParams("range")
+    result = GetParams("var_")
+
+    try:
+        if not sheet_:
+            sheet = wb.sheets.active.name
+        else:
+            wb_sheets = [sh.name for sh in wb.sheets]
+            sheet=None
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
+            
+        sheet_selected = wb.sheets[sheet]
+
+        if range.replace(':', '').isnumeric():
+            sheet_selected.range(range).api.EntireRow.Hidden = True
+            if result:
+                SetVar(result, True)
+        elif all(c.isalpha() or c == ':' for c in range):
+            sheet_selected.range(range).api.EntireColumn.Hidden = True
+            if result:
+                SetVar(result, True)
+        else:
+            if result:
+                SetVar(result, False)
+            raise Exception(f"El rango {range} no es valido.")    
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "show":
+    sheet_ = GetParams("sheet")
+    range = GetParams("range")
+    result = GetParams("var_")
+
+    try:
+        if not sheet_:
+            sheet = wb.sheets.active.name
+        else:
+            wb_sheets = [sh.name for sh in wb.sheets]
+            sheet=None
+            for s in wb_sheets:
+                if s.strip() == sheet_:
+                    sheet = s
+                    break
+            if not sheet:
+                raise Exception(f"The name {sheet_} does not exist in the book")
+            
+        sheet_selected = wb.sheets[sheet]
+            
+        if range.replace(':', '').isnumeric():
+            sheet_selected.range(range).api.EntireRow.Hidden = False
+            if result:
+                SetVar(result, True)
+        elif all(c.isalpha() or c == ':' for c in range):
+            sheet_selected.range(range).api.EntireColumn.Hidden = False
+            if result:
+                SetVar(result, True)
+        else:
+            if result:
+                SetVar(result, False)
+            raise Exception(f"El rango {range} no es valido.")    
+    except Exception as e:
+        PrintException()
+        raise e
+    
 if module == "xlsToxlsx":
 
     xls_path = GetParams('xls_path')
@@ -1831,7 +1903,8 @@ if module == "DateFilter":
         column = GetParams("column")
         data = GetParams("filter")
         filter_type = GetParams("filter_type")
-    
+        filter_type = int(filter_type)
+        
         wb_sheets = [sh.name for sh in wb.sheets]
         sheet=None
         for s in wb_sheets:
