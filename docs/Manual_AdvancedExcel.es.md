@@ -9,16 +9,12 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
 ![banner](imgs/Banner_AdvancedExcel.png)
+
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
-
-
-
-## Como usar este modulo
-Para usar este modulo debe tener Microsoft Excel instalado.
 
 
 ## Descripción de los comandos
@@ -362,6 +358,17 @@ Filtrar una tabla de excel según el valor relativo, contenido exacto, color de 
 |Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
 |Tipo de filtro |Tipo de filtro a aplicar.||
 
+### Filtrar por Fecha
+  
+Filtra una tabla por el día, mes o año de una fecha indicada
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
+|Columna |Columna donde agregar el filtro|A |
+|Fecha Filtro |Fecha o lista de fechas para establecer como criterio de filtro|18/04/2024|
+|Tipo de filtro |Tipo de filtro a aplicar.||
+
 ### Filtro avanzado
   
 Filtra a una tabla excel
@@ -540,7 +547,7 @@ Busca un texto en el rango indicado y retorna la celda donde se encuentra la pri
 |Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
 |Buscar en (opcional)|Indica el tipo de coincidencia deseada todo el texto buscado o dentro de cualquier parte (por defecto cualquier parte). ||
 |Buscar dentro (opcional)|Indica dónde hacer la búsqueda valor, fórmula o comentario (predeterminado valor).||
-|No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
+|Distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto diferenciando entre mayúsculas y minúsculas.||
 |Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 

@@ -16,11 +16,6 @@ Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
 
-
-## Como usar este módulo
-Para usar este módulo, você deve ter o Microsoft Excel instalado.
-
-
 ## Descrição do comando
 
 ### Abrir sem alertas
@@ -362,6 +357,17 @@ Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor 
 |Filtro |Valor ou lista de valores, filtro de um critério ou lista de dois itens para critérios duplos (ex de valor entre A e B). Use "=" para encontrar campos em branco, "<>" para células não vazias e negação de dados.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
 |Tipo de filtro |Type of filter to apply.||
 
+### Filtrar por Data
+  
+Filtrar uma tabela por o dia, mes ou ano de uma data indicada
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
+|Início da tabela |Coluna onde começa a tabela a ser filtrada|A |
+|Coluna |Coluna onde adicionar o filtro|A |
+|Filtro de datas |Data ou lista de datas para estabelecer como criterio de filtro|18/04/2024|
+|Tipo de filtro |Type of filter to apply.||
+
 ### Filtro avançado
   
 Aplicar filtro avançado a uma tabela
@@ -540,7 +546,7 @@ Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a
 |Texto a buscar|Texto a ser procurado no excel|Lorem|
 |Perquisar em (opcional)|Indica o tipo de correspondência desejada todo o texto pesquisado ou em qualquer parte (padrão em qualquer lugar). ||
 |Pesquisar dentro (opcional)|Indica onde fazer a busca valor, fórmula ou comentário (padrão valor).||
-|Não diferencia maiúsculas de minúsculas|Se esta caixa estiver marcada, ela procurará a sequência de texto sem diferenças entre letras maiúsculas e minúsculas.||
+|Diferencia maiúsculas de minúsculas|Se esta caixa estiver marcada, a pesquisa será feita com distinção entre maiúsculas e minúsculas.||
 |Encontrar tudo|Se esta caixa estiver marcada, ela retornará uma lista com todas as coincidências.||
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 

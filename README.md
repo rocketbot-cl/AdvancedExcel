@@ -126,121 +126,124 @@ Clears every filter applied over an excel sheet
 36. Filter  
 Filter an excel table according to the relative value, exact content, background color or font color of the cells. *Examples according the filter type: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-37. Advanced filter  
+37. Filter by Date  
+Filter a table by the day, month or year of a date indicated
+
+38. Advanced filter  
 Apply advanced filter to a table
 
-38. Clear filters  
+39. Clear filters  
 Remove filters and show all data
 
-39. Rename sheet  
+40. Rename sheet  
 Change name to excel sheet
 
-40. Text Format  
+41. Text Format  
 Change the Horizontal or Vertical alignment of values in a range of cells
 
-41. Cell Style  
+42. Cell Style  
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 
-42. Paste in Cells  
+43. Paste in Cells  
 Paste data to cells in Excel
 
-43. Disable Cut/Copy Mode  
+44. Disable Cut/Copy Mode  
 Disable Cut/Copy Mode of the active Excel
 
-44. Remove Duplicates  
+45. Remove Duplicates  
 Execute the remove duplicates command of Excel
 
-45. Export to advanced PDF  
+46. Export to advanced PDF  
 Export to PDF with options
 
-46. Copy-Move Sheet  
+47. Copy-Move Sheet  
 Copy or move a sheet
 
-47. Insert Form  
+48. Insert Form  
 Insert Form in Excel
 
-48. Read Filtered Cells  
+49. Read Filtered Cells  
 Allow read only cells filters 
 
-49. Count Filtered Cells  
+50. Count Filtered Cells  
 Allow count only cells filters 
 
-50. Replace  
+51. Replace  
 Run replace action to excel 
 
-51. Order  
+52. Order  
 Run replace action to excel 
 
-52. Order by multiple levels  
+53. Order by multiple levels  
 Order an excel sheet by value, setting multiple levels
 
-53. Refresh All  
+54. Refresh All  
 Refresh all data in Excel
 
-54. Find  
+55. Find  
 Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
 
-55. Find data  
+56. Find data  
 Returns the first cell that matches the search data
 
-56. Lock Cells  
+57. Lock Cells  
 Lock or Unlock cells
 
-57. Add Chart  
+58. Add Chart  
 Create a new chart in an excel sheet
 
-58. Remove Password  
+59. Remove Password  
 Remove password and save the Excel
 
-59. Insert image  
+60. Insert image  
 Insert an image
 
-60. Export Chart  
+61. Export Chart  
 Export a chart from index
 
-61. Not visible mode  
+62. Not visible mode  
 Open not visible excel.
 
-62. Write array objects  
+63. Write array objects  
 Write array object on Excel cells.
 
-63. Copy-Paste Format  
+64. Copy-Paste Format  
 Copy format range cell to another sheet
 
-64. Update links  
+65. Update links  
 Changes a link from one document to another
 
-65. Unlock book  
+66. Unlock book  
 Unlock book with password
 
-66. Lock book  
+67. Lock book  
 Lock a book with password
 
-67. Unlock sheet  
+68. Unlock sheet  
 Unlock sheet with password
 
-68. Lock sheet  
+69. Lock sheet  
 Lock a sheet with password
 
-69. Convert to .txt  
+70. Convert to .txt  
 Convert to .txt
 
-70. Text to columns  
+71. Text to columns  
 Parses a column of cells that contain text into several columns.
 
-71. Convert Excel time to hours  
+72. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-72. Print sheet  
+73. Print sheet  
 Prints a sheet
 
-73. Save Excel with password  
+74. Save Excel with password  
 Save a Excel file
 
-74. Save Excel  
+75. Save Excel  
 Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
 
-75. Close XLSX  
+76. Close XLSX  
 Close the workbook opened by Rocketbot  
 
 

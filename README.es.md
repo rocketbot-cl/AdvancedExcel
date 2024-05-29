@@ -126,121 +126,124 @@ Borra todos los filtros aplicados sobre una hoja de Excel
 36. Filtrar  
 Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-37. Filtro avanzado  
+37. Filtrar por Fecha  
+Filtra una tabla por el día, mes o año de una fecha indicada
+
+38. Filtro avanzado  
 Filtra a una tabla excel
 
-38. Remover Filtros  
+39. Remover Filtros  
 Eliminar filtros y mostrar todos los datos
 
-39. Renombrar hoja  
+40. Renombrar hoja  
 Cambia el nombre a una hoja de excel
 
-40. Formato de texto  
+41. Formato de texto  
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 
-41. Estilo Celda  
+42. Estilo Celda  
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 
-42. Pegar en Celdas  
+43. Pegar en Celdas  
 Pega datos en celdas en Excel
 
-43. Deshabilitar modo Copiar/Cortar  
+44. Deshabilitar modo Copiar/Cortar  
 Deshabilitar el modo Cortar/Copiar del Excel activo
 
-44. Eliminar duplicados  
+45. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-45. Exportar a PDF avanzado  
+46. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-46. Copiar-Mover Hoja  
+47. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-47. Insertar Formulario  
+48. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-48. Leer celdas filtradas  
+49. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-49. Contar celdas filtradas  
+50. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-50. Reemplazar  
+51. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-51. Ordenar  
+52. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-52. Ordenar por múltiples niveles  
+53. Ordenar por múltiples niveles  
 Ordene una hoja de Excel por valor, estableciendo múltiples niveles
 
-53. Actualizar Todo  
+54. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-54. Buscar  
+55. Buscar  
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 
-55. Encontrar dato  
+56. Encontrar dato  
 Devuelve la primera celda que coincida con el dato buscado
 
-56. Bloquear celdas  
+57. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-57. Agregar Gráfico  
+58. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-58. Quitar Contraseña  
+59. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-59. Insertar imagen  
+60. Insertar imagen  
 Inserta una imagen
 
-60. Exportar gráfico  
+61. Exportar gráfico  
 Exporta un gráfico por índice
 
-61. Modo no visible  
+62. Modo no visible  
 Abre excel en modo no visible
 
-62. Escribir array de objetos  
+63. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-63. Copiar-Pegar Formato  
+64. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-64. Actualizar vínculos  
+65. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-65. Desbloquear libro  
+66. Desbloquear libro  
 Desbloquea un libro con contraseña
 
-66. Bloquear libro  
+67. Bloquear libro  
 Bloquear un libro con contraseña
 
-67. Desbloquear hoja  
+68. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-68. Bloquear hoja  
+69. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-69. Convertir a .txt  
+70. Convertir a .txt  
 Convierte a .txt
 
-70. Texto en columna  
+71. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-71. Convertir tiempo de Excel a horas  
+72. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-72. Imprimir hoja  
+73. Imprimir hoja  
 Imprime una hoja
 
-73. Guardar Excel con password  
+74. Guardar Excel con password  
 Guarda un archivo Excel
 
-74. Guardar Excel  
+75. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-75. Cerrar XLSX  
+76. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

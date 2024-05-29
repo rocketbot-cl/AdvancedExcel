@@ -126,121 +126,124 @@ Limpa todos os filtros feitos em uma planilha do Excel
 36. Filtrar  
 Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor de fundo ou cor da fonte das células. *Exemplos por tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-37. Filtro avançado  
+37. Filtrar por Data  
+Filtrar uma tabela por o dia, mes ou ano de uma data indicada
+
+38. Filtro avançado  
 Aplicar filtro avançado a uma tabela
 
-38. Remover filtros  
+39. Remover filtros  
 Remova os filtros e mostre todos os dados
 
-39. Renomear planilha  
+40. Renomear planilha  
 Muda o nome de uma planilha de excel
 
-40. Formato de texto  
+41. Formato de texto  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 
-41. Estilo de Célula  
+42. Estilo de Célula  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 
-42. Colar em Células  
+43. Colar em Células  
 Colar dados em células em Excel
 
-43. Desativar modo de corte/cópia  
+44. Desativar modo de corte/cópia  
 Desative o modo Cortar/Copiar do Excel ativo
 
-44. Remover duplicatas  
+45. Remover duplicatas  
 Executa o comando remover duplicatas de Excel
 
-45. Exportar para PDF avançado  
+46. Exportar para PDF avançado  
 Exporta Excel para PDF com opções
 
-46. Copiar-Mover Planilha  
+47. Copiar-Mover Planilha  
 Copiar ou mover uma planilha
 
-47. Inserir Formulário  
+48. Inserir Formulário  
 Insere um Formulário no Excel
 
-48. Ler células filtradas  
+49. Ler células filtradas  
 Ler somente as células filtradas
 
-49. Contar celulas filtradas  
+50. Contar celulas filtradas  
 Conta somente as celulas filtradas
 
-50. Replace  
+51. Replace  
 Run replace action to excel 
 
-51. Ordenar  
+52. Ordenar  
 Executa a ação de substituir de excel
 
-52. Ordenar por múltiples niveles  
+53. Ordenar por múltiples niveles  
 Ordene uma planilha Excel por valor, definindo vários níveis
 
-53. Atualizar Tudo  
+54. Atualizar Tudo  
 Atualiza todas as fontes do livro
 
-54. Procurar  
+55. Procurar  
 Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 
-55. Encontrar dados  
+56. Encontrar dados  
 Retorna a primeira célula que corresponde aos dados da pesquisa
 
-56. Bloquear celulas  
+57. Bloquear celulas  
 Bloquea ou desbloqueia celulas
 
-57. Adicionar Gráfico  
+58. Adicionar Gráfico  
 Adiciona um novo gráfico sobre uma planilha de excel
 
-58. Remover Senha  
+59. Remover Senha  
 Remove a senha e salva o Excel
 
-59. Inserir imagem  
+60. Inserir imagem  
 Inserir uma imagem
 
-60. Exportar gráfico  
+61. Exportar gráfico  
 Exporta um gráfico por índice
 
-61. Modo não visível  
+62. Modo não visível  
 Abre excel em modo não visível
 
-62. Escrever array de objetos  
+63. Escrever array de objetos  
 Escrever um array de objetos em células de Excel
 
-63. Copiar-Colar Formato  
+64. Copiar-Colar Formato  
 Copia formato de um intervalo de células de uma planilha para outra
 
-64. Atualizar vínculos  
+65. Atualizar vínculos  
 Muda um vínculo de um documento para outro
 
-65. Desbloquear livro  
+66. Desbloquear livro  
 Desbloquea um livro com senha
 
-66. Bloquear livro  
+67. Bloquear livro  
 Bloquear um livro com senha
 
-67. Desbloquear planilha  
+68. Desbloquear planilha  
 Desbloquea uma folha com senha
 
-68. Bloquear folha  
+69. Bloquear folha  
 Bloquear uma folha com senha
 
-69. Converter para .txt  
+70. Converter para .txt  
 Converte para .txt
 
-70. Texto em coluna  
+71. Texto em coluna  
 Executa a opção texto em coluna de excel
 
-71. Converter tempo de Excel para horas  
+72. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-72. Imprimir planilha  
+73. Imprimir planilha  
 Imprime uma planilha
 
-73. Salvar Excel com senha  
+74. Salvar Excel com senha  
 Salva um arquivo Excel
 
-74. Salvar Excel  
+75. Salvar Excel  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
 
-75. Fechar XLSX  
+76. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot  
 
 
