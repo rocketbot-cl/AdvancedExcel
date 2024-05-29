@@ -6,6 +6,8 @@
   
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
 
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
+
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
