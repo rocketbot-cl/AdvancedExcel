@@ -88,6 +88,24 @@ Cuenta todas las filas o dentro de un rango.
 |Columna|Columna donde se contará la cantidad de filas|C|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_filas|
 
+### Ocultar
+  
+Oculta una o varias filas, o una o varias columnas.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
+
+### Mostrar
+  
+Muestra una o varias filas, o una o varias columnas que estén ocultas
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
+
 ### Color celda
   
 Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
