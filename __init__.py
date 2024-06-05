@@ -1421,15 +1421,23 @@ if module == "hide":
                     break
             if not sheet:
                 raise Exception(f"The name {sheet_} does not exist in the book")
-            
+
         sheet_selected = wb.sheets[sheet]
 
         if range.replace(':', '').isnumeric():
-            sheet_selected.range(range).api.EntireRow.Hidden = True
+            if ":" in range:
+                sheet_selected.range(range).api.EntireRow.Hidden = True
+            else:
+                range_ = range + ":" + range
+                sheet_selected.range(range_).api.EntireRow.Hidden = True
             if result:
                 SetVar(result, True)
         elif all(c.isalpha() or c == ':' for c in range):
-            sheet_selected.range(range).api.EntireColumn.Hidden = True
+            if ":" in range:
+                sheet_selected.range(range).api.EntireColumn.Hidden = True
+            else:
+                range_ = range + ":" + range
+                sheet_selected.range(range_).api.EntireColumn.Hidden = True
             if result:
                 SetVar(result, True)
         else:
@@ -1461,11 +1469,19 @@ if module == "show":
         sheet_selected = wb.sheets[sheet]
             
         if range.replace(':', '').isnumeric():
-            sheet_selected.range(range).api.EntireRow.Hidden = False
+            if ":" in range:
+                sheet_selected.range(range).api.EntireRow.Hidden = False
+            else:
+                range_ = range + ":" + range
+                sheet_selected.range(range_).api.EntireRow.Hidden = False
             if result:
                 SetVar(result, True)
         elif all(c.isalpha() or c == ':' for c in range):
-            sheet_selected.range(range).api.EntireColumn.Hidden = False
+            if ":" in range:
+                sheet_selected.range(range).api.EntireColumn.Hidden = False
+            else:
+                range_ = range + ":" + range
+                sheet_selected.range(range_).api.EntireColumn.Hidden = False
             if result:
                 SetVar(result, True)
         else:
