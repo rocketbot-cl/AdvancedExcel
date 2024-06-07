@@ -88,6 +88,24 @@ Counts all the rows or from a range.
 |Column |Column where the rows will be counted|C|
 |Assign result to variable |Name of the variable where the result will be stored|length_rows|
 
+### Hide
+  
+Hides one or more rows, or one or more columns.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet|Sheet1|
+|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Assign result to variable |Name of the variable where the result will be stored|res|
+
+### Show
+  
+Shows one or more rows, or one or more columns that are hidden
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet|Sheet1|
+|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Assign result to variable |Name of the variable where the result will be stored|res|
+
 ### Cell color
   
 Change color of a cell or range of cells. Can be a default color or custom

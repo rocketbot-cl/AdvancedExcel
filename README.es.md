@@ -42,208 +42,214 @@ Cuenta el número de columnas del excel abierto. Se requiere que el excel esté 
 8. Contar Filas  
 Cuenta todas las filas o dentro de un rango.
 
-9. Color celda  
+9. Ocultar  
+Oculta una o varias filas, o una o varias columnas.
+
+10. Mostrar  
+Muestra una o varias filas, o una o varias columnas que estén ocultas
+
+11. Color celda  
 Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
 
-10. Obtener color de celda  
+12. Obtener color de celda  
 Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
 
-11. Obtener formatos de celda  
+13. Obtener formatos de celda  
 Obtener el formato de una celda. La función devolverá un diccionario con las propiedades de la celda y el valor de cada una.
 
-12. Insertar Formula  
+14. Insertar Formula  
 Inserta formula sobre una celda 
 
-13. Insertar Macro a Excel  
+15. Insertar Macro a Excel  
 Inserta una Macro a Excel 
 
-14. Seleccionar y copiar Celdas  
+16. Seleccionar y copiar Celdas  
 Selecciona y copia celdas en Excel
 
-15. Obtener Celda Formato Moneda  
+17. Obtener Celda Formato Moneda  
 Obtiene celdas con formato moneda
 
-16. Obtener Celda Formato Fecha  
+18. Obtener Celda Formato Fecha  
 Obtiene celdas con formato fecha
 
-17. Copiar-Pegar  
+19. Copiar-Pegar  
 Copia un rango de celdas desde una hoja a otra 
 
-18. Formatear Celda  
+20. Formatear Celda  
 Formatear Celda
 
-19. Borrar contenido  
+21. Borrar contenido  
 Borra fórmulas y valores del rango seleccionado, manteniendo el formato.
 
-20. Crear Hoja  
+22. Crear Hoja  
 Añade una hoja al final
 
-21. Eliminar Hoja  
+23. Eliminar Hoja  
 Elimina una hoja
 
-22. Copiar de un Excel a otro  
+24. Copiar de un Excel a otro  
 Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.
 
-23. Insertar/Eliminar Fila  
+25. Insertar/Eliminar Fila  
 Inserta o elimina una fila
 
-24. Insertar/Eliminar Columna  
+26. Insertar/Eliminar Columna  
 Inserta o elimina una columna
 
-25. Convertir CSV a XLSX  
+27. Convertir CSV a XLSX  
 Convierte un documento CSV a formato XLSX
 
-26. (Deprecado) Convertir XLSX a CSV  
+28. (Deprecado) Convertir XLSX a CSV  
 Convierte un documento XLSX a CSV
 
-27. Convertir XLSX a CSV  
+29. Convertir XLSX a CSV  
 Convierte un documento XLSX a CSV
 
-28. Convertir XLS a XLSX  
+30. Convertir XLS a XLSX  
 Convierte un documento XLS a XLSX
 
-29. Obtener celda activa  
+31. Obtener celda activa  
 Obtener fila y columna de una celda activa
 
-30. Actualizar tabla dinámica  
+32. Actualizar tabla dinámica  
 Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
 
-31. Ajustar celdas  
+33. Ajustar celdas  
 Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
 
-32. Obtener Formula  
+34. Obtener Formula  
 Obtiene la formula sobre una celda 
 
-33. Agregar Filtro Automático  
+35. Agregar Filtro Automático  
 Agrega filtro automático a una tabla excel
 
-34. Eliminar Filtro Automático  
+36. Eliminar Filtro Automático  
 Eliminar el filtro automático de una hoja de Excel
 
-35. Borrar Filtro  
+37. Borrar Filtro  
 Borra todos los filtros aplicados sobre una hoja de Excel
 
-36. Filtrar  
+38. Filtrar  
 Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-37. Filtrar por Fecha  
+39. Filtrar por Fecha  
 Filtra una tabla por el día, mes o año de una fecha indicada
 
-38. Filtro avanzado  
+40. Filtro avanzado  
 Filtra a una tabla excel
 
-39. Remover Filtros  
+41. Remover Filtros  
 Eliminar filtros y mostrar todos los datos
 
-40. Renombrar hoja  
+42. Renombrar hoja  
 Cambia el nombre a una hoja de excel
 
-41. Formato de texto  
+43. Formato de texto  
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 
-42. Estilo Celda  
+44. Estilo Celda  
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 
-43. Pegar en Celdas  
+45. Pegar en Celdas  
 Pega datos en celdas en Excel
 
-44. Deshabilitar modo Copiar/Cortar  
+46. Deshabilitar modo Copiar/Cortar  
 Deshabilitar el modo Cortar/Copiar del Excel activo
 
-45. Eliminar duplicados  
+47. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-46. Exportar a PDF avanzado  
+48. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-47. Copiar-Mover Hoja  
+49. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-48. Insertar Formulario  
+50. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-49. Leer celdas filtradas  
+51. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-50. Contar celdas filtradas  
+52. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-51. Reemplazar  
+53. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-52. Ordenar  
+54. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-53. Ordenar por múltiples niveles  
+55. Ordenar por múltiples niveles  
 Ordene una hoja de Excel por valor, estableciendo múltiples niveles
 
-54. Actualizar Todo  
+56. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-55. Buscar  
+57. Buscar  
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 
-56. Encontrar dato  
+58. Encontrar dato  
 Devuelve la primera celda que coincida con el dato buscado
 
-57. Bloquear celdas  
+59. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-58. Agregar Gráfico  
+60. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-59. Quitar Contraseña  
+61. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-60. Insertar imagen  
+62. Insertar imagen  
 Inserta una imagen
 
-61. Exportar gráfico  
+63. Exportar gráfico  
 Exporta un gráfico por índice
 
-62. Modo no visible  
+64. Modo no visible  
 Abre excel en modo no visible
 
-63. Escribir array de objetos  
+65. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-64. Copiar-Pegar Formato  
+66. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-65. Actualizar vínculos  
+67. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-66. Desbloquear libro  
+68. Desbloquear libro  
 Desbloquea un libro con contraseña
 
-67. Bloquear libro  
+69. Bloquear libro  
 Bloquear un libro con contraseña
 
-68. Desbloquear hoja  
+70. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-69. Bloquear hoja  
+71. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-70. Convertir a .txt  
+72. Convertir a .txt  
 Convierte a .txt
 
-71. Texto en columna  
+73. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-72. Convertir tiempo de Excel a horas  
+74. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-73. Imprimir hoja  
+75. Imprimir hoja  
 Imprime una hoja
 
-74. Guardar Excel con password  
+76. Guardar Excel con password  
 Guarda un archivo Excel
 
-75. Guardar Excel  
+77. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-76. Cerrar XLSX  
+78. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

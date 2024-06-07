@@ -9,6 +9,7 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
 ![banner](imgs/Banner_AdvancedExcel.png)
+
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
@@ -86,6 +87,24 @@ Conta todas as linhas ou dentro de um intervalo.
 |Contar todas as linhas|Opção para contar todas as linhas.||
 |Coluna|Coluna onde as linhas serão contadas|C|
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|numero_linhas|
+
+### Ocultar
+  
+Oculta uma ou várias linhas, ou uma ou várias colunas.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha|Planilha1|
+|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
+
+### Ocultar
+  
+Mostra uma ou mais linhas, ou uma ou mais colunas que estão ocultas
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha|Planilha1|
+|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Cor da célula
   
