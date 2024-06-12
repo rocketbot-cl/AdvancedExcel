@@ -31,6 +31,7 @@ import sys
 import subprocess
 import dateutil.parser
 import traceback
+import json
 
 # This lines is to linter
 # -----------------------------------
@@ -3371,7 +3372,26 @@ try:
 
         if platform.system() == "Windows":
             wb.app.api.WindowState = -4137
-            
+
+    if module == "exportToJson":
+        data =eval(GetParams("data"))
+        json_path = GetParams("json_path")	
+
+        for value in data[0]:
+            if not value: raise Exception("Missing column name")
+
+        obj_dict=dict.fromkeys(data[0])
+        del data[0]
+        json_result = list()
+        for obj in data:
+            temp =  dict(obj_dict)
+            for i, key in enumerate(temp.keys()):
+                temp[key] = obj[i]
+            json_result.append(temp)
+
+        with open(json_path, 'w',encoding='utf-8') as f:
+            json.dump(json_result, f, indent=4)
+        
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()

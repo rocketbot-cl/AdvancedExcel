@@ -9,7 +9,6 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
 ![banner](imgs/Banner_AdvancedExcel.png)
-
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
@@ -103,7 +102,7 @@ Muestra una o varias filas, o una o varias columnas que estén ocultas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja|Hoja1|
-|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).|1:3|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Color celda
@@ -272,6 +271,14 @@ Convierte un documento CSV a formato XLSX
 |Tiene cabeceras?|Marcar esta casilla si el csv tiene cabeceras|True|
 |Codificación|Escriba el tipo de codificación del archivo. Por defecto es latin-1|latin-1|
 |Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
+
+### Exportar a JSON
+  
+Exporta un array de datos a un archivo JSON
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Datos|Datos a exportar|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Ruta archivo json|Ruta del archivo json donde guardar la conversión|C:/Users/User/Desktop/file.json|
 
 ### (Deprecado) Convertir XLSX a CSV
   

@@ -8,8 +8,7 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
-
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
@@ -272,6 +271,14 @@ Convert a CSV document to XLSX format
 |Do it have headers?|Check this checkbox if the csv has headers|True|
 |Encoding|Type the encoding type of the file. Default is latin-1|utf-8|
 |XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
+
+### Export to JSON
+  
+Export array data to JSON
+|Parameters|Description|example|
+| --- | --- | --- |
+|Data|Data to be exported|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Json file path|Path of the json file where will be saved|C:/Users/User/Desktop/file.json|
 
 ### (Deprecated) Convert XLSX to CSV
   
