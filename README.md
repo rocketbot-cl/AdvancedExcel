@@ -1,7 +1,3 @@
-
-
-
-
 # Excel Advanced Options
   
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
@@ -27,8 +23,8 @@ Search a Excel Book opened and connect it
 3. Maximize  
 Maximize Excel Window
 
-4. Opciones de calculo  
-Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
+4. Calculation options  
+Select the way the formula calculation is executed in the workbook.
 
 5. Read cells  
 Read a cell or range of cells
@@ -268,5 +264,5 @@ Close the workbook opened by Rocketbot
 - [**xlwings**](https://pypi.org/project/xlwings/)- [**pandas**](https://pypi.org/project/pandas/)
 ### License
   
-![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
-[MIT](http://opensource.org/licenses/mit-license.ph)
+![MIT](https://img.shields.io/github/license/instaloader/instaloader.svg)  
+[MIT](https://opensource.org/license/mit)

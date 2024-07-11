@@ -1,7 +1,3 @@
-
-
-
-
 # Opciones avanzadas para Excel
   
 Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
@@ -27,8 +23,8 @@ Busca un excel abierto y se conecta a este.
 3. Maximizar  
 Maximizar Ventana de Excel
 
-4. Calculation options  
-Select the way the formula calculation is executed in the workbook.
+4. Opciones de calculo  
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 
 5. Leer celdas  
 Lee una celda o rango de celdas
@@ -268,5 +264,5 @@ Cierra el libro abierto por Rocketbot
 - [**xlwings**](https://pypi.org/project/xlwings/)- [**pandas**](https://pypi.org/project/pandas/)
 ### License
   
-![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
-[MIT](http://opensource.org/licenses/mit-license.ph)
+![MIT](https://img.shields.io/github/license/instaloader/instaloader.svg)  
+[MIT](https://opensource.org/license/mit)

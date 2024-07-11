@@ -1,7 +1,3 @@
-
-
-
-
 # Opciones avanzadas para Excel
   
 Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
@@ -14,6 +10,11 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+
+
+
+## Como usar este modulo
+Para usar este modulo debe tener Microsoft Excel instalado.
 
 
 ## Descripción de los comandos
@@ -42,9 +43,9 @@ Maximizar Ventana de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Calculation options
+### Opciones de calculo
   
-Select the way the formula calculation is executed in the workbook.
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Opciones de calculo|Seleccionar la manera de cálculo del libro.||

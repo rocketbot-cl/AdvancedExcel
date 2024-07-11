@@ -1,19 +1,18 @@
-
-
-
-
 # Excel Advanced Options
   
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png o jpg)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+
+## How to use this module
+To use this module, you must have Microsoft Excel installed.
 
 
 ## Description of the commands
@@ -42,9 +41,9 @@ Maximize Excel Window
 |Parameters|Description|example|
 | --- | --- | --- |
 
-### Opciones de calculo
+### Calculation options
   
-Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
+Select the way the formula calculation is executed in the workbook.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Calculation options|Select the book calculation method.||
