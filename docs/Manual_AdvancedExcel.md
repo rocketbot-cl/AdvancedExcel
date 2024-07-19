@@ -61,7 +61,7 @@ Read a cell or range of cells
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
 |Format|Select the format to pull cells that contain dates. Select custom to add a custom format|dd-mm-yy|
-|Custom format |Custom format. Doc https//support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
+|Custom format |Custom format. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
 |Assign result to variable |Name of the variable where the result will be stored|cells|
 
 ### Convert serial date

@@ -454,9 +454,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "00000",
-              "en": "00000",
-              "pr": "00000"
+              "es": "'%m/%d/%y %I:%M %p'",
+              "en": "'%m/%d/%y %I:%M %p'",
+              "pr": "'%m/%d/%y %I:%M %p'"
             },
             "title": {
               "es": "Formato personalizado: ",
@@ -464,9 +464,9 @@
               "pr": "Formato personalizado:"
             },
             "description": {
-              "es": "Formato personalizado. Doc: https://support.microsoft.com/es-es/office/revisar-las-instrucciones-para-personalizar-un-formato-de-n%C3%BAmero-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5",
-              "en": "Custom format. Doc: https://support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5",
-              "pr": "Formato personalizado. Doc: https://support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5"
+              "es": "Formato personalizado. Doc: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes",
+              "en": "Custom format. Doc: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes",
+              "pr": "Formato personalizado. Doc: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes"
             },
             "id": "custom",
             "css": "col-md-6"

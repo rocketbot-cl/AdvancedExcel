@@ -63,7 +63,7 @@ Lee una celda o rango de celdas
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
 |Formato|Seleccionar el formato a traer las celdas que contengan fechas. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
-|Formato personalizado |Formato personalizado. Doc https//support.microsoft.com/es-es/office/revisar-las-instrucciones-para-personalizar-un-formato-de-n%C3%BAmero-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
+|Formato personalizado |Formato personalizado. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|cells|
 
 ### Convertir fecha serial
