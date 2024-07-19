@@ -1,3 +1,7 @@
+
+
+
+
 # Opções avançadas para Excel
   
 Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel.  
@@ -58,6 +62,8 @@ Ler uma célula ou intervalo de células
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
 |Células |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B5|
+|Formato|Selecione o formato a trazer as celdas que contenham datas. Selecione custom para adicionar um formato personalizado|dd-mm-yy|
+|Formato personalizado|Formato personalizado. Doc https//support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|cells|
 
 ### Converter data de série
