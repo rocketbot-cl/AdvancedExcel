@@ -27,8 +27,8 @@ Busca un excel abierto y se conecta a este.
 3. Maximizar  
 Maximizar Ventana de Excel
 
-4. Calculation options  
-Select the way the formula calculation is executed in the workbook.
+4. Opciones de calculo  
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 
 5. Leer celdas  
 Lee una celda o rango de celdas
@@ -99,157 +99,160 @@ Inserta o elimina una columna
 27. Convertir CSV a XLSX  
 Convierte un documento CSV a formato XLSX
 
-28. (Deprecado) Convertir XLSX a CSV  
+28. Exportar a JSON  
+Exporta un array de datos a un archivo JSON
+
+29. (Deprecado) Convertir XLSX a CSV  
 Convierte un documento XLSX a CSV
 
-29. Convertir XLSX a CSV  
+30. Convertir XLSX a CSV  
 Convierte un documento XLSX a CSV
 
-30. Convertir XLS a XLSX  
+31. Convertir XLS a XLSX  
 Convierte un documento XLS a XLSX
 
-31. Obtener celda activa  
+32. Obtener celda activa  
 Obtener fila y columna de una celda activa
 
-32. Actualizar tabla dinámica  
+33. Actualizar tabla dinámica  
 Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
 
-33. Ajustar celdas  
+34. Ajustar celdas  
 Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
 
-34. Obtener Formula  
+35. Obtener Formula  
 Obtiene la formula sobre una celda 
 
-35. Agregar Filtro Automático  
+36. Agregar Filtro Automático  
 Agrega filtro automático a una tabla excel
 
-36. Eliminar Filtro Automático  
+37. Eliminar Filtro Automático  
 Eliminar el filtro automático de una hoja de Excel
 
-37. Borrar Filtro  
+38. Borrar Filtro  
 Borra todos los filtros aplicados sobre una hoja de Excel
 
-38. Filtrar  
+39. Filtrar  
 Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 
-39. Filtrar por Fecha  
+40. Filtrar por Fecha  
 Filtra una tabla por el día, mes o año de una fecha indicada
 
-40. Filtro avanzado  
+41. Filtro avanzado  
 Filtra a una tabla excel
 
-41. Remover Filtros  
+42. Remover Filtros  
 Eliminar filtros y mostrar todos los datos
 
-42. Renombrar hoja  
+43. Renombrar hoja  
 Cambia el nombre a una hoja de excel
 
-43. Formato de texto  
+44. Formato de texto  
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 
-44. Estilo Celda  
+45. Estilo Celda  
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 
-45. Pegar en Celdas  
+46. Pegar en Celdas  
 Pega datos en celdas en Excel
 
-46. Deshabilitar modo Copiar/Cortar  
+47. Deshabilitar modo Copiar/Cortar  
 Deshabilitar el modo Cortar/Copiar del Excel activo
 
-47. Eliminar duplicados  
+48. Eliminar duplicados  
 Ejecuta el comando eliminar duplicados de Excel
 
-48. Exportar a PDF avanzado  
+49. Exportar a PDF avanzado  
 Exporta Excel a PDF con opciones
 
-49. Copiar-Mover Hoja  
+50. Copiar-Mover Hoja  
 Copia o mueve una hoja
 
-50. Insertar Formulario  
+51. Insertar Formulario  
 Inserta un Formulario a Excel 
 
-51. Leer celdas filtradas  
+52. Leer celdas filtradas  
 Lee solo las celdas filtradas
 
-52. Contar celdas filtradas  
+53. Contar celdas filtradas  
 Cuenta solo las celdas filtradas
 
-53. Reemplazar  
+54. Reemplazar  
 Ejecuta la opción de reemplazar de excel
 
-54. Ordenar  
+55. Ordenar  
 Ejecuta la opción de reemplazar de excel
 
-55. Ordenar por múltiples niveles  
+56. Ordenar por múltiples niveles  
 Ordene una hoja de Excel por valor, estableciendo múltiples niveles
 
-56. Actualizar Todo  
+57. Actualizar Todo  
 Actualiza todas las fuentes del libro
 
-57. Buscar  
+58. Buscar  
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 
-58. Encontrar dato  
+59. Encontrar dato  
 Devuelve la primera celda que coincida con el dato buscado
 
-59. Bloquear celdas  
+60. Bloquear celdas  
 Bloquea o desbloquea celdas
 
-60. Agregar Gráfico  
+61. Agregar Gráfico  
 Agrega un nuevo gráfico sobre una hoja en excel
 
-61. Quitar Contraseña  
+62. Quitar Contraseña  
 Quita la contraseña y guarda el Excel
 
-62. Insertar imagen  
+63. Insertar imagen  
 Inserta una imagen
 
-63. Exportar gráfico  
+64. Exportar gráfico  
 Exporta un gráfico por índice
 
-64. Modo no visible  
+65. Modo no visible  
 Abre excel en modo no visible
 
-65. Escribir array de objetos  
+66. Escribir array de objetos  
 Escribe un array de objetos en las celdas de Excel
 
-66. Copiar-Pegar Formato  
+67. Copiar-Pegar Formato  
 Copia formato de un rango de celdas desde una hoja a otra 
 
-67. Actualizar vínculos  
+68. Actualizar vínculos  
 Cambia un vínculo desde un documento a otro
 
-68. Desbloquear libro  
+69. Desbloquear libro  
 Desbloquea un libro con contraseña
 
-69. Bloquear libro  
+70. Bloquear libro  
 Bloquear un libro con contraseña
 
-70. Desbloquear hoja  
+71. Desbloquear hoja  
 Desbloquea una hoja con contraseña
 
-71. Bloquear hoja  
+72. Bloquear hoja  
 Bloquear una hoja con contraseña
 
-72. Convertir a .txt  
+73. Convertir a .txt  
 Convierte a .txt
 
-73. Texto en columna  
+74. Texto en columna  
 Ejecuta la opción texto en columna de excel
 
-74. Convertir tiempo de Excel a horas  
+75. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-75. Imprimir hoja  
+76. Imprimir hoja  
 Imprime una hoja
 
-76. Guardar Excel con password  
+77. Guardar Excel con password  
 Guarda un archivo Excel
 
-77. Guardar Excel  
+78. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
 
-78. Cerrar XLSX  
+79. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot  
 
 

@@ -31,6 +31,7 @@ import sys
 import subprocess
 import dateutil.parser
 import traceback
+import json
 
 # This lines is to linter
 # -----------------------------------
@@ -184,7 +185,9 @@ if module == "ReadCells":
     range_ = GetParams("range")
     sheet_ = GetParams("sheet")
     var_ = GetParams("var_")
-    
+    date_format = GetParams("date_format")
+    custom = GetParams("custom")
+
     try:
         if not sheet_:
             sheet = wb.sheets.active
@@ -197,18 +200,51 @@ if module == "ReadCells":
                     break
             if not sheet:
                 raise Exception(f"The name {sheet_} does not exist in the book")
-        
+            
+        if date_format == "date1":
+            date_format = '%d-%m-%Y'
+        elif date_format == "date2":
+            date_format = '%d-%m-%y'
+        elif date_format == "date3":
+            date_format = '%Y-%m-%d'
+        elif date_format == "date4":
+            date_format = '%m-%d-%Y'
+        elif date_format == 'custom':
+            date_format = custom
+        else:
+            date_format = None
+
         global _values    
         _values = sheet.api.Range(range_).Value2
         print(_values)
-        if isinstance(_values, tuple):
-            value = [list(i) for i in _values if isinstance(_values, tuple)]
-        else:
-            value = _values
-        value = value if value != [] else _values
+        value = None
+        if date_format is not None:
+            valueGotten = xw.sheets[sheet].range(range_).value
+            cont = 0
+            info = []
+            try:
+                for each in valueGotten:
+                    cont += 1
+            except:
+                cont = 1
+            if (cont > 1):
+                for each in valueGotten:
+                    value_date = each.strftime(date_format)
+                    info.append(value_date)
+            else:
+                valueGotten = valueGotten.strftime(date_format)
+                info.append(valueGotten)
+            print(info)
+            SetVar(var_, info)
+            
+        if date_format is None:
+            if isinstance(_values, tuple):
+                value = [list(i) for i in _values if isinstance(_values, tuple)]
+            else:
+                value = _values
         
-        
-        SetVar(var_, value)
+            value = value if value != [] else _values
+            SetVar(var_, value)
         
     except Exception as e:
         traceback.print_exc()
@@ -3371,7 +3407,26 @@ try:
 
         if platform.system() == "Windows":
             wb.app.api.WindowState = -4137
-            
+
+    if module == "exportToJson":
+        data =eval(GetParams("data"))
+        json_path = GetParams("json_path")	
+
+        for value in data[0]:
+            if not value: raise Exception("Missing column name")
+
+        obj_dict=dict.fromkeys(data[0])
+        del data[0]
+        json_result = list()
+        for obj in data:
+            temp =  dict(obj_dict)
+            for i, key in enumerate(temp.keys()):
+                temp[key] = obj[i]
+            json_result.append(temp)
+
+        with open(json_path, 'w',encoding='utf-8') as f:
+            json.dump(json_result, f, indent=4)
+        
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
