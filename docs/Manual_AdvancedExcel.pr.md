@@ -6,13 +6,19 @@
   
 Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel.  
 
+*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
+  
 ![banner](imgs/Banner_AdvancedExcel.png)
-
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
+
+
+
+## Como usar este módulo
+Para usar este módulo, você deve ter o Microsoft Excel instalado.
 
 
 ## Descrição do comando
@@ -56,6 +62,8 @@ Ler uma célula ou intervalo de células
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha 1|
 |Células |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B5|
+|Formato|Selecione o formato a trazer as celdas que contenham datas. Selecione custom para adicionar um formato personalizado|dd-mm-yy|
+|Formato personalizado|Formato personalizado. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|cells|
 
 ### Converter data de série
@@ -85,6 +93,24 @@ Conta todas as linhas ou dentro de um intervalo.
 |Contar todas as linhas|Opção para contar todas as linhas.||
 |Coluna|Coluna onde as linhas serão contadas|C|
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|numero_linhas|
+
+### Ocultar
+  
+Oculta uma ou várias linhas, ou uma ou várias colunas.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha|Planilha1|
+|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
+
+### Ocultar
+  
+Mostra uma ou mais linhas, ou uma ou mais colunas que estão ocultas
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Planilha |Nome da planilha|Planilha1|
+|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Cor da célula
   
@@ -252,6 +278,14 @@ Converte um documento CSV para formato XLSX
 |Tem cabeçeras?|marque esta caixa se o csv tiver cabeçalhos|True|
 |Codificação|Digite o tipo de codificação do arquivo. O padrão é latino-1|utf-8|
 |Caminho do arquivo XLSX|Direcação do arquivo xlsx onde será salvo|file.xlsx|
+
+### Exportar para JSON
+  
+Exporta um array de dados para um arquivo JSON
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Dados|Dados a serem exportados|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Direcação do arquivo Json|Direção do arquivo json onde será salvo|C:/Users/User/Desktop/file.json|
 
 ### (Descontinuado) Converter XLSX para CSV
   

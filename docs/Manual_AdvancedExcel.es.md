@@ -5,14 +5,20 @@
 # Opciones avanzadas para Excel
   
 Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
- 
-![banner](imgs/Banner_AdvancedExcel.png)
 
+*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
+  
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+
+
+
+## Como usar este modulo
+Para usar este modulo debe tener Microsoft Excel instalado.
 
 
 ## Descripción de los comandos
@@ -41,9 +47,9 @@ Maximizar Ventana de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Calculation options
+### Opciones de calculo
   
-Select the way the formula calculation is executed in the workbook.
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Opciones de calculo|Seleccionar la manera de cálculo del libro.||
@@ -56,6 +62,8 @@ Lee una celda o rango de celdas
 | --- | --- | --- |
 |Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
 |Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Formato|Seleccionar el formato a traer las celdas que contengan fechas. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
+|Formato personalizado |Formato personalizado. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|cells|
 
 ### Convertir fecha serial
@@ -85,6 +93,24 @@ Cuenta todas las filas o dentro de un rango.
 |Contar todas las filas|Opción para contar todas las filas.||
 |Columna|Columna donde se contará la cantidad de filas|C|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_filas|
+
+### Ocultar
+  
+Oculta una o varias filas, o una o varias columnas.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
+
+### Mostrar
+  
+Muestra una o varias filas, o una o varias columnas que estén ocultas
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Color celda
   
@@ -252,6 +278,14 @@ Convierte un documento CSV a formato XLSX
 |Tiene cabeceras?|Marcar esta casilla si el csv tiene cabeceras|True|
 |Codificación|Escriba el tipo de codificación del archivo. Por defecto es latin-1|latin-1|
 |Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
+
+### Exportar a JSON
+  
+Exporta un array de datos a un archivo JSON
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Datos|Datos a exportar|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Ruta archivo json|Ruta del archivo json donde guardar la conversión|C:/Users/User/Desktop/file.json|
 
 ### (Deprecado) Convertir XLSX a CSV
   

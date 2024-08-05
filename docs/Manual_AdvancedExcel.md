@@ -6,13 +6,17 @@
   
 Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
 
+*Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
+  
 ![banner](imgs/Banner_AdvancedExcel.png)
-
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+
+## How to use this module
+To use this module, you must have Microsoft Excel installed.
 
 
 ## Description of the commands
@@ -41,9 +45,9 @@ Maximize Excel Window
 |Parameters|Description|example|
 | --- | --- | --- |
 
-### Opciones de calculo
+### Calculation options
   
-Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
+Select the way the formula calculation is executed in the workbook.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Calculation options|Select the book calculation method.||
@@ -56,6 +60,8 @@ Read a cell or range of cells
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 |Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
+|Format|Select the format to pull cells that contain dates. Select custom to add a custom format|dd-mm-yy|
+|Custom format |Custom format. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
 |Assign result to variable |Name of the variable where the result will be stored|cells|
 
 ### Convert serial date
@@ -85,6 +91,24 @@ Counts all the rows or from a range.
 |Count all rows|Option to count all rows.||
 |Column |Column where the rows will be counted|C|
 |Assign result to variable |Name of the variable where the result will be stored|length_rows|
+
+### Hide
+  
+Hides one or more rows, or one or more columns.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet|Sheet1|
+|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Assign result to variable |Name of the variable where the result will be stored|res|
+
+### Show
+  
+Shows one or more rows, or one or more columns that are hidden
+|Parameters|Description|example|
+| --- | --- | --- |
+|Sheet |Name of the sheet|Sheet1|
+|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Cell color
   
@@ -252,6 +276,14 @@ Convert a CSV document to XLSX format
 |Do it have headers?|Check this checkbox if the csv has headers|True|
 |Encoding|Type the encoding type of the file. Default is latin-1|utf-8|
 |XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
+
+### Export to JSON
+  
+Export array data to JSON
+|Parameters|Description|example|
+| --- | --- | --- |
+|Data|Data to be exported|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Json file path|Path of the json file where will be saved|C:/Users/User/Desktop/file.json|
 
 ### (Deprecated) Convert XLSX to CSV
   
