@@ -1982,7 +1982,7 @@ if module == "DateFilter":
 
         criteria_list = []
         for d in data:
-            criteria_list.append(filter_type)
+            criteria_list.append(int(filter_type))
             criteria_list.append(d)
         
         n_start = wb.sheets[sheet].range(start).column
@@ -2316,6 +2316,7 @@ if module == "copyMove":
     try:
         
         wb_sheets1 = [sh.name for sh in wb.sheets]
+        
         for s in wb_sheets1:
             if s.strip() == sheet1:
                 sheet_selected = wb.api.Sheets(s)
@@ -2327,17 +2328,17 @@ if module == "copyMove":
             password=None
 
         if book: 
-            app = excel.file_[excel.actual_id]['workbook'].app
+            # app = excel.file_[excel.actual_id]['workbook'].app
             
-            wb2 = app.api.Workbooks.Open(book, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+            wb2 = wb.app.books.api.Open(book, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+            wb_sheets2 = [sh.Name for sh in wb2.Sheets]
             if not sheet2:
                 last = wb2.Sheets.Count
                 destiny = wb2.Sheets(last)
             else:
-                wb_sheets2 = [sh.name for sh in wb2.sheets]
-                for s in wb_sheets:
+                for s in wb_sheets2:
                     if s.strip() == sheet2:
-                        destiny = wb2.Sheets(s)
+                        destiny = wb2.api.Sheets(s)
                         break
                 if not destiny:
                     raise Exception(f"The name {sheet2} does not exist in the book")
@@ -2346,7 +2347,7 @@ if module == "copyMove":
                 last = wb.api.Sheets.Count
                 destiny = wb.api.Sheets(last)
             else:
-                for s in wb_sheets2:
+                for s in wb_sheets1:
                     if s.strip() == sheet2:
                         destiny = wb.api.Sheets(s)
                         break
@@ -2733,7 +2734,7 @@ if module == "OrderMultiple":
             else:
                 order = 1
             column = field['column'] + ":" + field['column']
-            key = sheet.Range(column)
+            key = sheet_selected.Range(column)
             
             sheet_selected.Sort.SortFields.Add(Key=key, Order=order)
         
@@ -3398,10 +3399,10 @@ try:
             'top' : -4160,}
         
         if option_horizontal in alignment_horizontal:
-            sheet.range(range_).api.HorizontalAlignment = int(alignment_horizontal[option_horizontal])
+            sheet_selected.range(range_).api.HorizontalAlignment = int(alignment_horizontal[option_horizontal])
         
         if option_vertical in alignment_vertical:
-            sheet.range(range_).api.VerticalAlignment = int(alignment_vertical[option_vertical])
+            sheet_selected.range(range_).api.VerticalAlignment = int(alignment_vertical[option_vertical])
             
     if module == "Maximize":
 
