@@ -2736,7 +2736,14 @@ if module == "OrderMultiple":
             column = field['column'] + ":" + field['column']
             key = sheet_selected.Range(column)
             
-            sheet_selected.Sort.SortFields.Add(Key=key, Order=order)
+            option = field.get('option', 0)
+            
+            if option == 'Normal':
+                option = 0
+            elif option == 'Text as Number':
+                option = 1
+            print(key, order, option)
+            sheet_selected.Sort.SortFields.Add(Key=key, Order=order, DataOption=option)
         
         if headers and eval(headers):
             sheet_selected.Sort.Header = 1
