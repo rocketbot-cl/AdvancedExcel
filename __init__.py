@@ -2459,7 +2459,7 @@ if module == "GetCells":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
-    format_ = GetParams("date_format")
+    format_ = GetParams("date_format")    
     get_rows = GetParams("rows")
     extends = GetParams("more_data")
     
@@ -2498,7 +2498,12 @@ if module == "GetCells":
 
                             range_cell.append(cells)
                         else:
-                            range_cell.append([ro.Value])
+                            if isinstance(ro.Value, datetime.datetime):
+                                range_cell.append([get_date_with_format(ro.Value2, format_)])
+                            else:
+                                range_cell.append([ro.Value2]) 
+
+                            
                     
                     if extends:
                         info = {"range": r.Address.replace("$", ""), "data": range_cell}
