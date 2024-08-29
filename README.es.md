@@ -172,7 +172,7 @@ Copia o mueve una hoja
 Inserta un Formulario a Excel 
 
 52. Leer celdas filtradas  
-Lee solo las celdas filtradas
+Lee todo el contenido de las celdas filtradas y aplica formato a los datos tipo fecha si se indica
 
 53. Contar celdas filtradas  
 Cuenta solo las celdas filtradas

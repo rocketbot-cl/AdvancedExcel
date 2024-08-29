@@ -8,7 +8,7 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
@@ -514,13 +514,13 @@ Insere um Formulário no Excel
 
 ### Ler células filtradas
   
-Ler somente as células filtradas
+Leia todo o conteúdo das células filtradas e aplique formatação aos dados do tipo data, se indicado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Sheet1|
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
-|Formato para dados armazenados como data |Dê formato específico aos dados armazenados como data|%m/%d/%Y, %H:%M:%S|
+|Adicionar formato específico aos dados armazenados como data |Dê formato específico aos dados armazenados como data|%m/%d/%Y, %H:%M:%S|
 |Linhas|||
 |Mais dados |||
 
@@ -724,7 +724,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   

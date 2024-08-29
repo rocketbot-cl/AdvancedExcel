@@ -2,761 +2,763 @@
 
 
 
-# Excel Advanced Options
+# Opciones avanzadas para Excel
   
-Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
+Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
-## How to install this module
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
+## Como instalar este módulo
   
-To install the module in Rocketbot Studio, it can be done in two ways:
-1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
-## How to use this module
-To use this module, you must have Microsoft Excel installed.
 
 
-## Description of the commands
+## Como usar este modulo
+Para usar este modulo debe tener Microsoft Excel instalado.
 
-### Open Without Alerts
+
+## Descripción de los comandos
+
+### Abrir sin alertas
   
-Open a file preventing MS Excel alerts.
-|Parameters|Description|example|
+Abre un archivo sin mostrar carteles de alerta.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|path to XLSX file |Path of the xlsx file to be opened|file.XLSX|
-|Password (optional) |Password of the xlsx file|P@ssW0rd|
-|Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|id|
-|Assign result to variable |Variable where the result will be stored|id|
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere abrir|Archivo.XLSX|
+|Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
+|Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|id|
+|Asignar resultado a variable|Variable donde se almacenara el resultado|id|
 
-### Find and Connect
+### Buscar y conectar
   
-Search a Excel Book opened and connect it
-|Parameters|Description|example|
+Busca un excel abierto y se conecta a este.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|XLSX filename ||File.XLSX|
-|Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|excel1|
+|Nombre del archivo XLSX abierto||Archivo.XLSX|
+|Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
 
-### Maximize
+### Maximizar
   
-Maximize Excel Window
-|Parameters|Description|example|
+Maximizar Ventana de Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Calculation options
+### Opciones de calculo
   
-Select the way the formula calculation is executed in the workbook.
-|Parameters|Description|example|
+Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Calculation options|Select the book calculation method.||
-|Calculate now|If this box is checked, the formulas in the book are calculated|True|
+|Opciones de calculo|Seleccionar la manera de cálculo del libro.||
+|Calcular ahora|Si se marca esta casilla, se calculan las formulas del libro|True|
 
-### Read cells
+### Leer celdas
   
-Read a cell or range of cells
-|Parameters|Description|example|
+Lee una celda o rango de celdas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
-|Format|Select the format to pull cells that contain dates. Select custom to add a custom format|dd-mm-yy|
-|Custom format |Custom format. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
-|Assign result to variable |Name of the variable where the result will be stored|cells|
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Formato|Seleccionar el formato a traer las celdas que contengan fechas. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
+|Formato personalizado |Formato personalizado. Doc https//docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes|'%m/%d/%y %I:%M %p'|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|cells|
 
-### Convert serial date
+### Convertir fecha serial
   
-Convert an excel serial number date to a specific date format
-|Parameters|Description|example|
+Convierte una fecha numero serial excel a un formato de fecha especifico
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Serial date |Excel serial number that represents a specific date, where 1 = 01/01/1900|44927|
-|Output format |Date format to convert the serial date to|%d/%m/%y|
-|Assign result to variable |Name of the variable where the result will be stored|output_date|
+|Fecha serial |Numero serial de excel que representa una fecha especifica, siendo 1 = 01/01/1900|44927|
+|Formato de salida |Formato de fecha al cual convertir la fecha serial|%d/%m/%y|
+|Asignar resultado a variable |Nombre de la variable donde guardar el resultado|output_date|
 
-### Count columns
+### Contar Columnas
   
-Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
-|Parameters|Description|example|
+Cuenta el número de columnas del excel abierto. Se requiere que el excel esté guardado para tomar los últimos cambios
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Get address |If this box is checked, it will return the letter of the last column|True|
-|Assign result to variable |Name of the variable where the result will be stored|count_columns|
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Obtener nombre de columna|Si se marca esta casilla, devolverá la letra de la última columna|True|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_columnas|
 
-### Count Rows
+### Contar Filas
   
-Counts all the rows or from a range.
-|Parameters|Description|example|
+Cuenta todas las filas o dentro de un rango.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet|Name of the sheet where the data are located|Sheet1|
-|Count all rows|Option to count all rows.||
-|Column |Column where the rows will be counted|C|
-|Assign result to variable |Name of the variable where the result will be stored|length_rows|
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Contar todas las filas|Opción para contar todas las filas.||
+|Columna|Columna donde se contará la cantidad de filas|C|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_filas|
 
-### Hide
+### Ocultar
   
-Hides one or more rows, or one or more columns.
-|Parameters|Description|example|
+Oculta una o varias filas, o una o varias columnas.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet|Sheet1|
-|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
-|Assign result to variable |Name of the variable where the result will be stored|res|
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
-### Show
+### Mostrar
   
-Shows one or more rows, or one or more columns that are hidden
-|Parameters|Description|example|
+Muestra una o varias filas, o una o varias columnas que estén ocultas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet|Sheet1|
-|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
-|Assign result to variable |Name of the variable where the result will be stored|res|
+|Hoja|Nombre de la hoja|Hoja1|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).|1:3|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
-### Cell color
+### Color celda
   
-Change color of a cell or range of cells. Can be a default color or custom
-|Parameters|Description|example|
+Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
-|Sheet |Workbook sheet|Sheet1|
-|Entire sheet|If this box is checked, the color will be applied to the entire sheet.||
-|RGB color cell |RGB values of the color that will be the cell or cells|250,250,250|
-|Select color |Select the color. You can use the previous input to customize the color|red|
+|Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Hoja |Hoja del libro|Hoja1|
+|Toda la hoja|Si se marca esta casilla, el color se aplicara a toda la hoja.||
+|Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
+|Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
-### Get Cell Color
+### Obtener color de celda
   
-Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
-|Parameters|Description|example|
+Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Sheet|Sheet1|
-|Cell |Cell. The syntax must be the same as excel (A1)|A1|
-|Assign to var|Name of the variable where the result will be stored|color|
+|Hoja |Hoja|Hoja1|
+|Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
+|Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
-### Get Cell Formats
+### Obtener formatos de celda
   
-Get the format of a cell. The function will return a dictionary with the cell properties and the value of each one.
-|Parameters|Description|example|
+Obtener el formato de una celda. La función devolverá un diccionario con las propiedades de la celda y el valor de cada una.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Sheet|Sheet1|
-|Cell |Cell. The syntax must be the same as excel (A1)|A1|
-|Assign to var|Name of the variable where the result will be stored|color|
+|Hoja |Hoja|Hoja1|
+|Celda |Celda. La sintaxis debe ser la misma de excel (A1)|A1|
+|Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
-### Insert Formula
+### Insertar Formula
   
-Insert formula into cell
-|Parameters|Description|example|
+Inserta formula sobre una celda 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Sheet|Sheet5|
-|Cell |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A5|
-|Write formula |Formula that will be inserted. Must be writen in english. Remember to use *,* to separate the parameters|=SUM(A1:A4)|
-|No IIE|If this box is checked, it allows you to send the formula without IIE|True|
+|Ingrese hoja |Hoja|Hoja1|
+|Ingrese celda |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A5|
+|Escriba fórmula |Formula que se quiere insertar. Debe ser escrita en inglés. Recuerda usar *,* para separar los parámetros|=SUM(A1:A4)|
+|No IIE|Si se marca esta casilla, permite enviar la formula sin IIE|True|
 
-### Insert Macro
+### Insertar Macro a Excel
   
-Insert Macro in Excel
-|Parameters|Description|example|
+Inserta una Macro a Excel 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Macro path |Path of the bas file to be inserted|Macro.bas|
+|Ruta de la Macro|Ruta del archivo .bas que se quiere insertar|Macro.bas|
 
-### Select and copy Cells
+### Seleccionar y copiar Celdas
   
-Select and Copy cells in Excel
-|Parameters|Description|example|
+Selecciona y copia celdas en Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to automate|Hoja 1|
-|Enter cells to select |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Copy |By checking the checkbox, the values will be copied to the clipboard.|True|
+|Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
+|Ingrese celdas a seleccionar|Celda o Rango de celdas para seleccionar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Copiar|Al marcar la casilla, se copiarán los valores en el portapapeles|True|
 
-### Get Cell With Currency Format
+### Obtener Celda Formato Moneda
   
-Get cells with currency format
-|Parameters|Description|example|
+Obtiene celdas con formato moneda
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to automate|Hoja 1|
-|Enter cells to select |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Assign to var|Name of the variable where the result will be stored|variable|
+|Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
+|Ingrese celdas a seleccionar|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Asignar a variable|Nombre de la variable donde guardar el resultado|variable|
 
-### Get Cell With Date Format
+### Obtener Celda Formato Fecha
   
-Get cells with date format
-|Parameters|Description|example|
+Obtiene celdas con formato fecha
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to automate|Hoja 1|
-|Enter cells to select |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Assign to var|Name of the variable where the result will be stored|variable|
+|Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
+|Ingrese celdas a seleccionar|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Asignar a variable|Nombre de la variable donde guardar el resultado|variable|
 
-### Copy-Paste
+### Copiar-Pegar
   
-Copy range cell to another sheet
-|Parameters|Description|example|
+Copia un rango de celdas desde una hoja a otra 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Origin Sheet|Name of the sheet to automate|Sheet1|
-|Range to copy|Cell or Range of cells to copy. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
-|Destiny Sheet|Name of the destiny sheet|Sheet2|
-|Range to paste|Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
-|Paste Option|Select paste type for the cell or cells range.|Option|
-|Paste Operation|Select paste operation for the cell or cells range.|Operation|
-|Skip Blanks|Prevents replacing values in the paste area when blank cells are produced in the copy area when this box is selected.||
-|Transpose|Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.||
+|Hoja origen |Nombre de la hoja que se quiere automatizar|Sheet1|
+|Rango a copiar |Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
+|Hoja destino |Nombre de la hoja de destino|Sheet2|
+|Rango donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
+|Opción de Pegado|Seleccionar tipo de pegado para la celda o rango de celdas.|Opcion|
+|Operación de Pegado|Seleccionar operación de pegado para la celda o rango de celdas.|Operación|
+|Saltar Blancos|Evita reemplazar valores en el área de pegado cuando se producen celdas en blanco en el área de copia cuando se selecciona esta casilla.||
+|Transponer|Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.||
 
-### Format Cell
+### Formatear Celda
   
-Format Cell
-|Parameters|Description|example|
+Formatear Celda
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet Name |Name of the sheet to automate|Sheet1|
-|Cell |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
-|Format|You should select the formatting type for the cell. Select custom to add a customizable format|dd-mm-yy|
-|Custom format |Custom format. Doc https//support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
-|Text to Value|||
+|Nombre de Hoja|Nombre de la hoja que se quiere automatizar|Sheet1|
+|Rango a formatear |Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
+|Formato|Se debe seleccionar el tipo de formato para la celda. Seleccione custom para adicionar un formato personalizado|dd-mm-yy|
+|Formato personalizado |Formato personalizado. Doc https//support.microsoft.com/es-es/office/revisar-las-instrucciones-para-personalizar-un-formato-de-n%C3%BAmero-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5|00000|
+|Texto a Valor|||
 
-### Clear Contents
+### Borrar contenido
   
-Clears formulas and values from the selected range, keeping the format.
-|Parameters|Description|example|
+Borra fórmulas y valores del rango seleccionado, manteniendo el formato.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Cell or Range of cells|Range that contains the data to align|A1:D7|
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda o Rango de celdas|Rango que contiene los datos a alinear|A1:D7|
 
-### Create Sheet
+### Crear Hoja
   
-Create sheet in the end
-|Parameters|Description|example|
+Añade una hoja al final
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet name|Name of the sheet to create|Sheet2|
-|After|The sheet will be created next to the sheet indicated in this field.|Hoja1|
+|Nombre de la hoja|Nombre de la hoja que se quiere crear|Sheet2|
+|Despues de|La hoja se creará al lado de la hoja indicada en este campo|Hoja1|
 
-### Delete Sheet
+### Eliminar Hoja
   
-Delete sheet
-|Parameters|Description|example|
+Elimina una hoja
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet name|Name of the sheet to delete|Sheet2|
-|Assign result to variable|Name of the variable where the result will be stored|Variable|
+|Nombre de la hoja|Nombre de la hoja que se quiere borrar|Sheet2|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Copy to another excel
+### Copiar de un Excel a otro
   
-Copy the range from one Excel file to another. Indicating the file path, it will open excel to copy or paste the data. If you enter the id of an open excel, it will use that instance to copy or paste.
-|Parameters|Description|example|
+Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Excel origin (optional)|Path of the source xlsx file|Source file path:|
-|Id (optional) |Name or ID of the open source file.|id|
-|Sheet name|Name of the source sheet|Sheet1|
-|Range to copy|Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
-|Excel destination|Path of the destination xlsx file|Target file path:|
-|Normal opening|If this checkbox is checked, the destination file opens normally keeping data, formats and objects. Otherwise it only recovers data.|True|
-|Only Values|If this checkbox is checked, only the value will be copied|True|
-|Sheet name|Name of the sheet to be copied|Sheet1|
-|Range to paste (Optional)|Column, Cell or Range of cells where to paste. The syntax must be the same as excel (A, A1 or A1B1) |A1:D7|
+|Excel origen (opcional)|Ruta del archivo excel de origen|Ruta archivo origen:|
+|Identificador (opcional)|Nombre o ID del archivo de código abierto.|id|
+|Hoja origen|Nombre de la hoja de origen|Sheet1|
+|Rango a copiar|Celda o Rango de celdas a copiar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
+|Excel destino|Ruta del archivo excel de destino|Ruta archivo destino:|
+|Abrir normalmente|Si esta casilla está marcada, el archivo de destino se abre normalmente manteniendo los datos, formatos y objetos. De lo contrario, solo recupera datos.|True|
+|Solo valores|Si esta casilla es seleccionada, copiará solo los valores|True|
+|Hoja destino|Nombre de la hoja donde se copiará|Sheet1|
+|Rango donde pegar (Opcional)|Columna, Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A, A1 o A1B1) |A1:D7|
 
-### Add/Delete Row
+### Insertar/Eliminar Fila
   
-Add or Delete a Row
-|Parameters|Description|example|
+Inserta o elimina una fila
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Option|Select Add or Delete a row|Add|
-|Sheet Name|Name of the sheet where add the row|Sheet|
-|Row Number|Indicate the row(s) to be added or deleted|2|
-|Where to Insert|Indicate where add or delete the row|A1:D7|
+|Opción|Seleccione Add para agregar una fila o Delete para borrar|Add|
+|Nombre de Hoja|Nombre de la hoja donde agregar la fila|Sheet|
+|Número Fila|Indique la fila o filas que se quieren agregar o eliminar|2|
+|Dónde Insertar|Indique donde agregar o eliminar la fila|A1:D7|
 
-### Add/Delete Column
+### Insertar/Eliminar Columna
   
-Add or Delete a Column
-|Parameters|Description|example|
+Inserta o elimina una columna
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Option|Select Add or Delete a column||
-|Sheet Name|Name of the sheet where the data are located|Sheet|
-|Range|Indicate the column(s) to be added or deleted|B|
+|Opción|Seleccione Add para agregar una columna o Delete para borrar||
+|Nombre de Hoja|Nombre de la hoja donde se encuentran los datos|Sheet|
+|Rango|Indique la columna o columnas que se quieren agregar o eliminar|B|
 
-### Convert CSV to XLSX
+### Convertir CSV a XLSX
   
-Convert a CSV document to XLSX format
-|Parameters|Description|example|
+Convierte un documento CSV a formato XLSX
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|CSV file path|Path of the csv file to be converted||
-|Delimiter|Delimiter of the csv file||
-|Do it have headers?|Check this checkbox if the csv has headers|True|
-|Encoding|Type the encoding type of the file. Default is latin-1|utf-8|
-|XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
+|Ruta archivo CSV|Ruta del archivo csv que se quiere convertir||
+|Delimitador|Separador del archivo csv||
+|Tiene cabeceras?|Marcar esta casilla si el csv tiene cabeceras|True|
+|Codificación|Escriba el tipo de codificación del archivo. Por defecto es latin-1|latin-1|
+|Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
 
-### Export to JSON
+### Exportar a JSON
   
-Export array data to JSON
-|Parameters|Description|example|
+Exporta un array de datos a un archivo JSON
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Data|Data to be exported|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
-|Json file path|Path of the json file where will be saved|C:/Users/User/Desktop/file.json|
+|Datos|Datos a exportar|[['header1', 'header2', 'header3', 'header4', 'header5', 'header6'], ['data11', 'data12', 'data13', 'data14', 'data15', 'data16']]|
+|Ruta archivo json|Ruta del archivo json donde guardar la conversión|C:/Users/User/Desktop/file.json|
 
-### (Deprecated) Convert XLSX to CSV
+### (Deprecado) Convertir XLSX a CSV
   
-Convert a xlsx document to csv
-|Parameters|Description|example|
+Convierte un documento XLSX a CSV
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|XLSX file path|Path of the xlsx file to be converted|C:/Users/User/Desktop/file.xlsx|
-|Delimiter|Delimiter of the csv file|,|
-|Sheet name|Name of the sheet where the data are located|Sheet0|
-|CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|C:/Users/User/Desktop/file.xlsx|
+|Delimitador|Separador del archivo csv|,|
+|Nombre de la hoja|Nombre de la hoja donde se encuentran los datos|Sheet0|
+|Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
 
-### Convert XLSX to CSV
+### Convertir XLSX a CSV
   
-Convert a xlsx document to csv
-|Parameters|Description|example|
+Convierte un documento XLSX a CSV
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|XLSX file path|Path of the xlsx file to be converted|C:/Users/User/Desktop/file.xlsx|
-|Delimiter|Delimiter of the csv file|,|
-|Sheet name|Name of the sheet where the data are located|Sheet0|
-|CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|C:/Users/User/Desktop/file.xlsx|
+|Delimitador|Separador del archivo csv|,|
+|Nombre de la hoja|Nombre de la hoja donde se encuentran los datos|Sheet0|
+|Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
 
-### Convert XLS to XLSX
+### Convertir XLS a XLSX
   
-Convert a xls document to xlsx
-|Parameters|Description|example|
+Convierte un documento XLS a XLSX
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|XLS file path|Path of the xls file to be converted|C:\Users\User\Desktop\file.xls|
-|XLSX file path|Path of the xlsx file where will be saved|C:\Users\User\Desktop\new_file.xlsx|
+|Ruta archivo XLS|Ruta del archivo xls que se quiere convertir|C:\Users\User\Desktop\file.xls|
+|Ruta archivo XLSX|Ruta donde se guardará el archivo xlsx|C:\Users\User\Desktop\new_file.xlsx|
 
-### Get active cell
+### Obtener celda activa
   
-Get row and column of active cell
-|Parameters|Description|example|
+Obtener fila y columna de una celda activa
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Refresh Pivot table
+### Actualizar tabla dinámica
   
-Refresh a pivot table. Deprecated! Use PivotTableExcel module
-|Parameters|Description|example|
+Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the table is located|Sheet1|
-|Pivote table name |Name of the pivot table to be updated|Name: |
+|Hoja |Nombre de la hoja donde se encuentra la tabla|Hoja 1|
+|Nombre de la tabla dinámica |Nombre de la tabla dinámica que se actualizará|Name: |
 
-### Fit cells
+### Ajustar celdas
   
-Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
-|Parameters|Description|example|
+Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range to fit|Cell or Range of cells to fit. The syntax must be the same as excel (A1 or A1B1) |A1:D7|
-|Autofit|Automatically fit the cells to display the data||
-|Group rows|To mark this checkbox will group the rows in the selected range.||
-|Group columns|To mark this checkbox will group the columns in the selected range.||
-|Ungroup rows|To mark this checkbox will upgroup the rows in the selected range.||
-|Ungroup columns|To mark this checkbox will upgroup the columns in the selected range.||
-|Merge cells|Checking this checkbox will merge the cells in the selected range||
-|Unmerge cells|Checking this checkbox will unmerge the cells in the selected range||
-|Row level|To mark this checkbox will displays the specified number of row levels of an outline|2|
-|Column level|To mark this checkbox will displays the specified number of column levels of an outline|2|
-|Column width|Width to which the column will fit|20|
-|Row Height|Height to which the row will adjust|20|
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango a ajustar|Celda o Rango de celdas a ajustar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:D7|
+|Autofit|Ajusta automaticamente las celdas para que se visualicen los datos||
+|Agrupar filas|Al marcar este checkbox, se agruparán las filas en el rango seleccionado||
+|Agrupar columnas|Al marcar este checkbox, se agruparán las columnas en el rango seleccionado||
+|Desagrupar filas|Al marcar este checkbox, se desagruparán las filas en el rango seleccionado||
+|Desagrupar columnas|Al marcar este checkbox, se desagruparán las columnas en el rango seleccionado||
+|Unir celdas|Al marcar este checkbox, se uniran las celdas en el rango seleccionado||
+|Separar celdas|Al marcar este checkbox, se separaran las celdas en el rango seleccionado||
+|Nivel de fila|Al marcar esta casilla se mostrará el número especificado de niveles de fila|2|
+|Rango de columna|Al marcar esta casilla se mostrará el número especificado de niveles de columna|2|
+|Ancho de columna|Ancho al que se ajustara la columna|20|
+|Altura de Fila|Altura a la que se ajustara la fila|20|
 
-### Get Formula
+### Obtener Formula
   
-Get the formula into cell
-|Parameters|Description|example|
+Obtiene la formula sobre una celda 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Cell |Cell where is the formula. The syntax must be the same as excel (A1 or A1B1) |A5|
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Ingrese celda |Celda donde está la formula. La sintaxis debe ser la misma de excel (A1 o A1B1) |A5|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Add Auto Filter
+### Agregar Filtro Automático
   
-Add auto filter to excel table
-|Parameters|Description|example|
+Agrega filtro automático a una tabla excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Columns |Columna or Range of columns. The syntax must be the same as excel (A o AB) |A:E |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Columnas |Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o AB) |A:E |
 
-### Remove Auto Filter
+### Eliminar Filtro Automático
   
-Remove auto filter from an excel sheet
-|Parameters|Description|example|
+Eliminar el filtro automático de una hoja de Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the filter to remove is located|Sheet1|
+|Hoja |Nombre de la hoja donde se encuentra el filtro a quitar|Hoja 1|
 
-### Clear Filter
+### Borrar Filtro
   
-Clears every filter applied over an excel sheet
-|Parameters|Description|example|
+Borra todos los filtros aplicados sobre una hoja de Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the filtered data is located|Sheet1|
+|Hoja |Nombre de la hoja donde se encuentran los datos filtrados|Hoja 1|
 
-### Filter
+### Filtrar
   
-Filter an excel table according to the relative value, exact content, background color or font color of the cells. *Examples according the filter type: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
-|Parameters|Description|example|
+Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Table start |Column where the table to be filtered begins|A |
-|Column |Column where to add the filter|A |
-|Filter |Value or list of values, filter of unique criteria or list of two items for double criteria (eg value between A and B). Use "=" to find blank fields, "<>" for non-empty cells and data negation.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
-|Filter type |Type of filter to apply.||
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
+|Columna |Columna donde agregar el filtro|A |
+|Filtro |Valor o lista de valores, filtro de un criterio o lista de dos items para doble criterio (ej valor entre A y B). Use "=" para encontrar campos en blanco, "<>" para celdas no vacías y negación de datos.|['>=10'] or ['>=10', '<=20'], ['10','20', '30'] or (255,0,0)|
+|Tipo de filtro |Tipo de filtro a aplicar.||
 
-### Filter by Date
+### Filtrar por Fecha
   
-Filter a table by the day, month or year of a date indicated
-|Parameters|Description|example|
+Filtra una tabla por el día, mes o año de una fecha indicada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Table start |Column where the table to be filtered begins|A |
-|Column |Column where to add the filter|A |
-|Date Filter |Date or list of dates to set as filter criteria|18/04/2024|
-|Filter type |Type of filter to apply.||
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Inicio de tabla |Columna donde comienza la tabla que se filtrará|A |
+|Columna |Columna donde agregar el filtro|A |
+|Fecha Filtro |Fecha o lista de fechas para establecer como criterio de filtro|18/04/2024|
+|Tipo de filtro |Tipo de filtro a aplicar.||
 
-### Advanced filter
+### Filtro avanzado
   
-Apply advanced filter to a table
-|Parameters|Description|example|
+Filtra a una tabla excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Table range |Range of the table to be filtered begins|A1:G500 |
-|Criteria range  |Range with the filter criteria to apply|A1:B4 |
-|Unique records only|||
-|Copy to another place|Paste the resulting table to the target cell||
-|Target  |Cell where to paste the result table of the filter|J1 |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
+|Rango de tabla |Rango de la tabla que se filtrará|A1:G500 |
+|Rango de criterios  |Rango con los criterios del filtro a aplicar|A1:B4 |
+|Solo registros únicos|||
+|Copiar a otro lugar|Pega la tabla resultante en la celda de destino||
+|Destino  |Celda donde pegar la tabla resultado del filtro|J1 |
 
-### Clear filters
+### Remover Filtros
   
-Remove filters and show all data
-|Parameters|Description|example|
+Eliminar filtros y mostrar todos los datos
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 
-### Rename sheet
+### Renombrar hoja
   
-Change name to excel sheet
-|Parameters|Description|example|
+Cambia el nombre a una hoja de excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to be renamed|Sheet1|
-|New name |New name of the sheet|new_name|
+|Hoja |Nombre de la hoja a renombrar|Hoja 1|
+|Nuevo nombre |Nuevo Nombre de la hoja|nuevo_nombre|
 
-### Text Format
+### Formato de texto
   
-Change the Horizontal or Vertical alignment of values in a range of cells
-|Parameters|Description|example|
+Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Cell or Range of cells|Range that contains the data to align|A1:D7|
-|Horizontal Alignment|Selector that contains the horizontal alignment options||
-|Vertical Alignment|Selector that contains the vertical alignment options||
+|Hoja|Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda o Rango de celdas|Rango que contiene los datos a alinear|A1:D7|
+|Alineacion Horizontal|Selector que contiene las opciones de alineacion horizontal||
+|Alineacion Vertical|Selector que contiene las opciones de alineacion vertical||
 
-### Cell Style
+### Estilo Celda
   
-This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
-|Parameters|Description|example|
+Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet Name |Name of the sheet to automate|Sheet1|
-|Cell to format |Cell or Range of cells to format. The syntax must be the same as excel (A1 or A1B1) |A1:C4|
-|Border|Border of the cell to be formatted|Contour|
-|Style|Border style of the cell to be formatted|_ _ _ _ _ _ _ _ _ _ _|
-|Font size |Font size of the cell to be formatted|20|
-|Blod|Mark this checkbox to change the font to bold|True|
-|Italic|Mark this checkbox to change the font to italic|True|
-|Underline|Mark this checkbox to change the font to underline|True|
-|Adjust Text||True|
-|Horizontal Alignment|Type of horizontal alignment of the cell that you want to format|Alignment|
-|Vertical Alignment|Type of vertical alignment of the cell that you want to format|Alignment|
+|Nombre de Hoja|Nombre de la hoja que se quiere automatizar|Sheet1|
+|Rango a formatear |Celda o Rango de celdas a formatear. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:C4|
+|Borde|Borde de la celda que se quiere formatear|Contour|
+|Estilo|Estilo del borde de la celda que se quiere formatear|_ _ _ _ _ _ _ _ _ _ _|
+|Tamaño de fuente |Tamaño de la fuente de la celda|20|
+|Negrita|Marcar esta casilla para cambiar la fuente a negrita|True|
+|Cursiva|Marcar esta casilla para cambiar la fuente a cursiva|True|
+|Subrayar|Marcar esta casilla para cambiar la fuente a subrayado|True|
+|Ajustar Texto|Marcar esta casilla para ajustar el texto en el rango especificado|True|
+|Alineación Horizontal|Tipo de alineado horizontal de la celda que se quiere formatear|Alignment|
+|Alineación Vertical|Tipo de alineado verticaal de la celda que se quiere formatear|Alignment|
 
-### Paste in Cells
+### Pegar en Celdas
   
-Paste data to cells in Excel
-|Parameters|Description|example|
+Pega datos en celdas en Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to automate|Hoja 1|
-|cells where paste |Cell or Range of cells to paste. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Only values |If this checkbox is checked, only the value will be pasted|True|
+|Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
+|Ingrese celdas donde pegar|Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Solo valores|Si esta casilla es seleccionada, se pegarán solo los valores|True|
 
-### Disable Cut/Copy Mode
+### Deshabilitar modo Copiar/Cortar
   
-Disable Cut/Copy Mode of the active Excel
-|Parameters|Description|example|
+Deshabilitar el modo Cortar/Copiar del Excel activo
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Remove Duplicates
+### Eliminar duplicados
   
-Execute the remove duplicates command of Excel
-|Parameters|Description|example|
+Ejecuta el comando eliminar duplicados de Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet|Name of the sheet to automate|Hoja 1|
-|Range|Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B3|
-|Column |Indicate the column where the duplicates are to be searched for|A / ['A', 'B'] |
-|Do it have headers?|Check this checkbox if the excel has headers|True|
+|Hoja|Nombre de la hoja que se quiere automatizar|Hoja 1|
+|Rango|Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B3|
+|Columna |Indicar la columna donde se buscarán los duplicados|A / ['A', 'B']|
+|Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
-### Export to advanced PDF
+### Exportar a PDF avanzado
   
-Export to PDF with options
-|Parameters|Description|example|
+Exporta Excel a PDF con opciones
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Save PDF|Path where to save the .pdf file|/Users/user/Desktop/excel.pdf|
-|Sheet |Name of the sheet to export|Sheet1|
-|Al sheets|By checking the checkbox, all sheets will be exported||
-|Autofit|||
-|Zoom|Adjust the zoom of the spreadsheet content.||
-|FitToPagesTall|Adjust the height of the spreadsheet content to the defined number of pages.|1|
-|FitToPagesWide|Adjust the width of the spreadsheet content to the defined number of pages.|1|
-|Orientation|||
+|Guardar PDF|Ruta donde guardar el archivo .pdf|/Users/user/Desktop/excel.pdf|
+|Hoja |Nombre de la hoja a exportar|Hoja 1|
+|Todas las hojas|Al marcar la casilla, se exportaran todas las hojas||
+|Ajuste Automatico|||
+|Zoom|Ajusta el zoom del contenido de la planilla.||
+|Ajustar Alto|Ajusta el alto del contenido de la planilla al numero de carillas definido.|1|
+|Ajustar ancho|Ajusta el ancho del contenido de la planilla al numero de carillas definido.|1|
+|Orientación|||
 
-### Copy-Move Sheet
+### Copiar-Mover Hoja
   
-Copy or move a sheet
-|Parameters|Description|example|
+Copia o mueve una hoja
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Origin Sheet|Name of the source sheet|Sheet1|
-|Move/copy before sheet|Name of the sheet to be moved|Sheet2|
-|Excel destination|Path of the .xlsx file where move or copy the sheet|C:/path/to/excel.xlsx|
-|Password (optional) |Password of the xlsx file|P@ssW0rd|
-|Copy |By checking the checkbox, the sheet will be copied||
+|Hoja origen |Nombre de la hoja de origen|Sheet1|
+|Mover/copiar antes de hoja |Nombre de la hoja donde se moverá|Sheet2|
+|Excel destino|Ruta del archivo .xlsx donde mover o copiar la hoja|C:/ruta/al/excel.xlsx|
+|Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
+|Copiar|Al marcar la casilla, se creará una copia de la hoja||
 
-### Insert Form
+### Insertar Formulario
   
-Insert Form in Excel
-|Parameters|Description|example|
+Inserta un Formulario a Excel 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Macro path |Path of the frm file to be inserted|Form.frm|
+|Ruta del Formulario|Ruta del archivo frm que se quiere insertar|Form.frm|
 
-### Read Filtered Cells
+### Leer celdas filtradas
   
-Allow read only cells filters 
-|Parameters|Description|example|
+Lee todo el contenido de las celdas filtradas y aplica formato a los datos tipo fecha si se indica
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
-|Format for data stored as date |Give an specific format to data stored as date|%m/%d/%Y, %H:%M:%S|
-|Rows|||
-|More data |||
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+|Agregar formato especifico a datos almacenados como fecha |Dar formato especifico a datos almacenados como fecha|%m/%d/%Y, %H:%M:%S|
+|Filas|||
+|Datos extra|||
 
-### Count Filtered Cells
+### Contar celdas filtradas
   
-Allow count only cells filters 
-|Parameters|Description|example|
+Cuenta solo las celdas filtradas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Range of column filtered (A1A100)|A1:A100 |
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Rango de columna filtrada (A1A100)|A1:A100 |
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Replace
+### Reemplazar
   
-Run replace action to excel 
-|Parameters|Description|example|
+Ejecuta la opción de reemplazar de excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Word to replace |Word to be sought to be replaced|10/10/2020|
-|New word |Word that will replace the previous word indicated|10-10-2020|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Palabra a reemplazar|Palabra que se buscará para ser reemplazada|10/10/2020|
+|Nueva palabra|Palabra que va a reemplazar a la anterior indicada|10-10-2020|
 
-### Order
+### Ordenar
   
-Run replace action to excel 
-|Parameters|Description|example|
+Ejecuta la opción de reemplazar de excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet 1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Column|Indicate the column to be sorted|A1:A22|
-|Order type |Indicate how the column will be sorted|Ascending|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Columna|Indicar la columna a ordenar|A1:A22|
+|Tipo de orden |Indicar como se ordenará la columna|Ascending|
 
-### Order by multiple levels
+### Ordenar por múltiples niveles
   
-Order an excel sheet by value, setting multiple levels
-|Parameters|Description|example|
+Ordene una hoja de Excel por valor, estableciendo múltiples niveles
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet 1|
-|Range to sort |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|It has headers|If this option is checked, it will take the first row of the range as headers.||
-|Sort fields|||
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango a ordenar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Posee encabezados|Si se marca esta opción, tomara la primer fila del rango como encabezados.||
+|Campos de orden|||
 
-### Refresh All
+### Actualizar Todo
   
-Refresh all data in Excel
-|Parameters|Description|example|
+Actualiza todas las fuentes del libro
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
-### Find
+### Buscar
   
-Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
-|Parameters|Description|example|
+Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Text to find|Text to be searched in the excel|Lorem|
-|Look at (optional)|Indicates the desired type of match the whole searched text or within any part (ba default within any part). ||
-|Look in (optional)|Indicates where to do the searching value, formula or comment (default value). ||
-|Case sensitive|If this box is checked, it will search the text string case-sensitive.||
-|Find all|If this box is checked, it will return a list with every coincidence.||
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|Buscar en (opcional)|Indica el tipo de coincidencia deseada todo el texto buscado o dentro de cualquier parte (por defecto cualquier parte). ||
+|Buscar dentro (opcional)|Indica dónde hacer la búsqueda valor, fórmula o comentario (predeterminado valor).||
+|Distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto diferenciando entre mayúsculas y minúsculas.||
+|Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Find data
+### Encontrar dato
   
-Returns the first cell that matches the search data
-|Parameters|Description|example|
+Devuelve la primera celda que coincida con el dato buscado
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1)|A1:B100 |
-|Letter of column with dates (Optional)|Letter of the column/s that contain dates.|A,B|
-|Date Format (Optional)|Date format to search for.|%d/%m/%Y|
-|Text to find|Text to be searched in the excel|Lorem|
-|Not case sensitive|If this box is checked, it will search for the text string without differences between upper and lower letters.||
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1)|A1:B100 |
+|Letra de columna con fechas (Opcional)|Letra de la columna/as que contienen fechas.|A,B|
+|Formato de Fecha (Opcional)|Formato de la fecha a buscar.|%d/%m/%Y|
+|Texto a buscar|Texto que se quiere buscar en el excel|Lorem|
+|No distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto sin diferencias entre mayúsculas y minúsculas.||
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Lock Cells
+### Bloquear celdas
   
-Lock or Unlock cells
-|Parameters|Description|example|
+Bloquea o desbloquea celdas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Action|Select if you want to lock or unlock a cell|Lock|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Acción|Seleccione si desea bloquear o desbloquear una celda |Lock|
 
-### Add Chart
+### Agregar Gráfico
   
-Create a new chart in an excel sheet
-|Parameters|Description|example|
+Agrega un nuevo gráfico sobre una hoja en excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Type of Chart|Select the type of chart to be inserted in excel|Line|
-|Cell position |Cell where will be inserted the chart. The syntax must be the same as excel (A1) |A1|
-|Data range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |Sheet!A1:B100 |
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Tipo de Gráfico|Seleccione el tipo de gráfico que se insertará en el excel|Line|
+|Celda donde insertar gráfico |Celda donde insertar el gráfico. La sintaxis debe ser la misma de excel (A1) |A1|
+|Rango de datos |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |Sheet!A1:B100 |
 
-### Remove Password
+### Quitar Contraseña
   
-Remove password and save the Excel
-|Parameters|Description|example|
+Quita la contraseña y guarda el Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Excel with password|Path of the xlsx file to be opened|C:/Users/User/Desktop/test.xlsx|
-|Password|Password of the xlsx file|****|
-|Excel without password|Path where to save the .xlsx file. Empty for save in the same Excel|C:/Users/User/Desktop/test2.xlsx|
+|Excel con Contraseña|Ruta del archivo xlsx que se quiere abrir|C:/Users/User/Desktop/test.xlsx|
+|Contraseña|Contraseña del archivo xlsx|****|
+|Excel sin Contraseña|Ruta donde guardar el archivo .xlsx. Vacío para guardar en el mismo Excel|C:/Users/User/Desktop/test2.xlsx|
 
-### Insert image
+### Insertar imagen
   
-Insert an image
-|Parameters|Description|example|
+Inserta una imagen
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Cell |Cell where will be inserted the image. The syntax must be the same as excel (A1) |B5|
-|Image path |Path of the image file to be inserted|image.png|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda |Celda donde insertar la imagen. La sintaxis debe ser la misma de excel (A1) |B5|
+|Ruta imagen|Ruta de la imagen que se quiere insertar|imagen.png|
 
-### Export Chart
+### Exportar gráfico
   
-Export a chart from index
-|Parameters|Description|example|
+Exporta un gráfico por índice
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Index |Index of the chart to be exported|1|
-|Image path |Path where the image will be saved|/path/to/image.png|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Index |Índice del gráfico a exportar|1|
+|Ruta imagen|Ruta dnde se guardará la imagen|/ruta/a/imagen.png|
 
-### Not visible mode
+### Modo no visible
   
-Open not visible excel.
-|Parameters|Description|example|
+Abre excel en modo no visible
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|path to XLSX file |Path of the xlsx file to be opened|File.XLSX|
-|Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|default|
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere abrir|Archivo.XLSX|
+|Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|default|
 
-### Write array objects
+### Escribir array de objetos
   
-Write array object on Excel cells.
-|Parameters|Description|example|
+Escribe un array de objetos en las celdas de Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Cell o Cells Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1|
-|Data |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |[{ 'id',: 1, 'text': 'hello' },{ 'id',: 2, 'text': 'world' }]|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Celda o Rango de celdas|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1|
+|Datos a escribir|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |[{ 'id',: 1, 'text': 'hola' },{ 'id',: 2, 'text': 'mundo' }]|
 
-### Copy-Paste Format
+### Copiar-Pegar Formato
   
-Copy format range cell to another sheet
-|Parameters|Description|example|
+Copia formato de un rango de celdas desde una hoja a otra 
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Origin Sheet|Name of the source sheet|Sheet1|
-|Range to copy||A1:C4|
-|Destiny Sheet|Name of the destiny sheet|Sheet2|
-|Range to paste||A1:C4|
+|Hoja origen |Nombre de la hoja de origen|Sheet1|
+|Rango a copiar ||A1:C4|
+|Hoja destino |Nombre de la hoja de destino|Sheet2|
+|Rango donde pegar||A1:C4|
 
-### Update links
+### Actualizar vínculos
   
-Changes a link from one document to another
-|Parameters|Description|example|
+Cambia un vínculo desde un documento a otro
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Path to change|Path of the xlsx file to be updated||
-|Updated path|Path of the xlsx file that will replace the link|file.xlsx|
+|Ruta a cambiar|Ruta del archivo xlsx que se quiere actualizar||
+|Ruta actualizada|Ruta del archivo xlsx que reemplazará el vinculo|file.xlsx|
 
-### Unlock book
+### Desbloquear libro
   
-Unlock book with password
-|Parameters|Description|example|
+Desbloquea un libro con contraseña
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Password|Password of the locked sheet|Password|
+|Contraseña|Contraseña de la hoja bloqueada|Contraseña|
 
-### Lock book
+### Bloquear libro
   
-Lock a book with password
-|Parameters|Description|example|
+Bloquear un libro con contraseña
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Password|Password to lock the book|Password|
+|Contraseña|Contraseña para bloquear el libro|Contraseña|
 
-### Unlock sheet
+### Desbloquear hoja
   
-Unlock sheet with password
-|Parameters|Description|example|
+Desbloquea una hoja con contraseña
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to be unlocked|Sheet1|
-|Password|Password of the locked sheet|Password|
+|Hoja|Nombre de la hoja que se quiere desbloquear|Hoja 1|
+|Contraseña|Contraseña de la hoja bloqueada|Contraseña|
 
-### Lock sheet
+### Bloquear hoja
   
-Lock a sheet with password
-|Parameters|Description|example|
+Bloquear una hoja con contraseña
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to be locked|Sheet1|
-|Password|Password to lock the sheet|Password|
+|Hoja|Nombre de la hoja que se quiere bloquear|Hoja 1|
+|Contraseña|Contraseña para bloquear la hoja|Contraseña|
 
-### Convert to .txt
+### Convertir a .txt
   
-Convert to .txt
-|Parameters|Description|example|
+Convierte a .txt
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|path to XLSX file |Path of the xlsx file to be converted|file.XLSX|
-|Save TXT|Path where to save the .txt file|/Users/user/Desktop/test.txt|
+|Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|Archivo.XLSX|
+|Guardar TXT|Ruta donde guardar el archivo .txt|/Users/user/Desktop/prueba.txt|
 
-### Text to columns
+### Texto en columna
   
-Parses a column of cells that contain text into several columns.
-|Parameters|Description|example|
+Ejecuta la opción texto en columna de excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet where the data are located|Sheet1|
-|Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
-|Select separator |Select the cell separator, it can be fixed width or delimited||
-|Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
+|Hoja |Nombre de la hoja donde se encuentran los datos|Hoja 1|
+|Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
+|Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
+|Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
 
-### Convert Excel time to hours
+### Convertir tiempo de Excel a horas
   
-Convert Excel time to hours. Returns the format as hh: mm: ss
-|Parameters|Description|example|
+Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Decimal time ||0.296655812|
-|Assign result to variable |Name of the variable where the result will be stored|Variable|
+|Ingrese el tiempo en formato decimal ||0.296655812|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
-### Print sheet
+### Imprimir hoja
   
-Prints a sheet
-|Parameters|Description|example|
+Imprime una hoja
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Sheet |Name of the sheet to be printed|Sheet1|
+|Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
 
-### Save Excel with password
+### Guardar Excel con password
   
-Save a Excel file
-|Parameters|Description|example|
+Guarda un archivo Excel
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Save Excel as|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
-|Password to save with|Password of the xlsx file|password|
+|Guardar Excel en|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
+|Ingrese la password|Contraseña del archivo xlsx|password|
 
-### Save Excel
+### Guardar Excel
   
-Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
-|Parameters|Description|example|
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
+|Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
 
-### Close XLSX
+### Cerrar XLSX
   
-Close the workbook opened by Rocketbot
-|Parameters|Description|example|
+Cierra el libro abierto por Rocketbot
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Kill process |If this box is marked, the process will be completely closed.||
+|Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||
