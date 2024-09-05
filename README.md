@@ -172,7 +172,7 @@ Copy or move a sheet
 Insert Form in Excel
 
 52. Read Filtered Cells  
-Allow read only cells filters 
+Read all the content of the filtered cells and apply formatting to date-type data if indicated
 
 53. Count Filtered Cells  
 Allow count only cells filters 

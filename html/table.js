@@ -16,8 +16,9 @@ var table = new Tabulator("#example-table", {
         message.commands["table"] = data;
         SendMessage();
     },
-    columns: [                 //define the table columns
+    columns: [
         { title: "Column (Letter)", field: "column", editor: "input" },
         { title: "Order", field: "order", editor: "select", editorParams: { values: ["Ascending (A-Z)", "Descending (Z-A)"] } },
+        { title: "Data Option", field: "option", editor: "select", editorParams: { values: ["Normal", "Text as Number"] } }
     ],
 });

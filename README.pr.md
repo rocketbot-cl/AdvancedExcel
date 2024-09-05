@@ -172,7 +172,7 @@ Copiar ou mover uma planilha
 Insere um Formulário no Excel
 
 52. Ler células filtradas  
-Ler somente as células filtradas
+Leia todo o conteúdo das células filtradas e aplique formatação aos dados do tipo data, se indicado
 
 53. Contar celulas filtradas  
 Conta somente as celulas filtradas

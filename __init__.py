@@ -2459,7 +2459,7 @@ if module == "GetCells":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     result = GetParams("var_")
-    format_ = GetParams("date_format")
+    format_ = GetParams("date_format")    
     get_rows = GetParams("rows")
     extends = GetParams("more_data")
     
@@ -2498,7 +2498,12 @@ if module == "GetCells":
 
                             range_cell.append(cells)
                         else:
-                            range_cell.append([ro.Value])
+                            if isinstance(ro.Value, datetime.datetime):
+                                range_cell.append([get_date_with_format(ro.Value2, format_)])
+                            else:
+                                range_cell.append([ro.Value2]) 
+
+                            
                     
                     if extends:
                         info = {"range": r.Address.replace("$", ""), "data": range_cell}
@@ -2736,7 +2741,14 @@ if module == "OrderMultiple":
             column = field['column'] + ":" + field['column']
             key = sheet_selected.Range(column)
             
-            sheet_selected.Sort.SortFields.Add(Key=key, Order=order)
+            option = field.get('option', 0)
+            
+            if option == 'Normal':
+                option = 0
+            elif option == 'Text as Number':
+                option = 1
+            print(key, order, option)
+            sheet_selected.Sort.SortFields.Add(Key=key, Order=order, DataOption=option)
         
         if headers and eval(headers):
             sheet_selected.Sort.Header = 1
