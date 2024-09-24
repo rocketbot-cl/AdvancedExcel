@@ -2594,6 +2594,13 @@ def get_filtered_cells(sheet, range_, result, extends, excel, xls, wb):
             cell_values = cell_values + \
                 range_cell if len(cell_values) > 0 else range_cell
 
+def excel_column_index_to_string(col_idx):
+    """Convierte un índice de columna numérico a una letra de columna de Excel."""
+    col_str = ''
+    while col_idx > 0:
+        col_idx, rem = divmod(col_idx - 1, 26)
+        col_str = chr(ord('A') + rem) + col_str
+    return col_str
 
 if module == "GetCountCells":
     sheet_ = GetParams("sheet")
@@ -2806,10 +2813,17 @@ if module == "find":
             match_case = False
         else:
             match_case = eval(match_case)
+        if not range_ or range_ =="":
+            #armo rango segun la hoja
+            range1 = sheet_selected.used_range.last_cell.row
+            range2 = sheet_selected.used_range.last_cell.column
+            range_ = f"A1:" + excel_column_index_to_string(range2) + str(range1)
+          
         
         if platform.system() == "Windows":        
             if find_all and eval(find_all):
                 matches = []
+                                
                 range_obj = sheet_selected.api.Range(range_)
                 result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
                 try:
