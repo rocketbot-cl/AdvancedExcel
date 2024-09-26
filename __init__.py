@@ -188,6 +188,8 @@ if module == "ReadCells":
     date_format = GetParams("date_format")
     custom = GetParams("custom")
 
+    from datetime import datetime
+
     try:
         if not sheet_:
             sheet = wb.sheets.active
@@ -216,7 +218,6 @@ if module == "ReadCells":
 
         global _values    
         _values = sheet.api.Range(range_).Value2
-        print(_values)
         value = None
         if date_format is not None:
             valueGotten = xw.sheets[sheet].range(range_).value
@@ -229,12 +230,24 @@ if module == "ReadCells":
                 cont = 1
             if (cont > 1):
                 for each in valueGotten:
-                    value_date = each.strftime(date_format)
-                    info.append(value_date)
+                    if isinstance(each, list) or isinstance(each, tuple):
+                        list_ = []
+                        for e in each:
+                            if isinstance(e, datetime):
+                                e = e.strftime(date_format)
+                            list_.append(e)
+                        info.append(list_)
+                        
+                    else:   
+                        if isinstance(each, datetime):
+                            print(each)
+                            each = each.strftime(date_format)
+                        info.append(each)
             else:
-                valueGotten = valueGotten.strftime(date_format)
-                info.append(valueGotten)
-            print(info)
+                if isinstance(each, datetime):
+                    each = valueGotten.strftime(date_format)
+                info.append(each)
+
             SetVar(var_, info)
             
         if date_format is None:
