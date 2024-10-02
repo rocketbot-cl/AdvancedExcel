@@ -2606,15 +2606,7 @@ def get_filtered_cells(sheet, range_, result, extends, excel, xls, wb):
         else:
             cell_values = cell_values + \
                 range_cell if len(cell_values) > 0 else range_cell
-
-def excel_column_index_to_string(col_idx):
-    """Convierte un índice de columna numérico a una letra de columna de Excel."""
-    col_str = ''
-    while col_idx > 0:
-        col_idx, rem = divmod(col_idx - 1, 26)
-        col_str = chr(ord('A') + rem) + col_str
-    return col_str
-
+            
 if module == "GetCountCells":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
@@ -2801,7 +2793,7 @@ if module == "find":
     match_case = GetParams("match_case")
     find_all = GetParams("find_all")
     var_ = GetParams("var_")
-
+    from openpyxl.utils.cell import get_column_letter
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
         sheet=None
@@ -2830,8 +2822,8 @@ if module == "find":
             #armo rango segun la hoja
             range1 = sheet_selected.used_range.last_cell.row
             range2 = sheet_selected.used_range.last_cell.column
-            range_ = f"A1:" + excel_column_index_to_string(range2) + str(range1)
-          
+            range_ = f"A1:" + get_column_letter(range2) + str(range1)
+ 
         
         if platform.system() == "Windows":        
             if find_all and eval(find_all):
