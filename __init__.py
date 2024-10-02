@@ -188,6 +188,8 @@ if module == "ReadCells":
     date_format = GetParams("date_format")
     custom = GetParams("custom")
 
+    from datetime import datetime
+
     try:
         if not sheet_:
             sheet = wb.sheets.active
@@ -216,7 +218,6 @@ if module == "ReadCells":
 
         global _values    
         _values = sheet.api.Range(range_).Value2
-        print(_values)
         value = None
         if date_format is not None:
             valueGotten = xw.sheets[sheet].range(range_).value
@@ -229,12 +230,24 @@ if module == "ReadCells":
                 cont = 1
             if (cont > 1):
                 for each in valueGotten:
-                    value_date = each.strftime(date_format)
-                    info.append(value_date)
+                    if isinstance(each, list) or isinstance(each, tuple):
+                        list_ = []
+                        for e in each:
+                            if isinstance(e, datetime):
+                                e = e.strftime(date_format)
+                            list_.append(e)
+                        info.append(list_)
+                        
+                    else:   
+                        if isinstance(each, datetime):
+                            print(each)
+                            each = each.strftime(date_format)
+                        info.append(each)
             else:
-                valueGotten = valueGotten.strftime(date_format)
-                info.append(valueGotten)
-            print(info)
+                if isinstance(each, datetime):
+                    each = valueGotten.strftime(date_format)
+                info.append(each)
+
             SetVar(var_, info)
             
         if date_format is None:
@@ -2593,8 +2606,7 @@ def get_filtered_cells(sheet, range_, result, extends, excel, xls, wb):
         else:
             cell_values = cell_values + \
                 range_cell if len(cell_values) > 0 else range_cell
-
-
+            
 if module == "GetCountCells":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
@@ -2781,7 +2793,7 @@ if module == "find":
     match_case = GetParams("match_case")
     find_all = GetParams("find_all")
     var_ = GetParams("var_")
-
+    from openpyxl.utils.cell import get_column_letter
     try:
         wb_sheets = [sh.name for sh in wb.sheets]
         sheet=None
@@ -2806,10 +2818,17 @@ if module == "find":
             match_case = False
         else:
             match_case = eval(match_case)
+        if not range_ or range_ =="":
+            #armo rango segun la hoja
+            range1 = sheet_selected.used_range.last_cell.row
+            range2 = sheet_selected.used_range.last_cell.column
+            range_ = f"A1:" + get_column_letter(range2) + str(range1)
+ 
         
         if platform.system() == "Windows":        
             if find_all and eval(find_all):
                 matches = []
+                                
                 range_obj = sheet_selected.api.Range(range_)
                 result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
                 try:
