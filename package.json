@@ -8904,19 +8904,19 @@
     {
       "en": {
         "title": "Close XLSX",
-        "description": "Close the workbook opened by Rocketbot",
+        "description": "Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Cerrar XLSX",
-        "description": "Cierra el libro abierto por Rocketbot",
+        "description": "Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Fechar XLSX",
-        "description": "Fecha o arquivo aberto por Rocketbot",
+        "description": "Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.",
         "title_options": null,
         "options": null
       },
