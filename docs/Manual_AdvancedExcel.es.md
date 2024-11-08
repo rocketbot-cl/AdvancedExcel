@@ -724,7 +724,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   
@@ -751,14 +751,14 @@ Guarda un archivo Excel
 
 ### Guardar Excel
   
-Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') en la ruta indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
 
 ### Cerrar XLSX
   
-Cierra el libro abierto por Rocketbot
+Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||

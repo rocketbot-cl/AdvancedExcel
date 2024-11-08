@@ -250,10 +250,10 @@ Imprime una hoja
 Guarda un archivo Excel
 
 78. Guardar Excel  
-Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv') en la ruta indicada
+Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') en la ruta indicada
 
 79. Cerrar XLSX  
-Cierra el libro abierto por Rocketbot  
+Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.  
 
 
 

@@ -724,7 +724,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   
@@ -751,14 +751,14 @@ Salva um arquivo Excel
 
 ### Salvar Excel
   
-Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls' or '.csv')  na ruta indicada
+Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn')  na ruta indicada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Salvar Excel|Caminho onde salvar o arquivo .xlsx|/Users/user/Desktop/excel.xlsx|
 
 ### Fechar XLSX
   
-Fecha o arquivo aberto por Rocketbot
+Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Matar processo|Si se marca esta casilla, cerrará por completo o processo.||

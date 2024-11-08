@@ -250,10 +250,10 @@ Prints a sheet
 Save a Excel file
 
 78. Save Excel  
-Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
+Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicated path
 
 79. Close XLSX  
-Close the workbook opened by Rocketbot  
+Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.  
 
 
 
