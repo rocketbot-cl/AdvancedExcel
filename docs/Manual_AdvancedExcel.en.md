@@ -722,7 +722,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
 
 ### Convert Excel time to hours
   
@@ -749,14 +749,14 @@ Save a Excel file
 
 ### Save Excel
   
-Save an Excel file (as '.xlsx', 'xlsm', '.xls' or '.csv') in the indicated path
+Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicated path
 |Parameters|Description|example|
 | --- | --- | --- |
 |Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
 
 ### Close XLSX
   
-Close the workbook opened by Rocketbot
+Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Kill process |If this box is marked, the process will be completely closed.||

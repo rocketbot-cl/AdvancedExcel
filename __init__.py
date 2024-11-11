@@ -2288,8 +2288,12 @@ if module == "save_mac":
     try:
         if path_file == xls["path"]:
             wb.api.Save()
-        else:
-            wb.api.SaveAs(path_file.replace("/", os.sep), CreateBackup=False, **args)
+        else: 
+            if path_file.endswith(".prn"):
+                df = pd.read_excel(xls["path"], header=None, dtype=str)
+                df.to_csv(path_file.replace("/", os.sep), sep=' ', index=False, header=False)
+            else:
+                wb.api.SaveAs(path_file.replace("/", os.sep), CreateBackup=False, **args)
     except:
         wb.save(path_file)
 
