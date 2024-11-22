@@ -121,6 +121,17 @@ Change color of a cell or range of cells. Can be a default color or custom
 |RGB color cell |RGB values of the color that will be the cell or cells|250,250,250|
 |Select color |Select the color. You can use the previous input to customize the color|red|
 
+### Font color
+  
+Change the text color in a cell or range of cells. You can use a default or custom color
+|Parameters|Description|example|
+| --- | --- | --- |
+|Cells |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B5|
+|Sheet |Workbook sheet|Sheet1|
+|Entire sheet|If this box is checked, the color will be applied to the entire sheet.||
+|RGB color cell |RGB values of the color that will be the cell or cells|250,250,250|
+|Select color |Select the color. You can use the previous input to customize the color|red|
+
 ### Get Cell Color
   
 Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
@@ -722,7 +733,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
 
 ### Convert Excel time to hours
   
