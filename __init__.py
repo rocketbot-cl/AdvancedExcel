@@ -365,10 +365,8 @@ if module == "FontColor":
             xw.sheets[sheet].api.Cells.Font.Color = xw.utils.rgb_to_int(rgb)
         else:            
             if sheet_:
-                print("estoyaqui")
                 xw.sheets[sheet].range(range_).api.Font.Color = xw.utils.rgb_to_int(rgb)
             elif range_:
-                print("estoy en el else")
                 xw.Range(range_).api.Font.Color = xw.utils.rgb_to_int(rgb)
             else:
                 raise Exception('Must select sheet or range.')
