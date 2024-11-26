@@ -123,6 +123,17 @@ Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito
 |Cor da célula em RGB |Valores rgb da cor que terá a célula ou células|250,250,250|
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
+### Cor da fonte
+  
+Altere a cor da fonte do texto em uma célula ou intervalo de células. Pode ser uma cor predefinida ou personalizada
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Células |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B5|
+|Folha |Planilha da pasta de trabalho|Folha1|
+|Folha inteira|Se marcar esta caixa, a cor será aplicada a toda a folha.||
+|Cor da célula em RGB |Valores rgb da cor que terá a célula ou células|250,250,250|
+|Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
+
 ### Obter cor da célula
   
 Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
@@ -724,7 +735,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   

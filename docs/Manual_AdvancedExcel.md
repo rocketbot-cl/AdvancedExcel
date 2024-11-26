@@ -123,6 +123,17 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 |Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
+### Color fuente
+  
+Cambie el color de fuente del texto en una celda o rango de celdas. Puede ser un color predeterminado o personalizado
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Ingrese celdas |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B5|
+|Hoja |Hoja del libro|Hoja1|
+|Toda la hoja|Si se marca esta casilla, el color se aplicara a toda la hoja.||
+|Ingrese color en RGB |Valores rgb del color que tendrá la celda o celdas|250,250,250|
+|Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
+
 ### Obtener color de celda
   
 Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
@@ -724,7 +735,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   

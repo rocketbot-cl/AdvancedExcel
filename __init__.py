@@ -326,6 +326,56 @@ if module == "CellColor":
         traceback.print_exc()
         PrintException()
         raise e
+    
+if module == "FontColor":
+
+    import traceback
+    
+    range_ = GetParams("range")
+    sheet_ = GetParams("sheet")
+    all_ = GetParams("all")
+    color = GetParams("color")
+    custom = GetParams("custom")
+    
+    try:
+        if color == "red":
+            rgb = (255, 0, 0)
+
+        elif color == "blue":
+            rgb = (0, 0, 255)
+        elif color == "green":
+            rgb = (0, 255, 0)
+        elif color == "grey":
+            rgb = (130, 130, 130)
+        elif color == "yell":
+            rgb = (255, 255, 0)
+        else:
+            rgb = eval(custom)
+        
+        wb_sheets = [sh.name for sh in wb.sheets]
+        sheet=None
+        for s in wb_sheets:
+            if s.strip() == sheet_:
+                sheet = s
+                break       
+        if not sheet:
+            raise Exception(f"The name {sheet_} does not exist in the book")        
+                
+        if all_ and eval(all_) == True:
+            xw.sheets[sheet].api.Cells.Font.Color = xw.utils.rgb_to_int(rgb)
+        else:            
+            if sheet_:
+                xw.sheets[sheet].range(range_).api.Font.Color = xw.utils.rgb_to_int(rgb)
+            elif range_:
+                xw.Range(range_).api.Font.Color = xw.utils.rgb_to_int(rgb)
+            else:
+                raise Exception('Must select sheet or range.')
+
+    except Exception as e:
+        traceback.print_exc()
+        PrintException()
+        raise e
+
 
 if module == "GetColor":
     
