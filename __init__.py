@@ -1384,6 +1384,9 @@ if module == "xlsx_to_csv":
         wb = xw.Book(xlsx_path)
         sheet = wb.sheets[sheet_name]
         
+        if delimiter in ["t", "TAB", "tab"]:
+            delimiter = "\t"
+            
         # The VBA API was dicarded because it has trouble with special characters
         # wb.sheets[sheet_name].api.Copy()
         # xw.books.active.api.SaveAs(csv_path, 6, ConflictResolution = 2)
@@ -3512,6 +3515,27 @@ try:
 
         with open(json_path, 'w',encoding='utf-8') as f:
             json.dump(json_result, f, indent=4)
+        
+    if module == "combine":
+        path = GetParams("path")
+        excel_combi = GetParams("excel_combi")
+        var = GetParams("var")
+
+        dataframes = []
+        files = [f for f in os.listdir(path) if f.endswith('.xlsx')]
+        for file in files:
+            xls = pd.ExcelFile(os.path.join(path, file))
+            dfs = []
+            for sheet_name in xls.sheet_names:
+                df = pd.read_excel(xls, sheet_name)
+                dfs.append(df)
+            df_combined = pd.concat(dfs, axis=1)
+            dataframes.append(df_combined)
+        df_final = pd.concat(dataframes, ignore_index=True)
+        df_final.to_excel(excel_combi, index=False)
+
+        if var:
+            SetVar(var, True)
         
 except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")

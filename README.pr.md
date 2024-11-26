@@ -246,16 +246,19 @@ Executa a opção texto em coluna de excel
 76. Converter tempo de Excel para horas  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
-77. Imprimir planilha  
+77. Combinar planilhas  
+Combine planilhas do Excel que estão na mesma pasta
+
+78. Imprimir planilha  
 Imprime uma planilha
 
-78. Salvar Excel com senha  
+79. Salvar Excel com senha  
 Salva um arquivo Excel
 
-79. Salvar Excel  
+80. Salvar Excel  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn')  na ruta indicada
 
-80. Fechar XLSX  
+81. Fechar XLSX  
 Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.  
 
 

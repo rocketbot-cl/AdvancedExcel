@@ -735,7 +735,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   
@@ -744,6 +744,15 @@ Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 | --- | --- | --- |
 |Ingrese el tiempo en formato decimal ||0.296655812|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+
+### Combinar planillas
+  
+Combina planillas de Excel que estén en la misma carpeta
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Carpeta|Ruta hacia la carpeta que contiene los archivos .xlsx a combinar|/Users/user/Desktop/archivos|
+|Excel destino |Ruta hacia el excel destino, incluyendo extensión .xlsx|/Users/user/Desktop/excel.xlsx|
+|Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Imprimir hoja
   

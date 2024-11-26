@@ -733,7 +733,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
 
 ### Convert Excel time to hours
   
@@ -742,6 +742,15 @@ Convert Excel time to hours. Returns the format as hh: mm: ss
 | --- | --- | --- |
 |Decimal time ||0.296655812|
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
+
+### Combine spreadsheets
+  
+Shows one or more rows, or one or more columns that are hidden
+|Parameters|Description|example|
+| --- | --- | --- |
+|Folder |Path to the folder that contains the .xlsx files to be combined|/Users/user/Desktop/files|
+|Combined Excel |Path to the destination excel, including .xlsx extension|/Users/user/Desktop/excel.xlsx|
+|Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Print sheet
   
