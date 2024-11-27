@@ -8881,19 +8881,19 @@
     {
       "en": {
         "title": "Combine spreadsheets",
-        "description": "Shows one or more rows, or one or more columns that are hidden",
+        "description": "Combine Excel spreadsheets that are in the same folder and have the same headers. It will combine horizontally the sheets of the same spreadsheet and vertically the different spreadsheets.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Combinar planillas",
-        "description": "Combina planillas de Excel que estén en la misma carpeta",
+        "description": "Combina planillas de Excel que estén en la misma carpeta y que tengan los mismos encabezados. Combinará horizontalmente las hojas de la misma planilla y verticalmente las planillas diferentes.",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Combinar planilhas",
-        "description": "Combine planilhas do Excel que estão na mesma pasta",
+        "description": "Combine planilhas do Excel que estão na mesma pasta e que tenhamos o mesmo cabecalho. Combinar horizontalmente as planilhas da mesma planilha e verticalmente as planilhas diferentes.",
         "title_options": null,
         "options": null
       },
