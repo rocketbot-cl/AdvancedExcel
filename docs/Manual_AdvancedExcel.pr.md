@@ -735,7 +735,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   
@@ -744,6 +744,15 @@ Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 | --- | --- | --- |
 |Insere o tempo no formato decimal ||0.296655812|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
+
+### Combinar planilhas
+  
+Combine planilhas do Excel que estão na mesma pasta
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Arquivo |Caminho para a pasta que contém os arquivos .xlsx a serem combinados|/Users/user/Desktop/arquivos|
+|Excel combinado |Caminho para o Excel de destino, incluindo extensão .xlsx|/Users/user/Desktop/excel.xlsx|
+|Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Imprimir planilha
   

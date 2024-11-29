@@ -246,16 +246,19 @@ Parses a column of cells that contain text into several columns.
 76. Convert Excel time to hours  
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
-77. Print sheet  
+77. Combine spreadsheets  
+Shows one or more rows, or one or more columns that are hidden
+
+78. Print sheet  
 Prints a sheet
 
-78. Save Excel with password  
+79. Save Excel with password  
 Save a Excel file
 
-79. Save Excel  
+80. Save Excel  
 Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicated path
 
-80. Close XLSX  
+81. Close XLSX  
 Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.  
 
 

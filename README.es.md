@@ -246,16 +246,19 @@ Ejecuta la opción texto en columna de excel
 76. Convertir tiempo de Excel a horas  
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
-77. Imprimir hoja  
+77. Combinar planillas  
+Combina planillas de Excel que estén en la misma carpeta
+
+78. Imprimir hoja  
 Imprime una hoja
 
-78. Guardar Excel con password  
+79. Guardar Excel con password  
 Guarda un archivo Excel
 
-79. Guardar Excel  
+80. Guardar Excel  
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') en la ruta indicada
 
-80. Cerrar XLSX  
+81. Cerrar XLSX  
 Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.  
 
 
