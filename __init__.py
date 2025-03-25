@@ -3361,10 +3361,10 @@ try:
                 app.quit()
                 
                 # Procesar el archivo TXT para eliminar los espacios en blanco al final de cada línea.
-                with open(file_path_txt, 'r', encoding='utf-8') as infile:
+                with open(file_path_txt, 'r', encoding='utf-8', errors='ignore') as infile:
                     lines = [line.rstrip() for line in infile]
 
-                with open(file_path_txt, 'w', encoding='utf-8') as outfile:
+                with open(file_path_txt, 'w', encoding='utf-8', errors='ignore') as outfile:
                     outfile.write('\n'.join(lines))
                     
             except Exception as e:
