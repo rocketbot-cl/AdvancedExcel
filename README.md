@@ -247,7 +247,7 @@ Parses a column of cells that contain text into several columns.
 Convert Excel time to hours. Returns the format as hh: mm: ss
 
 77. Combine spreadsheets  
-Shows one or more rows, or one or more columns that are hidden
+Combine Excel spreadsheets that are in the same folder and have the same headers. It will combine horizontally the sheets of the same spreadsheet and vertically the different spreadsheets.
 
 78. Print sheet  
 Prints a sheet

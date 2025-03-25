@@ -1375,6 +1375,7 @@ if module == "xlsx_to_csv":
     xlsx_path = GetParams("xlsx_path")
     delimiter = GetParams("delimiter")
     sheet_name = GetParams("sheet_name")
+    tieneSaltos = GetParams("tieneSaltos")
 
     try:
         import xlwings as xw
@@ -1399,6 +1400,7 @@ if module == "xlsx_to_csv":
                 for value in row:
                     if isinstance(value, str):
                         value = ''.join(i for i in value if ord(i)<128)
+                        pass
                     if isinstance(value, float):
                         if value.is_integer():
                             value = int(value)
@@ -1408,15 +1410,17 @@ if module == "xlsx_to_csv":
         except TypeError:
             for value in used_range:
                 if isinstance(value, str):
-                    value = ''.join(i for i in value if ord(i)<128)
+                    value = ''.join(i for i in value if ord(i)<128)                    
                 if isinstance(value, float):
                     if value.is_integer():
                         value = int(value)
                 row_.append(value)
             sheet_.append(row_)
-                 
-        with open(csv_path, 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        
+        quoting_option = csv.QUOTE_ALL if tieneSaltos.lower() == "true" else csv.QUOTE_MINIMAL
+
+        with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile, delimiter=delimiter, quotechar='"', quoting=quoting_option)
             writer.writerows(sheet_)
 
         wb.close()
@@ -3353,6 +3357,16 @@ try:
                 wb = app.api.Workbooks.Open(file_path_xlsx, False, None, None, None, None, IgnoreReadOnlyRecommended=True, CorruptLoad=0)          
                 sleep(2)
                 wb.SaveAs(file_path_txt,21)
+                wb.Close(False)
+                app.quit()
+                
+                # Procesar el archivo TXT para eliminar los espacios en blanco al final de cada línea.
+                with open(file_path_txt, 'r', encoding='utf-8') as infile:
+                    lines = [line.rstrip() for line in infile]
+
+                with open(file_path_txt, 'w', encoding='utf-8') as outfile:
+                    outfile.write('\n'.join(lines))
+                    
             except Exception as e:
                 raise e
         else:

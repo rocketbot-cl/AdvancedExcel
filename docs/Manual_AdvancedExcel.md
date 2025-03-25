@@ -316,6 +316,7 @@ Convierte un documento XLSX a CSV
 |Ruta archivo XLSX|Ruta del archivo xlsx que se quiere convertir|C:/Users/User/Desktop/file.xlsx|
 |Delimitador|Separador del archivo csv|,|
 |Nombre de la hoja|Nombre de la hoja donde se encuentran los datos|Sheet0|
+|Celdas con saltos de linea|Marque esta casilla si en sus celdas hay saltos de linea|True|
 |Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
 
 ### Convertir XLS a XLSX
@@ -747,7 +748,7 @@ Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
 ### Combinar planillas
   
-Combina planillas de Excel que estén en la misma carpeta
+Combina planillas de Excel que estén en la misma carpeta y que tengan los mismos encabezados. Combinará horizontalmente las hojas de la misma planilla y verticalmente las planillas diferentes.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Carpeta|Ruta hacia la carpeta que contiene los archivos .xlsx a combinar|/Users/user/Desktop/archivos|

@@ -247,7 +247,7 @@ Ejecuta la opción texto en columna de excel
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 
 77. Combinar planillas  
-Combina planillas de Excel que estén en la misma carpeta
+Combina planillas de Excel que estén en la misma carpeta y que tengan los mismos encabezados. Combinará horizontalmente las hojas de la misma planilla y verticalmente las planillas diferentes.
 
 78. Imprimir hoja  
 Imprime una hoja
