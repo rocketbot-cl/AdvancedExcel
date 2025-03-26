@@ -314,6 +314,7 @@ Convert a xlsx document to csv
 |XLSX file path|Path of the xlsx file to be converted|C:/Users/User/Desktop/file.xlsx|
 |Delimiter|Delimiter of the csv file|,|
 |Sheet name|Name of the sheet where the data are located|Sheet0|
+|Cells with line breaks|Check this box if your cells contain line breaks|True|
 |CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
 
 ### Convert XLS to XLSX
@@ -745,7 +746,7 @@ Convert Excel time to hours. Returns the format as hh: mm: ss
 
 ### Combine spreadsheets
   
-Shows one or more rows, or one or more columns that are hidden
+Combine Excel spreadsheets that are in the same folder and have the same headers. It will combine horizontally the sheets of the same spreadsheet and vertically the different spreadsheets.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Folder |Path to the folder that contains the .xlsx files to be combined|/Users/user/Desktop/files|

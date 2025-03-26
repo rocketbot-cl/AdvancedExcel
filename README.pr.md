@@ -247,7 +247,7 @@ Executa a opção texto em coluna de excel
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 
 77. Combinar planilhas  
-Combine planilhas do Excel que estão na mesma pasta
+Combine planilhas do Excel que estão na mesma pasta e que tenhamos o mesmo cabecalho. Combinar horizontalmente as planilhas da mesma planilha e verticalmente as planilhas diferentes.
 
 78. Imprimir planilha  
 Imprime uma planilha
