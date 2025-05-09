@@ -8,17 +8,12 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs\Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
-
-
-
-## Como usar este módulo
-Para usar este módulo, você deve ter o Microsoft Excel instalado.
 
 
 ## Descrição do comando
@@ -783,3 +778,11 @@ Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arqu
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Matar processo|Si se marca esta casilla, cerrará por completo o processo.||
+
+### Eliminar Estilos
+  
+Remover estilos em uma planilha
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Nome da planilha|Nome da planilha da qual você deseja excluir estilos|Folha2|
+|Atribuir resultado a variável|Nome da variável para armazenar o resultado|Variável|
