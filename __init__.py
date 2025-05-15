@@ -3555,3 +3555,34 @@ except Exception as e:
     print("\x1B[" + "31;40mError\x1B[" + "0m")
     PrintException()
     raise e
+
+if module == "deleteStyles":
+
+    sheet_ = GetParams("sheet_name")  
+    var_ = GetParams("var_")         
+    res = False
+
+
+    wb_sheets = [sh.name for sh in wb.sheets]
+    sheet = None
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+
+    if not sheet:
+        SetVar(var_, res)
+        raise Exception(f"The sheet '{sheet_}' does not exist in the workbook")
+    
+
+    ws = wb.sheets[sheet]
+
+   
+    try:
+        ws.clear_formats()
+    except:
+        ws.used_range.api.ClearFormats()
+    res = True  
+
+    
+    SetVar(var_, res)

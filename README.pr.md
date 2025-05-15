@@ -259,7 +259,10 @@ Salva um arquivo Excel
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn')  na ruta indicada
 
 81. Fechar XLSX  
-Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.  
+Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.
+
+82. Eliminar Estilos  
+Remover estilos em uma planilha  
 
 
 

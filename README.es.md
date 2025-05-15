@@ -259,7 +259,10 @@ Guarda un archivo Excel
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') en la ruta indicada
 
 81. Cerrar XLSX  
-Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.  
+Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.
+
+82. Eliminar Estilos  
+Elimina estilos en una hoja  
 
 
 

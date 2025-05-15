@@ -259,7 +259,10 @@ Save a Excel file
 Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicated path
 
 81. Close XLSX  
-Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.  
+Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.
+
+82. Delete Styles  
+Removes styles on a sheet  
 
 
 
