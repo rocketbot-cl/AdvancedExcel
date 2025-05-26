@@ -8,12 +8,17 @@ Aplique filtros automáticos e avançados, formate células, adicione ou exclua 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs\Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
   
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
+
+
+
+## Como usar este módulo
+Para usar este módulo, você deve ter o Microsoft Excel instalado.
 
 
 ## Descrição do comando
@@ -461,6 +466,7 @@ Este comando modifica o formata a célula o intervalo de células selecionado. V
 |Ajustar Texto||True|
 |Alinhamento Horizontal|Tipo de alinhamento horizontal da célula que deseja formatar|Alignment|
 |Alinhamento Vertical|Tipo de alinhamento vertical da célula que deseja formatar|Alignment|
+|Fonte|Tipo de fonte que deseja formatar|Arial|
 
 ### Colar em Células
   

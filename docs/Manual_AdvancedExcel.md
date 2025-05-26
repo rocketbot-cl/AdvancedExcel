@@ -8,12 +8,15 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs\Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+
+## How to use this module
+To use this module, you must have Microsoft Excel installed.
 
 
 ## Description of the commands
@@ -461,6 +464,7 @@ This command modifies the formatting of the selected cell or range of cells. You
 |Adjust Text||True|
 |Horizontal Alignment|Type of horizontal alignment of the cell that you want to format|Alignment|
 |Vertical Alignment|Type of vertical alignment of the cell that you want to format|Alignment|
+|Font|Type of font that you want to format|Arial|
 
 ### Paste in Cells
   
