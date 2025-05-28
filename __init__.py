@@ -2159,6 +2159,8 @@ if module == "style_cells":
 
     horizontal = GetParams("horizontal")
     vertical = GetParams("vertical")
+
+    font_name = GetParams("font_name")
     
     try:
         
@@ -2185,6 +2187,9 @@ if module == "style_cells":
 
                 rng.Borders(position).LineStyle = line_style
 
+        if font_name:
+            rng.Font.Name = font_name
+            
         if font_size and font_size.isnumeric:
             rng.Font.Size = int(font_size)
             
