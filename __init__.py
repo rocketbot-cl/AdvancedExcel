@@ -1530,7 +1530,11 @@ if module == "hide":
 
         sheet_selected = wb.sheets[sheet]
 
-        if range.replace(':', '').isnumeric():
+        if not range:
+            sheet_selected.api.Visible = 0
+            if result:
+                SetVar(result, True)
+        elif range.replace(':', '').isnumeric():
             if ":" in range:
                 sheet_selected.range(range).api.EntireRow.Hidden = True
             else:
@@ -1574,7 +1578,11 @@ if module == "show":
             
         sheet_selected = wb.sheets[sheet]
             
-        if range.replace(':', '').isnumeric():
+        if not range:
+            sheet_selected.api.Visible = -1
+            if result:
+                SetVar(result, True)
+        elif range.replace(':', '').isnumeric():
             if ":" in range:
                 sheet_selected.range(range).api.EntireRow.Hidden = False
             else:
