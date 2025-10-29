@@ -100,7 +100,7 @@ Oculta una o varias filas, o una o varias columnas.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja|Hoja1|
-|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB)|1:3|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).Si se deja vacío se oculta la página entera que se indique|1:3|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Mostrar
@@ -109,7 +109,7 @@ Muestra una o varias filas, o una o varias columnas que estén ocultas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja|Nombre de la hoja|Hoja1|
-|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).|1:3|
+|Rango|Para un rango de filas utilizar números separados por dos puntos (13) Para rango de columnas utilizar letras(AB).Si se deja vacío se muestra la página entera que se indique|1:3|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Color celda
@@ -737,7 +737,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   
