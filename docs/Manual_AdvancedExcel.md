@@ -98,7 +98,7 @@ Hides one or more rows, or one or more columns.
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet|Sheet1|
-|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Range |For a range of rows, use numbers separated by colons (13). For a range of columns, use letters (AB). Leaving this blank will hide the entire specified page.|1:3|
 |Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Show
@@ -107,7 +107,7 @@ Shows one or more rows, or one or more columns that are hidden
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet|Sheet1|
-|Range |For a range of rows use numbers separated by two dots (13). For a range of columns use letters (AB)|1:3|
+|Range |For a range of rows, use numbers separated by colons (13). For a range of columns, use letters (AB). If left blank, the entire specified page will be displayed.|1:3|
 |Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Cell color
@@ -735,7 +735,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
 
 ### Convert Excel time to hours
   

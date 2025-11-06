@@ -100,7 +100,7 @@ Oculta uma ou várias linhas, ou uma ou várias colunas.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha|Planilha1|
-|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Intervalo |Para um intervalo de linhas, use números separados por dois pontos (13). Para um intervalo de colunas, use letras (AB). Deixar este campo em branco ocultará toda a página especificada.|1:3|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Ocultar
@@ -109,7 +109,7 @@ Mostra uma ou mais linhas, ou uma ou mais colunas que estão ocultas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha|Planilha1|
-|Intervalo |Para um intervalo de linhas utilizar números separados por dois pontos (13). Para intervalo de colunas utilizar letras (AB)|1:3|
+|Intervalo |Para um intervalo de linhas, use números separados por dois pontos (13). Para um intervalo de colunas, use letras (AB). Se deixado em branco, toda a página especificada será exibida.|1:3|
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Cor da célula
@@ -737,7 +737,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   
