@@ -3599,3 +3599,41 @@ if module == "deleteStyles":
 
     
     SetVar(var_, res)
+    
+if module == "vinculo":
+    hoja_ = GetParams("hoja")          
+    celda = GetParams("celda") 
+    hoja_destino = GetParams("hoja_destino")  
+    celda_destino = GetParams("celda_destino")    
+    var_ = GetParams("var_")           
+
+    try:
+        if not celda_destino:
+            celda_destino = "A1"
+
+        wb_sheets = [sh.name for sh in wb.sheets]
+        if  hoja_ not in wb_sheets or hoja_destino not in wb_sheets:
+            raise Exception("Some of the pages are missing from the book")
+        
+        
+        current_value = wb.sheets[ hoja_].range(celda).value
+
+        # Si la celda está vacía, usar texto por defecto
+        if not current_value:
+            current_value = f"Ir a {hoja_destino}"
+
+        # Crear vínculo interno
+        wb.sheets[hoja_].api.Hyperlinks.Add(
+            Anchor=wb.sheets[ hoja_].range(celda).api,
+            Address="",
+            SubAddress=f"'{hoja_destino}'!{celda_destino}",
+            TextToDisplay=current_value
+        )
+        wb.sheets[ hoja_].autofit()
+        result = f"link created in {hoja_}!{celda} toward {hoja_destino}!{celda_destino}"
+        if var_:
+            SetVar(var_, result)
+
+    except Exception as e:
+        PrintException()
+        raise e

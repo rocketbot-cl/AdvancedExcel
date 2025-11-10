@@ -792,3 +792,14 @@ Remover estilos em uma planilha
 | --- | --- | --- |
 |Nome da planilha|Nome da planilha da qual você deseja excluir estilos|Folha2|
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|Variável|
+
+### Inserir link
+  
+Inserir link de uma célula para uma planilha
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Folha de origem|Nome da planilha onde o hiperlink será criado.|Folha1|
+|Célula de Origem|Endereço da célula onde o hiperlink será inserido.|A1|
+|Folha destino|Nome da planilha para a qual o hiperlink aponta.|Folha 2|
+|Célula de destino|O endereço da célula específica para a qual navegar dentro da planilha de destino. O padrão é A1.|A2|
+|Atribuir resultado a variável|Nome da variável onde o resultado será armazenado.|Variável|
