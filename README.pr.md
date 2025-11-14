@@ -262,7 +262,10 @@ Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn')  na ruta
 Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.
 
 82. Eliminar Estilos  
-Remover estilos em uma planilha  
+Remover estilos em uma planilha
+
+83. Inserir link  
+Inserir link de uma célula para uma planilha  
 
 
 

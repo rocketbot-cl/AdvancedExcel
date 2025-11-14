@@ -792,3 +792,14 @@ Elimina estilos en una hoja
 | --- | --- | --- |
 |Nombre de la hoja|Nombre de la hoja que se quiere eliminar estilos|Sheet2|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+
+### Insertar vinculo
+  
+Inserta vinculo de una celda a una hoja
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja origen|Nombre de la hoja de cálculo donde se creará el hipervínculo|Hoja1|
+|Celda origen|Dirección de la celda donde se colocará el hipervínculo.|A1|
+|Hoja destino|Nombre de la hoja de cálculo a la que dirige el hipervínculo.|Hoja2|
+|Celda destino|Dirección de la celda específica a la que se navegará dentro de la hoja destino. Por defecto es A1|A2|
+|Asignar resultado a variable|Nombre de la variable donde guardará el resultado|Variable|
