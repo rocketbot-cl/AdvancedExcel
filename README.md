@@ -262,7 +262,10 @@ Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicat
 Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.
 
 82. Delete Styles  
-Removes styles on a sheet  
+Removes styles on a sheet
+
+83. Insert link  
+Insert link from a cell to a sheet  
 
 
 

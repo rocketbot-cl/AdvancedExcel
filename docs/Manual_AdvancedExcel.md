@@ -8,7 +8,7 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:
@@ -789,4 +789,15 @@ Removes styles on a sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet name|Name of the sheet from which you want to delete styles|Sheet2|
+|Assign result to variable|Name of the variable where the result will be stored|Variable|
+
+### Insert link
+  
+Insert link from a cell to a sheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Origin sheet|Name of the spreadsheet where the hyperlink will be created|Sheet1|
+|Origin Cell|Address of the cell where the hyperlink will be placed.|A1|
+|Destination sheet|Name of the spreadsheet to which the hyperlink points.|Sheet2|
+|Destination cell|The address of the specific cell to navigate to within the destination sheet. The default is A1.|A2|
 |Assign result to variable|Name of the variable where the result will be stored|Variable|

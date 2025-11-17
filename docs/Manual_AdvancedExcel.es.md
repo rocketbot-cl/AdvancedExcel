@@ -8,7 +8,7 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
@@ -792,3 +792,14 @@ Elimina estilos en una hoja
 | --- | --- | --- |
 |Nombre de la hoja|Nombre de la hoja que se quiere eliminar estilos|Sheet2|
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
+
+### Insertar vinculo
+  
+Inserta vinculo de una celda a una hoja
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja origen|Nombre de la hoja de cálculo donde se creará el hipervínculo|Hoja1|
+|Celda origen|Dirección de la celda donde se colocará el hipervínculo.|A1|
+|Hoja destino|Nombre de la hoja de cálculo a la que dirige el hipervínculo.|Hoja2|
+|Celda destino|Dirección de la celda específica a la que se navegará dentro de la hoja destino. Por defecto es A1|A2|
+|Asignar resultado a variable|Nombre de la variable donde guardará el resultado|Variable|
