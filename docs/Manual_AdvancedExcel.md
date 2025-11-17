@@ -8,7 +8,7 @@ Apply automatic and advanced filters, format cells, add or delete sheets, rows o
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## How to install this module
   
 To install the module in Rocketbot Studio, it can be done in two ways:

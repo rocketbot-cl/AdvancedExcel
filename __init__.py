@@ -3600,7 +3600,7 @@ if module == "deleteStyles":
     
     SetVar(var_, res)
     
-if module == "vinculo":
+if module == "insertLink":
     hoja_ = GetParams("hoja")          
     celda = GetParams("celda") 
     hoja_destino = GetParams("hoja_destino")  

@@ -8,7 +8,7 @@ Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimi
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
   
-![banner](imgs/Banner_AdvancedExcel.png)
+![banner](imgs/Banner_AdvancedExcel.png o jpg)
 ## Como instalar este módulo
   
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
