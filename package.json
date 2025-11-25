@@ -7,7 +7,7 @@
     "pr": "Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "34.41.36",
+  "version": "34.41.37",
   "license": "MIT",
   "homepage": "http://rocketbot.com/",
   "linux": false,
@@ -9390,19 +9390,19 @@
     {
       "en": {
         "title": "Insert link",
-        "description": "Insert link from a cell to a sheet",
+        "description": "Insert a link in a cell, either to an external URL or to a cell within another spreadsheet.",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Insertar vinculo",
-        "description": "Inserta vinculo de una celda a una hoja",
+        "description": "Inserta un vínculo en una celda, ya sea a una URL externa o a una celda dentro de otra hoja de cálculo.",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Inserir link",
-        "description": "Inserir link de uma célula para uma planilha",
+        "description": "Insira um link em uma célula, seja para um URL externo ou para uma célula em outra planilha.",
         "title_options": null,
         "options": null
       },
@@ -9487,6 +9487,26 @@
               "pr": "O endereço da célula específica para a qual navegar dentro da planilha de destino. O padrão é A1."
             },
             "id": "celda_destino",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A2",
+              "en": "A2",
+              "pr": "A2"
+            },
+            "title": {
+              "es": "Url:",
+              "en": "Url:",
+              "pr": "Url:"
+            },
+            "description": {
+              "es": "Url a la que se dirigira el hipervínculo.",
+              "en": "URL to which the hyperlink will point.",
+              "pr": "URL para a qual o hiperlink apontará."
+            },
+            "id": "url",
             "css": "col-md-6"
           },
           {

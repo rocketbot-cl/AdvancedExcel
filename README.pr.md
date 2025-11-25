@@ -265,7 +265,7 @@ Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arqu
 Remover estilos em uma planilha
 
 83. Inserir link  
-Inserir link de uma célula para uma planilha  
+Insira um link em uma célula, seja para um URL externo ou para uma célula em outra planilha.  
 
 
 

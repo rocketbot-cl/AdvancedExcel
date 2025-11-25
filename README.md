@@ -265,7 +265,7 @@ Close the workbook opened by Rocketbot. The behavior of only closing one excel, 
 Removes styles on a sheet
 
 83. Insert link  
-Insert link from a cell to a sheet  
+Insert a link in a cell, either to an external URL or to a cell within another spreadsheet.  
 
 
 
