@@ -265,7 +265,7 @@ Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un exc
 Elimina estilos en una hoja
 
 83. Insertar vinculo  
-Inserta vinculo de una celda a una hoja  
+Inserta un vínculo en una celda, ya sea a una URL externa o a una celda dentro de otra hoja de cálculo.  
 
 
 

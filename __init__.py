@@ -3601,36 +3601,71 @@ if module == "deleteStyles":
     SetVar(var_, res)
     
 if module == "insertLink":
-    hoja_ = GetParams("hoja")          
-    celda = GetParams("celda") 
-    hoja_destino = GetParams("hoja_destino")  
-    celda_destino = GetParams("celda_destino")    
-    var_ = GetParams("var_")           
-
+    hoja_ = GetParams("hoja")
+    celda = GetParams("celda")
+    hoja_destino = GetParams("hoja_destino")
+    celda_destino = GetParams("celda_destino")
+    url = GetParams("url")
+    var_ = GetParams("var_")
     try:
-        if not celda_destino:
-            celda_destino = "A1"
+        if not celda:
+            raise Exception("Cell reference (celda) is required")
+
+        if not hoja_:
+            raise Exception("Source sheet (hoja) is required")
+
+        hoja_ = hoja_.strip()
+        if hoja_destino:
+            hoja_destino = hoja_destino.strip()
 
         wb_sheets = [sh.name for sh in wb.sheets]
-        if  hoja_ not in wb_sheets or hoja_destino not in wb_sheets:
-            raise Exception("Some of the pages are missing from the book")
-        
-        
-        current_value = wb.sheets[ hoja_].range(celda).value
+        if hoja_ not in wb_sheets:
+            raise Exception(f"The sheet {hoja_} does not exist in the book")
 
-        # Si la celda está vacía, usar texto por defecto
-        if not current_value:
-            current_value = f"Ir a {hoja_destino}"
+        sheet = wb.sheets[hoja_]
+        cell = sheet.range(celda)
 
-        # Crear vínculo interno
-        wb.sheets[hoja_].api.Hyperlinks.Add(
-            Anchor=wb.sheets[ hoja_].range(celda).api,
-            Address="",
-            SubAddress=f"'{hoja_destino}'!{celda_destino}",
-            TextToDisplay=current_value
-        )
-        wb.sheets[ hoja_].autofit()
-        result = f"link created in {hoja_}!{celda} toward {hoja_destino}!{celda_destino}"
+        current_value = cell.value
+
+        if hoja_destino:  
+            if hoja_destino not in wb_sheets:
+                raise Exception(f"The target sheet {hoja_destino} does not exist in the book")
+
+            if not celda_destino:
+                celda_destino = "A1"
+
+            if not current_value:
+                current_value = f"Ir a {hoja_destino}"
+
+            sheet.api.Hyperlinks.Add(
+                Anchor=cell.api,
+                Address="",
+                SubAddress=f"'{hoja_destino}'!{celda_destino}",
+                ScreenTip="",
+                TextToDisplay=current_value
+            )
+
+            result = f"Internal link created in {hoja_}!{celda} toward {hoja_destino}!{celda_destino}"
+
+        elif url:
+            if not current_value:
+                current_value = url
+
+            sheet.api.Hyperlinks.Add(
+                Anchor=cell.api,
+                Address=url,
+                SubAddress="",
+                ScreenTip="",
+                TextToDisplay=current_value
+            )
+
+            result = f"External link created in {hoja_}!{celda} toward {url}"
+
+        else:
+            raise Exception("You must provide either 'hoja_destino' for an internal link or 'url' for an external link")
+
+        sheet.autofit()
+
         if var_:
             SetVar(var_, result)
 
