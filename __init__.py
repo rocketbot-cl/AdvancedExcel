@@ -1417,7 +1417,7 @@ if module == "xlsx_to_csv":
                 row_.append(value)
             sheet_.append(row_)
         
-        quoting_option = csv.QUOTE_ALL if tieneSaltos.lower() == "true" else csv.QUOTE_MINIMAL
+        quoting_option = csv.QUOTE_ALL if tieneSaltos and tieneSaltos.lower() == "true" else csv.QUOTE_MINIMAL
 
         with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile, delimiter=delimiter, quotechar='"', quoting=quoting_option)
