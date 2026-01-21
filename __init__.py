@@ -1798,8 +1798,9 @@ if module == "getFormula":
     try:
         
         sheet = xls['sheet']
-        formula = sheet.range(cell).formula
-        formula = [list(i) for i in formula]
+        # formula = sheet.range(cell).formula
+        rng = sheet.range(cell)
+        formula = rng.api.FormulaLocal
         SetVar(result, formula)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
