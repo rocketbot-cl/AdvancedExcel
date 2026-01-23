@@ -594,6 +594,8 @@ Busca un texto en el rango indicado y retorna la celda donde se encuentra la pri
 |Buscar dentro (opcional)|Indica dónde hacer la búsqueda valor, fórmula o comentario (predeterminado valor).||
 |Distinguir mayúsculas y minúsculas|Si se marca esta casilla, buscara la cadena de texto diferenciando entre mayúsculas y minúsculas.||
 |Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
+|Buscar en todas las hojas|Si se marca esta casilla, se buscará en todas las hojas.||
+|Obtiene hoja y posicion|Si se marca esta casilla, se obtendrán todos los datos de la búsqueda.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Encontrar dato
@@ -737,7 +739,7 @@ Ejecuta la opción texto en columna de excel
 |Rango donde buscar |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |A1:B100 |
 |Seleccione separador |Seleccione el separador de celdas, puede ser ancho fijo o delimitado||
 |Seleccione tipo de delimitador |Seleccione el tipo de delimitador||
-|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|| o 20,35,22,10|
+|Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
   

@@ -2859,7 +2859,7 @@ if module == "refreshAll":
         PrintException()
         raise e
 
-if module == "find":      
+if module == "find":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
@@ -2868,77 +2868,114 @@ if module == "find":
     match_case = GetParams("match_case")
     find_all = GetParams("find_all")
     var_ = GetParams("var_")
+
+    # NUEVOS CHECKBOX
+    search_all_sheets = GetParams("search_all_sheets")
+    extra_data = GetParams("extra_data")
+    print(search_all_sheets, extra_data)
+    import platform
     from openpyxl.utils.cell import get_column_letter
+
     try:
-        wb_sheets = [sh.name for sh in wb.sheets]
-        sheet=None
-        for s in wb_sheets:
-            if s.strip() == sheet_:
-                sheet = s
-                break
-        if not sheet:
-            raise Exception(f"The name {sheet_} does not exist in the book")
-        
-        sheet_selected = wb.sheets[sheet]
-        
-        if not look_in:
-            look_in = -4163 #xlValues
+        look_in = -4163 if not look_in else eval(look_in)
+        look_at = 2 if not look_at else eval(look_at)
+        match_case = False if not match_case else eval(match_case)
+
+        wb_sheet_names = [sh.name for sh in wb.sheets]
+
+        # Resolver hojas a buscar
+        if search_all_sheets and eval(search_all_sheets):
+            sheets_to_search = wb_sheet_names
         else:
-            look_in = eval(look_in)
-        if not look_at:
-            look_at = 2 #xlPart
-        else:
-            look_at = eval(look_at)
-        if not match_case:
-            match_case = False
-        else:
-            match_case = eval(match_case)
-        if not range_ or range_ =="":
-            #armo rango segun la hoja
-            range1 = sheet_selected.used_range.last_cell.row
-            range2 = sheet_selected.used_range.last_cell.column
-            range_ = f"A1:" + get_column_letter(range2) + str(range1)
- 
-        
-        if platform.system() == "Windows":        
-            if find_all and eval(find_all):
-                matches = []
-                                
-                range_obj = sheet_selected.api.Range(range_)
-                result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-                try:
-                    while result is not None and result.Address not in matches:
-                        matches.append(result.Address)
-                        result = range_obj.FindNext(result)
-                except:
-                    while result is not None and result.address not in matches:
-                        matches.append(result.address)
-                        result = range_obj.FindNext(result)
+            sheet_selected = None
+            for s in wb_sheet_names:
+                if s.strip() == str(sheet_).strip():
+                    sheet_selected = s
+                    break
+            sheets_to_search = [sheet_selected] if sheet_selected else []
+
+        matches = [] if (find_all and eval(find_all)) else ""
+
+        for sheet_name in sheets_to_search:
+            sh = wb.sheets[sheet_name]
+
+            if not range_:
+                last_row = sh.used_range.last_cell.row
+                last_col = sh.used_range.last_cell.column
+                range_sheet = f"A1:{get_column_letter(last_col)}{last_row}"
             else:
-                result = sheet_selected.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-                try:
-                    matches = result.Address if result is not None else ""
-                except:
-                    matches = result.address if result is not None else ""
-        else:
-            if find_all and eval(find_all):
-                matches = []
-                range_obj = sheet_selected.range(range_)
-                result = range_obj.api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1,match_case = match_case)
-                while result is not None and result.get_address() not in matches:
-                    result.select()
-                    matches.append(result.get_address())
-                    result = range_obj.api.find_next(after_=result)        
+                range_sheet = range_
+
+            if platform.system() == "Windows":
+                rng = sh.api.Range(range_sheet)
+
+                if find_all and eval(find_all):
+                    found = []
+                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    while r is not None and r.Address not in found:
+                        found.append(r.Address)
+                        r = rng.FindNext(r)
+
+                    for addr in found:
+                        cell = addr.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches.append({
+                                "sheet": sheet_name,
+                                "cell": cell
+                            })
+                        else:
+                            matches.append(cell)
+
+                else:
+                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    if r is not None:
+                        cell = r.Address.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches = {
+                                "sheet": sheet_name,
+                                "cell": cell
+                            }
+                        else:
+                            matches = cell
+                        break
+
             else:
-                result = sheet_selected.range(range_).api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1, match_case = match_case)
-                matches = result.get_address() if result is not None else ""
-            
-       
-        if var_:
-            SetVar(var_, matches)
+                rng = sh.range(range_sheet)
+
+                if find_all and eval(find_all):
+                    found = []
+                    r = rng.api.find(what=text)
+                    while r is not None and r.get_address() not in found:
+                        found.append(r.get_address())
+                        r = rng.api.find_next(after_=r)
+
+                    for addr in found:
+                        cell = addr.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches.append({
+                                "sheet": sheet_name,
+                                "cell": cell
+                            })
+                        else:
+                            matches.append(cell)
+
+                else:
+                    r = rng.api.find(what=text)
+                    if r is not None:
+                        cell = r.get_address().replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches = {
+                                "sheet": sheet_name,
+                                "cell": cell
+                            }
+                        else:
+                            matches = cell
+                        break
+
+        SetVar(var_, matches)
+
     except Exception as e:
         SetVar(var_, False)
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
