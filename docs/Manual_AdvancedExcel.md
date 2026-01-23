@@ -592,6 +592,8 @@ Searches a text in the given range and returns the address of the cell of the fi
 |Look in (optional)|Indicates where to do the searching value, formula or comment (default value). ||
 |Case sensitive|If this box is checked, it will search the text string case-sensitive.||
 |Find all|If this box is checked, it will return a list with every coincidence.||
+|Search all sheets|If this box is checked, it will search all sheets.||
+|Gets sheet and position|If this box is checked, it will get all search data.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Find data
@@ -735,7 +737,7 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
 
 ### Convert Excel time to hours
   

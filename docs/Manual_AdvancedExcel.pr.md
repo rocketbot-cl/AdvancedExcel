@@ -594,6 +594,8 @@ Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a
 |Pesquisar dentro (opcional)|Indica onde fazer a busca valor, fórmula ou comentário (padrão valor).||
 |Diferencia maiúsculas de minúsculas|Se esta caixa estiver marcada, a pesquisa será feita com distinção entre maiúsculas e minúsculas.||
 |Encontrar tudo|Se esta caixa estiver marcada, ela retornará uma lista com todas as coincidências.||
+|Pesquisar em todas as folhas|Se esta caixa estiver marcada, ela pesquisará em todas as folhas.||
+|Obtém folha e posição|Se esta caixa estiver marcada, ela obtém todos os dados da pesquisa.||
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Encontrar dados
@@ -737,7 +739,7 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
   
