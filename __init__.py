@@ -2512,7 +2512,13 @@ if module == "exportPDF":
                 sh.api.PageSetup.Orientation = orientation
             else:
                 sh.api.PageSetup.Orientation = 1
-            
+                
+            try:
+                wb.app.api.ActiveWindow.DisplayGridlines = False
+            except:
+                pass
+            sh.api.PageSetup.PrintGridlines = False
+
             if check_zoom:
                 sh.api.PageSetup.Zoom = False
             elif select_zoom:
