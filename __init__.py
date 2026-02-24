@@ -1166,34 +1166,34 @@ if module == "addRow":
                             InsertShiftDirection.xlShiftDown)
 
             else:
+                # macOS (and other non-Windows) Excel doesn't expose COM properties like `Rows`.
+                # Use xlwings' cross-platform Range.insert which works for full-row ranges (e.g. "6:6").
                 if ":" in row:
                     if tipo == "down_":
                         if matches[0] and matches[2]:
                             fila = matches[0] + str(int(matches[1])+1) \
                                 + ":" + matches[2] + str(int(matches[3])+1)
                         else:
-                            fila = str(matches[0]+1) + ":" + str(matches[2]+1)
-                            
-                        sheet_selected.api.Rows[fila].insert_into_range()
+                            fila = str(int(matches[1])+1) + ":" + str(int(matches[3])+1)
+                        sheet_selected.range(fila).insert(shift="down")
+
                     if tipo == "up_":
-                        sheet_selected.api.Rows[row].insert_into_range()
+                        sheet_selected.range(row).insert(shift="down")
 
                 else:
                     if tipo == "down_":
                         if matches[0]:
                             fila = matches[0] + str(int(matches[1])+1)
                         else:
-                            fila = str(matches[1]+1) + ":" + str(matches[1]+1)
-
-                        sheet_selected.api.Rows[fila].insert_into_range()
+                            fila = str(int(matches[1])+1) + ":" + str(int(matches[1])+1)
+                        sheet_selected.range(fila).insert(shift="down")
 
                     if tipo == "up_":
                         if matches[0]:
                             fila = row
                         else:
                             fila = str(matches[1]) + ":" + str(matches[1])
-                            
-                        sheet_selected.api.Rows[fila].insert_into_range()
+                        sheet_selected.range(fila).insert(shift="down")
 
         if opcion_ == "delete_":
             
@@ -1204,7 +1204,10 @@ if module == "addRow":
             else:
                 fila = str(matches[1]) + ":" + str(matches[1])
             
-            sheet_selected.range(fila).api.Delete()
+            if platform.system() == 'Windows':
+                sheet_selected.range(fila).api.Delete()
+            else:
+                sheet_selected.range(fila).delete(shift="up")
 
     except Exception as e:
         PrintException()
@@ -1249,14 +1252,16 @@ if module == "addCol":
                         InsertShiftDirection.xlShiftToRight)
 
             else:
+                # macOS (and other non-Windows) Excel doesn't expose COM collections like `Columns`.
+                # Use xlwings' cross-platform Range.insert for full-column ranges (e.g. "A:A").
                 if ":" in col_:
-                    wb.sheets[sheet].api.columns[col_].insert_into_range()
+                    wb.sheets[sheet].range(col_).insert(shift="right")
                 else:
                     if matches[0] and matches[1]:
                         col = col_
                     else:
                         col = str(matches[0]) + ":" + str(matches[0])
-                    wb.sheets[sheet].api.columns[col].insert_into_range()
+                    wb.sheets[sheet].range(col).insert(shift="right")
 
         if opcion_ == "delete_":
             if platform.system() == 'Windows':
@@ -1271,13 +1276,13 @@ if module == "addCol":
 
             else:
                 if ":" in col_:
-                    wb.sheets[sheet].range(col_).api.delete()
+                    wb.sheets[sheet].range(col_).delete(shift="left")
                 else:
                     if matches[0] and matches[1]:
                         col = col_
                     else:
                         col = str(matches[0]) + ":" + str(matches[0])
-                    wb.sheets[sheet].range(col).api.delete()
+                    wb.sheets[sheet].range(col).delete(shift="left")
 
     except Exception as e:
         PrintException()
@@ -1798,8 +1803,9 @@ if module == "getFormula":
     try:
         
         sheet = xls['sheet']
-        formula = sheet.range(cell).formula
-        formula = [list(i) for i in formula]
+        # formula = sheet.range(cell).formula
+        rng = sheet.range(cell)
+        formula = rng.api.FormulaLocal
         SetVar(result, formula)
     except Exception as e:
         print("\x1B[" + "31;40mError\x1B[" + "0m")
@@ -2506,7 +2512,13 @@ if module == "exportPDF":
                 sh.api.PageSetup.Orientation = orientation
             else:
                 sh.api.PageSetup.Orientation = 1
-            
+                
+            try:
+                wb.app.api.ActiveWindow.DisplayGridlines = False
+            except:
+                pass
+            sh.api.PageSetup.PrintGridlines = False
+
             if check_zoom:
                 sh.api.PageSetup.Zoom = False
             elif select_zoom:
@@ -2858,7 +2870,7 @@ if module == "refreshAll":
         PrintException()
         raise e
 
-if module == "find":      
+if module == "find":
     sheet_ = GetParams("sheet")
     range_ = GetParams("range")
     text = GetParams("text")
@@ -2867,77 +2879,332 @@ if module == "find":
     match_case = GetParams("match_case")
     find_all = GetParams("find_all")
     var_ = GetParams("var_")
+
+    # NUEVOS CHECKBOX
+    search_all_sheets = GetParams("search_all_sheets")
+    extra_data = GetParams("extra_data")
+    print(search_all_sheets, extra_data)
+    import platform
     from openpyxl.utils.cell import get_column_letter
+
     try:
-        wb_sheets = [sh.name for sh in wb.sheets]
-        sheet=None
-        for s in wb_sheets:
-            if s.strip() == sheet_:
-                sheet = s
-                break
-        if not sheet:
-            raise Exception(f"The name {sheet_} does not exist in the book")
-        
-        sheet_selected = wb.sheets[sheet]
-        
-        if not look_in:
-            look_in = -4163 #xlValues
+        look_in = -4163 if not look_in else eval(look_in)
+        look_at = 2 if not look_at else eval(look_at)
+        match_case = False if not match_case else eval(match_case)
+
+        wb_sheet_names = [sh.name for sh in wb.sheets]
+
+        # Resolver hojas a buscar
+        if search_all_sheets and eval(search_all_sheets):
+            sheets_to_search = wb_sheet_names
         else:
-            look_in = eval(look_in)
-        if not look_at:
-            look_at = 2 #xlPart
-        else:
-            look_at = eval(look_at)
-        if not match_case:
-            match_case = False
-        else:
-            match_case = eval(match_case)
-        if not range_ or range_ =="":
-            #armo rango segun la hoja
-            range1 = sheet_selected.used_range.last_cell.row
-            range2 = sheet_selected.used_range.last_cell.column
-            range_ = f"A1:" + get_column_letter(range2) + str(range1)
- 
-        
-        if platform.system() == "Windows":        
-            if find_all and eval(find_all):
-                matches = []
-                                
-                range_obj = sheet_selected.api.Range(range_)
-                result = range_obj.Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-                try:
-                    while result is not None and result.Address not in matches:
-                        matches.append(result.Address)
-                        result = range_obj.FindNext(result)
-                except:
-                    while result is not None and result.address not in matches:
-                        matches.append(result.address)
-                        result = range_obj.FindNext(result)
+            sheet_selected = None
+            for s in wb_sheet_names:
+                if s.strip() == str(sheet_).strip():
+                    sheet_selected = s
+                    break
+            sheets_to_search = [sheet_selected] if sheet_selected else []
+
+        matches = [] if (find_all and eval(find_all)) else ""
+
+        for sheet_name in sheets_to_search:
+            sh = wb.sheets[sheet_name]
+
+            if not range_:
+                last_row = sh.used_range.last_cell.row
+                last_col = sh.used_range.last_cell.column
+                range_sheet = f"A1:{get_column_letter(last_col)}{last_row}"
             else:
-                result = sheet_selected.api.Range(range_).Find(What=text, LookAt = look_at, LookIn = look_in, SearchDirection = 1, MatchCase = match_case)
-                try:
-                    matches = result.Address if result is not None else ""
-                except:
-                    matches = result.address if result is not None else ""
-        else:
-            if find_all and eval(find_all):
-                matches = []
-                range_obj = sheet_selected.range(range_)
-                result = range_obj.api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1,match_case = match_case)
-                while result is not None and result.get_address() not in matches:
-                    result.select()
-                    matches.append(result.get_address())
-                    result = range_obj.api.find_next(after_=result)        
+                range_sheet = range_
+
+            if platform.system() == "Windows":
+                rng = sh.api.Range(range_sheet)
+
+                def _text_matches(haystack: str, _needle=text, _look_at=look_at, _match_case=match_case) -> bool:
+                    if haystack is None:
+                        return False
+                    needle = "" if _needle is None else str(_needle)
+                    hay = str(haystack)
+                    if not _match_case:
+                        needle = needle.lower()
+                        hay = hay.lower()
+                    # look_at: 1 = whole, 2 = part
+                    if _look_at == 1:
+                        return hay == needle
+                    return needle in hay
+
+                def _find_in_comments_collections(find_all_mode: bool, _sheet_api=sh.api, _rng=rng):
+                    
+                    app = _sheet_api.Application
+                    collected = []
+
+                    def _append_parent_address(parent_range):
+                        try:
+                            if app.Intersect(parent_range, _rng) is None:
+                                return
+                        except Exception:
+                            # If Intersect fails for any reason, don't block matching.
+                            pass
+                        addr = parent_range.Address.replace("$", "")
+                        if find_all_mode:
+                            collected.append(addr)
+                        else:
+                            collected.append(addr)
+
+                    # Legacy comments/notes
+                    try:
+                        for c in _sheet_api.Comments:
+                            try:
+                                comment_text = c.Text()
+                            except Exception:
+                                try:
+                                    comment_text = c.Text
+                                except Exception:
+                                    comment_text = ""
+                            if _text_matches(comment_text):
+                                _append_parent_address(c.Parent)
+                                if not find_all_mode:
+                                    return collected
+                    except Exception:
+                        pass
+
+                   
+                    try:
+                        for c in _sheet_api.CommentsThreaded:
+                            try:
+                                comment_text = c.Text
+                            except Exception:
+                                try:
+                                    comment_text = c.Text()
+                                except Exception:
+                                    comment_text = ""
+                            if _text_matches(comment_text):
+                                _append_parent_address(c.Parent)
+                                if not find_all_mode:
+                                    return collected
+                    except Exception:
+                        pass
+
+                    return collected
+
+                if find_all and eval(find_all):
+                    found = []
+                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    while r is not None and r.Address not in found:
+                        found.append(r.Address)
+                        r = rng.FindNext(r)
+
+                    
+                    if (not found) and look_in == -4144:
+                        # Try threaded comments FindLookIn if supported, then manual scan.
+                        try:
+                            r2 = rng.Find(What=text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
+                            while r2 is not None and r2.Address not in found:
+                                found.append(r2.Address)
+                                r2 = rng.FindNext(r2)
+                        except Exception:
+                            pass
+                        if not found:
+                            found = _find_in_comments_collections(True)
+
+                    for addr in found:
+                        cell = addr.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches.append({
+                                "sheet": sheet_name,
+                                "cell": cell
+                            })
+                        else:
+                            matches.append(cell)
+
+                else:
+                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    if r is None and look_in == -4144:
+                        
+                        try:
+                            r = rng.Find(What=text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
+                        except Exception:
+                            r = None
+                        if r is None:
+                            fallback = _find_in_comments_collections(False)
+                            if fallback:
+                                cell = fallback[0]
+                                if extra_data and eval(extra_data):
+                                    matches = {
+                                        "sheet": sheet_name,
+                                        "cell": cell
+                                    }
+                                else:
+                                    matches = cell
+                                break
+                    if r is not None:
+                        cell = r.Address.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches = {
+                                "sheet": sheet_name,
+                                "cell": cell
+                            }
+                        else:
+                            matches = cell
+                        break
+
             else:
-                result = sheet_selected.range(range_).api.find(what=text, look_at = look_at, look_in = look_in, search_direction = 1, match_case = match_case)
-                matches = result.get_address() if result is not None else ""
-            
-       
-        if var_:
-            SetVar(var_, matches)
+                rng = sh.range(range_sheet)
+
+                def _text_matches(haystack: str) -> bool:
+                    if haystack is None:
+                        return False
+                    needle = "" if text is None else str(text)
+                    hay = str(haystack)
+                    if not match_case:
+                        needle = needle.lower()
+                        hay = hay.lower()
+                    if look_at == 1:
+                        return hay == needle
+                    return needle in hay
+
+                def _mac_find_first(after_obj):
+                    # On macOS, Excel's AppleScript Find can throw parameter errors unless `after_` is provided.
+                    # Try with progressively fewer optional params to maximize compatibility.
+                    try:
+                        return rng.api.find(
+                            what=text,
+                            after_=after_obj,
+                            look_in=look_in,
+                            look_at=look_at,
+                            search_direction=1,
+                            match_case=match_case,
+                        )
+                    except Exception:
+                        try:
+                            return rng.api.find(
+                                what=text,
+                                after_=after_obj,
+                                look_at=look_at,
+                                search_direction=1,
+                                match_case=match_case,
+                            )
+                        except Exception:
+                            return rng.api.find(what=text, after_=after_obj)
+
+                def _scan_notes_in_range(find_all_mode: bool):
+                    # xlwings supports Notes on macOS (legacy comments). This is the most reliable way
+                    # when AppleScript Find fails, especially for comment searches.
+                    try:
+                        start_addr = str(range_sheet).split(":")[0]
+                        start_cell = sh.range(start_addr)
+                        base_row = int(start_cell.row)
+                        base_col = int(start_cell.column)
+                    except Exception:
+                        return []
+
+                    try:
+                        n_rows = int(rng.rows.count)
+                        n_cols = int(rng.columns.count)
+                    except Exception:
+                        return []
+
+                    # Guardrail: avoid scanning huge full-row/full-column ranges
+                    if n_rows * n_cols > 20000:
+                        return []
+
+                    collected = []
+                    for r_idx in range(n_rows):
+                        for c_idx in range(n_cols):
+                            cell_obj = sh.range((base_row + r_idx, base_col + c_idx))
+                            comment_text = None
+                            try:
+                                note_obj = cell_obj.note
+                            except Exception:
+                                note_obj = None
+
+                            if note_obj is not None:
+                                try:
+                                    comment_text = note_obj.text
+                                except Exception:
+                                    comment_text = None
+
+                            # Some Excel builds may still expose the comment via the AppleScript API
+                            if not comment_text:
+                                try:
+                                    comment_text = cell_obj.api.Excel_comment.Excel_comment_text()
+                                except Exception:
+                                    comment_text = None
+
+                            if _text_matches(comment_text):
+                                addr = cell_obj.address.replace("$", "")
+                                if find_all_mode:
+                                    collected.append(addr)
+                                else:
+                                    return [addr]
+                    return collected
+
+                # Prefer AppleScript Find for speed, but fall back to scanning Notes for comment searches.
+                after_addr = str(range_sheet).split(":")[0]
+                try:
+                    after_obj = sh.api.cells[after_addr]
+                except Exception:
+                    after_obj = None
+
+                if find_all and eval(find_all):
+                    found = []
+                    try:
+                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=text)
+                        while r is not None and r.get_address() not in found:
+                            found.append(r.get_address())
+                            r = rng.api.find_next(after_=r)
+                    except Exception:
+                        # If searching in comments, try scanning Notes as a reliable fallback
+                        if look_in == -4144:
+                            found = _scan_notes_in_range(True)
+                        else:
+                            raise
+
+                    for addr in found:
+                        cell = addr.replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches.append({
+                                "sheet": sheet_name,
+                                "cell": cell
+                            })
+                        else:
+                            matches.append(cell)
+
+                else:
+                    try:
+                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=text)
+                    except Exception:
+                        if look_in == -4144:
+                            fallback = _scan_notes_in_range(False)
+                            r = None
+                            if fallback:
+                                cell = fallback[0]
+                                if extra_data and eval(extra_data):
+                                    matches = {
+                                        "sheet": sheet_name,
+                                        "cell": cell
+                                    }
+                                else:
+                                    matches = cell
+                                break
+                        else:
+                            raise
+
+                    if r is not None:
+                        cell = r.get_address().replace("$", "")
+                        if extra_data and eval(extra_data):
+                            matches = {
+                                "sheet": sheet_name,
+                                "cell": cell
+                            }
+                        else:
+                            matches = cell
+                        break
+
+        SetVar(var_, matches)
+
     except Exception as e:
         SetVar(var_, False)
-        print("\x1B[" + "31;40mError\x1B[" + "0m")
         PrintException()
         raise e
 
