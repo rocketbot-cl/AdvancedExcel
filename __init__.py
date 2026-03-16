@@ -3939,3 +3939,76 @@ if module == "insertLink":
     except Exception as e:
         PrintException()
         raise e
+    
+    
+if module == "text_to_cell":
+    sheet_ = GetParams("sheet")
+    range_ = GetParams("range")
+    text = GetParams("data")
+    transform_newline = GetParams("newline")
+    transform_tab = GetParams("tab")
+    has_autofit = GetParams("autofit")
+
+    wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book")        
+
+    data = []
+    range = range_
+    if transform_newline and transform_tab: # Matrix N x M
+        rows = text.split("\n")
+        data = [row.split("\t") for row in rows]
+        height = len(data)
+        width = max(len(row) for row in data)
+    
+                
+    elif transform_newline and not transform_tab: #Matrix N x 1
+        data = [[row] for row in text.split("\n")]
+        height = len(data)
+        width = 1
+        
+
+    elif not transform_newline and transform_tab: #Matrix 1 x M
+        data = [text.split("\t")]
+        height = 1
+        width = len(data)
+
+    else:# Everything is in a Cell
+        data = text
+        width = 1
+        height = 1        
+
+    sheet_selected = wb.sheets[sheet]
+    user_range = sheet_selected.range(range_)
+    range_is_a_cell = len(range_.split(":")) == 1
+
+    if not range_is_a_cell: #Truncates Text if it does not fit in the user's range
+        max_rows=min(user_range.rows.count, height)
+        max_columns=min(user_range.columns.count, width)
+        
+        data = data[:max_rows]
+        truncated_data = []
+        for index, row in enumerate(data):
+            if isinstance(row, list):
+                row = row[:max_columns]
+
+            user_range.offset(row_offset=index, column_offset=0).value = row
+
+        if has_autofit: 
+            autofit_range = user_range.resize(row_size=max_rows, column_size=max_columns)
+            autofit_range.columns.autofit()
+            autofit_range.rows.autofit()
+
+    else:# range_is_a_cell
+        for index, row in enumerate(data):
+            user_range.offset(row_offset=index, column_offset=0).value = row
+
+        if has_autofit:
+            autofit_range = user_range.resize(row_size=height, column_size=width)
+            autofit_range.columns.autofit()
+            autofit_range.rows.autofit()
