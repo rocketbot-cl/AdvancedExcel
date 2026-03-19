@@ -74,7 +74,7 @@ def import_lib(relative_path, name, class_name=None):
         return getattr(foo, class_name)
     return foo
 
-
+global _looks_like_spanish_formula, _insert_formula_with_locale_support
 def get_date_with_format(xl_date, format_=None):
     import xlrd #type:ignore #ignore linter warnings
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
@@ -118,6 +118,57 @@ def set_password(excel_file_path, pw):
 
     return None
 
+def _looks_like_spanish_formula(formula_text):
+    if not isinstance(formula_text, str):
+        return False
+
+    candidate = formula_text.strip().upper()
+    if not candidate:
+        return False
+
+    # In most Spanish locales Excel formulas use ';' as argument separator.
+    if ';' in candidate:
+        return True
+
+    spanish_tokens = [
+        "SI(", "SI.CONJUNTO(", "BUSCARV(", "BUSCARX(", "SUMAR.SI(",
+        "SUMAR.SI.CONJUNTO(", "CONTAR.SI(", "CONTAR.SI.CONJUNTO(",
+        "PROMEDIO(", "PROMEDIO.SI(", "PROMEDIO.SI.CONJUNTO(",
+        "IZQUIERDA(", "DERECHA(", "EXTRAE(", "LARGO(", "CONCAT(",
+        "CONCATENAR(", "Y(", "O(", "NO(", "SI.ERROR(",
+        "INDICE(", "COINCIDIR(", "DESREF(", "SUMAPRODUCTO(",
+        "REDONDEAR(", "ENTERO(", "HOY(", "AHORA(", "TEXTO("
+    ]
+    return any(token in candidate for token in spanish_tokens)
+
+
+def _insert_formula_with_locale_support(sheet, cell, formula_text, use_formula2=False):
+    target = sheet.range(cell).api
+    formula_attr = "Formula2" if use_formula2 else "Formula"
+
+    # Fast path: formula already in English/invariant format.
+    try:
+        setattr(target, formula_attr, formula_text)
+        return
+    except Exception as first_error:
+        if not _looks_like_spanish_formula(formula_text):
+            raise first_error
+
+    # Fallback path: let Excel parse local syntax (Spanish) and auto-translate.
+    if use_formula2:
+        try:
+            target.Formula2Local = formula_text
+        except Exception:
+            target.FormulaLocal = formula_text
+    else:
+        target.FormulaLocal = formula_text
+
+    try:
+        translated = getattr(target, formula_attr)
+        if translated:
+            setattr(target, formula_attr, translated)
+    except Exception:
+        pass
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -500,10 +551,8 @@ if module == "InsertFormula":
             raise Exception(f"The name {sheet_} does not exist in the book")
            
         
-    if no_iie and eval(no_iie):
-        sheet.range(cell).api.Formula2 = formula
-    else:
-        sheet.range(cell).formula = formula
+    use_formula2 = bool(no_iie and eval(no_iie))
+    _insert_formula_with_locale_support(sheet, cell, formula, use_formula2)
 
 if module == "InsertMacro":
     macro = GetParams("macro_path")
