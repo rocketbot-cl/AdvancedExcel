@@ -131,9 +131,10 @@ def _looks_like_spanish_formula(formula_text):
         return True
 
     spanish_tokens = [
-        "SI(", "SI.CONJUNTO(", "BUSCARV(", "BUSCARX(", "SUMAR.SI(",
-        "SUMAR.SI.CONJUNTO(", "CONTAR.SI(", "CONTAR.SI.CONJUNTO(",
-        "PROMEDIO(", "PROMEDIO.SI(", "PROMEDIO.SI.CONJUNTO(",
+        "SI(", "SI.CONJUNTO(", "BUSCARV(", "BUSCARX(", "SUMA(", "SUMAR.SI(",
+        "SUMAR.SI.CONJUNTO(", "CONTAR(", "CONTARA(", "CONTAR.SI(", "CONTAR.SI.CONJUNTO(",
+        "PROMEDIO(", "PROMEDIO.SI(", "PROMEDIO.SI.CONJUNTO(", "MIN(", "MAX(",
+        "PRODUCTO(", "COCIENTE(", "RESIDUO(", "POTENCIA(", "RAIZ(",
         "IZQUIERDA(", "DERECHA(", "EXTRAE(", "LARGO(", "CONCAT(",
         "CONCATENAR(", "Y(", "O(", "NO(", "SI.ERROR(",
         "INDICE(", "COINCIDIR(", "DESREF(", "SUMAPRODUCTO(",
@@ -146,13 +147,15 @@ def _insert_formula_with_locale_support(sheet, cell, formula_text, use_formula2=
     target = sheet.range(cell).api
     formula_attr = "Formula2" if use_formula2 else "Formula"
 
+    is_spanish = _looks_like_spanish_formula(formula_text)
+
     # Fast path: formula already in English/invariant format.
-    try:
-        setattr(target, formula_attr, formula_text)
-        return
-    except Exception as first_error:
-        if not _looks_like_spanish_formula(formula_text):
-            raise first_error
+    if not is_spanish:
+        try:
+            setattr(target, formula_attr, formula_text)
+            return
+        except Exception as first_error:
+            pass
 
     # Fallback path: let Excel parse local syntax (Spanish) and auto-translate.
     if use_formula2:
