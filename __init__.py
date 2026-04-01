@@ -2997,7 +2997,7 @@ if module == "find":
                         except Exception:
                             # If Intersect fails for any reason, don't block matching.
                             pass
-                        addr = parent_range.Address.replace("$", "")
+                        addr = parent_range.Address
                         if find_all_mode:
                             collected.append(addr)
                         else:
@@ -3060,7 +3060,7 @@ if module == "find":
                             found = _find_in_comments_collections(True)
 
                     for addr in found:
-                        cell = addr.replace("$", "")
+                        cell = addr
                         if extra_data and eval(extra_data):
                             matches.append({
                                 "sheet": sheet_name,
@@ -3090,7 +3090,7 @@ if module == "find":
                                     matches = cell
                                 break
                     if r is not None:
-                        cell = r.Address.replace("$", "")
+                        cell = r.Address
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,
@@ -3184,7 +3184,7 @@ if module == "find":
                                     comment_text = None
 
                             if _text_matches(comment_text):
-                                addr = cell_obj.address.replace("$", "")
+                                addr = cell_obj.address
                                 if find_all_mode:
                                     collected.append(addr)
                                 else:
@@ -3213,7 +3213,7 @@ if module == "find":
                             raise
 
                     for addr in found:
-                        cell = addr.replace("$", "")
+                        cell = addr
                         if extra_data and eval(extra_data):
                             matches.append({
                                 "sheet": sheet_name,
@@ -3243,7 +3243,7 @@ if module == "find":
                             raise
 
                     if r is not None:
-                        cell = r.get_address().replace("$", "")
+                        cell = r.get_address()
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,
