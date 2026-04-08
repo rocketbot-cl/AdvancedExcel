@@ -74,7 +74,7 @@ def import_lib(relative_path, name, class_name=None):
         return getattr(foo, class_name)
     return foo
 
-
+global _looks_like_spanish_formula, _insert_formula_with_locale_support
 def get_date_with_format(xl_date, format_=None):
     import xlrd #type:ignore #ignore linter warnings
     datetime_date = xlrd.xldate_as_datetime(xl_date, 0)
@@ -118,6 +118,60 @@ def set_password(excel_file_path, pw):
 
     return None
 
+def _looks_like_spanish_formula(formula_text):
+    if not isinstance(formula_text, str):
+        return False
+
+    candidate = formula_text.strip().upper()
+    if not candidate:
+        return False
+
+    # In most Spanish locales Excel formulas use ';' as argument separator.
+    if ';' in candidate:
+        return True
+
+    spanish_tokens = [
+        "SI(", "SI.CONJUNTO(", "BUSCARV(", "BUSCARX(", "SUMA(", "SUMAR.SI(",
+        "SUMAR.SI.CONJUNTO(", "CONTAR(", "CONTARA(", "CONTAR.SI(", "CONTAR.SI.CONJUNTO(",
+        "PROMEDIO(", "PROMEDIO.SI(", "PROMEDIO.SI.CONJUNTO(", "MIN(", "MAX(",
+        "PRODUCTO(", "COCIENTE(", "RESIDUO(", "POTENCIA(", "RAIZ(",
+        "IZQUIERDA(", "DERECHA(", "EXTRAE(", "LARGO(", "CONCAT(",
+        "CONCATENAR(", "Y(", "O(", "NO(", "SI.ERROR(",
+        "INDICE(", "COINCIDIR(", "DESREF(", "SUMAPRODUCTO(",
+        "REDONDEAR(", "ENTERO(", "HOY(", "AHORA(", "TEXTO("
+    ]
+    return any(token in candidate for token in spanish_tokens)
+
+
+def _insert_formula_with_locale_support(sheet, cell, formula_text, use_formula2=False):
+    target = sheet.range(cell).api
+    formula_attr = "Formula2" if use_formula2 else "Formula"
+
+    is_spanish = _looks_like_spanish_formula(formula_text)
+
+    # Fast path: formula already in English/invariant format.
+    if not is_spanish:
+        try:
+            setattr(target, formula_attr, formula_text)
+            return
+        except Exception as first_error:
+            pass
+
+    # Fallback path: let Excel parse local syntax (Spanish) and auto-translate.
+    if use_formula2:
+        try:
+            target.Formula2Local = formula_text
+        except Exception:
+            target.FormulaLocal = formula_text
+    else:
+        target.FormulaLocal = formula_text
+
+    try:
+        translated = getattr(target, formula_attr)
+        if translated:
+            setattr(target, formula_attr, translated)
+    except Exception:
+        pass
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -500,10 +554,8 @@ if module == "InsertFormula":
             raise Exception(f"The name {sheet_} does not exist in the book")
            
         
-    if no_iie and eval(no_iie):
-        sheet.range(cell).api.Formula2 = formula
-    else:
-        sheet.range(cell).formula = formula
+    use_formula2 = bool(no_iie and eval(no_iie))
+    _insert_formula_with_locale_support(sheet, cell, formula, use_formula2)
 
 if module == "InsertMacro":
     macro = GetParams("macro_path")
@@ -2945,7 +2997,7 @@ if module == "find":
                         except Exception:
                             # If Intersect fails for any reason, don't block matching.
                             pass
-                        addr = parent_range.Address.replace("$", "")
+                        addr = parent_range.Address
                         if find_all_mode:
                             collected.append(addr)
                         else:
@@ -3008,7 +3060,7 @@ if module == "find":
                             found = _find_in_comments_collections(True)
 
                     for addr in found:
-                        cell = addr.replace("$", "")
+                        cell = addr
                         if extra_data and eval(extra_data):
                             matches.append({
                                 "sheet": sheet_name,
@@ -3038,7 +3090,7 @@ if module == "find":
                                     matches = cell
                                 break
                     if r is not None:
-                        cell = r.Address.replace("$", "")
+                        cell = r.Address
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,
@@ -3132,7 +3184,7 @@ if module == "find":
                                     comment_text = None
 
                             if _text_matches(comment_text):
-                                addr = cell_obj.address.replace("$", "")
+                                addr = cell_obj.address
                                 if find_all_mode:
                                     collected.append(addr)
                                 else:
@@ -3161,7 +3213,7 @@ if module == "find":
                             raise
 
                     for addr in found:
-                        cell = addr.replace("$", "")
+                        cell = addr
                         if extra_data and eval(extra_data):
                             matches.append({
                                 "sheet": sheet_name,
@@ -3191,7 +3243,7 @@ if module == "find":
                             raise
 
                     if r is not None:
-                        cell = r.get_address().replace("$", "")
+                        cell = r.get_address()
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,
@@ -3939,3 +3991,76 @@ if module == "insertLink":
     except Exception as e:
         PrintException()
         raise e
+    
+    
+if module == "text_to_cell":
+    sheet_ = GetParams("sheet")
+    range_ = GetParams("range")
+    text = GetParams("data")
+    transform_newline = GetParams("newline")
+    transform_tab = GetParams("tab")
+    has_autofit = GetParams("autofit")
+
+    wb_sheets = [sh.name for sh in wb.sheets]
+    sheet=None
+    for s in wb_sheets:
+        if s.strip() == sheet_:
+            sheet = s
+            break
+    if not sheet:
+        raise Exception(f"The name {sheet_} does not exist in the book")        
+
+    data = []
+    range = range_
+    if transform_newline and transform_tab: # Matrix N x M
+        rows = text.split("\n")
+        data = [row.split("\t") for row in rows]
+        height = len(data)
+        width = max(len(row) for row in data)
+    
+                
+    elif transform_newline and not transform_tab: #Matrix N x 1
+        data = [[row] for row in text.split("\n")]
+        height = len(data)
+        width = 1
+        
+
+    elif not transform_newline and transform_tab: #Matrix 1 x M
+        data = [text.split("\t")]
+        height = 1
+        width = len(data)
+
+    else:# Everything is in a Cell
+        data = text
+        width = 1
+        height = 1        
+
+    sheet_selected = wb.sheets[sheet]
+    user_range = sheet_selected.range(range_)
+    range_is_a_cell = len(range_.split(":")) == 1
+
+    if not range_is_a_cell: #Truncates Text if it does not fit in the user's range
+        max_rows=min(user_range.rows.count, height)
+        max_columns=min(user_range.columns.count, width)
+        
+        data = data[:max_rows]
+        truncated_data = []
+        for index, row in enumerate(data):
+            if isinstance(row, list):
+                row = row[:max_columns]
+
+            user_range.offset(row_offset=index, column_offset=0).value = row
+
+        if has_autofit: 
+            autofit_range = user_range.resize(row_size=max_rows, column_size=max_columns)
+            autofit_range.columns.autofit()
+            autofit_range.rows.autofit()
+
+    else:# range_is_a_cell
+        for index, row in enumerate(data):
+            user_range.offset(row_offset=index, column_offset=0).value = row
+
+        if has_autofit:
+            autofit_range = user_range.resize(row_size=height, column_size=width)
+            autofit_range.columns.autofit()
+            autofit_range.rows.autofit()

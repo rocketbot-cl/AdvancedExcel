@@ -3,17 +3,17 @@
 
 
 # Opciones avanzadas para Excel
-  
-Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel.   
+
+Aplique filtros automaticos y avanzados, de formato a las celdas, añada o elimine hojas, filas o columnas, exporte a diferentes formatos de archivo, desbloquee y vuelva a bloquear hojas, copie y realice pegado especial y mas con sus archivos de Excel. 
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
-  
+
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
-  
+
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
-2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.
 
 
 
@@ -24,7 +24,7 @@ Para usar este modulo debe tener Microsoft Excel instalado.
 ## Descripción de los comandos
 
 ### Abrir sin alertas
-  
+
 Abre un archivo sin mostrar carteles de alerta.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -34,7 +34,7 @@ Abre un archivo sin mostrar carteles de alerta.
 |Asignar resultado a variable|Variable donde se almacenara el resultado|id|
 
 ### Buscar y conectar
-  
+
 Busca un excel abierto y se conecta a este.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -42,13 +42,13 @@ Busca un excel abierto y se conecta a este.
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|excel1|
 
 ### Maximizar
-  
+
 Maximizar Ventana de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
 ### Opciones de calculo
-  
+
 Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -56,7 +56,7 @@ Selecciona la manera en que se ejecuta el calculo de formulas en el libro.
 |Calcular ahora|Si se marca esta casilla, se calculan las formulas del libro|True|
 
 ### Leer celdas
-  
+
 Lee una celda o rango de celdas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -67,7 +67,7 @@ Lee una celda o rango de celdas
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|cells|
 
 ### Convertir fecha serial
-  
+
 Convierte una fecha numero serial excel a un formato de fecha especifico
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -76,7 +76,7 @@ Convierte una fecha numero serial excel a un formato de fecha especifico
 |Asignar resultado a variable |Nombre de la variable donde guardar el resultado|output_date|
 
 ### Contar Columnas
-  
+
 Cuenta el número de columnas del excel abierto. Se requiere que el excel esté guardado para tomar los últimos cambios
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -85,7 +85,7 @@ Cuenta el número de columnas del excel abierto. Se requiere que el excel esté 
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_columnas|
 
 ### Contar Filas
-  
+
 Cuenta todas las filas o dentro de un rango.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -95,7 +95,7 @@ Cuenta todas las filas o dentro de un rango.
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|numero_filas|
 
 ### Ocultar
-  
+
 Oculta una o varias filas, o una o varias columnas.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -104,7 +104,7 @@ Oculta una o varias filas, o una o varias columnas.
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Mostrar
-  
+
 Muestra una o varias filas, o una o varias columnas que estén ocultas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -113,7 +113,7 @@ Muestra una o varias filas, o una o varias columnas que estén ocultas
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Color celda
-  
+
 Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por defecto o uno personalizado
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -124,7 +124,7 @@ Cambia color de una celda o rango de celdas. Puedes seleccionar un valor por def
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
 ### Color fuente
-  
+
 Cambie el color de fuente del texto en una celda o rango de celdas. Puede ser un color predeterminado o personalizado
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -135,7 +135,7 @@ Cambie el color de fuente del texto en una celda o rango de celdas. Puede ser un
 |Seleccione color |Seleccione el color. Puede usar el campo anterior para personalizar|red|
 
 ### Obtener color de celda
-  
+
 Obtener el color de una celda. La función devolverá una lista con dos elementos: Color de fondo y Color de fuente en formato RGB.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -144,7 +144,7 @@ Obtener el color de una celda. La función devolverá una lista con dos elemento
 |Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
 ### Obtener formatos de celda
-  
+
 Obtener el formato de una celda. La función devolverá un diccionario con las propiedades de la celda y el valor de cada una.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -153,7 +153,7 @@ Obtener el formato de una celda. La función devolverá un diccionario con las p
 |Asignar a variable|Nombre de la variable donde guardar el resultado.|color|
 
 ### Insertar Formula
-  
+
 Inserta formula sobre una celda 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -163,14 +163,14 @@ Inserta formula sobre una celda
 |No IIE|Si se marca esta casilla, permite enviar la formula sin IIE|True|
 
 ### Insertar Macro a Excel
-  
+
 Inserta una Macro a Excel 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ruta de la Macro|Ruta del archivo .bas que se quiere insertar|Macro.bas|
 
 ### Seleccionar y copiar Celdas
-  
+
 Selecciona y copia celdas en Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -179,7 +179,7 @@ Selecciona y copia celdas en Excel
 |Copiar|Al marcar la casilla, se copiarán los valores en el portapapeles|True|
 
 ### Obtener Celda Formato Moneda
-  
+
 Obtiene celdas con formato moneda
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -188,7 +188,7 @@ Obtiene celdas con formato moneda
 |Asignar a variable|Nombre de la variable donde guardar el resultado|variable|
 
 ### Obtener Celda Formato Fecha
-  
+
 Obtiene celdas con formato fecha
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -197,7 +197,7 @@ Obtiene celdas con formato fecha
 |Asignar a variable|Nombre de la variable donde guardar el resultado|variable|
 
 ### Copiar-Pegar
-  
+
 Copia un rango de celdas desde una hoja a otra 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -211,7 +211,7 @@ Copia un rango de celdas desde una hoja a otra
 |Transponer|Gira el contenido de celdas copiadas al pegar. Los datos en filas se pegarán en columnas y viceversa.||
 
 ### Formatear Celda
-  
+
 Formatear Celda
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -222,7 +222,7 @@ Formatear Celda
 |Texto a Valor|||
 
 ### Borrar contenido
-  
+
 Borra fórmulas y valores del rango seleccionado, manteniendo el formato.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -230,7 +230,7 @@ Borra fórmulas y valores del rango seleccionado, manteniendo el formato.
 |Celda o Rango de celdas|Rango que contiene los datos a alinear|A1:D7|
 
 ### Crear Hoja
-  
+
 Añade una hoja al final
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -238,7 +238,7 @@ Añade una hoja al final
 |Despues de|La hoja se creará al lado de la hoja indicada en este campo|Hoja1|
 
 ### Eliminar Hoja
-  
+
 Elimina una hoja
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -246,7 +246,7 @@ Elimina una hoja
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Copiar de un Excel a otro
-  
+
 Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abrirá el excel para copiar o pegar los datos. Si ingresas el id de un excel abierto, usará esa instancia para copiar o pegar.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -261,7 +261,7 @@ Copia el rango de un archivo de Excel a otro. Indicando la ruta del archivo, abr
 |Rango donde pegar (Opcional)|Columna, Celda o Rango de celdas donde pegar. La sintaxis debe ser la misma de excel (A, A1 o A1B1) |A1:D7|
 
 ### Insertar/Eliminar Fila
-  
+
 Inserta o elimina una fila
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -271,7 +271,7 @@ Inserta o elimina una fila
 |Dónde Insertar|Indique donde agregar o eliminar la fila|A1:D7|
 
 ### Insertar/Eliminar Columna
-  
+
 Inserta o elimina una columna
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -280,7 +280,7 @@ Inserta o elimina una columna
 |Rango|Indique la columna o columnas que se quieren agregar o eliminar|B|
 
 ### Convertir CSV a XLSX
-  
+
 Convierte un documento CSV a formato XLSX
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -291,7 +291,7 @@ Convierte un documento CSV a formato XLSX
 |Ruta archivo XLSX|Ruta del archivo xlsx donde guardar|file.xlsx|
 
 ### Exportar a JSON
-  
+
 Exporta un array de datos a un archivo JSON
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -299,7 +299,7 @@ Exporta un array de datos a un archivo JSON
 |Ruta archivo json|Ruta del archivo json donde guardar la conversión|C:/Users/User/Desktop/file.json|
 
 ### (Deprecado) Convertir XLSX a CSV
-  
+
 Convierte un documento XLSX a CSV
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -309,7 +309,7 @@ Convierte un documento XLSX a CSV
 |Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
 
 ### Convertir XLSX a CSV
-  
+
 Convierte un documento XLSX a CSV
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -320,7 +320,7 @@ Convierte un documento XLSX a CSV
 |Ruta archivo CSV|Ruta del archivo csv donde guardar la conversión|C:/Users/User/Desktop/file.csv|
 
 ### Convertir XLS a XLSX
-  
+
 Convierte un documento XLS a XLSX
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -328,14 +328,14 @@ Convierte un documento XLS a XLSX
 |Ruta archivo XLSX|Ruta donde se guardará el archivo xlsx|C:\Users\User\Desktop\new_file.xlsx|
 
 ### Obtener celda activa
-  
+
 Obtener fila y columna de una celda activa
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Actualizar tabla dinámica
-  
+
 Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -343,7 +343,7 @@ Actualiza una tabla dinámica. ¡Obsoleto! Use el módulo PivotTableExcel
 |Nombre de la tabla dinámica |Nombre de la tabla dinámica que se actualizará|Name: |
 
 ### Ajustar celdas
-  
+
 Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar por filas o columnas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -362,7 +362,7 @@ Ajusta, une, agrupa y desagrupa un rango de celdas. Puedes agrupar/desagrupar po
 |Altura de Fila|Altura a la que se ajustara la fila|20|
 
 ### Obtener Formula
-  
+
 Obtiene la formula sobre una celda 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -370,7 +370,7 @@ Obtiene la formula sobre una celda
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Agregar Filtro Automático
-  
+
 Agrega filtro automático a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -378,21 +378,21 @@ Agrega filtro automático a una tabla excel
 |Columnas |Columna o Rango de columnas. La sintaxis debe ser la misma de excel (A o AB) |A:E |
 
 ### Eliminar Filtro Automático
-  
+
 Eliminar el filtro automático de una hoja de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentra el filtro a quitar|Hoja 1|
 
 ### Borrar Filtro
-  
+
 Borra todos los filtros aplicados sobre una hoja de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos filtrados|Hoja 1|
 
 ### Filtrar
-  
+
 Filtrar una tabla de excel según el valor relativo, contenido exacto, color de fondo o color de letra de las celdas. *Ejemplos según tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -403,7 +403,7 @@ Filtrar una tabla de excel según el valor relativo, contenido exacto, color de 
 |Tipo de filtro |Tipo de filtro a aplicar.||
 
 ### Filtrar por Fecha
-  
+
 Filtra una tabla por el día, mes o año de una fecha indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -414,7 +414,7 @@ Filtra una tabla por el día, mes o año de una fecha indicada
 |Tipo de filtro |Tipo de filtro a aplicar.||
 
 ### Filtro avanzado
-  
+
 Filtra a una tabla excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -426,14 +426,14 @@ Filtra a una tabla excel
 |Destino  |Celda donde pegar la tabla resultado del filtro|J1 |
 
 ### Remover Filtros
-  
+
 Eliminar filtros y mostrar todos los datos
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja donde se encuentran los datos|Hoja1|
 
 ### Renombrar hoja
-  
+
 Cambia el nombre a una hoja de excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -441,7 +441,7 @@ Cambia el nombre a una hoja de excel
 |Nuevo nombre |Nuevo Nombre de la hoja|nuevo_nombre|
 
 ### Formato de texto
-  
+
 Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -451,7 +451,7 @@ Cambia la alineacion Horizontal o Vertical de los valores en un rango de celdas
 |Alineacion Vertical|Selector que contiene las opciones de alineacion vertical||
 
 ### Estilo Celda
-  
+
 Este comando modifica el formato de la celda o rango de celdas seleccionado. Puedes cambiar la fuente y los bordes
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -469,7 +469,7 @@ Este comando modifica el formato de la celda o rango de celdas seleccionado. Pue
 |Fuente|Tipo de fuente que se quiere formatear|Arial|
 
 ### Pegar en Celdas
-  
+
 Pega datos en celdas en Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -478,13 +478,13 @@ Pega datos en celdas en Excel
 |Solo valores|Si esta casilla es seleccionada, se pegarán solo los valores|True|
 
 ### Deshabilitar modo Copiar/Cortar
-  
+
 Deshabilitar el modo Cortar/Copiar del Excel activo
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
 ### Eliminar duplicados
-  
+
 Ejecuta el comando eliminar duplicados de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -494,7 +494,7 @@ Ejecuta el comando eliminar duplicados de Excel
 |Tiene cabeceras?|Marcar esta casilla si el excel tiene cabeceras|True|
 
 ### Exportar a PDF avanzado
-  
+
 Exporta Excel a PDF con opciones
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -508,7 +508,7 @@ Exporta Excel a PDF con opciones
 |Orientación|||
 
 ### Copiar-Mover Hoja
-  
+
 Copia o mueve una hoja
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -519,14 +519,14 @@ Copia o mueve una hoja
 |Copiar|Al marcar la casilla, se creará una copia de la hoja||
 
 ### Insertar Formulario
-  
+
 Inserta un Formulario a Excel 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ruta del Formulario|Ruta del archivo frm que se quiere insertar|Form.frm|
 
 ### Leer celdas filtradas
-  
+
 Lee todo el contenido de las celdas filtradas y aplica formato a los datos tipo fecha si se indica
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -538,7 +538,7 @@ Lee todo el contenido de las celdas filtradas y aplica formato a los datos tipo 
 |Datos extra|||
 
 ### Contar celdas filtradas
-  
+
 Cuenta solo las celdas filtradas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -547,7 +547,7 @@ Cuenta solo las celdas filtradas
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Reemplazar
-  
+
 Ejecuta la opción de reemplazar de excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -557,7 +557,7 @@ Ejecuta la opción de reemplazar de excel
 |Nueva palabra|Palabra que va a reemplazar a la anterior indicada|10-10-2020|
 
 ### Ordenar
-  
+
 Ejecuta la opción de reemplazar de excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -567,7 +567,7 @@ Ejecuta la opción de reemplazar de excel
 |Tipo de orden |Indicar como se ordenará la columna|Ascending|
 
 ### Ordenar por múltiples niveles
-  
+
 Ordene una hoja de Excel por valor, estableciendo múltiples niveles
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -577,13 +577,13 @@ Ordene una hoja de Excel por valor, estableciendo múltiples niveles
 |Campos de orden|||
 
 ### Actualizar Todo
-  
+
 Actualiza todas las fuentes del libro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 
 ### Buscar
-  
+
 Busca un texto en el rango indicado y retorna la celda donde se encuentra la primera coincidencia. Si no encuentra un valor, retornará vacío. Si el rango elta filtrado, la busqueda sere realizada sobre las celdas visibles.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -599,7 +599,7 @@ Busca un texto en el rango indicado y retorna la celda donde se encuentra la pri
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Encontrar dato
-  
+
 Devuelve la primera celda que coincida con el dato buscado
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -612,7 +612,7 @@ Devuelve la primera celda que coincida con el dato buscado
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Bloquear celdas
-  
+
 Bloquea o desbloquea celdas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -621,7 +621,7 @@ Bloquea o desbloquea celdas
 |Acción|Seleccione si desea bloquear o desbloquear una celda |Lock|
 
 ### Agregar Gráfico
-  
+
 Agrega un nuevo gráfico sobre una hoja en excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -631,7 +631,7 @@ Agrega un nuevo gráfico sobre una hoja en excel
 |Rango de datos |Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |Sheet!A1:B100 |
 
 ### Quitar Contraseña
-  
+
 Quita la contraseña y guarda el Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -640,7 +640,7 @@ Quita la contraseña y guarda el Excel
 |Excel sin Contraseña|Ruta donde guardar el archivo .xlsx. Vacío para guardar en el mismo Excel|C:/Users/User/Desktop/test2.xlsx|
 
 ### Insertar imagen
-  
+
 Inserta una imagen
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -649,7 +649,7 @@ Inserta una imagen
 |Ruta imagen|Ruta de la imagen que se quiere insertar|imagen.png|
 
 ### Exportar gráfico
-  
+
 Exporta un gráfico por índice
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -658,7 +658,7 @@ Exporta un gráfico por índice
 |Ruta imagen|Ruta dnde se guardará la imagen|/ruta/a/imagen.png|
 
 ### Modo no visible
-  
+
 Abre excel en modo no visible
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -666,7 +666,7 @@ Abre excel en modo no visible
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|default|
 
 ### Escribir array de objetos
-  
+
 Escribe un array de objetos en las celdas de Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -675,7 +675,7 @@ Escribe un array de objetos en las celdas de Excel
 |Datos a escribir|Celda o Rango de celdas. La sintaxis debe ser la misma de excel (A1 o A1B1) |[{ 'id',: 1, 'text': 'hola' },{ 'id',: 2, 'text': 'mundo' }]|
 
 ### Copiar-Pegar Formato
-  
+
 Copia formato de un rango de celdas desde una hoja a otra 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -685,7 +685,7 @@ Copia formato de un rango de celdas desde una hoja a otra
 |Rango donde pegar||A1:C4|
 
 ### Actualizar vínculos
-  
+
 Cambia un vínculo desde un documento a otro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -693,21 +693,21 @@ Cambia un vínculo desde un documento a otro
 |Ruta actualizada|Ruta del archivo xlsx que reemplazará el vinculo|file.xlsx|
 
 ### Desbloquear libro
-  
+
 Desbloquea un libro con contraseña
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Contraseña|Contraseña de la hoja bloqueada|Contraseña|
 
 ### Bloquear libro
-  
+
 Bloquear un libro con contraseña
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Contraseña|Contraseña para bloquear el libro|Contraseña|
 
 ### Desbloquear hoja
-  
+
 Desbloquea una hoja con contraseña
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -715,7 +715,7 @@ Desbloquea una hoja con contraseña
 |Contraseña|Contraseña de la hoja bloqueada|Contraseña|
 
 ### Bloquear hoja
-  
+
 Bloquear una hoja con contraseña
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -723,7 +723,7 @@ Bloquear una hoja con contraseña
 |Contraseña|Contraseña para bloquear la hoja|Contraseña|
 
 ### Convertir a .txt
-  
+
 Convierte a .txt
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -731,7 +731,7 @@ Convierte a .txt
 |Guardar TXT|Ruta donde guardar el archivo .txt|/Users/user/Desktop/prueba.txt|
 
 ### Texto en columna
-  
+
 Ejecuta la opción texto en columna de excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -742,7 +742,7 @@ Ejecuta la opción texto en columna de excel
 |Otro delimitador o ancho|Escriba el delimitador o ancho fijo|\| o 20,35,22,10|
 
 ### Convertir tiempo de Excel a horas
-  
+
 Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -750,7 +750,7 @@ Convertir tiempo de Excel a horas. Devuelve el resultado como hh:mm:ss
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Combinar planillas
-  
+
 Combina planillas de Excel que estén en la misma carpeta y que tengan los mismos encabezados. Combinará horizontalmente las hojas de la misma planilla y verticalmente las planillas diferentes.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -759,14 +759,14 @@ Combina planillas de Excel que estén en la misma carpeta y que tengan los mismo
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|res|
 
 ### Imprimir hoja
-  
+
 Imprime una hoja
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Hoja |Nombre de la hoja que se quiere imprimir|Hoja 1|
 
 ### Guardar Excel con password
-  
+
 Guarda un archivo Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -774,21 +774,21 @@ Guarda un archivo Excel
 |Ingrese la password|Contraseña del archivo xlsx|password|
 
 ### Guardar Excel
-  
+
 Guarda un archivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') en la ruta indicada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Guardar Excel|Ruta donde guardar el archivo .xlsx|/Users/user/Desktop/excel.xlsx|
 
 ### Cerrar XLSX
-  
+
 Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un excel, funciona si es abierto con el comando Abrir sin alertas, caso contrario cerrara todos.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||
 
 ### Eliminar Estilos
-  
+
 Elimina estilos en una hoja
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -796,7 +796,7 @@ Elimina estilos en una hoja
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Insertar vinculo
-  
+
 Inserta un vínculo en una celda, ya sea a una URL externa o a una celda dentro de otra hoja de cálculo.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -806,3 +806,15 @@ Inserta un vínculo en una celda, ya sea a una URL externa o a una celda dentro 
 |Celda destino|Dirección de la celda específica a la que se navegará dentro de la hoja destino. Por defecto es A1|A2|
 |Url|Url a la que se dirigira el hipervínculo.|A2|
 |Asignar resultado a variable|Nombre de la variable donde guardará el resultado|Variable|
+
+### Texto a celdas
+
+Escribe un bloque de texto en múltiples celdas usando saltos de línea y tabuladores como delimitadores. Puede ser lento para textos largos si se especifica un rango máximo
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Hoja|Nombre de la hoja donde se escribirá el texto|Hoja 1|
+|Celda de inicio o rango|Celda donde comenzará la escritura o rango disponible para escribir el texto. Si se especifica un rango disponible, puede ser mas lenta la escritura del texto.|A1|
+|Texto/Datos|Texto a escribir en excel|Datos a escribir|
+|Transformar saltos de línea|Si se marca, los saltos de línea separarán el texto en diferentes filas||
+|Transformar tabuladores|Si se marca, los espacios de tabulación separarán el texto en diferentes columnas||
+|Autoajustar celdas|Ajusta la altura y el ancho de las celdas segun el largo del texto en el rango especificado. Si solo se especifica la celda de inicio, se ajustarán todas las celdas.||
