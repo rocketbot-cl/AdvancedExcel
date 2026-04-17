@@ -2935,7 +2935,9 @@ if module == "find":
     # NUEVOS CHECKBOX
     search_all_sheets = GetParams("search_all_sheets")
     extra_data = GetParams("extra_data")
-    print(search_all_sheets, extra_data)
+    absolut_address = GetParams("absolut_address")
+    absolut_address = eval(absolut_address) if absolut_address else False
+    print(search_all_sheets, extra_data, absolut_address)
     import platform
     from openpyxl.utils.cell import get_column_letter
 
@@ -2971,6 +2973,11 @@ if module == "find":
 
             if platform.system() == "Windows":
                 rng = sh.api.Range(range_sheet)
+                
+                def _format_address(addr, absolute=True):
+                    if not absolute:
+                        return addr.replace("$", "")
+                    return addr
 
                 def _text_matches(haystack: str, _needle=text, _look_at=look_at, _match_case=match_case) -> bool:
                     if haystack is None:
@@ -2989,6 +2996,7 @@ if module == "find":
                     
                     app = _sheet_api.Application
                     collected = []
+                    
 
                     def _append_parent_address(parent_range):
                         try:
@@ -2997,7 +3005,8 @@ if module == "find":
                         except Exception:
                             # If Intersect fails for any reason, don't block matching.
                             pass
-                        addr = parent_range.Address
+                        #addr = parent_range.Address
+                        addr = _format_address(parent_range.Address, absolut_address)
                         if find_all_mode:
                             collected.append(addr)
                         else:
@@ -3042,8 +3051,13 @@ if module == "find":
                 if find_all and eval(find_all):
                     found = []
                     r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
-                    while r is not None and r.Address not in found:
-                        found.append(r.Address)
+                    while r is not None:
+                        addr = _format_address(r.Address, absolut_address)
+                        
+                        if addr in found:
+                            break
+                    
+                        found.append(addr)
                         r = rng.FindNext(r)
 
                     
@@ -3051,8 +3065,14 @@ if module == "find":
                         # Try threaded comments FindLookIn if supported, then manual scan.
                         try:
                             r2 = rng.Find(What=text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
-                            while r2 is not None and r2.Address not in found:
-                                found.append(r2.Address)
+                            
+                            while r2 is not None:
+                                addr = _format_address(r2.Address,absolut_address)
+                                
+                                if addr in found:
+                                    break
+                                #and r2.Address not in found:
+                                found.append(addr)
                                 r2 = rng.FindNext(r2)
                         except Exception:
                             pass
@@ -3090,7 +3110,7 @@ if module == "find":
                                     matches = cell
                                 break
                     if r is not None:
-                        cell = r.Address
+                        cell = _format_address(r.Address,absolut_address)
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,

@@ -3,17 +3,17 @@
 
 
 # Opções avançadas para Excel
-
-Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel.
+  
+Aplique filtros automáticos e avançados, formate células, adicione ou exclua planilhas, linhas ou colunas, exporte para diferentes formatos de arquivo, desbloqueie e bloqueie novamente planilhas, copie e cole especiais e muito mais com seus arquivos do Excel.  
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
-
+  
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## Como instalar este módulo
-
+  
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
-2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.
+2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
 
 
@@ -24,7 +24,7 @@ Para usar este módulo, você deve ter o Microsoft Excel instalado.
 ## Descrição do comando
 
 ### Abrir sem alertas
-
+  
 Abre um arquivo sem mostrar alertas do MS Excel.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -34,7 +34,7 @@ Abre um arquivo sem mostrar alertas do MS Excel.
 |Atribuir resultado a variável|Variável onde o resultado será armazenado|id|
 
 ### Buscar e conectar
-
+  
 Busca um excel aberto e conecta-se a este.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -42,13 +42,13 @@ Busca um excel aberto e conecta-se a este.
 |Identificador (opcional)|Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*.|excel1|
 
 ### Maximizar
-
+  
 Maximizar a janela do Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 
 ### Opções de cálculo
-
+  
 Selecione a forma como o cálculo da fórmula é executado na pasta de trabalho.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -56,7 +56,7 @@ Selecione a forma como o cálculo da fórmula é executado na pasta de trabalho.
 |Calcule agora|Se esta caixa estiver marcada, as fórmulas do livro serão calculadas|True|
 
 ### Ler células
-
+  
 Ler uma célula ou intervalo de células
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -67,7 +67,7 @@ Ler uma célula ou intervalo de células
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|cells|
 
 ### Converter data de série
-
+  
 Converter uma data de número de série do Excel em um formato de data específico
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -76,7 +76,7 @@ Converter uma data de número de série do Excel em um formato de data específi
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|output_date|
 
 ### Contar Colunas
-
+  
 Conta o número de colunas do excel aberto. É necessário que o excel esteja salvo para tomar os últimos cambios
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -85,7 +85,7 @@ Conta o número de colunas do excel aberto. É necessário que o excel esteja sa
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|numero_colunas|
 
 ### Contar Linhas
-
+  
 Conta todas as linhas ou dentro de um intervalo.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -95,7 +95,7 @@ Conta todas as linhas ou dentro de um intervalo.
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|numero_linhas|
 
 ### Ocultar
-
+  
 Oculta uma ou várias linhas, ou uma ou várias colunas.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -104,7 +104,7 @@ Oculta uma ou várias linhas, ou uma ou várias colunas.
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Ocultar
-
+  
 Mostra uma ou mais linhas, ou uma ou mais colunas que estão ocultas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -113,7 +113,7 @@ Mostra uma ou mais linhas, ou uma ou mais colunas que estão ocultas
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Cor da célula
-
+  
 Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito ou uma personalizada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -124,7 +124,7 @@ Muda a cor de uma célula ou intervalo de células. Pode ser uma cor por defeito
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
 ### Cor da fonte
-
+  
 Altere a cor da fonte do texto em uma célula ou intervalo de células. Pode ser uma cor predefinida ou personalizada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -135,7 +135,7 @@ Altere a cor da fonte do texto em uma célula ou intervalo de células. Pode ser
 |Seleccione cor |Seleccione a cor. Pode usar o campo anterior para personalizar a cor|red|
 
 ### Obter cor da célula
-
+  
 Obter a cor de uma célula. A função retornará uma lista com dois elementos: Background Color e Font Color no formato RGB.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -144,7 +144,7 @@ Obter a cor de uma célula. A função retornará uma lista com dois elementos: 
 |Atribuir a variável|Nome da variável para armazenar o resultado|cor|
 
 ### Obter formato de célula
-
+  
 Obtenha o formato de uma célula. A função retornará um dicionário com as propriedades da célula e o valor de cada uma.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -153,7 +153,7 @@ Obtenha o formato de uma célula. A função retornará um dicionário com as pr
 |Atribuir a variável|Nome da variável para armazenar o resultado|cor|
 
 ### Insertar Formula
-
+  
 Inserta formula sobre una celda 
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -163,14 +163,14 @@ Inserta formula sobre una celda
 |No IIE|Se esta caixa estiver marcada, você poderá enviar a fórmula sem IIE|True|
 
 ### Inserir Macro a Excel
-
+  
 Insere uma Macro a Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Caminho da Macro|Caminho do arquivo .bas que se quer inserir|Macro.bas|
 
 ### Selecionar e copiar Células
-
+  
 Seleciona e copia células em Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -179,7 +179,7 @@ Seleciona e copia células em Excel
 |Copiar|Ao marcar a caixa, os valores serão copiados para a prancheta.|True|
 
 ### Obter Célula Formato Moeda
-
+  
 Obtém células com formato moeda
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -188,7 +188,7 @@ Obtém células com formato moeda
 |Atribuir a variável|Nome da variável para armazenar o resultado|variável|
 
 ### Obter Célula Formato Data
-
+  
 Obtém células com formato de data
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -197,7 +197,7 @@ Obtém células com formato de data
 |Atribuir a variável|Nome da variável para armazenar o resultado|variável|
 
 ### Copiar-Colar
-
+  
 Copia um intervalo de células de uma planilha para outra
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -211,7 +211,7 @@ Copia um intervalo de células de uma planilha para outra
 |Transpor|Gire o conteúdo das células copiadas ao colar. Os dados nas linhas serão colados nas colunas e vice-versa.||
 
 ### Formatar Célula
-
+  
 Formatar Célula
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -222,7 +222,7 @@ Formatar Célula
 |Texto para valor|||
 
 ### Remover conteúdo
-
+  
 Limpa fórmulas e valores do intervalo selecionado, mantendo o formato
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -230,7 +230,7 @@ Limpa fórmulas e valores do intervalo selecionado, mantendo o formato
 |Célula o intervalo de células|Intervalo que contém os dados a alinhar|A1:D7|
 
 ### Criar Planilha
-
+  
 Adiciona uma planilha no final
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -238,7 +238,7 @@ Adiciona uma planilha no final
 |Depois de|A planilha será criada ao lado da planilha indicada neste campo.|Folha1|
 
 ### Eliminar Planilha
-
+  
 Elmina uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -246,7 +246,7 @@ Elmina uma planilha
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|Variável|
 
 ### Copiar de um Excel para outro
-
+  
 Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo, abrirá o Excel para copiar ou colar os dados. Se você inserir o id de um Excel aberto, ele usará essa instância para copiar ou colar.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -261,7 +261,7 @@ Copie o intervalo de um arquivo Excel para outro. Indicando o caminho do arquivo
 |Intervalo onde colar (Opcional)|Coluna, célula ou intervalo de células onde colar. A sintaxe deve ser a mesma do excel (A, A1 ou A1B1) |A1:D7|
 
 ### Adicionar/Eliminar Linha
-
+  
 Adiciona ou elimina uma linha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -271,7 +271,7 @@ Adiciona ou elimina uma linha
 |Onde Inserir|Indicar onde adicionar o excluir a linha|A1:D7|
 
 ### Adicionar/Excluir Coluna
-
+  
 Adiciona o exclui uma coluna
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -280,7 +280,7 @@ Adiciona o exclui uma coluna
 |Rango|Indicar a(s) coluna(s) a ser(em) adicionada(s) ou deletada(s)|B|
 
 ### Converter CSV para XLSX
-
+  
 Converte um documento CSV para formato XLSX
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -291,7 +291,7 @@ Converte um documento CSV para formato XLSX
 |Caminho do arquivo XLSX|Direcação do arquivo xlsx onde será salvo|file.xlsx|
 
 ### Exportar para JSON
-
+  
 Exporta um array de dados para um arquivo JSON
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -299,7 +299,7 @@ Exporta um array de dados para um arquivo JSON
 |Direcação do arquivo Json|Direção do arquivo json onde será salvo|C:/Users/User/Desktop/file.json|
 
 ### (Descontinuado) Converter XLSX para CSV
-
+  
 Converte um documento XLSX para CSV
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -309,7 +309,7 @@ Converte um documento XLSX para CSV
 |Direcação do arquivo CSV|Direção do arquivo csv onde será salvo|C:/Users/User/Desktop/file.csv|
 
 ### Converter XLSX para CSV
-
+  
 Converte um documento XLSX para CSV
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -320,7 +320,7 @@ Converte um documento XLSX para CSV
 |Direcação do arquivo CSV|Direção do arquivo csv onde será salvo|C:/Users/User/Desktop/file.csv|
 
 ### Converter XLS para XLSX
-
+  
 Converte um documento XLS para XLSX
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -328,14 +328,14 @@ Converte um documento XLS para XLSX
 |Direção do arquivo XLSX|Direção onde se guardará o arquivo xlsx|C:\Users\User\Desktop\new_file.xlsx|
 
 ### Obter celula activa
-
+  
 Obter linha e coluna de uma celula activa
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Atualizar tabela dinâmica
-
+  
 Atualiza uma tabela dinâmica. Descontinuado! Use o módulo PivotTableExcel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -343,7 +343,7 @@ Atualiza uma tabela dinâmica. Descontinuado! Use o módulo PivotTableExcel
 |Nome da tabela dinâmica |Nome da tabela dinámica que vai ser actualizada|Nome: |
 
 ### Ajustar células
-
+  
 Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/desagrupar por linhas ou colunas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -362,7 +362,7 @@ Ajusta, une, agrupa e desagrupa um intervalo de células. Você pode agrupar/des
 |Altura da linha|Altura à qual a linha se ajustará|20|
 
 ### Obter Formula
-
+  
 Obtém a fórmula numa célula
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -370,7 +370,7 @@ Obtém a fórmula numa célula
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Adicionar Filtro Automático
-
+  
 Adiciona filtro automático a uma tabela excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -378,21 +378,21 @@ Adiciona filtro automático a uma tabela excel
 |Colunas |Coluna ou intervalo de colunas. A sintaxe deve ser a mesma do excel (A o AB) |A:E |
 
 ### Remover Filtro Automático
-
+  
 Remova o filtro automático de uma planilha do Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da folha onde se encontra o filtro a remover|Planilha 1|
 
 ### Limpa Filtro
-
+  
 Limpa todos os filtros feitos em uma planilha do Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados filtrados estão localizados|Planilha 1|
 
 ### Filtrar
-
+  
 Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor de fundo ou cor da fonte das células. *Exemplos por tipo de filtro: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -403,7 +403,7 @@ Filtre uma tabela do Excel de acordo com o valor relativo, conteúdo exato, cor 
 |Tipo de filtro |Type of filter to apply.||
 
 ### Filtrar por Data
-
+  
 Filtrar uma tabela por o dia, mes ou ano de uma data indicada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -414,7 +414,7 @@ Filtrar uma tabela por o dia, mes ou ano de uma data indicada
 |Tipo de filtro |Type of filter to apply.||
 
 ### Filtro avançado
-
+  
 Aplicar filtro avançado a uma tabela
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -426,14 +426,14 @@ Aplicar filtro avançado a uma tabela
 |Destino  |Célula onde colar a tabela de resultados do filtro|J1 |
 
 ### Remover filtros
-
+  
 Remova os filtros e mostre todos os dados
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha onde os dados estão localizados|Planilha1|
 
 ### Renomear planilha
-
+  
 Muda o nome de uma planilha de excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -441,7 +441,7 @@ Muda o nome de uma planilha de excel
 |Novo nome |Novo nome da planilha|novo_nome|
 
 ### Formato de texto
-
+  
 Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de células
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -451,7 +451,7 @@ Altere o alinhamento Horizontal ou Vertical de valores em um intervalo de célul
 |Alinhamento Vertical|Selector que contém as opções de alinhamento vertical||
 
 ### Estilo de Célula
-
+  
 Este comando modifica o formata a célula o intervalo de células selecionado. Você pode mudar a fonte e as bordas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -469,7 +469,7 @@ Este comando modifica o formata a célula o intervalo de células selecionado. V
 |Fonte|Tipo de fonte que deseja formatar|Arial|
 
 ### Colar em Células
-
+  
 Colar dados em células em Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -478,13 +478,13 @@ Colar dados em células em Excel
 |Só valores|Se esta caixa foi marcada, vai colar apenas os valores|True|
 
 ### Desativar modo de corte/cópia
-
+  
 Desative o modo Cortar/Copiar do Excel ativo
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 
 ### Remover duplicatas
-
+  
 Executa o comando remover duplicatas de Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -494,7 +494,7 @@ Executa o comando remover duplicatas de Excel
 |Tem cabeçeras?|marque esta caixa se o excel tiver cabeçalhos|True|
 
 ### Exportar para PDF avançado
-
+  
 Exporta Excel para PDF com opções
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -508,7 +508,7 @@ Exporta Excel para PDF com opções
 |Orientação|||
 
 ### Copiar-Mover Planilha
-
+  
 Copiar ou mover uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -519,14 +519,14 @@ Copiar ou mover uma planilha
 |Copy |Ao marcar a caixa, a planilha vai ser copiada.||
 
 ### Inserir Formulário
-
+  
 Insere um Formulário no Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Caminho do Formulário |Direcação do arquivo frm que se deseja inserir|Form.frm|
 
 ### Ler células filtradas
-
+  
 Leia todo o conteúdo das células filtradas e aplique formatação aos dados do tipo data, se indicado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -538,7 +538,7 @@ Leia todo o conteúdo das células filtradas e aplique formatação aos dados do
 |Mais dados |||
 
 ### Contar celulas filtradas
-
+  
 Conta somente as celulas filtradas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -547,7 +547,7 @@ Conta somente as celulas filtradas
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Replace
-
+  
 Run replace action to excel 
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -557,7 +557,7 @@ Run replace action to excel
 |Nova palavra |Palavra que substituirá a anterior indicada|10-10-2020|
 
 ### Ordenar
-
+  
 Executa a ação de substituir de excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -567,7 +567,7 @@ Executa a ação de substituir de excel
 |Tipo de ordem |Indicar como a coluna vai ser classificada|Ascendente|
 
 ### Ordenar por múltiples niveles
-
+  
 Ordene uma planilha Excel por valor, definindo vários níveis
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -577,13 +577,13 @@ Ordene uma planilha Excel por valor, definindo vários níveis
 |Campos de organizar|||
 
 ### Atualizar Tudo
-
+  
 Atualiza todas as fontes do livro
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 
 ### Procurar
-
+  
 Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a primeira correspondência. Se não encontrar um valor, retornará vazio. Se o intervalo for filtrado, a pesquisa será realizada sobre as células visíveis.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -596,10 +596,11 @@ Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a
 |Encontrar tudo|Se esta caixa estiver marcada, ela retornará uma lista com todas as coincidências.||
 |Pesquisar em todas as folhas|Se esta caixa estiver marcada, ela pesquisará em todas as folhas.||
 |Obtém folha e posição|Se esta caixa estiver marcada, ela obtém todos os dados da pesquisa.||
+|Obtém o caminho absoluto|Se esta caixa estiver marcada, o conteúdo com o símbolo $ será obtido..||
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Encontrar dados
-
+  
 Retorna a primeira célula que corresponde aos dados da pesquisa
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -612,7 +613,7 @@ Retorna a primeira célula que corresponde aos dados da pesquisa
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Bloquear celulas
-
+  
 Bloquea ou desbloqueia celulas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -621,7 +622,7 @@ Bloquea ou desbloqueia celulas
 |Action|Selecione se você deseja travar ou destravar uma célula|Lock|
 
 ### Adicionar Gráfico
-
+  
 Adiciona um novo gráfico sobre uma planilha de excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -631,7 +632,7 @@ Adiciona um novo gráfico sobre uma planilha de excel
 |Intervalo de dados |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |Sheet!A1:B100 |
 
 ### Remover Senha
-
+  
 Remove a senha e salva o Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -640,7 +641,7 @@ Remove a senha e salva o Excel
 |Excel sem senha|Caminho onde salvar o arquivo .xlsx|C:/Users/User/Desktop/test2.xlsx|
 
 ### Inserir imagem
-
+  
 Inserir uma imagem
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -649,7 +650,7 @@ Inserir uma imagem
 |Direcação da imagem |Direção do arquivo de imagem que se quer inserir|imagem.png|
 
 ### Exportar gráfico
-
+  
 Exporta um gráfico por índice
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -658,7 +659,7 @@ Exporta um gráfico por índice
 |Direcação da imagem |Direção onde a imagem será salva|/direção/para/imagem.png|
 
 ### Modo não visível
-
+  
 Abre excel em modo não visível
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -666,7 +667,7 @@ Abre excel em modo não visível
 |Identificador (opcional)|Nome ou identificador para o arquivo que será aberto. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*.|default|
 
 ### Escrever array de objetos
-
+  
 Escrever um array de objetos em células de Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -675,7 +676,7 @@ Escrever um array de objetos em células de Excel
 |Dados a escrever|Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |[{ 'id',: 1, 'text': 'olá' },{ 'id',: 2, 'text': 'mundo' }]|
 
 ### Copiar-Colar Formato
-
+  
 Copia formato de um intervalo de células de uma planilha para outra
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -685,7 +686,7 @@ Copia formato de um intervalo de células de uma planilha para outra
 |Intervalo onde colar||A1:C4|
 
 ### Atualizar vínculos
-
+  
 Muda um vínculo de um documento para outro
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -693,21 +694,21 @@ Muda um vínculo de um documento para outro
 |Direcação atualizada|Direcação do arquivo xlsx que substituirá o vínculo|file.xlsx|
 
 ### Desbloquear livro
-
+  
 Desbloquea um livro com senha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Senha|Senha da planilha bloqueada|Senha|
 
 ### Bloquear livro
-
+  
 Bloquear um livro com senha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Senha|Senha para bloquear o livro|Senha|
 
 ### Desbloquear planilha
-
+  
 Desbloquea uma folha com senha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -715,7 +716,7 @@ Desbloquea uma folha com senha
 |Senha|Senha da planilha bloqueada|Senha|
 
 ### Bloquear folha
-
+  
 Bloquear uma folha com senha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -723,7 +724,7 @@ Bloquear uma folha com senha
 |Senha|Senha para bloquear a planilha|Senha|
 
 ### Converter para .txt
-
+  
 Converte para .txt
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -731,7 +732,7 @@ Converte para .txt
 |Salvar TXT|Caminho onde salvar o arquivo .txt|/Users/user/Desktop/test.txt|
 
 ### Texto em coluna
-
+  
 Executa a opção texto em coluna de excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -739,10 +740,10 @@ Executa a opção texto em coluna de excel
 |Intervalo |Célula ou intervalo de células. A sintaxe deve ser a mesma do excel (A1 ou A1B1) |A1:B100 |
 |Seleciona separador |Seleciona o separador de células, pode ser largura fixa ou delimitado||
 |Selecione o tipo de separador |Seleciona o tipo de separador||
-|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|\| ou 20,35,22,10|
+|Outro delimitador ou largura |Escreva o delimitador ou largura fixa|| ou 20,35,22,10|
 
 ### Converter tempo de Excel para horas
-
+  
 Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -750,7 +751,7 @@ Converter tempo de Excel para horas. Retorna o formato como hh: mm: ss
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Combinar planilhas
-
+  
 Combine planilhas do Excel que estão na mesma pasta e que tenhamos o mesmo cabecalho. Combinar horizontalmente as planilhas da mesma planilha e verticalmente as planilhas diferentes.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -759,14 +760,14 @@ Combine planilhas do Excel que estão na mesma pasta e que tenhamos o mesmo cabe
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|res|
 
 ### Imprimir planilha
-
+  
 Imprime uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Planilha |Nome da planilha a ser impresso|Planilha 1|
 
 ### Salvar Excel com senha
-
+  
 Salva um arquivo Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -774,21 +775,21 @@ Salva um arquivo Excel
 |Digite a senha|Senha do arquivo xlsx|password|
 
 ### Salvar Excel
-
+  
 Salva um arquivo Excel (como '.xlsx', 'xlsm', '.xls', '.csv' or '.prn')  na ruta indicada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Salvar Excel|Caminho onde salvar o arquivo .xlsx|/Users/user/Desktop/excel.xlsx|
 
 ### Fechar XLSX
-
+  
 Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arquivo, funciona se estiver aberto com o comando Abrir sem alertas, caso contrário, irá fechar todos.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Matar processo|Si se marca esta casilla, cerrará por completo o processo.||
 
 ### Eliminar Estilos
-
+  
 Remover estilos em uma planilha
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -796,7 +797,7 @@ Remover estilos em uma planilha
 |Atribuir resultado a variável|Nome da variável para armazenar o resultado|Variável|
 
 ### Inserir link
-
+  
 Insira um link em uma célula, seja para um URL externo ou para uma célula em outra planilha.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -808,7 +809,7 @@ Insira um link em uma célula, seja para um URL externo ou para uma célula em o
 |Atribuir resultado a variável|Nome da variável onde o resultado será armazenado.|Variável|
 
 ### Texto para células
-
+  
 Escreva um bloco de texto em várias células usando quebras de linha e tabulações como delimitadores. Pode ser lento para textos longos se um intervalo máximo for especificado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
