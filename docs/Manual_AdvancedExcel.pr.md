@@ -596,7 +596,7 @@ Procura um texto no intervalo indicado e retorna a célula onde foi encontrada a
 |Encontrar tudo|Se esta caixa estiver marcada, ela retornará uma lista com todas as coincidências.||
 |Pesquisar em todas as folhas|Se esta caixa estiver marcada, ela pesquisará em todas as folhas.||
 |Obtém folha e posição|Se esta caixa estiver marcada, ela obtém todos os dados da pesquisa.||
-|Obtém o caminho absoluto|Se esta caixa estiver marcada, o conteúdo com o símbolo $ será obtido..||
+|Obtém a localização sem o caminho absoluto.|Se esta caixa estiver marcada, o conteúdo será obtido sem o símbolo $.||
 |Atribuir resultado a variável |Nome da variável para armazenar o resultado|Variável|
 
 ### Encontrar dados

@@ -2935,9 +2935,9 @@ if module == "find":
     # NUEVOS CHECKBOX
     search_all_sheets = GetParams("search_all_sheets")
     extra_data = GetParams("extra_data")
-    absolut_address = GetParams("absolut_address")
-    absolut_address = eval(absolut_address) if absolut_address else False
-    print(search_all_sheets, extra_data, absolut_address)
+    address = GetParams("address")
+    address = eval(address) if address else False
+    
     import platform
     from openpyxl.utils.cell import get_column_letter
 
@@ -2945,10 +2945,11 @@ if module == "find":
         look_in = -4163 if not look_in else eval(look_in)
         look_at = 2 if not look_at else eval(look_at)
         match_case = False if not match_case else eval(match_case)
+        search_text = text
 
         wb_sheet_names = [sh.name for sh in wb.sheets]
 
-        # Resolver hojas a buscar
+    
         if search_all_sheets and eval(search_all_sheets):
             sheets_to_search = wb_sheet_names
         else:
@@ -2971,15 +2972,15 @@ if module == "find":
             else:
                 range_sheet = range_
 
+            def _format_address(addr, absolute=True):
+                if absolute:
+                    return addr.replace("$", "")
+                return addr
+
             if platform.system() == "Windows":
                 rng = sh.api.Range(range_sheet)
-                
-                def _format_address(addr, absolute=True):
-                    if not absolute:
-                        return addr.replace("$", "")
-                    return addr
 
-                def _text_matches(haystack: str, _needle=text, _look_at=look_at, _match_case=match_case) -> bool:
+                def _text_matches(haystack: str, _needle=search_text, _look_at=look_at, _match_case=match_case) -> bool:
                     if haystack is None:
                         return False
                     needle = "" if _needle is None else str(_needle)
@@ -2992,27 +2993,30 @@ if module == "find":
                         return hay == needle
                     return needle in hay
 
-                def _find_in_comments_collections(find_all_mode: bool, _sheet_api=sh.api, _rng=rng):
+                def _find_in_comments_collections(find_all_mode: bool, _sheet_api=sh.api, _rng=None):
+                    if _rng is None:
+                        try:
+                            _rng = rng
+                        except NameError:
+                            return []
                     
                     app = _sheet_api.Application
                     collected = []
-                    
 
                     def _append_parent_address(parent_range):
                         try:
                             if app.Intersect(parent_range, _rng) is None:
                                 return
                         except Exception:
-                            # If Intersect fails for any reason, don't block matching.
+                            
                             pass
-                        #addr = parent_range.Address
-                        addr = _format_address(parent_range.Address, absolut_address)
+                        addr = parent_range.Address
                         if find_all_mode:
                             collected.append(addr)
                         else:
                             collected.append(addr)
 
-                    # Legacy comments/notes
+            
                     try:
                         for c in _sheet_api.Comments:
                             try:
@@ -3029,7 +3033,7 @@ if module == "find":
                     except Exception:
                         pass
 
-                   
+                
                     try:
                         for c in _sheet_api.CommentsThreaded:
                             try:
@@ -3050,9 +3054,9 @@ if module == "find":
 
                 if find_all and eval(find_all):
                     found = []
-                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    r = rng.Find(What=search_text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
                     while r is not None:
-                        addr = _format_address(r.Address, absolut_address)
+                        addr = _format_address(r.Address, address)
                         
                         if addr in found:
                             break
@@ -3062,12 +3066,12 @@ if module == "find":
 
                     
                     if (not found) and look_in == -4144:
-                        # Try threaded comments FindLookIn if supported, then manual scan.
+                        
                         try:
-                            r2 = rng.Find(What=text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
+                            r2 = rng.Find(What=search_text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
                             
                             while r2 is not None:
-                                addr = _format_address(r2.Address,absolut_address)
+                                addr = _format_address(r2.Address,address)
                                 
                                 if addr in found:
                                     break
@@ -3090,11 +3094,11 @@ if module == "find":
                             matches.append(cell)
 
                 else:
-                    r = rng.Find(What=text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
+                    r = rng.Find(What=search_text, LookAt=look_at, LookIn=look_in, SearchDirection=1, MatchCase=match_case)
                     if r is None and look_in == -4144:
                         
                         try:
-                            r = rng.Find(What=text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
+                            r = rng.Find(What=search_text, LookAt=look_at, LookIn=-4184, SearchDirection=1, MatchCase=match_case)
                         except Exception:
                             r = None
                         if r is None:
@@ -3110,7 +3114,7 @@ if module == "find":
                                     matches = cell
                                 break
                     if r is not None:
-                        cell = _format_address(r.Address,absolut_address)
+                        cell = _format_address(r.Address,address)
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,
@@ -3126,7 +3130,7 @@ if module == "find":
                 def _text_matches(haystack: str) -> bool:
                     if haystack is None:
                         return False
-                    needle = "" if text is None else str(text)
+                    needle = "" if search_text is None else str(search_text)
                     hay = str(haystack)
                     if not match_case:
                         needle = needle.lower()
@@ -3135,29 +3139,29 @@ if module == "find":
                         return hay == needle
                     return needle in hay
 
-                def _mac_find_first(after_obj):
+                def _mac_find_first(after_obj, _rng=rng, _text=search_text, _look_in=look_in, _look_at=look_at, _match_case=match_case):
                     # On macOS, Excel's AppleScript Find can throw parameter errors unless `after_` is provided.
                     # Try with progressively fewer optional params to maximize compatibility.
                     try:
-                        return rng.api.find(
-                            what=text,
+                        return _rng.api.find(
+                            what=_text,
                             after_=after_obj,
-                            look_in=look_in,
-                            look_at=look_at,
+                            look_in=_look_in,
+                            look_at=_look_at,
                             search_direction=1,
-                            match_case=match_case,
+                            match_case=_match_case,
                         )
                     except Exception:
                         try:
-                            return rng.api.find(
-                                what=text,
+                            return _rng.api.find(
+                                what=_text,
                                 after_=after_obj,
-                                look_at=look_at,
+                                look_at=_look_at,
                                 search_direction=1,
-                                match_case=match_case,
+                                match_case=_match_case,
                             )
                         except Exception:
-                            return rng.api.find(what=text, after_=after_obj)
+                            return _rng.api.find(what=_text, after_=after_obj)
 
                 def _scan_notes_in_range(find_all_mode: bool):
                     # xlwings supports Notes on macOS (legacy comments). This is the most reliable way
@@ -3221,9 +3225,9 @@ if module == "find":
                 if find_all and eval(find_all):
                     found = []
                     try:
-                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=text)
-                        while r is not None and r.get_address() not in found:
-                            found.append(r.get_address())
+                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=search_text)
+                        while r is not None and _format_address(r.get_address(), address) not in found:
+                            found.append(_format_address(r.get_address(), address))
                             r = rng.api.find_next(after_=r)
                     except Exception:
                         # If searching in comments, try scanning Notes as a reliable fallback
@@ -3244,7 +3248,7 @@ if module == "find":
 
                 else:
                     try:
-                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=text)
+                        r = _mac_find_first(after_obj) if after_obj is not None else rng.api.find(what=search_text)
                     except Exception:
                         if look_in == -4144:
                             fallback = _scan_notes_in_range(False)
@@ -3263,7 +3267,7 @@ if module == "find":
                             raise
 
                     if r is not None:
-                        cell = r.get_address()
+                        cell = _format_address(r.get_address(), address)
                         if extra_data and eval(extra_data):
                             matches = {
                                 "sheet": sheet_name,

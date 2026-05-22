@@ -596,7 +596,7 @@ Busca un texto en el rango indicado y retorna la celda donde se encuentra la pri
 |Encontrar todos|Si se marca esta casilla, devolvera un listado de todas las coincidencias.||
 |Buscar en todas las hojas|Si se marca esta casilla, se buscará en todas las hojas.||
 |Obtiene hoja y posicion|Si se marca esta casilla, se obtendrán todos los datos de la búsqueda.||
-|Obtiene ruta absoluta|Si se marca esta casilla, se obtendrán el contenido con la $.||
+|Obtiene la ubicación sin la ruta absoluta.|Si se marca esta casilla, se obtendrán el contenido sin la $.||
 |Asignar resultado a variable|Nombre de la variable donde guardar el resultado|Variable|
 
 ### Encontrar dato

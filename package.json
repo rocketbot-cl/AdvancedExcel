@@ -7257,16 +7257,16 @@
               "pr": ""
             },
             "title": {
-              "es": "Obtiene ruta absoluta",
-              "en": "Gets absolute pathn",
-              "pr": "Obtém o caminho absoluto"
+              "es": "Obtiene la ubicación sin la ruta absoluta.",
+              "en": "Gets the location without the absolute path.",
+              "pr": "Obtém a localização sem o caminho absoluto."
             },
             "description": {
-              "es": "Si se marca esta casilla, se obtendrán el contenido con la $.",
-              "en": "If this box is checked, the content with the $ will be obtained",
-              "pr": "Se esta caixa estiver marcada, o conteúdo com o símbolo $ será obtido.."
+              "es": "Si se marca esta casilla, se obtendrán el contenido sin la $.",
+              "en": "If this box is checked, the content will be obtained without the $.",
+              "pr": "Se esta caixa estiver marcada, o conteúdo será obtido sem o símbolo $."
             },
-            "id": "absolut_address",
+            "id": "address",
             "css": "col-md-6"
           },
           {

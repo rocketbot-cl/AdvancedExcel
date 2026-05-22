@@ -594,7 +594,7 @@ Searches a text in the given range and returns the address of the cell of the fi
 |Find all|If this box is checked, it will return a list with every coincidence.||
 |Search all sheets|If this box is checked, it will search all sheets.||
 |Gets sheet and position|If this box is checked, it will get all search data.||
-|Gets absolute pathn|If this box is checked, the content with the $ will be obtained||
+|Gets the location without the absolute path.|If this box is checked, the content will be obtained without the $.||
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Find data
