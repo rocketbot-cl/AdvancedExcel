@@ -2972,8 +2972,8 @@ if module == "find":
             else:
                 range_sheet = range_
 
-            def _format_address(addr, absolute=True):
-                if absolute:
+            def _format_address(addr, relative=True):
+                if relative:
                     return addr.replace("$", "")
                 return addr
 
