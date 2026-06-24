@@ -787,6 +787,7 @@ Fecha o arquivo aberto por Rocketbot. O comportamento de que apenas mate um arqu
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Matar processo|Si se marca esta casilla, cerrará por completo o processo.||
+|Identificador (opcional)|Nome ou identificador do arquivo a ser fechado. Usado quando mais de um arquivo do Excel precisa ser fechado. O padrão é *default*.|id|
 
 ### Eliminar Estilos
   

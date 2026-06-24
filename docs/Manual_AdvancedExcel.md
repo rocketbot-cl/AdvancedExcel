@@ -785,6 +785,7 @@ Close the workbook opened by Rocketbot. The behavior of only closing one excel, 
 |Parameters|Description|example|
 | --- | --- | --- |
 |Kill process |If this box is marked, the process will be completely closed.||
+|Id (optional) |Name or identifier for the file to be closed. Used when more than one Excel file needs to be closed. The default is *default*.|id|
 
 ### Delete Styles
   
