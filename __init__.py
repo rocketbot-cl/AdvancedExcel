@@ -1853,10 +1853,6 @@ if module == "CloseExcel":
             app_to_close.kill()
         else:
             wb_to_close.close()
-            # If no books remain in this Excel instance, close the app gracefully
-            # to avoid leaving an empty "Book1" window open.
-            if len(app_to_close.books) == 0:
-                app_to_close.quit()
 
         if id_ and id_ in excel.file_:
             del excel.file_[id_]
