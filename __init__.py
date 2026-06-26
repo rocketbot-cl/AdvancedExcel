@@ -1834,19 +1834,36 @@ if module == "fitCells":
         
 if module == "CloseExcel":
     kill_app = GetParams("kill_app")
-    
-    wb.app.api.DisplayAlerts = False
-    
-    if kill_app:
-        if eval(kill_app) == True:
-            wb.app.kill()
-    else:
-        try:
-            wb.close()
-        except Exception as e:
-            print("\x1B[" + "31;40mError\x1B[" + "0m")
-            PrintException()
-            raise e
+    id_ = GetParams("id")
+
+    try:
+        if id_:
+            if id_ not in excel.file_:
+                raise Exception(f"The id {id_} does not exist.")
+
+            xls_to_close = excel.file_[id_]
+            wb_to_close = xls_to_close["workbook"]
+        else:
+            wb_to_close = wb
+
+        app_to_close = wb_to_close.app
+        app_to_close.api.DisplayAlerts = False
+
+        if kill_app and eval(kill_app) == True:
+            app_to_close.kill()
+        else:
+            wb_to_close.close()
+
+        if id_ and id_ in excel.file_:
+            del excel.file_[id_]
+
+            if excel.actual_id == id_:
+                excel.actual_id = excel.id_default
+
+    except Exception as e:
+        print("\x1B[" + "31;40mError\x1B[" + "0m")
+        PrintException()
+        raise e
 
 if module == "getFormula":
     

@@ -787,6 +787,7 @@ Cierra el libro abierto por Rocketbot. El comportamiento de que solo mate un exc
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Matar proceso|Si se marca esta casillaa, cerrará por completo el proceso.||
+|Identificador (opcional)|Nombre o identificador para el archivo que se cerrara. Se utiliza cuando se necesita cerrar más de un excel. Por defecto es *default*.|id|
 
 ### Eliminar Estilos
   
