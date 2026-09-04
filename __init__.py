@@ -172,6 +172,33 @@ def _insert_formula_with_locale_support(sheet, cell, formula_text, use_formula2=
             setattr(target, formula_attr, translated)
     except Exception:
         pass
+
+
+def _open_workbook_windows_with_recovery(app_api, file_path, password=None, allow_recovery=False):
+    last_error = None
+
+    # Keep legacy behavior by default (normal load only) unless recovery is enabled.
+    corrupt_load_modes = (0, 1, 2) if allow_recovery else (0,)
+
+    # Try normal load first, then Excel repair modes for damaged files.
+    for corrupt_load_mode in corrupt_load_modes:
+        try:
+            return app_api.Workbooks.Open(
+                file_path,
+                False,
+                None,
+                None,
+                password,
+                password,
+                IgnoreReadOnlyRecommended=True,
+                CorruptLoad=corrupt_load_mode
+            )
+        except Exception as open_error:
+            last_error = open_error
+
+    raise last_error
+
+
 module = GetParams("module")
 
 # Get excel variables from Rocketbot
@@ -184,17 +211,24 @@ if module == "Open":
     id_ = GetParams("id")
     file_path = GetParams("path")
     password = GetParams("password")
+    recovery = GetParams("recovery")
+    recovery = str(recovery) == "true" or str(recovery) == "True"
     visible = GetParams("visible")
     var_ = GetParams("var_")
     try:
-
+        
         app = xw.App(add_book=False)
 
         file_path = file_path.replace("/", os.sep)
 
         if platform.system() == "Windows":
             app.api.DisplayAlerts = False
-            wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+
+            if recovery:
+                wb = _open_workbook_windows_with_recovery(app.api, file_path, password, allow_recovery=True)
+            else:
+                wb = app.api.Workbooks.Open(file_path, False, None, None, password, password, IgnoreReadOnlyRecommended=True, CorruptLoad=0)
+
             SetVar(var_, True)
         else:
             app.api.display_alerts = False

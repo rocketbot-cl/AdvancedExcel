@@ -31,6 +31,7 @@ Abre um arquivo sem mostrar alertas do MS Excel.
 |Direcção do arquivo XLSX|Direcação do arquivo xlsx que se deseja abrir|arquivo.XLSX|
 |Password (opcional)|Password do arquivo xlsx|P@ssW0rd|
 |Identificador (opcional)|Nome ou identificador para o arquivo que se abrirá. É utilizado quando se precisa abrir mais de um excel. Por padrão é *default*.|id|
+|Abrir com recuperação|Se marcado, tenta abrir arquivos danificados usando modos de recuperação automática do Excel.|True|
 |Atribuir resultado a variável|Variável onde o resultado será armazenado|id|
 
 ### Buscar e conectar

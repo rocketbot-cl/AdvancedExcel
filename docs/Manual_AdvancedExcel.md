@@ -29,6 +29,7 @@ Open a file preventing MS Excel alerts.
 |path to XLSX file |Path of the xlsx file to be opened|file.XLSX|
 |Password (optional) |Password of the xlsx file|P@ssW0rd|
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|id|
+|Open with recovery|If checked, it tries to open damaged files using Excel automatic recovery modes.|True|
 |Assign result to variable |Variable where the result will be stored|id|
 
 ### Find and Connect

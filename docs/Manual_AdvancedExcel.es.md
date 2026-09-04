@@ -31,6 +31,7 @@ Abre un archivo sin mostrar carteles de alerta.
 |Ruta archivo XLSX|Ruta del archivo xlsx que se quiere abrir|Archivo.XLSX|
 |Password (opcional)|Contraseña del archivo xlsx|P@ssW0rd|
 |Identificador (opcional)|Nombre o identificador para el archivo que se abrirá. Se utiliza cuando se necesita abrir más de un excel. Por defecto es *default*|id|
+|Abrir con recuperación|Si se marca, intenta abrir archivos dañados con recuperación automática de Excel.|True|
 |Asignar resultado a variable|Variable donde se almacenara el resultado|id|
 
 ### Buscar y conectar
