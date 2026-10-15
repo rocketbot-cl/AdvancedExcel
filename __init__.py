@@ -3651,7 +3651,25 @@ try:
         id_ = GetParams("id")
         name = GetParams("name")
 
-        wb = xw.Book(name)
+        requested_name = os.path.normcase(os.path.normpath(name))
+        requested_base = os.path.normcase(os.path.basename(name))
+        wb = None
+
+        for app_ in xw.apps:
+            try:
+                for book in app_.books:
+                    book_fullname = os.path.normcase(os.path.normpath(book.fullname))
+                    book_name = os.path.normcase(book.name)
+                    if requested_name in (book_fullname, book_name) or requested_base == book_name:
+                        wb = book
+                        break
+                if wb:
+                    break
+            except Exception:
+                pass
+
+        if wb is None:
+            wb = xw.Book(name)
         wb.app.api.DisplayAlerts = False
         excel.actual_id = excel.id_default
 
@@ -4105,3 +4123,58 @@ if module == "text_to_cell":
             autofit_range = user_range.resize(row_size=height, column_size=width)
             autofit_range.columns.autofit()
             autofit_range.rows.autofit()
+
+def _get_excel_app_api(excel_state):
+    """Return the COM Application object of the connected or active Excel instance."""
+    if platform.system() != "Windows":
+        raise Exception("Excel separator settings are only available on Windows")
+    if excel_state.actual_id in excel_state.file_:
+        return excel_state.file_[excel_state.actual_id]['workbook'].app.api
+    if len(xw.apps) == 0:
+        raise Exception("There is no Excel instance open. Open a file first.")
+    return xw.apps.active.api
+
+if module == "GetExcelSeparators":
+    var_decimal = GetParams("var_decimal")
+    var_thousands = GetParams("var_thousands")
+    var_system = GetParams("var_system")
+
+    try:
+        app_api = _get_excel_app_api(excel)
+        decimal_sep = app_api.DecimalSeparator
+        thousands_sep = app_api.ThousandsSeparator
+        use_system = bool(app_api.UseSystemSeparators)
+
+        if var_decimal:
+            SetVar(var_decimal, decimal_sep)
+        if var_thousands:
+            SetVar(var_thousands, thousands_sep)
+        if var_system:
+            SetVar(var_system, use_system)
+
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "SetExcelSeparators":
+    decimal_sep = GetParams("decimal_sep") or "."
+    thousands_sep = GetParams("thousands_sep") or ","
+
+    try:
+        if len(decimal_sep) != 1 or len(thousands_sep) != 1:
+            raise Exception("Decimal and thousands separators must be exactly one character")
+        if decimal_sep == thousands_sep:
+            raise Exception("Decimal and thousands separators must be different")
+
+        app_api = _get_excel_app_api(excel)
+
+        app_api.UseSystemSeparators = False
+        app_api.DecimalSeparator = decimal_sep
+        app_api.ThousandsSeparator = thousands_sep
+
+        if app_api.DecimalSeparator != decimal_sep or app_api.ThousandsSeparator != thousands_sep:
+            raise Exception("Excel did not apply the requested separators")
+
+    except Exception as e:
+        PrintException()
+        raise e
