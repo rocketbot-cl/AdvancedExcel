@@ -3,26 +3,25 @@
 
 
 # Excel Advanced Options
-  
-Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.  
+
+Apply automatic and advanced filters, format cells, add or delete sheets, rows or columns, export to different file formats, unlock and relock sheets, copy and paste special and more with your Excel files.
 
 *Read this in other languages: [English](Manual_AdvancedExcel.md), [Português](Manual_AdvancedExcel.pr.md), [Español](Manual_AdvancedExcel.es.md)*
-  
+
 ![banner](imgs/Banner_AdvancedExcel.png)
 ## How to install this module
-  
+
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.
 
 ## How to use this module
 To use this module, you must have Microsoft Excel installed.
 
-
 ## Description of the commands
 
 ### Open Without Alerts
-  
+
 Open a file preventing MS Excel alerts.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -33,7 +32,7 @@ Open a file preventing MS Excel alerts.
 |Assign result to variable |Variable where the result will be stored|id|
 
 ### Find and Connect
-  
+
 Search a Excel Book opened and connect it
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -41,13 +40,13 @@ Search a Excel Book opened and connect it
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|excel1|
 
 ### Maximize
-  
+
 Maximize Excel Window
 |Parameters|Description|example|
 | --- | --- | --- |
 
 ### Calculation options
-  
+
 Select the way the formula calculation is executed in the workbook.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -55,7 +54,7 @@ Select the way the formula calculation is executed in the workbook.
 |Calculate now|If this box is checked, the formulas in the book are calculated|True|
 
 ### Read cells
-  
+
 Read a cell or range of cells
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -66,7 +65,7 @@ Read a cell or range of cells
 |Assign result to variable |Name of the variable where the result will be stored|cells|
 
 ### Convert serial date
-  
+
 Convert an excel serial number date to a specific date format
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -75,7 +74,7 @@ Convert an excel serial number date to a specific date format
 |Assign result to variable |Name of the variable where the result will be stored|output_date|
 
 ### Count columns
-  
+
 Count the columns or return the last column name. It's necessary that the excel is saved to get the last changes
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -84,7 +83,7 @@ Count the columns or return the last column name. It's necessary that the excel 
 |Assign result to variable |Name of the variable where the result will be stored|count_columns|
 
 ### Count Rows
-  
+
 Counts all the rows or from a range.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -94,7 +93,7 @@ Counts all the rows or from a range.
 |Assign result to variable |Name of the variable where the result will be stored|length_rows|
 
 ### Hide
-  
+
 Hides one or more rows, or one or more columns.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -103,7 +102,7 @@ Hides one or more rows, or one or more columns.
 |Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Show
-  
+
 Shows one or more rows, or one or more columns that are hidden
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -112,7 +111,7 @@ Shows one or more rows, or one or more columns that are hidden
 |Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Cell color
-  
+
 Change color of a cell or range of cells. Can be a default color or custom
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -123,7 +122,7 @@ Change color of a cell or range of cells. Can be a default color or custom
 |Select color |Select the color. You can use the previous input to customize the color|red|
 
 ### Font color
-  
+
 Change the text color in a cell or range of cells. You can use a default or custom color
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -134,7 +133,7 @@ Change the text color in a cell or range of cells. You can use a default or cust
 |Select color |Select the color. You can use the previous input to customize the color|red|
 
 ### Get Cell Color
-  
+
 Get the color of a cell. The funtion will return a list of two elements: Background Color and Font Color in RGB format.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -143,7 +142,7 @@ Get the color of a cell. The funtion will return a list of two elements: Backgro
 |Assign to var|Name of the variable where the result will be stored|color|
 
 ### Get Cell Formats
-  
+
 Get the format of a cell. The function will return a dictionary with the cell properties and the value of each one.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -152,7 +151,7 @@ Get the format of a cell. The function will return a dictionary with the cell pr
 |Assign to var|Name of the variable where the result will be stored|color|
 
 ### Insert Formula
-  
+
 Insert formula into cell
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -162,14 +161,14 @@ Insert formula into cell
 |No IIE|If this box is checked, it allows you to send the formula without IIE|True|
 
 ### Insert Macro
-  
+
 Insert Macro in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 |Macro path |Path of the bas file to be inserted|Macro.bas|
 
 ### Select and copy Cells
-  
+
 Select and Copy cells in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -178,7 +177,7 @@ Select and Copy cells in Excel
 |Copy |By checking the checkbox, the values will be copied to the clipboard.|True|
 
 ### Get Cell With Currency Format
-  
+
 Get cells with currency format
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -187,7 +186,7 @@ Get cells with currency format
 |Assign to var|Name of the variable where the result will be stored|variable|
 
 ### Get Cell With Date Format
-  
+
 Get cells with date format
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -196,7 +195,7 @@ Get cells with date format
 |Assign to var|Name of the variable where the result will be stored|variable|
 
 ### Copy-Paste
-  
+
 Copy range cell to another sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -210,7 +209,7 @@ Copy range cell to another sheet
 |Transpose|Rotate the content of copied cells when pasting. Data in rows will be pasted into columns and vice versa.||
 
 ### Format Cell
-  
+
 Format Cell
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -221,7 +220,7 @@ Format Cell
 |Text to Value|||
 
 ### Clear Contents
-  
+
 Clears formulas and values from the selected range, keeping the format.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -229,7 +228,7 @@ Clears formulas and values from the selected range, keeping the format.
 |Cell or Range of cells|Range that contains the data to align|A1:D7|
 
 ### Create Sheet
-  
+
 Create sheet in the end
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -237,7 +236,7 @@ Create sheet in the end
 |After|The sheet will be created next to the sheet indicated in this field.|Hoja1|
 
 ### Delete Sheet
-  
+
 Delete sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -245,7 +244,7 @@ Delete sheet
 |Assign result to variable|Name of the variable where the result will be stored|Variable|
 
 ### Copy to another excel
-  
+
 Copy the range from one Excel file to another. Indicating the file path, it will open excel to copy or paste the data. If you enter the id of an open excel, it will use that instance to copy or paste.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -260,7 +259,7 @@ Copy the range from one Excel file to another. Indicating the file path, it will
 |Range to paste (Optional)|Column, Cell or Range of cells where to paste. The syntax must be the same as excel (A, A1 or A1B1) |A1:D7|
 
 ### Add/Delete Row
-  
+
 Add or Delete a Row
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -270,7 +269,7 @@ Add or Delete a Row
 |Where to Insert|Indicate where add or delete the row|A1:D7|
 
 ### Add/Delete Column
-  
+
 Add or Delete a Column
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -279,7 +278,7 @@ Add or Delete a Column
 |Range|Indicate the column(s) to be added or deleted|B|
 
 ### Convert CSV to XLSX
-  
+
 Convert a CSV document to XLSX format
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -290,7 +289,7 @@ Convert a CSV document to XLSX format
 |XLSX file path|Path of the xlsx file where will be saved|file.xlsx|
 
 ### Export to JSON
-  
+
 Export array data to JSON
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -298,7 +297,7 @@ Export array data to JSON
 |Json file path|Path of the json file where will be saved|C:/Users/User/Desktop/file.json|
 
 ### (Deprecated) Convert XLSX to CSV
-  
+
 Convert a xlsx document to csv
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -308,7 +307,7 @@ Convert a xlsx document to csv
 |CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
 
 ### Convert XLSX to CSV
-  
+
 Convert a xlsx document to csv
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -319,7 +318,7 @@ Convert a xlsx document to csv
 |CSV file path|Path of the xlsx file where will be saved|C:/Users/User/Desktop/file.csv|
 
 ### Convert XLS to XLSX
-  
+
 Convert a xls document to xlsx
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -327,14 +326,14 @@ Convert a xls document to xlsx
 |XLSX file path|Path of the xlsx file where will be saved|C:\Users\User\Desktop\new_file.xlsx|
 
 ### Get active cell
-  
+
 Get row and column of active cell
 |Parameters|Description|example|
 | --- | --- | --- |
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Refresh Pivot table
-  
+
 Refresh a pivot table. Deprecated! Use PivotTableExcel module
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -342,7 +341,7 @@ Refresh a pivot table. Deprecated! Use PivotTableExcel module
 |Pivote table name |Name of the pivot table to be updated|Name: |
 
 ### Fit cells
-  
+
 Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or columns
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -361,7 +360,7 @@ Adjusts, groups and ungroups a range of cells. You can group/ungroup by rows or 
 |Row Height|Height to which the row will adjust|20|
 
 ### Get Formula
-  
+
 Get the formula into cell
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -369,7 +368,7 @@ Get the formula into cell
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Add Auto Filter
-  
+
 Add auto filter to excel table
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -377,21 +376,21 @@ Add auto filter to excel table
 |Columns |Columna or Range of columns. The syntax must be the same as excel (A o AB) |A:E |
 
 ### Remove Auto Filter
-  
+
 Remove auto filter from an excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the filter to remove is located|Sheet1|
 
 ### Clear Filter
-  
+
 Clears every filter applied over an excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the filtered data is located|Sheet1|
 
 ### Filter
-  
+
 Filter an excel table according to the relative value, exact content, background color or font color of the cells. *Examples according the filter type: xlAnd ['>=10'] or ['>=10', '<=20'] | xlOr ['<=10', '>=20'] | xlFilterValues ['10','20', '30'] | xlFilterCellColor (255,0,0) | xlFilterFontColor (255,0,0)*
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -402,7 +401,7 @@ Filter an excel table according to the relative value, exact content, background
 |Filter type |Type of filter to apply.||
 
 ### Filter by Date
-  
+
 Filter a table by the day, month or year of a date indicated
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -413,7 +412,7 @@ Filter a table by the day, month or year of a date indicated
 |Filter type |Type of filter to apply.||
 
 ### Advanced filter
-  
+
 Apply advanced filter to a table
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -425,14 +424,14 @@ Apply advanced filter to a table
 |Target  |Cell where to paste the result table of the filter|J1 |
 
 ### Clear filters
-  
+
 Remove filters and show all data
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet where the data are located|Sheet1|
 
 ### Rename sheet
-  
+
 Change name to excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -440,7 +439,7 @@ Change name to excel sheet
 |New name |New name of the sheet|new_name|
 
 ### Text Format
-  
+
 Change the Horizontal or Vertical alignment of values in a range of cells
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -450,7 +449,7 @@ Change the Horizontal or Vertical alignment of values in a range of cells
 |Vertical Alignment|Selector that contains the vertical alignment options||
 
 ### Cell Style
-  
+
 This command modifies the formatting of the selected cell or range of cells. You can change the font and borders
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -468,7 +467,7 @@ This command modifies the formatting of the selected cell or range of cells. You
 |Font|Type of font that you want to format|Arial|
 
 ### Paste in Cells
-  
+
 Paste data to cells in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -477,13 +476,13 @@ Paste data to cells in Excel
 |Only values |If this checkbox is checked, only the value will be pasted|True|
 
 ### Disable Cut/Copy Mode
-  
+
 Disable Cut/Copy Mode of the active Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 
 ### Remove Duplicates
-  
+
 Execute the remove duplicates command of Excel
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -493,7 +492,7 @@ Execute the remove duplicates command of Excel
 |Do it have headers?|Check this checkbox if the excel has headers|True|
 
 ### Export to advanced PDF
-  
+
 Export to PDF with options
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -507,7 +506,7 @@ Export to PDF with options
 |Orientation|||
 
 ### Copy-Move Sheet
-  
+
 Copy or move a sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -518,14 +517,14 @@ Copy or move a sheet
 |Copy |By checking the checkbox, the sheet will be copied||
 
 ### Insert Form
-  
+
 Insert Form in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 |Macro path |Path of the frm file to be inserted|Form.frm|
 
 ### Read Filtered Cells
-  
+
 Read all the content of the filtered cells and apply formatting to date-type data if indicated
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -537,7 +536,7 @@ Read all the content of the filtered cells and apply formatting to date-type dat
 |More data |||
 
 ### Count Filtered Cells
-  
+
 Allow count only cells filters 
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -546,7 +545,7 @@ Allow count only cells filters
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Replace
-  
+
 Run replace action to excel 
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -556,7 +555,7 @@ Run replace action to excel
 |New word |Word that will replace the previous word indicated|10-10-2020|
 
 ### Order
-  
+
 Run replace action to excel 
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -566,7 +565,7 @@ Run replace action to excel
 |Order type |Indicate how the column will be sorted|Ascending|
 
 ### Order by multiple levels
-  
+
 Order an excel sheet by value, setting multiple levels
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -576,13 +575,13 @@ Order an excel sheet by value, setting multiple levels
 |Sort fields|||
 
 ### Refresh All
-  
+
 Refresh all data in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
 
 ### Find
-  
+
 Searches a text in the given range and returns the address of the cell of the first occurence. If a value is not found, it will return empty. If the range it is filtered, the search will be performed over the visible cells
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -599,7 +598,7 @@ Searches a text in the given range and returns the address of the cell of the fi
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Find data
-  
+
 Returns the first cell that matches the search data
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -612,7 +611,7 @@ Returns the first cell that matches the search data
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Lock Cells
-  
+
 Lock or Unlock cells
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -621,7 +620,7 @@ Lock or Unlock cells
 |Action|Select if you want to lock or unlock a cell|Lock|
 
 ### Add Chart
-  
+
 Create a new chart in an excel sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -631,7 +630,7 @@ Create a new chart in an excel sheet
 |Data range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |Sheet!A1:B100 |
 
 ### Remove Password
-  
+
 Remove password and save the Excel
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -640,7 +639,7 @@ Remove password and save the Excel
 |Excel without password|Path where to save the .xlsx file. Empty for save in the same Excel|C:/Users/User/Desktop/test2.xlsx|
 
 ### Insert image
-  
+
 Insert an image
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -649,7 +648,7 @@ Insert an image
 |Image path |Path of the image file to be inserted|image.png|
 
 ### Export Chart
-  
+
 Export a chart from index
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -658,7 +657,7 @@ Export a chart from index
 |Image path |Path where the image will be saved|/path/to/image.png|
 
 ### Not visible mode
-  
+
 Open not visible excel.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -666,7 +665,7 @@ Open not visible excel.
 |Id (optional) |Name or identifier for the file to be opened. Used when you need to open more than one excel. By default is *default*.|default|
 
 ### Write array objects
-  
+
 Write array object on Excel cells.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -675,7 +674,7 @@ Write array object on Excel cells.
 |Data |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |[{ 'id',: 1, 'text': 'hello' },{ 'id',: 2, 'text': 'world' }]|
 
 ### Copy-Paste Format
-  
+
 Copy format range cell to another sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -685,7 +684,7 @@ Copy format range cell to another sheet
 |Range to paste||A1:C4|
 
 ### Update links
-  
+
 Changes a link from one document to another
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -693,21 +692,21 @@ Changes a link from one document to another
 |Updated path|Path of the xlsx file that will replace the link|file.xlsx|
 
 ### Unlock book
-  
+
 Unlock book with password
 |Parameters|Description|example|
 | --- | --- | --- |
 |Password|Password of the locked sheet|Password|
 
 ### Lock book
-  
+
 Lock a book with password
 |Parameters|Description|example|
 | --- | --- | --- |
 |Password|Password to lock the book|Password|
 
 ### Unlock sheet
-  
+
 Unlock sheet with password
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -715,7 +714,7 @@ Unlock sheet with password
 |Password|Password of the locked sheet|Password|
 
 ### Lock sheet
-  
+
 Lock a sheet with password
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -723,7 +722,7 @@ Lock a sheet with password
 |Password|Password to lock the sheet|Password|
 
 ### Convert to .txt
-  
+
 Convert to .txt
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -731,7 +730,7 @@ Convert to .txt
 |Save TXT|Path where to save the .txt file|/Users/user/Desktop/test.txt|
 
 ### Text to columns
-  
+
 Parses a column of cells that contain text into several columns.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -739,10 +738,10 @@ Parses a column of cells that contain text into several columns.
 |Range |Cell or Range of cells. The syntax must be the same as excel (A1 or A1B1) |A1:B100 |
 |Select separator |Select the cell separator, it can be fixed width or delimited||
 |Select delimiter type |Select the delimiter type||
-|Other delimiter or widths |Write the delimiter or fixed width|| or 20,35,22,10|
+|Other delimiter or widths |Write the delimiter or fixed width|\| or 20,35,22,10|
 
 ### Convert Excel time to hours
-  
+
 Convert Excel time to hours. Returns the format as hh: mm: ss
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -750,7 +749,7 @@ Convert Excel time to hours. Returns the format as hh: mm: ss
 |Assign result to variable |Name of the variable where the result will be stored|Variable|
 
 ### Combine spreadsheets
-  
+
 Combine Excel spreadsheets that are in the same folder and have the same headers. It will combine horizontally the sheets of the same spreadsheet and vertically the different spreadsheets.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -759,14 +758,14 @@ Combine Excel spreadsheets that are in the same folder and have the same headers
 |Assign result to variable |Name of the variable where the result will be stored|res|
 
 ### Print sheet
-  
+
 Prints a sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Sheet |Name of the sheet to be printed|Sheet1|
 
 ### Save Excel with password
-  
+
 Save a Excel file
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -774,14 +773,14 @@ Save a Excel file
 |Password to save with|Password of the xlsx file|password|
 
 ### Save Excel
-  
+
 Save an Excel file (as '.xlsx', 'xlsm', '.xls', '.csv' or '.prn') in the indicated path
 |Parameters|Description|example|
 | --- | --- | --- |
 |Save Excel|Path where to save the .xlsx file|/Users/user/Desktop/excel.xlsx|
 
 ### Close XLSX
-  
+
 Close the workbook opened by Rocketbot. The behavior of only closing one excel, works if it is opened with the command Open without alerts, otherwise it will close all.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -789,7 +788,7 @@ Close the workbook opened by Rocketbot. The behavior of only closing one excel, 
 |Id (optional) |Name or identifier for the file to be closed. Used when more than one Excel file needs to be closed. The default is *default*.|id|
 
 ### Delete Styles
-  
+
 Removes styles on a sheet
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -797,7 +796,7 @@ Removes styles on a sheet
 |Assign result to variable|Name of the variable where the result will be stored|Variable|
 
 ### Insert link
-  
+
 Insert a link in a cell, either to an external URL or to a cell within another spreadsheet.
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -809,7 +808,7 @@ Insert a link in a cell, either to an external URL or to a cell within another s
 |Assign result to variable|Name of the variable where the result will be stored|Variable|
 
 ### Text to cells
-  
+
 Writes a block of text into multiple cells using newlines and tabs as delimiters. It can be slow for long texts if a max range is specified
 |Parameters|Description|example|
 | --- | --- | --- |
@@ -819,3 +818,20 @@ Writes a block of text into multiple cells using newlines and tabs as delimiters
 |Transform newlines|If checked, newlines will separate the text into different rows||
 |Transform tabs|If checked, tab spaces will separate the text into different columns||
 |Autofit cells|Automatically adjusts the cell height and width after writing so the content is readable. If only the starting cell is specified, all cells will be adjusted.||
+
+### Get Excel separators
+
+Get the decimal and thousands separators configured in Excel
+|Parameters|Description|example|
+| --- | --- | --- |
+|Assign result to variable|Optional. Variable where the decimal separator will be stored|variable|
+|Assign result to variable|Optional. Variable where the thousands separator will be stored|variable|
+|Assign result to variable|Optional. Variable where True/False will be stored depending on whether Excel uses the system separators|variable|
+
+### Set Excel separators
+
+Set the decimal and thousands separators in Excel (disables system separators)
+|Parameters|Description|example|
+| --- | --- | --- |
+|Decimal separator |Character used as decimal separator|.|
+|Thousands separator |Character used as thousands separator|,|

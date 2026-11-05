@@ -9817,24 +9817,25 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "id",
-              "en": "id",
-              "pr": "id"
+              "es": "variable",
+              "en": "variable",
+              "pr": "variable"
             },
             "title": {
-              "es": "Asignar separador decimal a variable (opcional):",
-              "en": "Assign decimal separator to variable (optional): ",
-              "pr": "Atribuir separador decimal à variável (opcional):"
+
+              "es": "Asignar resultado a variable:",
+              "en": "Assign result to variable:",
+              "pr": "Atribuir resultado a variável:"
             },
             "help": {
-              "es": "La variable debe ir sin llaves {}",
-              "en": "var without {}",
-              "pr": "A variável deve ir sem chaves {}"
+              "es": "Guarda el separador decimal.",
+              "en": "Stores the decimal separator.",
+              "pr": "Armazena o separador decimal."
             },
             "description": {
-              "es": "Variable donde se almacenará el separador decimal",
-              "en": "Variable where the decimal separator will be stored",
-              "pr": "Variável onde o separador decimal será armazenado"
+              "es": "Opcional. Variable donde se almacenará el separador decimal",
+              "en": "Optional. Variable where the decimal separator will be stored",
+              "pr": "Opcional. Variável onde o separador decimal será armazenado"
             },
             "remove_vars": true,
             "id": "var_decimal",
@@ -9843,24 +9844,24 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "id",
-              "en": "id",
-              "pr": "id"
+              "es": "variable",
+              "en": "variable",
+              "pr": "variable"
             },
             "title": {
-              "es": "Asignar separador de miles a variable (opcional):",
-              "en": "Assign thousands separator to variable (optional): ",
-              "pr": "Atribuir separador de milhar à variável (opcional):"
+              "es": "Asignar resultado a variable:",
+              "en": "Assign result to variable:",
+              "pr": "Atribuir resultado a variável:"
             },
             "help": {
-              "es": "La variable debe ir sin llaves {}",
-              "en": "var without {}",
-              "pr": "A variável deve ir sem chaves {}"
+              "es": "Guarda el separador de miles.",
+              "en": "Stores the thousands separator.",
+              "pr": "Armazena o separador de milhar."
             },
             "description": {
-              "es": "Variable donde se almacenará el separador de miles",
-              "en": "Variable where the thousands separator will be stored",
-              "pr": "Variável onde o separador de milhar será armazenado"
+              "es": "Opcional. Variable donde se almacenará el separador de miles",
+              "en": "Optional. Variable where the thousands separator will be stored",
+              "pr": "Opcional. Variável onde o separador de milhar será armazenado"
             },
             "remove_vars": true,
             "id": "var_thousands",
@@ -9869,24 +9870,24 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "id",
-              "en": "id",
-              "pr": "id"
+              "es": "variable",
+              "en": "variable",
+              "pr": "variable"
             },
             "title": {
-              "es": "Asignar 'usar separadores del sistema' a variable (opcional):",
-              "en": "Assign 'use system separators' to variable (optional): ",
-              "pr": "Atribuir 'usar separadores do sistema' à variável (opcional):"
+              "es": "Asignar resultado a variable:",
+              "en": "Assign result to variable:",
+              "pr": "Atribuir resultado a variável:"
             },
             "help": {
-              "es": "La variable debe ir sin llaves {}",
-              "en": "var without {}",
-              "pr": "A variável deve ir sem chaves {}"
+              "es": "Guarda si Excel usa los separadores del sistema o personalizados.",
+              "en": "Stores whether Excel uses system or custom separators.",
+              "pr": "Armazena se o Excel usa separadores do sistema ou personalizados."
             },
             "description": {
-              "es": "Variable donde se almacenará True/False según si Excel usa los separadores del sistema",
-              "en": "Variable where True/False will be stored depending on whether Excel uses the system separators",
-              "pr": "Variável onde será armazenado True/False conforme o Excel use os separadores do sistema"
+              "es": "Opcional. Variable donde se almacenará True/False según si Excel usa los separadores del sistema",
+              "en": "Optional. Variable where True/False will be stored depending on whether Excel uses the system separators",
+              "pr": "Opcional. Variável onde será armazenado True/False conforme o Excel use os separadores do sistema"
             },
             "remove_vars": true,
             "id": "var_system",
