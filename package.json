@@ -109,6 +109,26 @@
             "css": "col-md-4"
           },
           {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True",
+              "pr": "True"
+            },
+            "description": {
+              "es": "Si se marca, intenta abrir archivos dañados con recuperación automática de Excel.",
+              "en": "If checked, it tries to open damaged files using Excel automatic recovery modes.",
+              "pr": "Se marcado, tenta abrir arquivos danificados usando modos de recuperação automática do Excel."
+            },
+            "title": {
+              "es": "Abrir con recuperación",
+              "en": "Open with recovery",
+              "pr": "Abrir com recuperação"
+            },
+            "id": "recovery",
+            "css": "col-md-4"
+          },
+          {
             "type": "input",
             "placeholder": {
               "es": "id",
