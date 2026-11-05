@@ -20,6 +20,7 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 ## Como usar este modulo
 Para usar este modulo debe tener Microsoft Excel instalado.
 
+
 ## Descripción de los comandos
 
 ### Abrir sin alertas
@@ -826,9 +827,9 @@ Escribe un bloque de texto en múltiples celdas usando saltos de línea y tabula
 Obtiene los separadores decimal y de miles configurados en Excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Asignar resultado a variable|Opcional. Variable donde se almacenará el separador decimal|variable|
-|Asignar resultado a variable|Opcional. Variable donde se almacenará el separador de miles|variable|
-|Asignar resultado a variable|Opcional. Variable donde se almacenará True/False según si Excel usa los separadores del sistema|variable|
+|Asignar separador decimal a variable|Variable donde se almacenará el separador decimal. (Opcional)|separador|
+|Asignar separador de miles a variable|Variable donde se almacenará el separador de miles. (Opcional)|separador|
+|Asignar en variable si Excel usa los separadores del sistema|Guarda True si Excel usa los separadores del sistema o False si usa separadores personalizados. (Opcional)|variable|
 
 ### Configurar separadores de Excel
 

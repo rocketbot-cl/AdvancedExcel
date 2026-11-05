@@ -18,6 +18,7 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 ## How to use this module
 To use this module, you must have Microsoft Excel installed.
 
+
 ## Description of the commands
 
 ### Open Without Alerts
@@ -824,9 +825,9 @@ Writes a block of text into multiple cells using newlines and tabs as delimiters
 Get the decimal and thousands separators configured in Excel
 |Parameters|Description|example|
 | --- | --- | --- |
-|Assign result to variable|Optional. Variable where the decimal separator will be stored|variable|
-|Assign result to variable|Optional. Variable where the thousands separator will be stored|variable|
-|Assign result to variable|Optional. Variable where True/False will be stored depending on whether Excel uses the system separators|variable|
+|Assign decimal separator to variable |Variable where the decimal separator will be stored. (Optional)|separator|
+|Assign thousands separator to variable |Variable where the thousands separator will be stored. (Optional)|separator|
+|Assign 'use system separators' to variable |Variable where True/False will be stored depending on whether Excel uses the system separators. (Optional)|variable|
 
 ### Set Excel separators
 
