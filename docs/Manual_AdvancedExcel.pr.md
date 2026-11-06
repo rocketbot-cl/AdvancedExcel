@@ -20,6 +20,7 @@ Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 ## Como usar este módulo
 Para usar este módulo, você deve ter o Microsoft Excel instalado.
 
+
 ## Descrição do comando
 
 ### Abrir sem alertas
@@ -826,9 +827,9 @@ Escreva um bloco de texto em várias células usando quebras de linha e tabulaç
 Obtém os separadores decimal e de milhar configurados no Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|Atribuir resultado a variável|Opcional. Variável onde o separador decimal será armazenado|variable|
-|Atribuir resultado a variável|Opcional. Variável onde o separador de milhar será armazenado|variable|
-|Atribuir resultado a variável|Opcional. Variável onde será armazenado True/False conforme o Excel use os separadores do sistema|variable|
+|Atribuir separador decimal à variável|Variável onde o separador decimal será armazenado. (Opcional)|separador|
+|Atribuir separador de milhar à variável|Variável onde o separador de milhar será armazenado. (Opcional)|separador|
+|Atribuir 'usar separadores do sistema' à variável|Variável onde será armazenado True/False conforme o Excel use os separadores do sistema. (Opcional)|variável|
 
 ### Configurar separadores do Excel
 
